@@ -350,7 +350,7 @@ Public Class frmPurchaseManagement
             mWorkOrderInfo.WorkOrder.WorkOrderMatReqCategoryStatuss.Add(mSalesOrderPhaseMatReqCategoryStatus)
           End If
 
-          If mWorkOrderInfo.FinishDate = Date.MinValue Then
+          If mWorkOrderInfo.PlannedStartDate = Date.MinValue Then
             frmWorkOrderMatReqCategoryStatusDetail.OpenForm(Me, pFormController.DBConn, mSalesOrderPhaseMatReqCategoryStatus, mworkOrderID, mCategory, frmWorkOrderMatReqCategoryStatusDetail.eForm.ReadWriteForm)
 
           Else

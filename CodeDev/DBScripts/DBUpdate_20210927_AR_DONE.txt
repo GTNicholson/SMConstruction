@@ -1,0 +1,82 @@
+alter table CostBookEntry
+add CostIncludeRecovery decimal (10,4)
+go
+
+update CostBookEntry
+set CostIncludeRecovery=1.65
+go
+
+alter table MaterialRequirement
+add IsFromStockValidated bit
+go
+
+ALTER view [dbo].[vwMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.ReturnQty,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.NetLenght,
+MR.NetWidth,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+MR.FromStockQty,
+MR.IsFromStockValidated,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+WO.WorkOrderID,
+WO.WorkOrderNo,
+WO.Description as 'WODESCRIPTION',
+WO.PlannedDeliverDate,
+WO.PlannedStartDate,
+WO.DateCreated,
+WO.PurchasingDate,
+SO.OrderNo,
+SO.ProjectName,
+SO.OrderTypeID,
+CU.CompanyName,
+WOA.WorkOrderAllocationID,
+SOPI.SalesOrderPhaseID,
+SOPI.SalesOrderPhaseItemID,
+SOPI.SalesOrderID,
+SOI.ItemNumber,
+SOI.Description 'SOIDescription',
+SOI.SalesOrderItemID,
+isnull(MR.Quantity,0)-isnull(PickedQty,0) AS 'OSQty',
+isnull(sil.Qty,0) StockItemLocationsQty,
+isnull(vwOQWOSum.OrderedQty,0) OrderedQty,
+isnull(vwOQWOSum.ReceivedQty,0) ReceivedQty,
+isnull(vwOQWOSum.CurrentOrderQty,0) CurrentOrderQty
+
+
+
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID 
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID AND WO.Status not in (3)
+LEFT join WorkOrderAllocation WOA on WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN StockItemLocation SIL ON SIL.StockItemID=SI.StockItemID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID --IT'S INNER JOIN HERE
+left join vwOrderedQuantityWOSummary vwOQWOSum on vwOQWOSum.WorkOrderID=WO.WorkOrderID and vwOQWOSum.StockItemID=si.StockItemID
+LEFT JOIN SalesOrderItem SOI on SOI.SalesOrderItemID=SOPI.SalesItemID
+LEFT JOIN SalesOrder SO ON SO.SalesOrderID=SOI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+
+WHERE MR.MaterialRequirementType IN (2,1)
+
+GO
+
+

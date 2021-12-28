@@ -229,7 +229,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
-  Public ReadOnly Property StockCategoryDesc() As String
+  Public ReadOnly Property StockitemCategoryDesc() As String
     Get
       Return clsEnumsConstants.GetEnumDescription(GetType(eStockItemCategory), CType(pStockItem.Category, eStockItemCategory))
     End Get
@@ -368,6 +368,29 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
+
+
+  Public ReadOnly Property UnitPriceUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+
+
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = pPurchaseOrderItem.UnitPrice
+
+        Case eCurrency.Cordobas
+          mRetVal = pPurchaseOrderItem.UnitPrice / ExchangeRateValue
+
+      End Select
+
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
+
+    End Get
+
+  End Property
+
   Public ReadOnly Property TotalReceivedAmountUSD As Decimal
     Get
       Dim mRetVal As Decimal = 0
@@ -385,7 +408,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
       End Select
 
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
   End Property
 
@@ -406,7 +429,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
       End Select
 
-      Return mRetVal
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
 
   End Property
@@ -430,15 +453,24 @@ Public Class clsPurchaseOrderItemAllocationInfo
       Dim mRetVal As String = pSalesOrder.ProjectName
 
       If pSalesOrder.ProjectName = "" Then
-        mRetVal = CategoryDesc & " / Categoría Contable: " & AccoutingCategoryDesc
-        If mRetVal = "" Then
-          mRetVal = CategoryDesc
+        mRetVal = pPurchaseOrderItemAllocation.ProjectRef 'CategoryDesc & " / Categoría Contable: " & AccoutingCategoryDesc
+
+        If mRetVal = "" Or mRetVal = " / " Then
+          mRetVal = PurchaseCategory
         End If
       End If
 
+      If mRetVal.Contains("/") Then
+        mRetVal = mRetVal.Substring(0, mRetVal.IndexOf("/") - 1)
+      End If
       Return mRetVal
     End Get
 
+  End Property
+  Public ReadOnly Property Carriage As Decimal
+    Get
+      Return pPurchaseOrder.Carriage
+    End Get
   End Property
   Public ReadOnly Property AccoutingCategoryDesc() As String
     Get
@@ -447,7 +479,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   End Property
 
-  Public ReadOnly Property CategoryDesc As String
+  Public ReadOnly Property PurchaseCategory As String
     Get
       Return clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pPurchaseOrder.Category, ePurchaseCategories))
     End Get
@@ -482,6 +514,93 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Public ReadOnly Property WorkOrderID As Integer
     Get
       Return pWorkOrder.WorkOrderID
+    End Get
+
+  End Property
+
+
+
+  Public ReadOnly Property CarriageUSD As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = Carriage
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = Carriage / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalVatValueReportUSD As Decimal
+
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = VATAmount
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = VATAmount / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
+    End Get
+
+  End Property
+
+  Public ReadOnly Property TotalValueReport As Decimal
+    Get
+      Dim mRetVal As Decimal = 0
+
+
+      mRetVal = TotalPurchaseOrderItemAmountUSD - TotalRetentionValueReportUSD + TotalVatValueReportUSD + CarriageUSD
+
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
+    End Get
+  End Property
+
+  Public ReadOnly Property RetentionValue As Decimal
+    Get
+      Return pPurchaseOrderItem.RetentionValue
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalRetentionValueReportUSD As Decimal
+
+    Get
+      Dim mRetVal As Decimal = 0
+      Select Case DefaultCurrency
+        Case eCurrency.Dollar
+
+          mRetVal = RetentionValue
+
+        Case eCurrency.Cordobas
+          If ExchangeRateValue > 0 Then
+            mRetVal = RetentionValue / ExchangeRateValue
+          Else
+            mRetVal = 0
+          End If
+
+      End Select
+
+      Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
 
   End Property
@@ -558,4 +677,7 @@ Public Class colPurchaseOrderItemAllocationInfos : Inherits List(Of clsPurchaseO
     Return mRetVal
 
   End Function
+
+
+
 End Class

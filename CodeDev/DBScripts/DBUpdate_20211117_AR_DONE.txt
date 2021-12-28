@@ -1,0 +1,117 @@
+
+ALTER view [dbo].[vwTimeSheetEntryInfo]
+as
+
+
+SELECT        
+TS.TimeSheetEntryID, 
+TS.TimeSheetEntryTypeID,
+TS.EmployeeID, 
+TS.WorkOrderID, 
+TS.StartTime, 
+TS.EndTime, 
+TS.Note, 
+TS.WorkcentreID,
+TS.OverTimeMinutes, 
+TS.BreakMins,
+WO.WorkOrderNo, 
+WO.Description,
+SO.ProjectName,
+C.CompanyName,
+EROP.StandardRate
+FROM dbo.TimeSheetEntry AS TS
+INNER JOIN Employee E ON E.EmployeeID=TS.EmployeeID
+LEFT join EmployeeRateOfPay EROP on EROP.EmployeeID=E.EmployeeID
+LEFT JOIN dbo.WorkOrder AS WO ON WO.WorkOrderID = TS.WorkOrderID
+LEFT JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left Join SalesOrder SO on SO.SalesOrderID = SOPI.SalesOrderID
+Left Join Customer C on C.CustomerId = SO.CustomerID
+
+
+GO
+
+create FUNCTION dbo.fnGetDurationCost(@StartTime datetime,@EndTime datetime,@BreakMinutes int,@OverTimeMinutes int,@StdRateSalary decimal(10,4))
+returns decimal (10,4)
+AS   
+BEGIN  
+    DECLARE @RetVal decimal (10,4);  
+	DECLARE @Duration decimal (10,4);
+	DECLARE @OverTimeHr decimal (10,4);
+	DECLARE @NetDuration decimal (10,4);
+	DECLARE @DurationHr decimal (10,4);
+
+	if (@StartTime IS NOT NULL AND @EndTime IS NOT NULL)
+	
+	BEGIN
+	 SET @Duration = DATEDIFF(MI,@StartTime,@EndTime);
+	 SET @DurationHr = (@Duration - @BreakMinutes)/60;
+     SET @OverTimeHr = @OverTimeMinutes / 60;
+	 SET @NetDuration=@DurationHr - @OverTimeHr;
+	 
+	 set @RetVal = (@NetDuration * @StdRateSalary) + (@OverTimeHr * (2* @StdRateSalary));
+
+	 END;
+
+    RETURN @RetVal;  
+END; 
+
+
+
+create view vwSalesOrderPhaseItemTimeSheetCostByOTSummary
+as
+select
+SOPI.SalesOrderPhaseItemID,
+SUM(ISNULL(dbo.fnGetDurationCost(TSE.StartTime,TSE.EndTime,TSE.BreakMins,TSE.OverTimeMinutes,EROP.StandardRate),0)) TotalCost
+from TimeSheetEntry TSE
+INNER JOIN WorkOrder WO ON WO.WorkOrderID=TSE.WorkOrderID
+INNER JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+INNER JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+INNER JOIN Employee EMP ON EMP.EmployeeID=TSE.EmployeeID
+LEFT join EmployeeRateOfPay EROP on EROP.EmployeeID=EMP.EmployeeID
+
+GROUP BY SOPI.SalesOrderPhaseItemID
+go
+
+
+
+ALTER VIEW [dbo].[vwSalesOrderPhaseItemTrackingInfo]
+as
+
+select 
+SOPI.SalesOrderPhaseItemID,
+SOI.Description,
+SOI.ItemNumber,
+SOI.UnitPrice,
+ISNULL(SOI.StockItemCost,0) AS 'StockItemCost',
+ISNULL(SOPIMRS.SOPItemMatReqCost,0) as 'SOPItemMatReqCost',
+ISNULL(SOPIMRS.SOPItemPickMatReqCost,0) as 'SOPItemPickMatReqCost',
+ISNULL(SOI.WoodCost,0) AS 'WoodCost',
+ISNULL(SOI.ManpowerCost,0) AS 'ManpowerCost',
+ISNULL(SOI.SubContractCost,0) AS 'SubContractCost',
+ISNULL(SOI.TransportationCost,0) AS 'TransportationCost',
+ISNULL(SOI.MaterialCost,0) AS 'MaterialCost',
+ISNULL(SOPIPOIA.POIAOutsourcingSum,0) AS 'SOPIItemOutsourcingCost',
+SOI.SalesOrderItemID,
+SO.SalesOrderID,
+SO.ProjectName,
+SO.OrderNo,
+SO.DateEntered,
+so.FinishDate,
+SOP.DateCommitted,
+SOP.SalesOrderPhaseID,
+CU.CompanyName,
+SOPITSCOT.TotalCost ManPowerActualTotalCost
+from 
+SalesOrderPhaseItem SOPI
+INNER JOIN SalesOrderItem SOI ON SOI.SalesOrderItemID=SOPI.SalesItemID
+INNER JOIN SalesOrder SO ON SO.SalesOrderID = SOI.SalesOrderID
+INNER JOIN SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID
+LEFT join vwSalesOrderPhaseItemMatReqSum SOPIMRS ON SOPIMRS.SalesOrderPhaseItemID=SOPI.SalesOrderPhaseItemID
+left join vwPOIASOPIOutsourcingCostSUM SOPIPOIA ON SOPIPOIA.SalesorderPhaseItemID=SOPI.SalesOrderPhaseItemID
+left JOIN Customer CU ON CU.CustomerID=SO.CustomerID
+LEFT JOIN vwSalesOrderPhaseItemTimeSheetCostByOTSummary SOPITSCOT ON SOPITSCOT.SalesOrderPhaseItemID = SOPI.SalesOrderPhaseItemID
+
+GO
+
+

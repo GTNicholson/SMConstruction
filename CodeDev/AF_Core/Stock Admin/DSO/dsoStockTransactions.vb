@@ -343,7 +343,7 @@ Public Class dsoStockTransactions
           End If
 
           If mSIL IsNot Nothing Then
-            mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.StockItemLocation, mSIL.StockItemLocationID, mSILBatchID, vTransDate, eTransactionType.GoodsIn, pDBConn.RTISUser.UserID, "", eObjectType.PODeliveryItem, vDeliveryItem.PODeliveryItemID, mSILBatchID, vDefaultCurrency, vUnitCost, vExchangeRate)
+            mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.StockItemLocation, mSIL.StockItemLocationID, "", vTransDate, eTransactionType.GoodsIn, pDBConn.RTISUser.UserID, "", eObjectType.PODeliveryItem, vDeliveryItem.PODeliveryItemID, mSILBatchID, vDefaultCurrency, vUnitCost, vExchangeRate)
           End If
           mNewStockLevel = mPrevValue + mItemQuantity
 
@@ -500,7 +500,7 @@ Public Class dsoStockTransactions
             mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
           End If
 
-          mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, vStockitemLocation.LocationID, vTransDate, mTranType, pDBConn.RTISUser.UserID, vWoodPallet.PalletRef, eObjectType.WoodPallet, vWoodPallet.WoodPalletID, vWoodPallet.WoodPalletID, vDefaultCurrency, vUnitCost, vExchangeRate)
+          mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, "", vTransDate, mTranType, pDBConn.RTISUser.UserID, vWoodPallet.PalletRef, eObjectType.WoodPallet, vWoodPallet.WoodPalletID, vWoodPallet.WoodPalletID, vDefaultCurrency, vUnitCost, vExchangeRate)
 
 
           mNewStockLevel = mPrevValue + vPickedQty
@@ -607,7 +607,7 @@ Public Class dsoStockTransactions
               mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
             End If
 
-            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty * -1), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, vStockitemLocation.LocationID, vTransDate, mTranType, pDBConn.RTISUser.UserID, vWoodPallet.PalletRef, vObjectType, vWoodPallet.WoodPalletID, vWoodPallet.WoodPalletID, vDefaultCurrency, mUnitCost, vExchangeRate)
+            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty * -1), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, "", vTransDate, mTranType, pDBConn.RTISUser.UserID, vWoodPallet.PalletRef, vObjectType, vWoodPallet.WoodPalletID, vWoodPallet.WoodPalletID, vDefaultCurrency, mUnitCost, vExchangeRate)
 
 
             mNewStockLevel = mPrevValue - vPickedQty
@@ -741,7 +741,7 @@ Public Class dsoStockTransactions
           ''//Get the right PiesTablares for the woodpalletitem
 
 
-          mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.StockItemLocation, mSIL.StockItemLocationID, mSILBatchID, vTransDate, eTransactionType.Pick, pDBConn.RTISUser.UserID, vWoodPalletItem.WoodPalletID, eObjectType.WoodPallet, vWoodPalletItem.WoodPalletItemID, mSILBatchID, eCurrency.Dollar, vUnitCost, vExchangeRate)
+          mSILTranLog = mSIL.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mItemQuantity, eObjectType.StockItemLocation, mSIL.StockItemLocationID, "", vTransDate, eTransactionType.Pick, pDBConn.RTISUser.UserID, vWoodPalletItem.WoodPalletID, eObjectType.WoodPallet, vWoodPalletItem.WoodPalletItemID, mSILBatchID, eCurrency.Dollar, vUnitCost, vExchangeRate)
 
           mNewStockLevel = mPrevValue + mItemQuantity
 
@@ -887,7 +887,7 @@ Public Class dsoStockTransactions
           '//Save the ammentmentlog first to get an ID
           mOK = mdtoStockItemLocationAmendmentLog.SaveStockItemLocationAmendmentLog(rAmmendmentLog)
 
-          mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, vAdjustQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, 0, vTransDate, eTransactionType.Adjustment, pDBConn.RTISUser.UserID, "", vRefObjectType, rAmmendmentLog.StockItemLocationAmendmentLogID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
+          mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, vAdjustQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, "", vTransDate, eTransactionType.Adjustment, pDBConn.RTISUser.UserID, "", vRefObjectType, rAmmendmentLog.StockItemLocationAmendmentLogID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
           mNewStockLevel = mPrevValue + vAdjustQty
 
           For Each mTran As dmStockItemTransactionLog In mSILTranLogRollForward
@@ -977,7 +977,7 @@ Public Class dsoStockTransactions
               mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
             End If
 
-            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, vPickedQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, 0, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.MaterialRequirement, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
+            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, vPickedQty, eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, "", vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.MaterialRequirement, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
 
 
             mNewStockLevel = mPrevValue + vPickedQty
@@ -1050,7 +1050,7 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
-  Public Function PickMatReqStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vMatReq As dmMaterialRequirement, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal) As Boolean
+  Public Function PickMatReqStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vMatReq As dmMaterialRequirement, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal, ByVal vRequisaNo As String) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -1088,7 +1088,7 @@ Public Class dsoStockTransactions
               mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
             End If
 
-            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty * -1), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, 0, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.MaterialRequirement, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
+            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty * -1), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, vRequisaNo, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.MaterialRequirement, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
 
 
             mNewStockLevel = mPrevValue - vPickedQty
@@ -1339,7 +1339,7 @@ Public Class dsoStockTransactions
               mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, mStockItemLocation.StockItemLocationID)
             End If
 
-            mSILTranLog = mStockItemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mKVP.Value, eObjectType.StockItemLocation, mStockItemLocation.StockItemLocationID, rWoodPallet.LocationID, vTransDate, mTranType, pDBConn.RTISUser.UserID, rWoodPallet.PalletRef, eObjectType.WoodPallet, rWoodPallet.WoodPalletID, rWoodPallet.WoodPalletID, vDefaultCurrency, mUnitCost, vExchangeRate)
+            mSILTranLog = mStockItemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, mKVP.Value, eObjectType.StockItemLocation, mStockItemLocation.StockItemLocationID, "", vTransDate, mTranType, pDBConn.RTISUser.UserID, rWoodPallet.PalletRef, eObjectType.WoodPallet, rWoodPallet.WoodPalletID, rWoodPallet.WoodPalletID, vDefaultCurrency, mUnitCost, vExchangeRate)
 
             '// Update the current Monetary Value at this location
             mMonetaryValue = GetStockItemLocationMonetaryValue(mSI, mStockItemLocation)

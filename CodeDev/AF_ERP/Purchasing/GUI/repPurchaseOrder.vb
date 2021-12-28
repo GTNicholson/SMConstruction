@@ -13,7 +13,12 @@ Public Class repPurchaseOrder
   Private pToStringCordobas As String = "C$#,##0.00;;#"
   Private pToStringDollar As String = "$#,##0.00;;#"
   Private pCurrency As eCurrency
+  Private pCompanyOption As eCompanyOption
 
+  Public Enum eCompanyOption
+    Agro = 1
+    Other = 2
+  End Enum
   Public Sub New()
 
     InitializeComponent()
@@ -23,8 +28,8 @@ Public Class repPurchaseOrder
 
 
 
-  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency) As XtraReport
-    Dim mRep As New repPurchaseOrder(rPOInfo, rBuyer, vCurrency)
+  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vCompanyOption As eCompanyOption) As XtraReport
+    Dim mRep As New repPurchaseOrder(rPOInfo, rBuyer, vCurrency, vCompanyOption)
     Dim mPrintTool As ReportPrintTool
     mRep.CreateDocument()
     If vPreview Then
@@ -36,7 +41,7 @@ Public Class repPurchaseOrder
     Return mRep
   End Function
 
-  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency)
+  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vCompanyOption As eCompanyOption)
 
     ' This call is required by the designer.
     InitializeComponent()
@@ -46,6 +51,7 @@ Public Class repPurchaseOrder
     pPOInfo = rPOInfo
     pBuyer = rBuyer
     DataSource = rPOInfo.POItemInfos
+    pCompanyOption = vCompanyOption
   End Sub
 
 
@@ -56,6 +62,18 @@ Public Class repPurchaseOrder
   Private Sub repPurchaseOrder_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     Dim mCurrentFormat As String = "N2"
     Dim mToString As String = "N2"
+
+    If pCompanyOption = eCompanyOption.Agro Then
+      xrlCompanyName.Text = "AgroForestal S.A."
+      xrlNumRuc.Text = "Núm RUC J0310000096279"
+      xrlAddress.Text = "Km 13 carretera nueva a león, Empalme Xiloa 300 mts al este. Ciudad Sandino, Managua."
+
+    Else
+      xrlCompanyName.Text = "HYESS, S.A"
+      xrlNumRuc.Text = "Núm RUC J0110000226033"
+      xrlAddress.Text = "Km 13 carretera nueva a león, Empalme Xiloa 300 mts al este. Ciudad Sandino, Managua."
+      xrLogo.Visible = False
+    End If
 
     xrPurchaseOrderNo.Text = pPOInfo.PONum
     xrSupplierOrderRef.Text = pPOInfo.PurchaseOrder.SupplierRef

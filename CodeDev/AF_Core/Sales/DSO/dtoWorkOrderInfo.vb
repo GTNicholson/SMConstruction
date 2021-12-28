@@ -23,6 +23,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
   Protected Overrides Sub SetTableDetails()
     Select Case pMode
       Case eMode.WorkOrderInfo
+
         pTableName = "vwWorkOrderInfo"
         pKeyFieldName = "WorkOrderID"
       Case eMode.WorkOrderInfoInternal
@@ -89,6 +90,9 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
         .ProductID = DBReadInt32(rDataReader, "ProductID")
         .PurchasingDate = DBReadDate(rDataReader, "PurchasingDate")
         .PlannedDeliverDate = DBReadDate(rDataReader, "PlannedDeliverDate")
+        .RequisaDocumentPath = DBReadString(rDataReader, "RequisaDocumentPath")
+        .RequisaDate = DBReadDate(rDataReader, "RequisaDate")
+        .RequisaNumber = DBReadString(rDataReader, "RequisaNumber")
       End With
 
       Select Case pMode
@@ -117,6 +121,7 @@ Public Class dtoWorkOrderInfo : Inherits dtoBase
             .WorkOrderProcessOption = DBReadInt32(rDataReader, "WorkOrderProcessOption")
             .WorkOrderTargetWoodType = DBReadInt32(rDataReader, "WorkOrderTargetWoodType")
             .ProductID = DBReadInt32(rDataReader, "ProductID")
+
           End With
           'Case Else
           With pWorkOrderInfo.WorkOrder

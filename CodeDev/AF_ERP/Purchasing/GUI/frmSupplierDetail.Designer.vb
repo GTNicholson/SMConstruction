@@ -138,9 +138,9 @@ Partial Class frmSupplierDetail
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1419, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1419, 30)
         Me.barDockControlRight.Manager = Nothing
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 488)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 491)
         '
         'grdSupplierContact
         '
@@ -266,7 +266,7 @@ Partial Class frmSupplierDetail
         Me.BarDockControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl2.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl2.Manager = Me.BarManager2
-        Me.BarDockControl2.Size = New System.Drawing.Size(1419, 33)
+        Me.BarDockControl2.Size = New System.Drawing.Size(1419, 30)
         '
         'BarDockControl3
         '
@@ -280,17 +280,17 @@ Partial Class frmSupplierDetail
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BarDockControl4.Location = New System.Drawing.Point(0, 33)
+        Me.BarDockControl4.Location = New System.Drawing.Point(0, 30)
         Me.BarDockControl4.Manager = Me.BarManager2
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 488)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 491)
         '
         'BarDockControl5
         '
         Me.BarDockControl5.CausesValidation = False
         Me.BarDockControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl5.Location = New System.Drawing.Point(1419, 33)
+        Me.BarDockControl5.Location = New System.Drawing.Point(1419, 30)
         Me.BarDockControl5.Manager = Me.BarManager2
-        Me.BarDockControl5.Size = New System.Drawing.Size(0, 488)
+        Me.BarDockControl5.Size = New System.Drawing.Size(0, 491)
         '
         'cboPurchaseTermsType
         '

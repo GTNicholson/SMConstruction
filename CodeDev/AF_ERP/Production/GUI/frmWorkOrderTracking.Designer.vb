@@ -23,29 +23,35 @@ Partial Class frmWorkOrderTracking
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
-    Me.grdWorksOrders = New DevExpress.XtraGrid.GridControl()
-    Me.gvWorksOrders = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.gcCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcWood = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcInsumos = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcEngineering = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPurchasing = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSelection = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcDimensionado = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcCarpitry = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSanding = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcFinishing = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcMetalWork = New DevExpress.XtraGrid.Columns.GridColumn()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderTracking))
+        Me.grdWorksOrders = New DevExpress.XtraGrid.GridControl()
+        Me.gvWorksOrders = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.gcCustomer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcWood = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcInsumos = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcEngineering = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPurchasing = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSelection = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcDimensionado = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcCarpitry = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSanding = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcFinishing = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcMetalWork = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcMetalFinishing = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPackaging = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcDespatch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTapizado = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTejido = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcInstallation = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.bchkHideDespatched = New DevExpress.XtraBars.BarEditItem()
@@ -78,7 +84,7 @@ Partial Class frmWorkOrderTracking
         Me.grdWorksOrders.MainView = Me.gvWorksOrders
         Me.grdWorksOrders.Name = "grdWorksOrders"
         Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-        Me.grdWorksOrders.Size = New System.Drawing.Size(1221, 596)
+        Me.grdWorksOrders.Size = New System.Drawing.Size(1924, 596)
         Me.grdWorksOrders.TabIndex = 0
         Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
         '
@@ -106,7 +112,7 @@ Partial Class frmWorkOrderTracking
         Me.gvWorksOrders.Appearance.ViewCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.gvWorksOrders.Appearance.ViewCaption.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.gvWorksOrders.ColumnPanelRowHeight = 34
-        Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcCustomer, Me.GridColumn6, Me.gcWood, Me.gcInsumos, Me.gcEngineering, Me.gcPurchasing, Me.gcSelection, Me.gcDimensionado, Me.gcCarpitry, Me.gcSanding, Me.gcFinishing, Me.gcMetalWork, Me.gcMetalFinishing})
+        Me.gvWorksOrders.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn10, Me.GridColumn5, Me.gcCustomer, Me.GridColumn6, Me.gcWood, Me.gcInsumos, Me.gcEngineering, Me.gcPurchasing, Me.gcSelection, Me.gcDimensionado, Me.gcCarpitry, Me.gcSanding, Me.gcFinishing, Me.gcMetalWork, Me.gcMetalFinishing, Me.gcPackaging, Me.gcDespatch, Me.gcTapizado, Me.gcTejido, Me.gcInstallation})
         Me.gvWorksOrders.GridControl = Me.grdWorksOrders
         Me.gvWorksOrders.GroupCount = 1
         Me.gvWorksOrders.GroupRowHeight = 28
@@ -198,7 +204,7 @@ Partial Class frmWorkOrderTracking
         Me.GridColumn10.OptionsColumn.ReadOnly = True
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 1
-        Me.GridColumn10.Width = 170
+        Me.GridColumn10.Width = 138
         '
         'GridColumn5
         '
@@ -262,8 +268,6 @@ Partial Class frmWorkOrderTracking
         Me.gcWood.OptionsColumn.ReadOnly = True
         Me.gcWood.Tag = 1
         Me.gcWood.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.gcWood.Visible = True
-        Me.gcWood.VisibleIndex = 8
         Me.gcWood.Width = 126
         '
         'gcInsumos
@@ -273,7 +277,7 @@ Partial Class frmWorkOrderTracking
         Me.gcInsumos.AppearanceHeader.Options.UseTextOptions = True
         Me.gcInsumos.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gcInsumos.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.gcInsumos.Caption = "Insumos"
+        Me.gcInsumos.Caption = "Compras"
         Me.gcInsumos.FieldName = "GridColumn7"
         Me.gcInsumos.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gcInsumos.Name = "gcInsumos"
@@ -301,7 +305,7 @@ Partial Class frmWorkOrderTracking
         Me.gcEngineering.Tag = 3
         Me.gcEngineering.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcEngineering.Visible = True
-        Me.gcEngineering.VisibleIndex = 10
+        Me.gcEngineering.VisibleIndex = 8
         Me.gcEngineering.Width = 94
         '
         'gcPurchasing
@@ -330,7 +334,7 @@ Partial Class frmWorkOrderTracking
         Me.gcSelection.Tag = "5"
         Me.gcSelection.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcSelection.Visible = True
-        Me.gcSelection.VisibleIndex = 11
+        Me.gcSelection.VisibleIndex = 10
         Me.gcSelection.Width = 87
         '
         'gcDimensionado
@@ -343,7 +347,7 @@ Partial Class frmWorkOrderTracking
         Me.gcDimensionado.Tag = "6"
         Me.gcDimensionado.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcDimensionado.Visible = True
-        Me.gcDimensionado.VisibleIndex = 12
+        Me.gcDimensionado.VisibleIndex = 11
         Me.gcDimensionado.Width = 87
         '
         'gcCarpitry
@@ -356,7 +360,7 @@ Partial Class frmWorkOrderTracking
         Me.gcCarpitry.Tag = "7"
         Me.gcCarpitry.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcCarpitry.Visible = True
-        Me.gcCarpitry.VisibleIndex = 13
+        Me.gcCarpitry.VisibleIndex = 12
         '
         'gcSanding
         '
@@ -368,7 +372,7 @@ Partial Class frmWorkOrderTracking
         Me.gcSanding.Tag = "8"
         Me.gcSanding.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcSanding.Visible = True
-        Me.gcSanding.VisibleIndex = 14
+        Me.gcSanding.VisibleIndex = 13
         '
         'gcFinishing
         '
@@ -380,7 +384,7 @@ Partial Class frmWorkOrderTracking
         Me.gcFinishing.Tag = "9"
         Me.gcFinishing.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcFinishing.Visible = True
-        Me.gcFinishing.VisibleIndex = 15
+        Me.gcFinishing.VisibleIndex = 14
         '
         'gcMetalWork
         '
@@ -401,10 +405,70 @@ Partial Class frmWorkOrderTracking
         Me.gcMetalFinishing.Name = "gcMetalFinishing"
         Me.gcMetalFinishing.OptionsColumn.AllowEdit = False
         Me.gcMetalFinishing.OptionsColumn.ReadOnly = True
-        Me.gcMetalFinishing.Tag = 11
+        Me.gcMetalFinishing.Tag = "11"
         Me.gcMetalFinishing.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcMetalFinishing.Visible = True
-        Me.gcMetalFinishing.VisibleIndex = 17
+        Me.gcMetalFinishing.VisibleIndex = 15
+        '
+        'gcPackaging
+        '
+        Me.gcPackaging.Caption = "Empaque"
+        Me.gcPackaging.FieldName = "gcPackaging"
+        Me.gcPackaging.Name = "gcPackaging"
+        Me.gcPackaging.OptionsColumn.AllowEdit = False
+        Me.gcPackaging.OptionsColumn.ReadOnly = True
+        Me.gcPackaging.Tag = "12"
+        Me.gcPackaging.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcPackaging.Visible = True
+        Me.gcPackaging.VisibleIndex = 19
+        '
+        'gcDespatch
+        '
+        Me.gcDespatch.Caption = "Despacho"
+        Me.gcDespatch.FieldName = "gcDespatch"
+        Me.gcDespatch.Name = "gcDespatch"
+        Me.gcDespatch.OptionsColumn.AllowEdit = False
+        Me.gcDespatch.OptionsColumn.ReadOnly = True
+        Me.gcDespatch.Tag = "13"
+        Me.gcDespatch.Visible = True
+        Me.gcDespatch.VisibleIndex = 20
+        '
+        'gcTapizado
+        '
+        Me.gcTapizado.Caption = "Tapizado"
+        Me.gcTapizado.FieldName = "gcTapizado"
+        Me.gcTapizado.Name = "gcTapizado"
+        Me.gcTapizado.OptionsColumn.AllowEdit = False
+        Me.gcTapizado.OptionsColumn.ReadOnly = True
+        Me.gcTapizado.Tag = "18"
+        Me.gcTapizado.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcTapizado.Visible = True
+        Me.gcTapizado.VisibleIndex = 17
+        '
+        'gcTejido
+        '
+        Me.gcTejido.Caption = "Tejido"
+        Me.gcTejido.FieldName = "gcTejido"
+        Me.gcTejido.Name = "gcTejido"
+        Me.gcTejido.OptionsColumn.AllowEdit = False
+        Me.gcTejido.OptionsColumn.ReadOnly = True
+        Me.gcTejido.Tag = "19"
+        Me.gcTejido.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcTejido.Visible = True
+        Me.gcTejido.VisibleIndex = 18
+        Me.gcTejido.Width = 100
+        '
+        'gcInstallation
+        '
+        Me.gcInstallation.Caption = "Instalación"
+        Me.gcInstallation.FieldName = "gcInstallation"
+        Me.gcInstallation.Name = "gcInstallation"
+        Me.gcInstallation.OptionsColumn.AllowEdit = False
+        Me.gcInstallation.OptionsColumn.ReadOnly = True
+        Me.gcInstallation.Tag = 20
+        Me.gcInstallation.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcInstallation.Visible = True
+        Me.gcInstallation.VisibleIndex = 21
         '
         'BarManager1
         '
@@ -460,7 +524,7 @@ Partial Class frmWorkOrderTracking
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1221, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1924, 30)
         '
         'barDockControlBottom
         '
@@ -468,7 +532,7 @@ Partial Class frmWorkOrderTracking
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 626)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1221, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1924, 0)
         '
         'barDockControlLeft
         '
@@ -482,7 +546,7 @@ Partial Class frmWorkOrderTracking
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1221, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 596)
         '
@@ -496,7 +560,7 @@ Partial Class frmWorkOrderTracking
         Me.GroupControl1.Controls.Add(Me.LabelControl10)
         Me.GroupControl1.Controls.Add(Me.LabelControl6)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
-        Me.GroupControl1.Location = New System.Drawing.Point(774, 36)
+        Me.GroupControl1.Location = New System.Drawing.Point(1477, 36)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(447, 68)
         Me.GroupControl1.TabIndex = 5
@@ -570,13 +634,14 @@ Partial Class frmWorkOrderTracking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1221, 626)
+        Me.ClientSize = New System.Drawing.Size(1924, 626)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.grdWorksOrders)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmWorkOrderTracking"
         Me.Text = "Progreso de los O,T.s"
         CType(Me.grdWorksOrders, System.ComponentModel.ISupportInitialize).EndInit()
@@ -630,4 +695,9 @@ Partial Class frmWorkOrderTracking
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents gcMetalFinishing As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPackaging As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcDespatch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcTapizado As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcTejido As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcInstallation As DevExpress.XtraGrid.Columns.GridColumn
 End Class

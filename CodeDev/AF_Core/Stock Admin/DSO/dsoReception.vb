@@ -23,6 +23,10 @@ Public Class dsoReception
         mWhere = "ReceptionID = " & vReceptionID
         mRetVal = mdsoStock.LoadWoodPalletsDownByWhere(rReception.WoodPallets, mWhere)
 
+        For Each mWP As dmWoodPallet In rReception.WoodPallets
+          mRetVal = mdsoStock.LoadWoodPalletGuideItems(mWP.WoodPalletGuideItems, mWP.WoodPalletID)
+
+        Next
 
       End If
     Catch ex As Exception
@@ -86,6 +90,7 @@ Public Class dsoReception
     Dim mdtoReception As New dtoReception(pDBConn)
     Dim mdtoWoodPallet As New dtoWoodPallet(pDBConn)
     Dim mdtoWoodPalletItem As New dtoWoodPalletItem(pDBConn)
+    Dim mdtoWoodPalletGuideItem As New dtoWoodPalletGuideItem(pDBConn)
     Dim mOK As Boolean
 
     Try

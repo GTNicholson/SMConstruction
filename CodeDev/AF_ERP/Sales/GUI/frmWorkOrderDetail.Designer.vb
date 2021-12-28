@@ -326,7 +326,7 @@ Partial Class frmWorkOrderDetail
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1424, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1424, 30)
         '
         'barDockControlBottom
         '
@@ -340,17 +340,17 @@ Partial Class frmWorkOrderDetail
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 718)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 721)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1424, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1424, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 718)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 721)
         '
         'TableLayoutPanel1
         '
@@ -359,7 +359,7 @@ Partial Class frmWorkOrderDetail
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.XtraTabControl2, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 33)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 312.0!))
@@ -367,7 +367,7 @@ Partial Class frmWorkOrderDetail
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1424, 718)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1424, 721)
         Me.TableLayoutPanel1.TabIndex = 4
         '
         'GroupControl1
@@ -407,11 +407,11 @@ Partial Class frmWorkOrderDetail
         'grdPackingComponents
         '
         Me.grdPackingComponents.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdPackingComponents.Location = New System.Drawing.Point(2, 26)
+        Me.grdPackingComponents.Location = New System.Drawing.Point(2, 24)
         Me.grdPackingComponents.MainView = Me.gvPackingComponents
         Me.grdPackingComponents.MenuManager = Me.BarManager1
         Me.grdPackingComponents.Name = "grdPackingComponents"
-        Me.grdPackingComponents.Size = New System.Drawing.Size(235, 233)
+        Me.grdPackingComponents.Size = New System.Drawing.Size(235, 235)
         Me.grdPackingComponents.TabIndex = 43
         Me.grdPackingComponents.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPackingComponents, Me.GridView1})
         '
@@ -1057,7 +1057,7 @@ Partial Class frmWorkOrderDetail
         Me.XtraTabControl2.Location = New System.Drawing.Point(3, 315)
         Me.XtraTabControl2.Name = "XtraTabControl2"
         Me.XtraTabControl2.SelectedTabPage = Me.XtraTabPage5
-        Me.XtraTabControl2.Size = New System.Drawing.Size(1418, 400)
+        Me.XtraTabControl2.Size = New System.Drawing.Size(1418, 403)
         Me.XtraTabControl2.TabIndex = 14
         Me.XtraTabControl2.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage5, Me.XtraTabPage3, Me.XtraTabPage4})
         '
@@ -1065,7 +1065,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage5.Controls.Add(Me.PanelControl2)
         Me.XtraTabPage5.Name = "XtraTabPage5"
-        Me.XtraTabPage5.Size = New System.Drawing.Size(1412, 369)
+        Me.XtraTabPage5.Size = New System.Drawing.Size(1410, 371)
         Me.XtraTabPage5.Text = "Lista de Materiales de Producción"
         '
         'PanelControl2
@@ -1074,7 +1074,7 @@ Partial Class frmWorkOrderDetail
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1412, 369)
+        Me.PanelControl2.Size = New System.Drawing.Size(1410, 371)
         Me.PanelControl2.TabIndex = 45
         '
         'TableLayoutPanel2
@@ -1089,7 +1089,7 @@ Partial Class frmWorkOrderDetail
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1408, 365)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1406, 367)
         Me.TableLayoutPanel2.TabIndex = 44
         '
         'XtraTabControl3
@@ -1102,7 +1102,7 @@ Partial Class frmWorkOrderDetail
         Me.XtraTabControl3.Location = New System.Drawing.Point(3, 3)
         Me.XtraTabControl3.Name = "XtraTabControl3"
         Me.XtraTabControl3.SelectedTabPage = Me.XtraTabPage8
-        Me.XtraTabControl3.Size = New System.Drawing.Size(1402, 176)
+        Me.XtraTabControl3.Size = New System.Drawing.Size(1400, 177)
         Me.XtraTabControl3.TabIndex = 1
         Me.XtraTabControl3.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage8, Me.XtraTabPage9})
         '
@@ -1110,7 +1110,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage8.Controls.Add(Me.grpMaterialRequirements)
         Me.XtraTabPage8.Name = "XtraTabPage8"
-        Me.XtraTabPage8.Size = New System.Drawing.Size(1332, 170)
+        Me.XtraTabPage8.Size = New System.Drawing.Size(1329, 169)
         Me.XtraTabPage8.Text = "Original"
         '
         'grpMaterialRequirements
@@ -1125,7 +1125,7 @@ Partial Class frmWorkOrderDetail
         Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1332, 170)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1329, 169)
         Me.grpMaterialRequirements.TabIndex = 147
         Me.grpMaterialRequirements.Text = "Lista de Materia Prima (LMP)"
         '
@@ -1137,11 +1137,11 @@ Partial Class frmWorkOrderDetail
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirements.Location = New System.Drawing.Point(2, 24)
         Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
         Me.grdMaterialRequirements.MenuManager = Me.BarManager1
         Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
-        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1328, 142)
+        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1325, 143)
         Me.grdMaterialRequirements.TabIndex = 29
         Me.grdMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements})
@@ -1291,7 +1291,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage9.Controls.Add(Me.grpMaterialRequirementChanges)
         Me.XtraTabPage9.Name = "XtraTabPage9"
-        Me.XtraTabPage9.Size = New System.Drawing.Size(1332, 170)
+        Me.XtraTabPage9.Size = New System.Drawing.Size(1331, 168)
         Me.XtraTabPage9.Text = "Cambios"
         '
         'grpMaterialRequirementChanges
@@ -1307,7 +1307,7 @@ Partial Class frmWorkOrderDetail
         Me.grpMaterialRequirementChanges.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirementChanges.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirementChanges.Name = "grpMaterialRequirementChanges"
-        Me.grpMaterialRequirementChanges.Size = New System.Drawing.Size(1332, 170)
+        Me.grpMaterialRequirementChanges.Size = New System.Drawing.Size(1331, 168)
         Me.grpMaterialRequirementChanges.TabIndex = 148
         Me.grpMaterialRequirementChanges.Text = "Lista de Materia Prima (LMP)"
         '
@@ -1319,12 +1319,12 @@ Partial Class frmWorkOrderDetail
         Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdMaterialRequirementsChanges.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdMaterialRequirementsChanges.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirementsChanges.Location = New System.Drawing.Point(2, 24)
         Me.grdMaterialRequirementsChanges.MainView = Me.gvRequirmentMaterialsChanges
         Me.grdMaterialRequirementsChanges.MenuManager = Me.BarManager1
         Me.grdMaterialRequirementsChanges.Name = "grdMaterialRequirementsChanges"
         Me.grdMaterialRequirementsChanges.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit3})
-        Me.grdMaterialRequirementsChanges.Size = New System.Drawing.Size(1328, 142)
+        Me.grdMaterialRequirementsChanges.Size = New System.Drawing.Size(1327, 142)
         Me.grdMaterialRequirementsChanges.TabIndex = 30
         Me.grdMaterialRequirementsChanges.UseEmbeddedNavigator = True
         Me.grdMaterialRequirementsChanges.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRequirmentMaterialsChanges})
@@ -1489,10 +1489,10 @@ Partial Class frmWorkOrderDetail
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.XtraTabControl1.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.XtraTabControl1.Location = New System.Drawing.Point(3, 185)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(3, 186)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage6
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1402, 177)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1400, 178)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage6, Me.XtraTabPage7})
         '
@@ -1500,7 +1500,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage6.Controls.Add(Me.grpMaterialRequirementOthers)
         Me.XtraTabPage6.Name = "XtraTabPage6"
-        Me.XtraTabPage6.Size = New System.Drawing.Size(1332, 171)
+        Me.XtraTabPage6.Size = New System.Drawing.Size(1329, 170)
         Me.XtraTabPage6.Text = "Original"
         '
         'grpMaterialRequirementOthers
@@ -1515,7 +1515,7 @@ Partial Class frmWorkOrderDetail
         Me.grpMaterialRequirementOthers.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirementOthers.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirementOthers.Name = "grpMaterialRequirementOthers"
-        Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1332, 171)
+        Me.grpMaterialRequirementOthers.Size = New System.Drawing.Size(1329, 170)
         Me.grpMaterialRequirementOthers.TabIndex = 147
         Me.grpMaterialRequirementOthers.Text = "Lista de Materiales Requeridos (LMR)"
         '
@@ -1529,12 +1529,12 @@ Partial Class frmWorkOrderDetail
         Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdMaterialRequirementOthers.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.grdMaterialRequirementOthers.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirementOthers.Location = New System.Drawing.Point(2, 24)
         Me.grdMaterialRequirementOthers.MainView = Me.gvMaterialRequirementOthers
         Me.grdMaterialRequirementOthers.MenuManager = Me.BarManager1
         Me.grdMaterialRequirementOthers.Name = "grdMaterialRequirementOthers"
         Me.grdMaterialRequirementOthers.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repbtnSubstituteMatReq})
-        Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1328, 143)
+        Me.grdMaterialRequirementOthers.Size = New System.Drawing.Size(1325, 144)
         Me.grdMaterialRequirementOthers.TabIndex = 41
         Me.grdMaterialRequirementOthers.UseEmbeddedNavigator = True
         Me.grdMaterialRequirementOthers.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementOthers})
@@ -1640,7 +1640,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage7.Controls.Add(Me.grpMaterialRequirementsOtherChanges)
         Me.XtraTabPage7.Name = "XtraTabPage7"
-        Me.XtraTabPage7.Size = New System.Drawing.Size(1332, 171)
+        Me.XtraTabPage7.Size = New System.Drawing.Size(1331, 169)
         Me.XtraTabPage7.Text = "Cambios"
         '
         'grpMaterialRequirementsOtherChanges
@@ -1655,7 +1655,7 @@ Partial Class frmWorkOrderDetail
         Me.grpMaterialRequirementsOtherChanges.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpMaterialRequirementsOtherChanges.Location = New System.Drawing.Point(0, 0)
         Me.grpMaterialRequirementsOtherChanges.Name = "grpMaterialRequirementsOtherChanges"
-        Me.grpMaterialRequirementsOtherChanges.Size = New System.Drawing.Size(1332, 171)
+        Me.grpMaterialRequirementsOtherChanges.Size = New System.Drawing.Size(1331, 169)
         Me.grpMaterialRequirementsOtherChanges.TabIndex = 148
         Me.grpMaterialRequirementsOtherChanges.Text = "Lista de Materiales Requeridos (LMR)"
         '
@@ -1669,12 +1669,12 @@ Partial Class frmWorkOrderDetail
         Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.grdMaterialRequirementOthersChange.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdMaterialRequirementOthersChange.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirementOthersChange.Location = New System.Drawing.Point(2, 24)
         Me.grdMaterialRequirementOthersChange.MainView = Me.gvMaterialRequirmentOtherChanges
         Me.grdMaterialRequirementOthersChange.MenuManager = Me.BarManager1
         Me.grdMaterialRequirementOthersChange.Name = "grdMaterialRequirementOthersChange"
         Me.grdMaterialRequirementOthersChange.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2})
-        Me.grdMaterialRequirementOthersChange.Size = New System.Drawing.Size(1328, 143)
+        Me.grdMaterialRequirementOthersChange.Size = New System.Drawing.Size(1327, 143)
         Me.grdMaterialRequirementOthersChange.TabIndex = 42
         Me.grdMaterialRequirementOthersChange.UseEmbeddedNavigator = True
         Me.grdMaterialRequirementOthersChange.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirmentOtherChanges})
@@ -1790,7 +1790,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage3.Controls.Add(Me.GroupControl4)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(1412, 369)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(1410, 368)
         Me.XtraTabPage3.Text = "Adjuntos de Documentos a OT"
         '
         'GroupControl4
@@ -1803,7 +1803,7 @@ Partial Class frmWorkOrderDetail
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1412, 369)
+        Me.GroupControl4.Size = New System.Drawing.Size(1410, 368)
         Me.GroupControl4.TabIndex = 35
         Me.GroupControl4.Text = "Archivos de O.T."
         '
@@ -1812,7 +1812,7 @@ Partial Class frmWorkOrderDetail
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(2, 23)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(1408, 344)
+        Me.UctFileControl1.Size = New System.Drawing.Size(1406, 343)
         Me.UctFileControl1.TabIndex = 0
         Me.UctFileControl1.UserController = Nothing
         '
@@ -1820,7 +1820,7 @@ Partial Class frmWorkOrderDetail
         '
         Me.XtraTabPage4.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage4.Name = "XtraTabPage4"
-        Me.XtraTabPage4.Size = New System.Drawing.Size(1412, 369)
+        Me.XtraTabPage4.Size = New System.Drawing.Size(1410, 368)
         Me.XtraTabPage4.Text = "Estatus y Costos"
         '
         'PanelControl1
@@ -1830,7 +1830,7 @@ Partial Class frmWorkOrderDetail
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1412, 369)
+        Me.PanelControl1.Size = New System.Drawing.Size(1410, 368)
         Me.PanelControl1.TabIndex = 0
         '
         'GroupControl9
@@ -1845,7 +1845,7 @@ Partial Class frmWorkOrderDetail
         Me.GroupControl9.Controls.Add(Me.GridControl4)
         Me.GroupControl9.Location = New System.Drawing.Point(775, 5)
         Me.GroupControl9.Name = "GroupControl9"
-        Me.GroupControl9.Size = New System.Drawing.Size(637, 359)
+        Me.GroupControl9.Size = New System.Drawing.Size(635, 358)
         Me.GroupControl9.TabIndex = 167
         Me.GroupControl9.Text = "Compras"
         '
@@ -1856,7 +1856,7 @@ Partial Class frmWorkOrderDetail
         Me.GridControl4.MainView = Me.GridView4
         Me.GridControl4.MenuManager = Me.BarManager1
         Me.GridControl4.Name = "GridControl4"
-        Me.GridControl4.Size = New System.Drawing.Size(633, 334)
+        Me.GridControl4.Size = New System.Drawing.Size(631, 333)
         Me.GridControl4.TabIndex = 14
         Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -1885,7 +1885,7 @@ Partial Class frmWorkOrderDetail
         Me.GroupControl8.Controls.Add(Me.grdTimeSheetEntries)
         Me.GroupControl8.Location = New System.Drawing.Point(8, 5)
         Me.GroupControl8.Name = "GroupControl8"
-        Me.GroupControl8.Size = New System.Drawing.Size(763, 359)
+        Me.GroupControl8.Size = New System.Drawing.Size(763, 358)
         Me.GroupControl8.TabIndex = 3
         Me.GroupControl8.Text = "Horas Laborales Directas"
         '
@@ -1896,7 +1896,7 @@ Partial Class frmWorkOrderDetail
         Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
         Me.grdTimeSheetEntries.MenuManager = Me.BarManager1
         Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(759, 334)
+        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(759, 333)
         Me.grdTimeSheetEntries.TabIndex = 13
         Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
         '

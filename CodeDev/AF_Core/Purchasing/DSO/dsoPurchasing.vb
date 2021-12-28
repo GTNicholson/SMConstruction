@@ -32,8 +32,8 @@ Public Class dsoPurchasing
     Dim mPOItemInfos As colPOItemInfos
     Dim mdtoPurchaseOrderItem As New dtoPurchaseOrderItem(pDBConn)
     Dim mdtoPurchaseOrderAllocation As New dtoPurchaseOrderAllocation(pDBConn)
-    Dim mdtoSalesOrderPhaseInfo As New dtoSalesOrderPhaseInfo(pDBConn)
-
+    Dim mdtoSalesOrderPhaseItemInfo As New dtoSalesOrderPhaseItemInfo(pDBConn, dtoSalesOrderPhaseItemInfo.eMode.SalesOrderPhaseItemInfo)
+    Dim mSOPIs As colSalesOrderPhaseItemInfos
     Dim mOK As Boolean
     Try
       pDBConn.Connect()
@@ -42,7 +42,8 @@ Public Class dsoPurchasing
       If rPurchaseOrderInfos IsNot Nothing Then
 
 
-
+        mSOPIs = New colSalesOrderPhaseItemInfos
+        mdtoSalesOrderPhaseItemInfo.LoadSOPICollectionByWhere(mSOPIs, "")
 
         For Each mPurchaseOrderInfo As clsPurchaseOrderInfo In rPurchaseOrderInfos
 
@@ -57,7 +58,7 @@ Public Class dsoPurchasing
 
 
           ''//Loading SalesOrderPhases
-          mdtoSalesOrderPhaseInfo.LoadSOPCollectionByWhere(mPurchaseOrderInfo.SalesOrderPhaseInfos, "")
+          mPurchaseOrderInfo.SalesOrderPhaseItemInfos = mSOPIs
 
           ''//Loading POItems
 
@@ -168,8 +169,8 @@ Public Class dsoPurchasing
       mSQL &= " inner Join WorkOrderAllocation WOA on WOA.WorkOrderID=POIA.WorkOrderID "
 
       mSQL = mSQL & " Where WOA.WorkOrderID = " & vWorkOrderID
-      mSQL = mSQL & " And PO.Category = " & vCategory
-      mSQL = mSQL & ")"
+      mSQL = mSQL & " And POI.StockItemID in (Select StockItemID from StockItem Where Category =" & vCategory
+      mSQL = mSQL & "))"
 
       mdto.LoadPurchaseOrderCollection(rPurchaseOrders, mSQL)
 

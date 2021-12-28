@@ -62,6 +62,8 @@ Public Class dtoTempPallet : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ItemTypeID", .ItemTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Cantidad", .Cantidad)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "LocationID", .LocationID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
+
 
     End With
 
@@ -82,6 +84,7 @@ Public Class dtoTempPallet : Inherits dtoBase
         .ItemTypeID = DBReadInt32(rDataReader, "ItemTypeID")
         .Cantidad = DBReadInt32(rDataReader, "Cantidad")
         .LocationID = DBReadInt32(rDataReader, "LocationID")
+        .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         pTempPallet.IsDirty = False
       End With
       mOK = True

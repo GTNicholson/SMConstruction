@@ -25,7 +25,7 @@ Public Class repWorkOrderStockItemMaterialRequirement
 
     xtcComments.DataBindings.Add("Text", DataSource, "Comments")
     ' xtcCurrentInventory.DataBindings.Add("Text", DataSource, "TempAllocatedQty", "{0:#.#}")
-
+    xtcArea.DataBindings.Add("Text", DataSource, "AreaDesc")
   End Sub
 
 

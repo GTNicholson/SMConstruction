@@ -57,6 +57,7 @@ Public Class dmSalesOrder : Inherits dmBase
   Private pWoodPalletType As Integer
   Private pIsDepatch As Boolean
 
+  Private pCIFValue As Decimal
   Public Sub New()
     MyBase.New()
   End Sub
@@ -179,6 +180,7 @@ Public Class dmSalesOrder : Inherits dmBase
       .PaymentTermDesc = PaymentTermDesc
       .WoodPalletID = WoodPalletID
       .IsDepatch = IsDepatch
+      .CIFValue = CIFValue
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -648,6 +650,16 @@ Public Class dmSalesOrder : Inherits dmBase
     Set(value As Integer)
       If pWoodPalletType <> value Then IsDirty = True
       pWoodPalletType = value
+    End Set
+  End Property
+
+  Public Property CIFValue As Decimal
+    Get
+      Return pCIFValue
+    End Get
+    Set(value As Decimal)
+      If pCIFValue <> value Then IsDirty = True
+      pCIFValue = value
     End Set
   End Property
 End Class

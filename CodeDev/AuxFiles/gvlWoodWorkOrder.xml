@@ -70,7 +70,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="5">
+  <property name="Columns" iskey="true" value="6">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -115,6 +115,12 @@
       <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">263</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="Name">GridColumn3</property>
+      <property name="Caption">WorkOrderWoodType</property>
+      <property name="FieldName">WorkOrderWoodType</property>
+      <property name="ColumnEditName" />
     </property>
   </property>
   <property name="ViewCaption" />

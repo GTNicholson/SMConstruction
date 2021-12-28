@@ -26,6 +26,7 @@ Public Class fccPurchaseOrder
   Private pWorkOrderInfo As clsWorkOrderInfo
   Private pWorkOrderInfos As colWorkOrderInfos
 
+  Public Property CompanyOption As repPurchaseOrder.eCompanyOption
 
   Public Property POOption As ePODetailOption
     Get
@@ -475,7 +476,7 @@ Public Class fccPurchaseOrder
     End If
   End Sub
 
-  Public Sub CreatePurchaseOrderPDF(ByVal vCurrency As eCurrency, ByVal vAccountOption As Int32, ByVal vIsPaymentOrder As Boolean)
+  Public Sub CreatePurchaseOrderPDF(ByVal vCurrency As eCurrency, ByVal vAccountOption As Int32, ByVal vIsPaymentOrder As Boolean, ByVal vCompanyOption As repPurchaseOrder.eCompanyOption)
     Dim mPOInfo As New clsPurchaseOrderInfo
     Dim mPOItemInfos As New colPOItemInfos
     Dim mBuyer As dmEmployee
@@ -505,7 +506,7 @@ Public Class fccPurchaseOrder
       mEmployees = pRTISGlobal.RefLists.RefIList(appRefLists.Employees)
       mBuyer = mEmployees.ItemFromKey(pPurchaseOrder.BuyerID)
 
-      mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, vCurrency)
+      mRep = repPurchaseOrder.CreateReport(mPOInfo, mBuyer, False, vCurrency, vCompanyOption)
 
 
 
@@ -516,13 +517,13 @@ Public Class fccPurchaseOrder
 
         Select Case vAccountOption
           Case eSupplirPrintOption.MainAccount
-            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountCode)
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountCode, CompanyOption)
 
           Case eSupplirPrintOption.SecondaryAccount
-            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountSecondaryNumber)
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountSecondaryNumber, CompanyOption)
 
           Case Else
-            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountCode)
+            mPaymentReportPath = CreatePaymetReport(mPOInfo, mBuyer, vCurrency, "", pPurchaseOrder.Supplier.AccountCode, CompanyOption)
 
         End Select
 
@@ -599,7 +600,7 @@ Public Class fccPurchaseOrder
 
   End Sub
 
-  Public Function CreatePaymetReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String) As String
+  Public Function CreatePaymetReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByVal vCompanyOption As repPurchaseOrder.eCompanyOption) As String
 
     Dim mFileName As String
     Dim mDirectory As String
@@ -614,7 +615,7 @@ Public Class fccPurchaseOrder
       mFileName = String.Format("PaymentCheckOrder_{0}_{1}.pdf", pPurchaseOrder.PONum, Today.ToString("yyyyMMdd_HHmm"))
       mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
-      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName, vAccountCode, pDBConn)
+      mRep = repCheckPaymentOrder.CreateReport(rPOInfo, rBuyer, False, vCurrency, vProjectName, vAccountCode, pDBConn, vCompanyOption)
 
       mRep.ExportToPdf(mExportFilename)
 
@@ -694,6 +695,7 @@ Public Class fccPurchaseOrder
 
   Public Sub CreateUpdatePOItemAllocation(ByRef rPOItem As dmPurchaseOrderItem, ByVal vWithSaving As Boolean)
     Dim mPOIA As dmPurchaseOrderItemAllocation
+    Dim mdso As New dsoSalesOrder(pDBConn)
 
     If rPOItem.PurchaseOrderItemAllocations.Count <= 1 Then
       '//Check that the POItem has one and only one poItemAllocation
@@ -707,7 +709,26 @@ Public Class fccPurchaseOrder
       rPOItem.PurchaseOrderItemAllocations(0).Quantity = rPOItem.QtyRequired
 
       Select Case pPOOption
+
+        Case ePODetailOption.General
+          If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = 0 Then
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+
+          End If
+          If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+            rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+          Else
+            rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+          End If
+
         Case ePODetailOption.ManPO
+
+          mdso.LoadWorkOrderInfo(pWorkOrderInfo, "WorkOrderID=" & rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID)
+
 
           If pWorkOrderInfo IsNot Nothing Then
             rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = pWorkOrderInfo.WorkOrderID
@@ -716,23 +737,93 @@ Public Class fccPurchaseOrder
 
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pWorkOrderInfo.WorkOrder.WorkOrderNo
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = pWorkOrderInfo.WorkOrder.Description
-            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pWorkOrderInfo.ProjectName
+            rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pWorkOrderInfo.ProjectNameAndCustomer
+
+            If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = 0 Then
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+
+            End If
+
+
+            If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            Else
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            End If
+
+          Else
+            If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = 0 Then
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+
+            End If
+
+            If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            Else
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            End If
 
           End If
 
         Case ePODetailOption.NonManPO
+          Dim mSalesOrderPhaseItemInfos As New colSalesOrderPhaseItemInfos
+          mdso.LoadSalesOrderPhaseItemsInfosByWhere(mSalesOrderPhaseItemInfos, "SalesorderPhaseItemID=" & rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID)
+          pSalesOrderPhaseItemInfo = Nothing
+
+          If mSalesOrderPhaseItemInfos IsNot Nothing Then
+            If mSalesOrderPhaseItemInfos.Count > 0 Then
+              pSalesOrderPhaseItemInfo = mSalesOrderPhaseItemInfos(0)
+            End If
+          End If
+
           If pSalesOrderPhaseItemInfo IsNot Nothing Then
             rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = pSalesOrderPhaseItemInfo.SalesOrderPhaseItemID
             rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = pSalesOrderPhaseItemInfo.ProjectName
-
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pSalesOrderPhaseItemInfo.ItemNumberRef
             rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = pSalesOrderPhaseItemInfo.Description
+
+            If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = 0 Then
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+
+            End If
+
             rPOItem.PurchaseOrderItemAllocations(0).ProjectRef = pSalesOrderPhaseItemInfo.ProjectName
 
 
+
+            If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            Else
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            End If
+
           Else
-            rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0
-            rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = "A Inventario"
+            If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = 0 Then
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+              If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+                rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+              Else
+                rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+              End If
+
+            End If
+
 
 
           End If
@@ -745,6 +836,32 @@ Public Class fccPurchaseOrder
       If vWithSaving Then
         '// Update the qty ot the neew value
         SaveObject()
+      End If
+
+    Else
+      ''Just update the value display for the report
+      If rPOItem IsNot Nothing Then
+
+        For Each mPOIA In rPOItem.PurchaseOrderItemAllocations
+
+          ''Update itemref
+          If mPOIA.WorkOrderID = 0 And mPOIA.SalesorderPhaseItemID = 0 Then
+            mPOIA.ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+            mPOIA.ItemRef = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+          End If
+
+          If PurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+            mPOIA.TempTotalValue = String.Format("C$ {0}", Math.Round(mPOIA.Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+          ElseIf PurchaseOrder.DefaultCurrency = eCurrency.Dollar Then
+            mPOIA.TempTotalValue = String.Format("$ {0}", Math.Round(mPOIA.Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+
+          End If
+
+        Next
+
       End If
 
     End If
@@ -903,8 +1020,8 @@ Public Class fccPurchaseOrder
     Dim mdso As New dsoSalesOrder(pDBConn)
     Dim mwhere As String = ""
 
-    mwhere += String.Format("Status not in ({0},{1})", CInt(eWorkOrderStatus.Cancelled), CInt(eWorkOrderStatus.Complete))
-    mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
+    mwhere += String.Format("Status not in ({0})", CInt(eWorkOrderStatus.Cancelled))
+    mwhere &= "  and ProductTypeID<>" & eProductType.WoodWorkOrder
     Try
 
       pDBConn.Connect()

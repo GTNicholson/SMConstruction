@@ -32,6 +32,40 @@ Public Class dsoProduction
     Return mRetVal
   End Function
 
+  Public Function LoadShifDetails(ByRef rShiftDetails As colShiftDetailss, ByVal vShiftDetailID As Integer) As Boolean
+    Dim mdto As dtoShiftDetails
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoShiftDetails(pDBConn)
+      mdto.LoadShiftDetailsCollection(rShiftDetails, vShiftDetailID)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Sub SaveShiftDetails(ByRef rShiftDetails As colShiftDetailss)
+    Dim mdto As New dtoShiftDetails(pDBConn)
+
+    Try
+      pDBConn.Connect()
+
+      mdto.SaveShiftDetailsCollection(rShiftDetails, 1)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
+
   Public Function SaveWorkOrderTracking(ByRef rWorkOrderTracking As dmWorkOrderMilestoneStatus) As Boolean
     Dim mdto As dtoWorkOrderMilestoneStatus
     Dim mRetVal As Boolean
@@ -114,5 +148,23 @@ Public Class dsoProduction
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     End Try
 
+  End Sub
+
+  Public Sub LoadTimeSheetInfosByWhere(ByRef rTimeSheetProject As colTimeSheetEntryInfos, ByVal vWhere As String)
+    Dim mdto As dtoTimeSheetEntryInfo
+
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoTimeSheetEntryInfo(pDBConn)
+
+      mdto.LoadTimeSheetEntryInfoCollectionByWhere(rTimeSheetProject, vWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
   End Sub
 End Class

@@ -15,6 +15,7 @@ Public Class fccMaterialRequirements
   Public Enum eMatReqOptionView
     Hide = 0
     Show = 1
+    LiveOTs = 2
   End Enum
   Public Enum eItemSelectedType
     NoneDirectDel = 1
@@ -90,7 +91,7 @@ Public Class fccMaterialRequirements
     Dim mStockItemLocations As New colStockItemLocations
     Dim mStockItemTransactions As New colStockItemTransactionLogs
     Dim mRemove As Boolean
-
+    Dim mShowOTs As Boolean = False
     Try
 
       pMatReqItemProcessors = New colMaterialRequirementProcessors
@@ -147,23 +148,44 @@ Public Class fccMaterialRequirements
         mRemove = False
         Dim mMatReqProc As clsMaterialRequirementProcessor = pMatReqItemProcessors(mIndex)
 
-
-        If mMatReqProc.MaterialRequirement.Quantity = 0 And mMatReqProc.MaterialRequirement.PickedQty = 0 And mMatReqProc.FromStockQty = 0 And mMatReqProc.OrderedQty = 0 Then
-          mRemove = True
-        End If
-
-        If Not mRemove Then
-
-          Select Case pOptionView
-            Case eMatReqOptionView.Hide
-              If mMatReqProc.ReceivedQty > 0 And (mMatReqProc.CurrentOrderQty = mMatReqProc.ReceivedQty) Then
+        ''//Remove as per mode option
+        Select Case pOptionView
+          Case eMatReqOptionView.Hide
+            If mRemove = False Then
+              If ((mMatReqProc.CurrentOrderQty + mMatReqProc.FromStockQty) >= mMatReqProc.TotalOTQuantity) Then 'mMatReqProc.Quantity) Then
                 mRemove = True
-
+                mShowOTs = False
               End If
-          End Select
+            End If
+
+          Case eMatReqOptionView.LiveOTs
+            mShowOTs = True
+
+        End Select
+
+
+        If mRemove = False Then
+          If mMatReqProc.MaterialRequirement.Quantity = 0 And mMatReqProc.MaterialRequirement.PickedQty = 0 And mMatReqProc.FromStockQty = 0 And mMatReqProc.OrderedQty = 0 Then
+            mRemove = True
+          End If
+        End If
+
+        If mRemove = False And mShowOTs = False Then
+
+          If mMatReqProc.MaterialRequirement.PickedQty >= mMatReqProc.MaterialRequirement.FromStockQty Then
+            If (mMatReqProc.MaterialRequirement.PickedQty - mMatReqProc.MaterialRequirement.ReturnQty) >= mMatReqProc.MaterialRequirement.Quantity Then
+              mRemove = True
+            End If
+          Else
+            If (mMatReqProc.MaterialRequirement.FromStockQty - mMatReqProc.MaterialRequirement.ReturnQty) >= mMatReqProc.MaterialRequirement.Quantity Then
+              mRemove = True
+            End If
+          End If
+
 
 
         End If
+
 
         If mRemove = True Then
           pMatReqItemProcessors.RemoveAt(mIndex)
@@ -256,6 +278,22 @@ Public Class fccMaterialRequirements
     End Try
   End Sub
 
+  Public Sub UpdateMaterialRequirementValidatedFromStock(ByVal vCheckedValue As Boolean, ByVal vMaterialRequirementID As Integer)
 
+    Dim mWhere As String
 
+    Try
+
+      pDBConn.Connect()
+
+      mWhere = "Update MaterialRequirement set IsFromStockValidated=" & CInt(vCheckedValue) & " where MaterialRequirementID = " & vMaterialRequirementID
+
+      pDBConn.ExecuteNonQuery(mWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
 End Class

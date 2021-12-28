@@ -91,6 +91,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
 
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletType", .WoodPalletType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsDepatch", .IsDepatch)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CIFValue", .CIFValue)
 
 
     End With
@@ -136,6 +137,7 @@ Public Class dtoSalesOrder : Inherits dtoBase
         .WoodPalletID = DBReadInt32(rDataReader, "WoodPalletID")
         .WoodPalletType = DBReadInt32(rDataReader, "WoodPalletType")
         .IsDepatch = DBReadBoolean(rDataReader, "IsDepatch")
+        .CIFValue = DBReadDecimal(rDataReader, "CIFValue")
 
         pSalesOrder.IsDirty = False
       End With
@@ -190,6 +192,17 @@ Public Class dtoSalesOrder : Inherits dtoBase
     If mOK Then rSalesOrders.IsDirty = False
     Return mOK
   End Function
+
+  Public Function LoadSalesOrderCollectionByWhere(ByRef rSalesOrders As colSalesOrders, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rSalesOrders, mParams, "SalesOrderID", vWhere)
+    rSalesOrders.TrackDeleted = True
+    If mOK Then rSalesOrders.IsDirty = False
+    Return mOK
+  End Function
+
+
 
   Public Function LoadSalesOrderInfo(ByRef rSalesOrder As colSalesOrders, ByVal vWhere As String) As Boolean
     Dim mParams As New Hashtable

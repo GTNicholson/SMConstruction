@@ -43,8 +43,8 @@ Public Class fccTimeSheetEntry
     mdso = New dsoSalesOrder(pDBConn)
     pWorkOrderInfos = New colWorkOrderInfos
 
-    mwhere += String.Format("Status in (0,{0},{1})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised))
-    mwhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
+    mwhere += String.Format("Status not in ({0})", CInt(eWorkOrderStatus.Cancelled))
+    mwhere &= " and ProductTypeID<>" & eProductType.WoodWorkOrder
 
     mdso.LoadWorkOrderInfos(pWorkOrderInfos, mwhere, dtoWorkOrderInfo.eMode.WorkOrderTracking)
   End Sub
@@ -122,7 +122,7 @@ Public Class fccTimeSheetEntry
     pWCDate = RTIS.CommonVB.libDateTime.MondayOfWeek(Now.Date)
     pStartTime = (New Date).AddHours(6)
     pEndTime = (New Date).AddHours(18)
-    pWorkCentreID = eWorkCentre.Wood
+    pWorkCentreID = eWorkCentre.Dimensionado
     clsTimeSheetEntryUI.SetCurrentWorkCenterID(pWorkCentreID)
   End Sub
 

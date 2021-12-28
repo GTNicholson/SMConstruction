@@ -1,4 +1,7 @@
-﻿Public Class clsTimeSheetEntryInfo
+﻿
+Imports System.Globalization
+
+Public Class clsTimeSheetEntryInfo
   Private pTimeSheetEntry As dmTimeSheetEntry
   Private pWorkOrder As dmWorkOrder
   Private pSalesOrder As dmSalesOrder
@@ -73,6 +76,16 @@
     End Get
   End Property
 
+  Public ReadOnly Property OverTimeHour As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = Math.Round(OverTimeMinutes / 60, 2, MidpointRounding.AwayFromZero)
+
+      Return mRetVal
+    End Get
+  End Property
+
   Public ReadOnly Property TimeSheetEntryTypeID As Integer
     Get
       Return pTimeSheetEntry.TimeSheetEntryTypeID
@@ -123,7 +136,7 @@
 
   Public Property StandardRate As Decimal
     Get
-      pStandarRate = (pEmployeeRateOfPay.StandardRate / 30 / 8)
+      pStandarRate = (pEmployeeRateOfPay.StandardRate)
       Return pStandarRate
     End Get
     Set(value As Decimal)
@@ -133,7 +146,7 @@
 
   Public Property OverTimeRate As Decimal
     Get
-      pOverTimeRate = (pEmployeeRateOfPay.StandardRate / 30 / 8) * 2
+      pOverTimeRate = pEmployeeRateOfPay.OverTimeRate
 
       Return pOverTimeRate
     End Get
@@ -142,10 +155,39 @@
     End Set
   End Property
 
+  Public ReadOnly Property WODescriptionRef As String
+    Get
+      If pWorkOrder.WorkOrderNo <> "" Then
+        Return pWorkOrder.WorkOrderNo.Substring(3) & "-" & pWorkOrder.Description
+
+
+      Else
+        Return ""
+      End If
+    End Get
+  End Property
+  Public ReadOnly Property TotalStandardValueIncludingOverTimeCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+      mRetVal = TotalStandardValue + TotalOverTimeValue
+      Return mRetVal
+    End Get
+  End Property
+
   Public ReadOnly Property TotalStandardValue As Decimal
     Get
+      Dim mNetDuration As Decimal
+      Dim mRetVal As Decimal
 
-      Return StandardRate * pTimeSheetEntry.Duration
+      If pTimeSheetEntry.Duration > OverTimeHour Then
+        mNetDuration = pTimeSheetEntry.Duration - OverTimeHour
+        mRetVal = StandardRate * mNetDuration
+
+      Else
+        mNetDuration = pTimeSheetEntry.Duration
+        mRetVal = StandardRate * pTimeSheetEntry.Duration
+      End If
+      Return mRetVal
     End Get
 
   End Property
@@ -153,7 +195,7 @@
   Public ReadOnly Property TotalOverTimeValue As Decimal
     Get
 
-      Return OverTimeRate * (pTimeSheetEntry.OverTimeMinutes / 60)
+      Return OverTimeRate * OverTimeHour
     End Get
 
   End Property
@@ -176,7 +218,11 @@
       Return pTimeSheetEntry.EndTime
     End Get
   End Property
-
+  Public ReadOnly Property BreakMins As Integer
+    Get
+      Return pTimeSheetEntry.BreakMins
+    End Get
+  End Property
   Public ReadOnly Property Duration As Decimal
     Get
       Return pTimeSheetEntry.Duration
@@ -214,6 +260,30 @@
   End Property
 
 
+  Public ReadOnly Property WeekNumber As String
+    Get
+      Dim mRetVal As String = ""
+      Dim mCultureInfoNica As New CultureInfo("es-NI")
+      Dim mCalendar As Calendar
+      mCalendar = mCultureInfoNica.Calendar
+
+      mRetVal = "Semana #" & mCalendar.GetWeekOfYear(pTimeSheetEntry.StartTime, CalendarWeekRule.FirstDay, DayOfWeek.Sunday)
+
+      Return mRetVal
+    End Get
+  End Property
+
+
+  Public ReadOnly Property ProjectNameWithCustomer As String
+    Get
+      Dim mRetVal As String = ""
+
+
+      mRetVal = CustomerName & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
 End Class
 
 Public Class colTimeSheetEntryInfos : Inherits List(Of clsTimeSheetEntryInfo)

@@ -54,10 +54,14 @@
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Dashboard.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v17.1.Win, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v17.1.UI, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Docs.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v17.1.Drawing, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -67,8 +71,10 @@
     <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.TreeMap.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.1.UI, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v17.1.Wizard, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -76,8 +82,11 @@
     <Reference Include="DevExpress.XtraCharts.v17.1.UI, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Presets, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v17.1.Win, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraMap.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPdfViewer.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPivotGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -92,6 +101,7 @@
     <Reference Include="DevExpress.XtraScheduler.v17.1.Core, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraSpreadsheet.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeMap.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
     </Reference>
@@ -252,11 +262,18 @@
     <Compile Include="BIReports\BIReportViewMaterialRequirementInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrderItemInfo.vb" />
     <Compile Include="BIReports\BIReportViewPurchaseOrders.vb" />
-    <Compile Include="BIReports\BIReportViewTimeSheet.vb" />
+    <Compile Include="BIReports\BIReportViewTimeOutSheet.vb" />
+    <Compile Include="BIReports\BIReportViewTimeSheetOT.vb" />
     <Compile Include="BIReports\BIReportViewWoodSalesOrderInfo.vb" />
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
     <Compile Include="BIReports\BIReportViewPODeliveryItem.vb" />
+    <Compile Include="Candidates\frmSpreadSheetControl.Designer.vb">
+      <DependentUpon>frmSpreadSheetControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Candidates\frmSpreadSheetControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Costing\brwCostBook.vb" />
     <Compile Include="Costing\brwProductCost.vb" />
     <Compile Include="Costing\fccProductCostBook.vb" />
@@ -637,11 +654,16 @@
     <Compile Include="Sales\GUI\brwStructureWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwWorkOrder.vb" />
     <Compile Include="Sales\GUI\brwSalesOrder.vb" />
+    <Compile Include="Sales\GUI\Excel\clsExcelSalesOrderReview_Detail.vb" />
+    <Compile Include="Sales\GUI\fccProjectReviewAll.vb" />
+    <Compile Include="Sales\GUI\fccSalesOrderPhaseMilestoneStatusDetail.vb" />
     <Compile Include="Sales\GUI\fccCustomerDetail.vb" />
+    <Compile Include="Sales\GUI\fccPhaseManagement.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderDetailSM.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderDetailHouses.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderProgress.vb" />
     <Compile Include="Sales\GUI\fccSalesOrderReview.vb" />
+    <Compile Include="Sales\GUI\fccShiftDetails.vb" />
     <Compile Include="Sales\GUI\fccWoodSalesOrder.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetailConstruction.vb" />
     <Compile Include="Sales\GUI\fccWorkOrderDetail.vb" />
@@ -664,6 +686,18 @@
     <Compile Include="Sales\GUI\frmInternalWorkOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\GUI\frmPhaseManagement.Designer.vb">
+      <DependentUpon>frmPhaseManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmPhaseManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmProjectReviewAll.Designer.vb">
+      <DependentUpon>frmProjectReviewAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmProjectReviewAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderDetailHouses.Designer.vb">
       <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
     </Compile>
@@ -680,6 +714,18 @@
       <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderDetailSM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail.Designer.vb">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail_Handover.Designer.vb">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail_Handover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail_Handover.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderPhasePicker.Designer.vb">
@@ -710,6 +756,18 @@
       <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmSalesOrderReviewSmallScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReview_New.Designer.vb">
+      <DependentUpon>frmSalesOrderReview_New.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmSalesOrderReview_New.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmShiftDetails.Designer.vb">
+      <DependentUpon>frmShiftDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmShiftDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmWoodSalesOrder.Designer.vb">
@@ -754,6 +812,18 @@
     <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaPicking.Designer.vb">
+      <DependentUpon>repRequisaPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaPicking.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaWorkOrderSummary.Designer.vb">
+      <DependentUpon>repRequisaWorkOrderSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaWorkOrderSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.Designer.vb">
       <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>
     </Compile>
@@ -788,6 +858,12 @@
       <DependentUpon>repPOIADetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail_bk.Designer.vb">
+      <DependentUpon>repPOIADetail_bk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail_bk.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sales\OutputDocs\SalesReport\repSalesOrder_English.Designer.vb">
@@ -895,6 +971,12 @@
     <Compile Include="StockAdmin\GUI\frmStockTake.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StockAdmin\GUI\frmViewImage.Designer.vb">
+      <DependentUpon>frmViewImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StockAdmin\GUI\frmViewImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="StockAdmin\GUI\frmWoodPalletDetail.Designer.vb">
       <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>
     </Compile>
@@ -921,6 +1003,12 @@
       <DependentUpon>frmWoodMaterialRequirement.vb</DependentUpon>
     </Compile>
     <Compile Include="WoodProcessing\frmWoodMaterialRequirement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWoodProcessRollo.Designer.vb">
+      <DependentUpon>frmWoodProcessRollo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WoodProcessing\frmWoodProcessRollo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WoodProcessing\frmWoodReception.Designer.vb">
@@ -1135,6 +1223,12 @@
     <EmbeddedResource Include="Sales\GUI\frmInternalWorkOrderDetail.resx">
       <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmPhaseManagement.resx">
+      <DependentUpon>frmPhaseManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmProjectReviewAll.resx">
+      <DependentUpon>frmProjectReviewAll.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailHouses.resx">
       <DependentUpon>frmSalesOrderDetailHouses.vb</DependentUpon>
     </EmbeddedResource>
@@ -1143,6 +1237,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderDetailSM.resx">
       <DependentUpon>frmSalesOrderDetailSM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail.resx">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhaseMilestoneStatusDetail_Handover.resx">
+      <DependentUpon>frmSalesOrderPhaseMilestoneStatusDetail_Handover.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderPhasePicker.resx">
       <DependentUpon>frmSalesOrderPhasePicker.vb</DependentUpon>
@@ -1158,6 +1258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmSalesOrderReviewSmallScreen.resx">
       <DependentUpon>frmSalesOrderReviewSmallScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmSalesOrderReview_New.resx">
+      <DependentUpon>frmSalesOrderReview_New.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmShiftDetails.resx">
+      <DependentUpon>frmShiftDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmWoodSalesOrder.resx">
       <DependentUpon>frmWoodSalesOrder.vb</DependentUpon>
@@ -1182,6 +1288,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
       <DependentUpon>repProductFurniture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repRequisaPicking.resx">
+      <DependentUpon>repRequisaPicking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repRequisaWorkOrderSummary.resx">
+      <DependentUpon>repRequisaWorkOrderSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderStockItemMaterialRequirement.resx">
       <DependentUpon>repWorkOrderStockItemMaterialRequirement.vb</DependentUpon>
@@ -1243,6 +1355,9 @@
     <EmbeddedResource Include="StockAdmin\GUI\frmStockTake.resx">
       <DependentUpon>frmStockTake.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StockAdmin\GUI\frmViewImage.resx">
+      <DependentUpon>frmViewImage.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\GUI\frmWoodPalletDetail.resx">
       <DependentUpon>frmWoodPalletDetail.vb</DependentUpon>
     </EmbeddedResource>
@@ -1251,6 +1366,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockAdmin\Reports\repSelectedItems.resx">
       <DependentUpon>repSelectedItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoodProcessing\frmWoodMaterialRequirement.resx">
+      <DependentUpon>frmWoodMaterialRequirement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoodProcessing\frmWoodProcessRollo.resx">
+      <DependentUpon>frmWoodProcessRollo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WoodProcessing\frmWoodReception.resx">
       <DependentUpon>frmWoodReception.vb</DependentUpon>

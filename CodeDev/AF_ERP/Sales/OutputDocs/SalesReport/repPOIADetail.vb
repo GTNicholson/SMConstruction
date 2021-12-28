@@ -5,13 +5,13 @@ Public Class repPOIADetail
 
   Private Sub repPOIADetail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
     'xtcPOIDesc.DataBindings.Add("Text", Me.DataSource, "DisplayReportPOIDesc")
-    xrPOIADesc.DataBindings.Add("Text", Me.DataSource, "DisplayReportUI")
-
-  End Sub
-
-
-  Private Sub PageHeader_BeforePrint(sender As Object, e As PrintEventArgs)
+    xtcQuantity.DataBindings.Add("Text", Me.DataSource, "Quantity", "{0:#,##0.000;;#}")
+    xtcProject.DataBindings.Add("Text", Me.DataSource, "ProjectRef")
+    xtcOTNumber.DataBindings.Add("Text", Me.DataSource, "OTAndDescription")
+    xtcPOICost.DataBindings.Add("Text", Me.DataSource, "TempTotalValue")
 
 
   End Sub
+
+
 End Class

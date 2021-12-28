@@ -58,7 +58,7 @@ Public Class dsoBIPurchaseOrder
     Dim mSQLWhere As String = ""
     Dim dtoPurchaseOrderInfo As New dtoPurchaseOrderInfo(pDBConn)
 
-    Dim mdtoSalesOrderPhaseInfo As New dtoSalesOrderPhaseInfo(pDBConn)
+    Dim mdtoSalesOrderPhaseItemInfo As New dtoSalesOrderPhaseItemInfo(pDBConn, dtoSalesOrderPhaseItemInfo.eMode.SalesOrderPhaseItemInfo)
     Dim mdtoPOA As dtoPurchaseOrderAllocation
     Dim mdtoPOI As dtoPurchaseOrderItem
     Dim mPOItemInfos As New colPOItemInfos
@@ -88,7 +88,7 @@ Public Class dsoBIPurchaseOrder
           mdtoPOA.LoadPurchaseOrderAllocationCollection(mPOI.PurchaseOrder.PurchaseOrderAllocations, mPOI.PurchaseOrder.PurchaseOrderID)
 
 
-          mdtoSalesOrderPhaseInfo.LoadSOPCollectionByWhere(mPOI.SalesOrderPhaseInfos, "")
+          mdtoSalesOrderPhaseItemInfo.LoadSOPICollectionByWhere(mPOI.SalesOrderPhaseItemInfos, "")
 
           mdtoPOI.LoadPurchaseOrderItemCollection(mPOI.PurchaseOrder.PurchaseOrderItems, mPOI.PurchaseOrder.PurchaseOrderID)
 

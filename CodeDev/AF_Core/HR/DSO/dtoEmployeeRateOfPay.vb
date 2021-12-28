@@ -58,6 +58,8 @@ Public Class dtoEmployeeRateOfPay : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PayType", .PayType)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StartDate", DateToDBValue(.StartDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "StandardRate", .StandardRate)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OverTimeRate", .OverTimeRate)
+
     End With
 
   End Sub
@@ -73,6 +75,7 @@ Public Class dtoEmployeeRateOfPay : Inherits dtoBase
         .PayType = DBReadByte(rDataReader, "PayType")
         .StartDate = DBReadDateTime(rDataReader, "StartDate")
         .StandardRate = DBReadDecimal(rDataReader, "StandardRate")
+        .OverTimeRate = DBReadDecimal(rDataReader, "OverTimeRate")
         pEmployeeRateOfPay.IsDirty = False
       End With
       mOK = True

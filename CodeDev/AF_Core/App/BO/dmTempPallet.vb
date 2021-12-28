@@ -11,7 +11,7 @@ Public Class dmTempPallet : Inherits dmBase
   Private pItemTypeID As Int32
   Private pCantidad As Int32
   Private pLocationID As Integer
-
+  Private pWorkOrderID As Integer
   Public Sub New()
     MyBase.New()
   End Sub
@@ -52,6 +52,7 @@ Public Class dmTempPallet : Inherits dmBase
       .Largo = Largo
       .ItemTypeID = ItemTypeID
       .Cantidad = Cantidad
+      .WorkOrderID = WorkOrderID
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -148,6 +149,16 @@ Public Class dmTempPallet : Inherits dmBase
     Set(value As Integer)
       If pLocationID <> value Then IsDirty = True
       pLocationID = value
+    End Set
+  End Property
+
+  Public Property WorkOrderID As Integer
+    Get
+      Return pWorkOrderID
+    End Get
+    Set(value As Integer)
+      If pWorkOrderID <> value Then IsDirty = True
+      pWorkOrderID = value
     End Set
   End Property
 End Class

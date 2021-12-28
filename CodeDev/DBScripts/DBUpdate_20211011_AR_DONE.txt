@@ -1,0 +1,3 @@
+alter table PurchaseOrder
+alter column BuyerID int
+go

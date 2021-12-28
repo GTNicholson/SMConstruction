@@ -155,8 +155,9 @@ Public Class frmWorkOrderTracking
   Private Sub gvWorksOrders_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvWorksOrders.RowCellStyle
     Try
       Select Case e.Column.Name
-        Case gcWood.Name, gcInsumos.Name, gcEngineering.Name, gcPurchasing.Name,
-             gcCarpitry.Name, gcDimensionado.Name, gcSelection.Name, gcSanding.Name, gcFinishing.Name, gcMetalWork.Name, gcMetalFinishing.Name
+        Case gcWood.Name, gcInsumos.Name, gcEngineering.Name, gcPurchasing.Name, gcInstallation.Name,
+             gcCarpitry.Name, gcDimensionado.Name, gcSelection.Name, gcSanding.Name, gcFinishing.Name, gcMetalWork.Name, gcMetalFinishing.Name,
+             gcPackaging.Name, gcDespatch.Name
           Dim mRow As clsWorkOrderTracking = gvWorksOrders.GetRow(e.RowHandle)
           Dim mStatus As dmWorkOrderMilestoneStatus
           Dim mStatusID As Integer

@@ -367,6 +367,24 @@ Public Class clsWoodPalletItemInfo
     End Get
   End Property
 
+  Public ReadOnly Property SalesOrderID As Integer
+    Get
+      Return pSalesOrder.SalesOrderID
+    End Get
+  End Property
+
+  Public ReadOnly Property ProjectNameWithCustomer As String
+    Get
+      Dim mRetVal As String = ""
+
+
+      mRetVal = pCustomer.CompanyName & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
+
+
 End Class
 
 Public Class colWoodPalletItemInfos : Inherits List(Of clsWoodPalletItemInfo)

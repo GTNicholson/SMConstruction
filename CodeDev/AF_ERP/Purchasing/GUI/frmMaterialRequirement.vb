@@ -1,4 +1,6 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
@@ -50,6 +52,7 @@ Public Class frmMaterialRequirement
     Dim mfrmWanted As frmMaterialRequirement = Nothing
     Dim mFound As Boolean = False
     Dim mfrm As frmMaterialRequirement
+
     'Check if exisits already
     If sActiveForms Is Nothing Then sActiveForms = New Collection
     For Each mfrm In sActiveForms
@@ -111,18 +114,18 @@ Public Class frmMaterialRequirement
 
       Select Case pFormController.pConsoleOptionView
         Case ePOConsoleOption.Furniture
-          gcWODescription.Visible = True
-          gcWODescription.GroupIndex = 1
           gcSOIDescription.Visible = False
+          gcWODescription.GroupIndex = 1
+          gcWODescription.Visible = False
         Case ePOConsoleOption.Housing
           gcSOIDescription.Visible = True
           gcSOIDescription.GroupIndex = 1
           gcWODescription.Visible = False
       End Select
 
-      SetPermissions()
       LoadCombos()
       ReloadRequirements()
+      SetPermissions()
 
     Catch ex As Exception
       mMsg = ex.Message
@@ -151,16 +154,40 @@ Public Class frmMaterialRequirement
   End Sub
 
   Private Sub SetPermissions()
-    Dim mPermissionCode As ePermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.SetFromStockQty)
+    Dim mPermissionCode As ePermissionCode
 
+
+    ''Set to process using console
+    mPermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.ProcessConsola)
     If mPermissionCode = ePermissionCode.ePC_Full Then
-    Else
+      bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      bbtnProcessFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      bsubitProcessToPO.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      bbtnSetAllToOrder.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      gcMatReqToOrder.Visible = True
       gcFromStock.Visible = False
-      gcQuantityFromStock.Visible = False
+      gcChangeDate.Visible = True
+    Else
 
       bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
       bbtnProcessFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      bsubitProcessToPO.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      bbtnSetAllToOrder.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+      gcMatReqToOrder.Visible = False
+      gcFromStock.Visible = False
+      gcChangeDate.Visible = False
+
     End If
+
+    mPermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.SetFromStockQty)
+    If mPermissionCode = ePermissionCode.ePC_Full Then
+      gcFromStock.Visible = True
+      bbtnProcessFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      bbtnSetAllFromStock.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+      gcFromStock.VisibleIndex = gcInvReserved.VisibleIndex + 1
+
+    End If
+
 
   End Sub
 
@@ -238,6 +265,7 @@ Public Class frmMaterialRequirement
     Try
       UpdateObject()
       mCount = pFormController.ProcessFromStock()
+      ReloadRequirements()
       gvMaterialRequirements.RefreshData()
       MsgBox(mCount & " Artículos de cantidad de inventario actualizados.")
     Catch ex As Exception
@@ -283,7 +311,7 @@ Public Class frmMaterialRequirement
     mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
 
     If mRow IsNot Nothing Then
-      mwhere = String.Format("StockItemID ={0} and WorkOrderID = {1} and (Quantity-ReceivedQty)>0", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
+      mwhere = String.Format("StockItemID ={0} and POStatus not in (6) and WorkOrderID = {1}", mRow.StockItem.StockItemID, mRow.MaterialRequirement.ObjectID)
 
       mdso.LoadPurchaseOrderItemAllocationInfos(mRow.POItemAllocationInfos, mwhere)
 
@@ -294,52 +322,6 @@ Public Class frmMaterialRequirement
   End Sub
 
 
-  Private Sub gvMaterialRequirements_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvMaterialRequirements.CustomDrawCell
-    If gvMaterialRequirements.IsDataRow(e.RowHandle) Then
-
-      If (e.Column.Name <> gcFromStock.Name Or e.Column.Name <> gcMatReqToOrder.Name) Then
-        Dim mFocusedRow As clsMaterialRequirementProcessor
-        Dim mCurrentRow As clsMaterialRequirementProcessor
-        mFocusedRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
-        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
-        If mCurrentRow IsNot Nothing AndAlso mFocusedRow IsNot Nothing Then
-          If gvMaterialRequirements.FocusedRowHandle <> e.RowHandle Then
-            If mCurrentRow.StockItem.StockItemID = mFocusedRow.StockItem.StockItemID Then
-              e.Appearance.BackColor = Color.LightBlue
-              e.Appearance.ForeColor = Color.Black
-            Else
-              e.Appearance.BackColor = Color.Empty
-            End If
-
-            If e.Column.Name = gcComments.Name Then
-              If mCurrentRow.Comments <> String.Empty Then
-                e.Appearance.BackColor = Color.LightYellow
-                e.Appearance.ForeColor = Color.Black
-              Else
-                e.Appearance.BackColor = Color.Empty
-              End If
-
-            End If
-
-          End If
-
-
-
-        End If
-
-
-      End If
-
-
-      If (e.Column.Name = gcFromStock.Name Or e.Column.Name = gcMatReqToOrder.Name) Then
-        e.Appearance.BackColor = Color.LightCyan
-        e.Appearance.ForeColor = Color.Black
-      End If
-
-
-
-    End If
-  End Sub
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
     ReloadRequirements()
@@ -404,6 +386,44 @@ Public Class frmMaterialRequirement
     End If
   End Sub
 
+  Private Sub repoItemPopupImage_Popup(sender As Object, e As EventArgs) Handles repoItemPopupImage.Popup
+    Dim mRow As clsMaterialRequirementProcessor
+    Dim mFileName As String
+    Dim mSelectedStockItem As dmStockItem
+    Dim mImage As Image = Nothing
+
+    mRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
+
+    If mRow IsNot Nothing Then
+      If mRow.StockItem.StockItemID > 0 Then
+
+        mSelectedStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mRow.StockItem.StockItemID)
+
+        If mSelectedStockItem IsNot Nothing Then
+          If Not String.IsNullOrEmpty(mSelectedStockItem.ImageFile) Then
+
+            mFileName = clsSMSharedFuncs.GetStockItemImageFileName(mSelectedStockItem)
+            If IO.File.Exists(mFileName) Then
+              mImage = Image.FromStream(New IO.MemoryStream(IO.File.ReadAllBytes(mFileName)))
+              ''  mImage = Drawing.Image.FromFile(mFileName)
+
+            Else
+              mImage = Nothing
+
+            End If
+
+          End If
+        End If
+
+      End If
+      peImage.Image = mImage
+    Else
+
+
+    End If
+  End Sub
+
+
   Private Sub repoMatReqOptionView_EditValueChanged(sender As Object, e As EventArgs) Handles repoMatReqOptionView.EditValueChanged
 
 
@@ -429,6 +449,225 @@ Public Class frmMaterialRequirement
   End Sub
 
   Private Sub bbtnPickOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnPickOrder.ItemClick
+
+  End Sub
+
+  Private Sub repoChkIsFromStockValidated_CheckedChanged(sender As Object, e As EventArgs) Handles repoChkIsFromStockValidated.CheckedChanged
+    Dim mRow As clsMaterialRequirementProcessor
+    Dim mCheckedValue As Boolean
+
+    If pIsActive Then
+
+
+      If pFormController IsNot Nothing Then
+        gvMaterialRequirements.CloseEditor()
+
+        mRow = gvMaterialRequirements.GetFocusedRow
+
+        If mRow IsNot Nothing Then
+          mCheckedValue = mRow.IsFromStockValidated
+          pFormController.UpdateMaterialRequirementValidatedFromStock(mCheckedValue, mRow.MaterialRequirementID)
+
+        End If
+
+      End If
+
+
+
+
+    End If
+
+
+  End Sub
+
+  Private Sub gvMaterialRequirements_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvMaterialRequirements.CustomUnboundColumnData
+    Dim mRow As clsMaterialRequirementProcessor
+    Try
+
+      mRow = e.Row
+      Select Case e.Column.Name
+        Case gcStockItemLocationsQty.Name
+
+          If mRow IsNot Nothing Then
+            If e.IsGetData Then
+
+              e.Value = mRow.StockItemLocationsQty - mRow.OutstandingFromStockQtyHousing
+
+
+              'Select Case pFormController.pConsoleOptionView
+              '  Case ePOConsoleOption.Housing
+              '    e.Value = mRow.StockItemLocationsQty - mRow.OutstandingFromStockQtyHousing
+
+              '  Case ePOConsoleOption.Furniture
+              '    e.Value = mRow.StockItemLocationsQty - mRow.OutstandingFromStockQtyFurniture
+
+              'End Select
+
+            End If
+          End If
+
+          'Case gcTotalFromStock.Name
+
+          '  If mRow IsNot Nothing Then
+          '    If e.IsGetData Then
+
+          '      e.Value = mRow.OutstandingFromStockQty
+
+          '    End If
+          '  End If
+      End Select
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+
+  End Sub
+
+  Private Sub repoOpenPO_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles repoOpenPO.ButtonClick
+    Dim mRow As clsPurchaseOrderItemAllocationInfo
+
+    Try
+      mRow = TryCast(gvOnOrderOSQty.GetFocusedRow, clsPurchaseOrderItemAllocationInfo)
+
+      If mRow IsNot Nothing Then
+        'Me.Hide()
+
+        If mRow.PurchaseOrder.MaterialRequirementTypeWorkOrderID <> 0 Then
+          frmManPurchaseOrderDetail.OpenFormMDI(gvOnOrderOSQty.GetFocusedRowCellValue(gvOnOrderOSQty.Columns("PurchaseOrderID")), pFormController.DBConn, AppRTISGlobal.GetInstance, ParentForm, ePODetailOption.ManPO)
+        ElseIf mRow.PurchaseOrder.MaterialRequirementTypeID <> 0 Then
+
+          frmNonManPurchaseOrder.OpenFormMDI(gvOnOrderOSQty.GetFocusedRowCellValue(gvOnOrderOSQty.Columns("PurchaseOrderID")), pFormController.DBConn, AppRTISGlobal.GetInstance, ParentForm, ePODetailOption.NonManPO)
+
+
+        End If
+
+        'Me.Show()
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub repoChkIsFromStockValidated_Validating(sender As Object, e As CancelEventArgs) Handles repoChkIsFromStockValidated.Validating
+    Dim mPermissionCode As ePermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.ValidateConsole)
+
+    If mPermissionCode = ePermissionCode.ePC_Full Then
+
+    Else
+      e.Cancel = True
+    End If
+
+  End Sub
+
+
+
+  Private Sub gvMaterialRequirements_CustomDrawCell(sender As Object, e As RowCellCustomDrawEventArgs) Handles gvMaterialRequirements.CustomDrawCell
+    Dim mFocusedRow As clsMaterialRequirementProcessor
+    Dim mCurrentRow As clsMaterialRequirementProcessor
+
+
+    If gvMaterialRequirements.IsDataRow(e.RowHandle) Then
+
+      If (e.Column.Name <> gcFromStock.Name Or e.Column.Name <> gcMatReqToOrder.Name) Then
+        mFocusedRow = TryCast(gvMaterialRequirements.GetFocusedRow, clsMaterialRequirementProcessor)
+        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+        If mCurrentRow IsNot Nothing AndAlso mFocusedRow IsNot Nothing Then
+          If gvMaterialRequirements.FocusedRowHandle <> e.RowHandle Then
+            If mCurrentRow.StockItem.StockItemID = mFocusedRow.StockItem.StockItemID Then
+              e.Appearance.BackColor = Color.LightBlue
+              e.Appearance.ForeColor = Color.Black
+            Else
+              e.Appearance.BackColor = Color.Empty
+            End If
+
+            If e.Column.Name = gcComments.Name Then
+              If mCurrentRow.Comments <> String.Empty Then
+                e.Appearance.BackColor = Color.LightYellow
+                e.Appearance.ForeColor = Color.Black
+              Else
+                e.Appearance.BackColor = Color.Empty
+              End If
+
+            End If
+
+
+            If e.Column.Name = gcChangeDate.Name Then
+              Dim mYesterday As Date = Date.Now.AddDays(-1)
+              Dim mDateChange As Date = New Date(mCurrentRow.DateChange.Year, mCurrentRow.DateChange.Month, mCurrentRow.DateChange.Day)
+
+              If mDateChange.Date = mYesterday.Date Or mDateChange.Date = Now.Date Then
+                e.Appearance.BackColor = Color.GreenYellow
+                e.Appearance.ForeColor = Color.Black
+              Else
+                e.Appearance.BackColor = Color.Empty
+              End If
+
+            End If
+
+
+          End If
+
+
+
+        End If
+
+
+      End If
+
+
+      If (e.Column.Name = gcFromStock.Name Or e.Column.Name = gcMatReqToOrder.Name) Then
+        e.Appearance.BackColor = Color.LightCyan
+        e.Appearance.ForeColor = Color.Black
+      End If
+
+      If (e.Column.Name = gcIsFromStockValidated.Name) Then
+        mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+
+        If mCurrentRow IsNot Nothing Then
+
+          If mCurrentRow.IsFromStockValidated Then
+
+            e.Appearance.BackColor = Color.LightGreen
+
+          Else
+            e.Appearance.BackColor = Color.LightYellow
+          End If
+        End If
+
+      End If
+
+    End If
+  End Sub
+
+  Private Sub gvMaterialRequirements_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvMaterialRequirements.RowCellStyle
+    Dim mCurrentRow As clsMaterialRequirementProcessor
+
+
+    mCurrentRow = TryCast(gvMaterialRequirements.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+
+    If mCurrentRow IsNot Nothing Then
+
+      If e.Column.Name = gcChangeDate.Name Then
+        Dim mYesterday As Date = Date.Now.AddDays(-1)
+        Dim mDateChange As Date = New Date(mCurrentRow.DateChange.Year, mCurrentRow.DateChange.Month, mCurrentRow.DateChange.Day)
+
+        If mDateChange.Date = mYesterday.Date Or mDateChange.Date = Now.Date Then
+          e.Appearance.BackColor = Color.GreenYellow
+          e.Appearance.ForeColor = Color.Black
+
+        Else
+          e.Appearance.BackColor = Color.Empty
+        End If
+
+      End If
+    End If
+
+
+
+
 
   End Sub
 End Class

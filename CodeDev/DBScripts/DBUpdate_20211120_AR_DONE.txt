@@ -1,0 +1,61 @@
+CREATE TABLE [dbo].[WoodPalletGuideItem](
+	WoodPalletGuideItemID [int] IDENTITY(1,1) NOT NULL,
+	PalletID [int] NULL,
+	[StockItemID] [int] NULL,
+	[SpeciesID] [int] NULL,
+	[Width] [decimal](9, 4) NULL,
+	[Length] [decimal](9, 4) NULL,
+	[Quantity] [decimal](9, 4) NULL,
+	[Description] [varchar](150) NULL,
+	[StockCode] [varchar](30) NULL,
+	[Thickness] [decimal](9, 4) NULL,
+	[VolumeM3] [decimal](9, 4) NULL,
+ CONSTRAINT [PK_WoodPalletGuideItem] PRIMARY KEY CLUSTERED 
+(
+	[WoodPalletGuideItemID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+alter table Reception
+add Status tinyint
+go
+
+alter table WorkOrder
+add WoodPalletType tinyint
+go
+
+
+ALTER view [dbo].[vwWorkOrderTracking]
+as
+SELECT
+WO.*,
+SO.ProjectName, 
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+SO.DueTime, 
+SO.FinishDate,
+
+C.CompanyName, 
+C.SalesAreaID, 
+ 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName  
+
+FROM            
+dbo.WorkOrder AS WO
+left JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = SOPI.SalesOrderID 
+LEFT JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE WO.Status<>3
+
+
+GO
+
+

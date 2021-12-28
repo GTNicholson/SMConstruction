@@ -1,39 +1,44 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmPickerStockItem
-  Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.Form
 
-  'Form overrides dispose to clean up the component list.
-  <System.Diagnostics.DebuggerNonUserCode()>
-  Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-    Try
-      If disposing AndAlso components IsNot Nothing Then
-        components.Dispose()
-      End If
-    Finally
-      MyBase.Dispose(disposing)
-    End Try
-  End Sub
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
 
-  'Required by the Windows Form Designer
-  Private components As System.ComponentModel.IContainer
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
 
-  'NOTE: The following procedure is required by the Windows Form Designer
-  'It can be modified using the Windows Form Designer.  
-  'Do not modify it using the code editor.
-  <System.Diagnostics.DebuggerStepThrough()>
-  Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickerStockItem))
         Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickerStockItem))
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.grdItemList = New DevExpress.XtraGrid.GridControl()
         Me.gvItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gcID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,7 +51,13 @@ Partial Class frmPickerStockItem
         Me.gcSystemQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcUoM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcImage = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPopupGalleryEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPopupGalleryEdit()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoViewImage = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.repoItemRemove = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.repoImageEdit = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
+        Me.repoPictureImage = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar2 = New DevExpress.XtraBars.Bar()
@@ -60,7 +71,11 @@ Partial Class frmPickerStockItem
         CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPopupGalleryEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoViewImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoItemRemove, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoImageEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoPictureImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.xtabCategories, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.xtabCategories.SuspendLayout()
@@ -69,12 +84,14 @@ Partial Class frmPickerStockItem
         '
         'grdItemList
         '
-        Me.grdItemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grdItemList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdItemList.Location = New System.Drawing.Point(0, 0)
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
-        Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove})
-        Me.grdItemList.Size = New System.Drawing.Size(991, 429)
+        Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove, Me.repoImageEdit, Me.repoPictureImage, Me.RepositoryItemPopupGalleryEdit1, Me.repoViewImage})
+        Me.grdItemList.Size = New System.Drawing.Size(990, 452)
         Me.grdItemList.TabIndex = 98
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '
@@ -96,7 +113,7 @@ Partial Class frmPickerStockItem
         Me.gvItemList.Appearance.TopNewRow.Font = New System.Drawing.Font("Arial", 9.0!)
         Me.gvItemList.Appearance.TopNewRow.Options.UseFont = True
         Me.gvItemList.ColumnPanelRowHeight = 34
-        Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcStockCode, Me.gcDescription, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSystemQty, Me.gcUoM, Me.GridColumn1})
+        Me.gvItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcID, Me.gcStockCode, Me.gcDescription, Me.gcCategory, Me.gcItemType, Me.gcPartNo, Me.gcSystemQty, Me.gcUoM, Me.GridColumn1, Me.gcImage, Me.GridColumn2})
         Me.gvItemList.GridControl = Me.grdItemList
         Me.gvItemList.HorzScrollStep = 20
         Me.gvItemList.Name = "gvItemList"
@@ -197,18 +214,62 @@ Partial Class frmPickerStockItem
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 6
         '
+        'gcImage
+        '
+        Me.gcImage.Caption = "Image"
+        Me.gcImage.ColumnEdit = Me.RepositoryItemPopupGalleryEdit1
+        Me.gcImage.FieldName = "gcImage"
+        Me.gcImage.Name = "gcImage"
+        Me.gcImage.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
+        '
+        'RepositoryItemPopupGalleryEdit1
+        '
+        Me.RepositoryItemPopupGalleryEdit1.AutoHeight = False
+        Me.RepositoryItemPopupGalleryEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemPopupGalleryEdit1.Name = "RepositoryItemPopupGalleryEdit1"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Ver Imagen"
+        Me.GridColumn2.ColumnEdit = Me.repoViewImage
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        Me.GridColumn2.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 7
+        '
+        'repoViewImage
+        '
+        Me.repoViewImage.AutoHeight = False
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.repoViewImage.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoViewImage.Name = "repoViewImage"
+        '
         'repoItemRemove
         '
         Me.repoItemRemove.AutoHeight = False
-        Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remover", -1, True, True, True, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoItemRemove.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Remover", -1, True, True, True, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoItemRemove.Name = "repoItemRemove"
         Me.repoItemRemove.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'repoImageEdit
+        '
+        Me.repoImageEdit.AutoHeight = False
+        Me.repoImageEdit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.repoImageEdit.Name = "repoImageEdit"
+        Me.repoImageEdit.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
+        Me.repoImageEdit.ShowIcon = False
+        '
+        'repoPictureImage
+        '
+        Me.repoPictureImage.Name = "repoPictureImage"
+        Me.repoPictureImage.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
         'barDockControlTop
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 26)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlTop.Manager = Nothing
         Me.barDockControlTop.Size = New System.Drawing.Size(1083, 0)
         '
@@ -248,13 +309,13 @@ Partial Class frmPickerStockItem
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1083, 26)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1083, 30)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 461)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 496)
         Me.barDockControlBottom.Manager = Me.BarManager1
         Me.barDockControlBottom.Size = New System.Drawing.Size(1083, 0)
         '
@@ -262,17 +323,17 @@ Partial Class frmPickerStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 26)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 435)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 466)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1083, 26)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1083, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 435)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 466)
         '
         'xtabCategories
         '
@@ -281,10 +342,10 @@ Partial Class frmPickerStockItem
         Me.xtabCategories.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabCategories.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabCategories.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabCategories.Location = New System.Drawing.Point(0, 26)
+        Me.xtabCategories.Location = New System.Drawing.Point(0, 30)
         Me.xtabCategories.Name = "xtabCategories"
         Me.xtabCategories.SelectedTabPage = Me.XtraTabPage1
-        Me.xtabCategories.Size = New System.Drawing.Size(1083, 435)
+        Me.xtabCategories.Size = New System.Drawing.Size(1083, 466)
         Me.xtabCategories.TabIndex = 104
         Me.xtabCategories.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
@@ -292,14 +353,14 @@ Partial Class frmPickerStockItem
         '
         Me.XtraTabPage1.Controls.Add(Me.grdItemList)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(991, 429)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(990, 458)
         Me.XtraTabPage1.Text = "XtraTabPage1"
         '
         'frmPickerStockItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1083, 461)
+        Me.ClientSize = New System.Drawing.Size(1083, 496)
         Me.Controls.Add(Me.xtabCategories)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Controls.Add(Me.barDockControlLeft)
@@ -313,7 +374,11 @@ Partial Class frmPickerStockItem
         CType(Me.grdItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoItemSelect, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPopupGalleryEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoViewImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoItemRemove, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoImageEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoPictureImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.xtabCategories, System.ComponentModel.ISupportInitialize).EndInit()
         Me.xtabCategories.ResumeLayout(False)
@@ -324,26 +389,32 @@ Partial Class frmPickerStockItem
     End Sub
 
     Friend WithEvents grdItemList As DevExpress.XtraGrid.GridControl
-  Friend WithEvents gvItemList As DevExpress.XtraGrid.Views.Grid.GridView
-  Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcStockCode As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcDescription As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents repoItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-  Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcItemType As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents gcPartNo As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents repoItemRemove As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-  Friend WithEvents gcSystemQty As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
-  Friend WithEvents Bar2 As DevExpress.XtraBars.Bar
-  Friend WithEvents bbtnNewStockItem As DevExpress.XtraBars.BarButtonItem
-  Friend WithEvents BarDockControl1 As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
-  Friend WithEvents xtabCategories As DevExpress.XtraTab.XtraTabControl
-  Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents gvItemList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents gcID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcStockCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcDescription As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoItemSelect As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents gcCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcItemType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcPartNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoItemRemove As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents gcSystemQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents Bar2 As DevExpress.XtraBars.Bar
+    Friend WithEvents bbtnNewStockItem As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarDockControl1 As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents xtabCategories As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents gcUoM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gcImage As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoImageEdit As DevExpress.XtraEditors.Repository.RepositoryItemImageEdit
+    Friend WithEvents repoPictureImage As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+    Friend WithEvents RepositoryItemPopupGalleryEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPopupGalleryEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents repoViewImage As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

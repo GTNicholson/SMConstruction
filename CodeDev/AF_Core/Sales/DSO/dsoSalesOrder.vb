@@ -30,6 +30,124 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function LoadSalesOrderPhaseMilestoneStatuss_By_Phase(ByRef rSalesOrderPhaseMilestoneStatuss As colSalesOrderPhaseMilestoneStatuss, ByVal vSalesOrderPhaseID As Int32) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSalesOrderPhaseMilestoneStatus
+    Try
+      mdto = New dtoSalesOrderPhaseMilestoneStatus(pDBConn)
+      pDBConn.Connect()
+      mdto.LoadSalesOrderPhaseMilestoneStatusCollection(rSalesOrderPhaseMilestoneStatuss, vSalesOrderPhaseID)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Sub LoadSalesOrderPhaseInfoWithMilestones(ByRef rSalesOrderPhases As colSalesOrderPhaseInfos, ByVal vWhere As String, ByVal Optional vWhere3 As String = "")
+    Dim mdtoSalesOrderPhaseInfo As New dtoSalesOrderPhaseInfo(pDBConn)
+    Dim mdtoSalesOrderPhaseMilestoneStatus As New dtoSalesOrderPhaseMilestoneStatus(pDBConn)
+    Dim mSOPMRCSs As New colSalesOrderPhaseMilestoneStatuss
+    Dim mWhere2 As String
+    Dim mSOPI As clsSalesOrderPhaseInfo
+    Dim mWhereContractManagerID As String
+    Try
+
+      If pDBConn.Connect Then
+        If vWhere3 <> "" Then
+          mWhereContractManagerID = String.Concat(vWhere, vWhere3)
+
+          mdtoSalesOrderPhaseInfo.LoadSOPCollectionByWhere(rSalesOrderPhases, mWhereContractManagerID)
+
+        Else
+          mdtoSalesOrderPhaseInfo.LoadSOPCollectionByWhere(rSalesOrderPhases, vWhere)
+
+        End If
+        If vWhere <> "" Then
+          mWhere2 = "SalesOrderPhaseID in (Select SalesOrderPhaseID from vwSalesOrderPhaseInfo where " & vWhere & ")"
+        Else
+          mWhere2 = ""
+        End If
+
+        mdtoSalesOrderPhaseMilestoneStatus.LoadSalesOrderPhaseMilestoneStatusCollectionByWhere(mSOPMRCSs, mWhere2)
+
+        For Each mSOPMRCS As dmSalesOrderPhaseMilestoneStatus In mSOPMRCSs
+          mSOPI = rSalesOrderPhases.ItemBySalesOrderPhaseID(mSOPMRCS.SalesOrderPhaseID)
+          If mSOPI IsNot Nothing Then
+            mSOPI.SalesOrderPhaseMilestoneStatuss.Add(mSOPMRCS)
+          End If
+        Next
+
+
+      End If
+
+      mdtoSalesOrderPhaseInfo = Nothing
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub LoadSalesOrderPhaseInfoMilestones(ByRef rSalesOrderPhaseInfo As clsSalesOrderPhaseInfo)
+    Dim mdtoSalesOrderPhaseMilestoneStatus As New dtoSalesOrderPhaseMilestoneStatus(pDBConn)
+    Dim mSOPMRCSs As New colSalesOrderPhaseMilestoneStatuss
+
+    Try
+
+      If pDBConn.Connect Then
+        mdtoSalesOrderPhaseMilestoneStatus.LoadSalesOrderPhaseMilestoneStatusCollectionByWhere(rSalesOrderPhaseInfo.SalesOrderPhaseMilestoneStatuss, "SalesOrderPhaseID = " & rSalesOrderPhaseInfo.SalesOrderPhaseID)
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Sub LoadSalesOrdersCollectionByWhere(ByRef rSalesOrders As colSalesOrders, ByVal vWhere As String)
+    Dim mdtoSalesOrder As New dtoSalesOrder(pDBConn)
+
+    Try
+      If pDBConn.Connect Then
+
+        mdtoSalesOrder.LoadSalesOrderCollectionByWhere(rSalesOrders, vWhere)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
+
+  Public Function UpdateOrderReceivedDate(ByVal vSalesOrderPhaseID As Integer, ByVal vOrderReceivedDate As Date) As Boolean
+    Dim mOK As Boolean
+    Dim mParams As New Hashtable
+    Try
+      pDBConn.Connect()
+      mParams.Add("@OrderReceivedDate", vOrderReceivedDate)
+      mParams.Add("@SalesOrderPhaseID", vSalesOrderPhaseID)
+
+      mOK = pDBConn.ExecuteCommand("UPDATE SalesOrderPhase SET OrderReceivedDate = @OrderReceivedDate WHERE SalesOrderPhaseID =  @SalesOrderPhaseID", mParams)
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+
+  End Function
+
   Public Function LoadSalesOrderDT(ByRef rDT As DataTable, ByVal vWhereStr As String) As Boolean
     Dim mSQL As String
     Dim mOK As Boolean
@@ -77,6 +195,24 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mOK
   End Function
 
+  Public Function SaveSalesOrderPhaseMilestoneStatusCollection(ByRef rSalesOrderPhaseMilestoneStatuss As colSalesOrderPhaseMilestoneStatuss, ByVal vSalesOrderPhaseID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSalesOrderPhaseMilestoneStatus
+    Try
+      mdto = New dtoSalesOrderPhaseMilestoneStatus(pDBConn)
+      pDBConn.Connect()
+      mdto.SaveSalesOrderPhaseMilestoneStatusCollection(rSalesOrderPhaseMilestoneStatuss, vSalesOrderPhaseID)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
   Public Function GetSalesOrderIDFromSalesOrderPhaseID(ByVal vSalesOrderPhaseID) As Integer
     Dim mRetVal As Integer = -1
     Dim mSQL As String
@@ -84,6 +220,40 @@ Public Class dsoSalesOrder : Inherits dsoBase
       pDBConn.Connect()
       mSQL = "Select SalesOrderID from SalesOrderPhase where SalesOrderPhaseID = " & vSalesOrderPhaseID
       mRetVal = pDBConn.ExecuteScalar(mSQL)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function SaveSalesOrderPhaseMilestoneStatus(ByRef rSalesOrderPhaseMilestoneStatus As dmSalesOrderPhaseMilestoneStatus) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoSalesOrderPhaseMilestoneStatus
+    Try
+      mdto = New dtoSalesOrderPhaseMilestoneStatus(pDBConn)
+      pDBConn.Connect()
+      mdto.SaveSalesOrderPhaseMilestoneStatus(rSalesOrderPhaseMilestoneStatus)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function UpdateDateRequiredSOPSQL(ByVal vDateRequired As Date, ByVal vSOPID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mSQL As String
+
+    Try
+      pDBConn.Connect()
+      mSQL = String.Format("Update SalesOrderPhase set DateRequired = '{0}' where SalesOrderPhaseID = {1}", Format(vDateRequired.Date, "yyyyMMdd"), vSOPID)
+      mRetVal = pDBConn.ExecuteNonQuery(mSQL)
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally
@@ -1594,22 +1764,22 @@ Public Class dsoSalesOrder : Inherits dsoBase
   End Sub
 
   Friend Sub SynchroniseWOMatReqPickedConnected(ByVal vStockItemID As Integer, ByVal vWorkOrderID As Integer)
-    Dim mSQL As String
-    Dim mSQLUpdate As String
-    Dim mPickedQty As Decimal
+    'Dim mSQL As String
+    'Dim mSQLUpdate As String
+    'Dim mPickedQty As Decimal
 
-    mSQL = "Select SUM(PickedQty) as PickedQty"
-    mSQL = mSQL & " from MaterialRequirement MR"
-    mSQL = mSQL & " Inner Join WorkOrder WO on WO.WorkOrderID = MR.ObjectID"
-    mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And Wo.WorkOrderID = " & vWorkOrderID
+    'mSQL = "Select SUM(PickedQty) as PickedQty"
+    'mSQL = mSQL & " from MaterialRequirement MR"
+    'mSQL = mSQL & " Inner Join WorkOrder WO on WO.WorkOrderID = MR.ObjectID"
+    'mSQL = mSQL & " Where StockItemID = " & vStockItemID & " And Wo.WorkOrderID = " & vWorkOrderID
 
 
-    mPickedQty = pDBConn.ExecuteScalar(mSQL)
+    'mPickedQty = pDBConn.ExecuteScalar(mSQL)
 
-    mSQLUpdate = "Update MaterialRequirement Set PickedQty = " & mPickedQty
-    mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vWorkOrderID
+    'mSQLUpdate = "Update MaterialRequirement Set PickedQty = " & mPickedQty
+    'mSQLUpdate = mSQLUpdate & " Where StockItemID = " & vStockItemID & " And ObjectID = " & vWorkOrderID
 
-    pDBConn.ExecuteNonQuery(mSQLUpdate)
+    'pDBConn.ExecuteNonQuery(mSQLUpdate)
   End Sub
 
 

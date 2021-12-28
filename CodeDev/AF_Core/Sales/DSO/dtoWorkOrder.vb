@@ -111,6 +111,12 @@ Public Class dtoWorkOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PurchasingDate", DateToDBValue(.PurchasingDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DrawingStatus", .DrawingStatus)
 
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RequisaDocumentPath", StringToDBValue(.RequisaDocumentPath))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RequisaDate", DateToDBValue(.RequisaDate))
+
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "RequisaNumber", StringToDBValue(.RequisaNumber))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WoodPalletType", .WoodPalletType)
+
 
     End With
 
@@ -167,6 +173,10 @@ Public Class dtoWorkOrder : Inherits dtoBase
         .Status = DBReadByte(rDataReader, "Status")
         .PurchasingDate = DBReadDate(rDataReader, "PurchasingDate")
         .DrawingStatus = DBReadInt32(rDataReader, "DrawingStatus")
+        .RequisaDocumentPath = DBReadString(rDataReader, "RequisaDocumentPath")
+        .RequisaDate = DBReadDate(rDataReader, "RequisaDate")
+        .RequisaNumber = DBReadString(rDataReader, "RequisaNumber")
+        .WoodPalletType = DBReadByte(rDataReader, "WoodPalletType")
         '.EmployeeName = DBReadString(rDataReader, "EmployeeName")
         pWorkOrder.IsDirty = False
       End With

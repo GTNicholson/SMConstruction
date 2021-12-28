@@ -25,7 +25,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Private pTotalVolume As Decimal
   Private pSoldDate As Date
   Private pIsSelected As Boolean
-
+  Private pWoodPalletGuideItems As colWoodPalletGuideItems
   Public Sub New()
     MyBase.New()
   End Sub
@@ -33,6 +33,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
     pWoodPalletItems = New colWoodPalletItems
+    pWoodPalletGuideItems = New colWoodPalletGuideItems
   End Sub
 
   Protected Overrides Sub AddSnapshotKeys()
@@ -42,6 +43,7 @@ Public Class dmWoodPallet : Inherits dmBase
 
   Protected Overrides Sub Finalize()
     pWoodPalletItems = Nothing
+    pWoodPalletGuideItems = Nothing
     MyBase.Finalize()
 
   End Sub
@@ -51,7 +53,7 @@ Public Class dmWoodPallet : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
       If mAnyDirty = False Then mAnyDirty = pWoodPalletItems.IsDirty
-
+      If mAnyDirty = False Then mAnyDirty = pWoodPalletGuideItems.isDirty
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -59,6 +61,7 @@ Public Class dmWoodPallet : Inherits dmBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     WoodPalletID = 0
+    WoodPalletGuideItems.ClearKeys()
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -83,6 +86,7 @@ Public Class dmWoodPallet : Inherits dmBase
       .isProduction = isProduction
       .WoodPalletItems = WoodPalletItems.Clone
       .TotalVolume = TotalVolume
+      .WoodPalletGuideItems = WoodPalletGuideItems.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -360,6 +364,32 @@ Public Class dmWoodPallet : Inherits dmBase
     Set(value As Boolean)
       pIsSelected = value
     End Set
+  End Property
+  Public Property WoodPalletGuideItems As colWoodPalletGuideItems
+    Get
+      Return pWoodPalletGuideItems
+    End Get
+    Set(value As colWoodPalletGuideItems)
+      pWoodPalletGuideItems = value
+    End Set
+  End Property
+
+  Public ReadOnly Property GetAllSpeciesInWoodPalletGuideItems As List(Of Integer)
+    Get
+      Dim mRetVal As New List(Of Integer)
+
+      For Each mWPGI As dmWoodPalletGuideItem In WoodPalletGuideItems
+
+        If Not mRetVal.Contains(mWPGI.SpeciesID) Then
+
+          mRetVal.Add(mWPGI.SpeciesID)
+
+        End If
+
+      Next
+
+      Return mRetVal
+    End Get
   End Property
 End Class
 

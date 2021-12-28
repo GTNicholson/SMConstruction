@@ -222,6 +222,20 @@ Public Class dsoAppRefLists
           mItem.IList = mValueItems
           mOK = True
 
+        Case appRefLists.WorkCentre
+          Dim mListValueItems As New colValueItems
+
+          For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
+            Select Case mVI.ItemValue
+              Case eWorkCentre.Engineering, eWorkCentre.Insumos, eWorkCentre.Purchasing, eWorkCentre.Wood
+              Case Else
+                mListValueItems.Add(mVI)
+
+            End Select
+
+          Next
+
+          mItem.IList = mListValueItems
         Case appRefLists.CostBook
 
           mItem.IList = LoadCostBook()

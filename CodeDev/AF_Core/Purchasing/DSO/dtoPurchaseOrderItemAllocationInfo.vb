@@ -125,6 +125,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .ExchangeRateValue = DBReadDecimal(rDataReader, "ExchangeRateValue")
         .AccoutingCategoryID = DBReadInt32(rDataReader, "AccoutingCategoryID")
         .Category = DBReadByte(rDataReader, "PO_CATEGORY")
+        .Carriage = DBReadDouble(rDataReader, "Carriage")
       End With
 
       With pPurchaseOrderItemAllocationInfo.PurchaseOrderItem
@@ -137,6 +138,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
         .UnitPrice = DBReadDecimal(rDataReader, "UnitPrice")
         .UoM = DBReadInt32(rDataReader, "UoM")
         .VatValue = DBReadDecimal(rDataReader, "VatValue")
+        .TempPercentageRetention = DBReadDecimal(rDataReader, "RetentionPercentage")
         .RetentionValue = DBReadDecimal(rDataReader, "RetentionValue")
       End With
       With pPurchaseOrderItemAllocationInfo.StockItem

@@ -19,6 +19,7 @@ Public Class repCheckPaymentOrder
   Private pAccountCode As String
   Private pDBConn As clsDBConnBase
   Private pPurchaseOrderInfos As colPurchaseOrderInfos
+  Private pCompanyOption As repPurchaseOrder.eCompanyOption
   Public Sub New()
 
     InitializeComponent()
@@ -28,8 +29,8 @@ Public Class repCheckPaymentOrder
 
 
 
-  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByRef rDBConn As clsDBConnBase) As XtraReport
-    Dim mRep As New repCheckPaymentOrder(rPOInfo, rBuyer, vCurrency, vProjectName, vAccountCode, rDBConn)
+  Public Shared Function CreateReport(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vPreview As Boolean, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByRef rDBConn As clsDBConnBase, ByVal vCompanyOption As repPurchaseOrder.eCompanyOption) As XtraReport
+    Dim mRep As New repCheckPaymentOrder(rPOInfo, rBuyer, vCurrency, vProjectName, vAccountCode, rDBConn, vCompanyOption)
     Dim mPrintTool As ReportPrintTool
     mRep.CreateDocument()
     ''If vPreview Then
@@ -42,7 +43,7 @@ Public Class repCheckPaymentOrder
     Return mRep
   End Function
 
-  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByRef rDBConn As clsDBConnBase)
+  Public Sub New(ByRef rPOInfo As clsPurchaseOrderInfo, ByRef rBuyer As dmEmployee, ByVal vCurrency As eCurrency, ByVal vProjectName As String, ByVal vAccountCode As String, ByRef rDBConn As clsDBConnBase, ByVal vCompanyOption As repPurchaseOrder.eCompanyOption)
 
     ' This call is required by the designer.
     InitializeComponent()
@@ -57,6 +58,7 @@ Public Class repCheckPaymentOrder
     pProjectName = vProjectName
     pAccountCode = vAccountCode
     pDBConn = rDBConn
+    pCompanyOption = vCompanyOption
   End Sub
 
 
@@ -73,6 +75,13 @@ Public Class repCheckPaymentOrder
 
 
     Dim mWhere As String
+
+    If pCompanyOption = repPurchaseOrder.eCompanyOption.Agro Then
+      xrCompanyname.Text = "AGROFORESTAL, S,A."
+    Else
+      xrCompanyname.Text = "HYESS, S.A."
+      xrLogo.Visible = False
+    End If
 
     xrtSupplierName.Text = pPOInfo.CompanyName
 
@@ -198,9 +207,9 @@ Public Class repCheckPaymentOrder
     Dim mNew As New colPurchaseOrderInfos
     mNew.Add(pPOInfo)
     mPaymentReportDetail.PurchaseOrderInfo = pPOInfo
-    mPaymentReportDetail.PurchaseOrderInfos = pPOInfo.POItemInfos
+    mPaymentReportDetail.PurchaseItemInfos = pPOInfo.POItemInfos
 
-    XrSubreport1.ReportSource = mPaymentReportDetail
+    xsubrepPOIAllocationDetail.ReportSource = mPaymentReportDetail
   End Sub
 
   Private Sub repCheckPaymentOrder_AfterPrint(sender As Object, e As EventArgs) Handles Me.AfterPrint
@@ -211,15 +220,5 @@ Public Class repCheckPaymentOrder
 
   End Sub
 
-  Private Sub Detail_BeforePrint(sender As Object, e As PrintEventArgs) Handles Detail.BeforePrint
 
-  End Sub
-
-  Private Sub XrSubreport1_BeforePrint(sender As Object, e As PrintEventArgs) Handles XrSubreport1.BeforePrint
-
-  End Sub
-
-  Private Sub ReportHeader_AfterPrint(sender As Object, e As EventArgs) Handles ReportHeader.AfterPrint
-
-  End Sub
 End Class

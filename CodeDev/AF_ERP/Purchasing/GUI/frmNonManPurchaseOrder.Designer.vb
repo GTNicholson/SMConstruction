@@ -75,110 +75,112 @@ Partial Class frmNonManPurchaseOrder
     Me.gcSupplierCode = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.gcReceivedQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
     Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcStockItemID = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcRequiredQuantitySimple = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repitQtyReqSimp = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-    Me.gcUoM = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcRetentionValue = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcRequiredQuantitySimpleWO = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepoItemPopupContainerEditPOItemAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.RepoItemButtonEditStockItem = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.RepoItemPopupContainerEditQtyReceived = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-    Me.repoPopupWorkOrderAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.repoWOAllocationSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.repoPopupWOAllocationSelect = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.repoPopupPOItem = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-    Me.dtePaymentDate = New DevExpress.XtraEditors.DateEdit()
-    Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboValuationMode = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.txtRetentionPercentage = New DevExpress.XtraEditors.TextEdit()
-    Me.lblRetention = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboStage = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboAccountingCategory = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.ckeAccountOrder = New DevExpress.XtraEditors.CheckEdit()
-    Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
-    Me.xtratabPODelivery = New DevExpress.XtraTab.XtraTabPage()
-    Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
-    Me.grdPODeliveryInfos = New DevExpress.XtraGrid.GridControl()
-    Me.gvPODeliveryInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repoPODelivery = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-    Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.gcPODeliveryValue = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.xtraTabAppendDoc = New DevExpress.XtraTab.XtraTabPage()
-    Me.UctFileControl1 = New AgroForestal.uctFileControl()
-    Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
-    Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboPaymentMethod = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.grpPOMaterialType = New DevExpress.XtraEditors.GroupControl()
-    Me.xtabPOReqType = New DevExpress.XtraTab.XtraTabControl()
-    Me.xtpSingle = New DevExpress.XtraTab.XtraTabPage()
-    Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
-    Me.grdSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.GridControl()
-    Me.gvSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.dteDateRequired = New DevExpress.XtraEditors.DateEdit()
-    Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
-    Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
-    Me.btedSOPhase = New DevExpress.XtraEditors.ButtonEdit()
-    Me.xtpMultiple = New DevExpress.XtraTab.XtraTabPage()
-    Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
-    Me.btnManageCOs = New DevExpress.XtraEditors.SimpleButton()
-    Me.grdSalesOrderPhaseItemsPhases = New DevExpress.XtraGrid.GridControl()
-    Me.gvSalesOrderPhaseItems = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcCallOff = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-    Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-    Me.uctDeliveryAddress = New AgroForestal.uctAddress()
-    Me.txtNetValue = New DevExpress.XtraEditors.TextEdit()
-    Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-    Me.UctAddress1 = New AgroForestal.uctAddress()
-    Me.lblExchangeRate = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtExchangeValue = New DevExpress.XtraEditors.TextEdit()
-    Me.rgDefaultCurrency = New DevExpress.XtraEditors.RadioGroup()
-    Me.btePONum = New DevExpress.XtraEditors.ButtonEdit()
-    Me.lblTitle = New DevExpress.XtraEditors.LabelControl()
-    Me.btedSupplier = New DevExpress.XtraEditors.ButtonEdit()
-    Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtCarriage = New DevExpress.XtraEditors.TextEdit()
-    Me.dteDateOfOrder = New DevExpress.XtraEditors.DateEdit()
-    Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboCategory = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.btnEditPurchaseOrderPDF = New DevExpress.XtraEditors.ButtonEdit()
-    Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-    Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.cboBuyer = New DevExpress.XtraEditors.ComboBoxEdit()
-    Me.dteDueDate = New DevExpress.XtraEditors.DateEdit()
-    Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-    Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-    Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
-    Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcStockCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcRequiredQuantitySimple = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repitQtyReqSimp = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.gcUoM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcRetentionValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcRequiredQuantitySimpleWO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepoItemPopupContainerEditPOItemAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.RepoItemButtonEditStockItem = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.RepoItemPopupContainerEditQtyReceived = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.repoPopupWorkOrderAllocation = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.repoWOAllocationSelect = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.repoPopupWOAllocationSelect = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.repoPopupPOItem = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.rgCompanyOption = New DevExpress.XtraEditors.RadioGroup()
+        Me.dtePaymentDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboValuationMode = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtRetentionPercentage = New DevExpress.XtraEditors.TextEdit()
+        Me.lblRetention = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboStage = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboAccountingCategory = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.ckeAccountOrder = New DevExpress.XtraEditors.CheckEdit()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.xtratabPODelivery = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
+        Me.grdPODeliveryInfos = New DevExpress.XtraGrid.GridControl()
+        Me.gvPODeliveryInfos = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoPODelivery = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.gcPODeliveryValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.xtraTabAppendDoc = New DevExpress.XtraTab.XtraTabPage()
+        Me.UctFileControl1 = New AgroForestal.uctFileControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboPaymentMethod = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.grpPOMaterialType = New DevExpress.XtraEditors.GroupControl()
+        Me.xtabPOReqType = New DevExpress.XtraTab.XtraTabControl()
+        Me.xtpSingle = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+        Me.grdSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.GridControl()
+        Me.gvSalesOrderPhaseItemInfo = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.dteDateRequired = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtCustomerName = New DevExpress.XtraEditors.TextEdit()
+        Me.txtProjectName = New DevExpress.XtraEditors.TextEdit()
+        Me.btedSOPhase = New DevExpress.XtraEditors.ButtonEdit()
+        Me.xtpMultiple = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnManageCOs = New DevExpress.XtraEditors.SimpleButton()
+        Me.grdSalesOrderPhaseItemsPhases = New DevExpress.XtraGrid.GridControl()
+        Me.gvSalesOrderPhaseItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcCallOff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.uctDeliveryAddress = New AgroForestal.uctAddress()
+        Me.txtNetValue = New DevExpress.XtraEditors.TextEdit()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.UctAddress1 = New AgroForestal.uctAddress()
+        Me.lblExchangeRate = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtExchangeValue = New DevExpress.XtraEditors.TextEdit()
+        Me.rgDefaultCurrency = New DevExpress.XtraEditors.RadioGroup()
+        Me.btePONum = New DevExpress.XtraEditors.ButtonEdit()
+        Me.lblTitle = New DevExpress.XtraEditors.LabelControl()
+        Me.btedSupplier = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtCarriage = New DevExpress.XtraEditors.TextEdit()
+        Me.dteDateOfOrder = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboCategory = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.btnEditPurchaseOrderPDF = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.cboBuyer = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.dteDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtSupplierRef = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gpnlPOItems, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,6 +196,7 @@ Partial Class frmNonManPurchaseOrder
         CType(Me.gvPurchaseOrderItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEditUnitValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoPopupSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repitQtyReqSimp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoItemPopupContainerEditPOItemAllocation, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoItemButtonEditStockItem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,6 +208,7 @@ Partial Class frmNonManPurchaseOrder
         CType(Me.repoPopupPOItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.rgCompanyOption.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtePaymentDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtePaymentDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboValuationMode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -448,7 +452,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gpnlPOItems.Location = New System.Drawing.Point(6, 417)
         Me.gpnlPOItems.Name = "gpnlPOItems"
         Me.gpnlPOItems.Size = New System.Drawing.Size(1647, 375)
-        Me.gpnlPOItems.TabIndex = 243
+        Me.gpnlPOItems.TabIndex = 1
         Me.gpnlPOItems.Text = "Artículos de Compra"
         '
         'PopupContainerControl1
@@ -552,9 +556,9 @@ Partial Class frmNonManPurchaseOrder
         Me.grdPurchaseOrderItems.MainView = Me.gvPurchaseOrderItems
         Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1
         Me.grdPurchaseOrderItems.Name = "grdPurchaseOrderItems"
-        Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupSalesOrderPhaseItem, Me.repitQtyReqSimp, Me.RepositoryItemTextEdit1, Me.repoPopupWorkOrderAllocation, Me.repoWOAllocationSelect, Me.repoPopupWOAllocationSelect, Me.repoPopupPOItem})
+        Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupSalesOrderPhaseItem, Me.repitQtyReqSimp, Me.RepositoryItemTextEdit1, Me.repoPopupWorkOrderAllocation, Me.repoWOAllocationSelect, Me.repoPopupWOAllocationSelect, Me.repoPopupPOItem, Me.RepositoryItemTextEdit2})
         Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1643, 349)
-        Me.grdPurchaseOrderItems.TabIndex = 86
+        Me.grdPurchaseOrderItems.TabIndex = 0
         Me.grdPurchaseOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPurchaseOrderItems})
         '
         'gvPurchaseOrderItems
@@ -568,7 +572,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gvPurchaseOrderItems.Appearance.OddRow.BackColor = System.Drawing.Color.White
         Me.gvPurchaseOrderItems.Appearance.OddRow.Options.UseBackColor = True
         Me.gvPurchaseOrderItems.ColumnPanelRowHeight = 35
-        Me.gvPurchaseOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcPartNo, Me.gcPOIDescription, Me.gcPOIUnitPrice, Me.gcPOINetValue, Me.gcNotes, Me.gcVATRateCode, Me.GridColumn1, Me.gcRequiredQuantityMultiple, Me.gcCoCType, Me.gcSupplierCode, Me.gcReceivedQuantity, Me.GridColumn12, Me.GridColumn16, Me.GridColumn15, Me.gcStockItemID, Me.gcRequiredQuantitySimple, Me.gcUoM, Me.gcRetentionValue, Me.gcRequiredQuantitySimpleWO})
+        Me.gvPurchaseOrderItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcPartNo, Me.gcPOIDescription, Me.gcPOIUnitPrice, Me.gcPOINetValue, Me.gcNotes, Me.gcVATRateCode, Me.GridColumn1, Me.gcRequiredQuantityMultiple, Me.gcCoCType, Me.gcSupplierCode, Me.gcReceivedQuantity, Me.GridColumn12, Me.GridColumn16, Me.GridColumn15, Me.gcStockCode, Me.gcRequiredQuantitySimple, Me.gcUoM, Me.gcRetentionValue, Me.gcRequiredQuantitySimpleWO})
         Me.gvPurchaseOrderItems.GridControl = Me.grdPurchaseOrderItems
         Me.gvPurchaseOrderItems.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", Me.gcPOINetValue, "")})
         Me.gvPurchaseOrderItems.Name = "gvPurchaseOrderItems"
@@ -586,7 +590,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcPartNo.FieldName = "PartNo"
         Me.gcPartNo.Name = "gcPartNo"
         Me.gcPartNo.Visible = True
-        Me.gcPartNo.VisibleIndex = 1
+        Me.gcPartNo.VisibleIndex = 2
         Me.gcPartNo.Width = 84
         '
         'gcPOIDescription
@@ -597,7 +601,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcPOIDescription.FieldName = "Description"
         Me.gcPOIDescription.Name = "gcPOIDescription"
         Me.gcPOIDescription.Visible = True
-        Me.gcPOIDescription.VisibleIndex = 2
+        Me.gcPOIDescription.VisibleIndex = 3
         Me.gcPOIDescription.Width = 267
         '
         'gcPOIUnitPrice
@@ -609,22 +613,22 @@ Partial Class frmNonManPurchaseOrder
         Me.gcPOIUnitPrice.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gcPOIUnitPrice.Caption = "Precio Unitario"
         Me.gcPOIUnitPrice.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
-        Me.gcPOIUnitPrice.DisplayFormat.FormatString = "c4"
+        Me.gcPOIUnitPrice.DisplayFormat.FormatString = "c2"
         Me.gcPOIUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPOIUnitPrice.FieldName = "UnitPrice"
         Me.gcPOIUnitPrice.Name = "gcPOIUnitPrice"
         Me.gcPOIUnitPrice.Visible = True
-        Me.gcPOIUnitPrice.VisibleIndex = 7
+        Me.gcPOIUnitPrice.VisibleIndex = 8
         Me.gcPOIUnitPrice.Width = 82
         '
         'RepositoryItemSpinEditUnitValue
         '
         Me.RepositoryItemSpinEditUnitValue.AutoHeight = False
-        Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatString = "n4"
+        Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatString = "n2"
         Me.RepositoryItemSpinEditUnitValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatString = "n4"
+        Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatString = "n2"
         Me.RepositoryItemSpinEditUnitValue.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n4"
+        Me.RepositoryItemSpinEditUnitValue.Mask.EditMask = "n2"
         Me.RepositoryItemSpinEditUnitValue.Name = "RepositoryItemSpinEditUnitValue"
         '
         'gcPOINetValue
@@ -637,15 +641,16 @@ Partial Class frmNonManPurchaseOrder
         Me.gcPOINetValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.gcPOINetValue.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gcPOINetValue.Caption = "Valor Neto"
-        Me.gcPOINetValue.DisplayFormat.FormatString = "C4"
+        Me.gcPOINetValue.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
+        Me.gcPOINetValue.DisplayFormat.FormatString = "C2"
         Me.gcPOINetValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcPOINetValue.FieldName = "NetAmount"
         Me.gcPOINetValue.Name = "gcPOINetValue"
         Me.gcPOINetValue.OptionsColumn.AllowEdit = False
         Me.gcPOINetValue.OptionsColumn.ReadOnly = True
-        Me.gcPOINetValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmount", "{0:n3}")})
+        Me.gcPOINetValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetAmount", "{0:n2}")})
         Me.gcPOINetValue.Visible = True
-        Me.gcPOINetValue.VisibleIndex = 11
+        Me.gcPOINetValue.VisibleIndex = 12
         Me.gcPOINetValue.Width = 106
         '
         'gcNotes
@@ -664,7 +669,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcVATRateCode.Name = "gcVATRateCode"
         Me.gcVATRateCode.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.gcVATRateCode.Visible = True
-        Me.gcVATRateCode.VisibleIndex = 8
+        Me.gcVATRateCode.VisibleIndex = 9
         Me.gcVATRateCode.Width = 96
         '
         'GridColumn1
@@ -682,7 +687,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcRequiredQuantityMultiple.FieldName = "QtyRequired"
         Me.gcRequiredQuantityMultiple.Name = "gcRequiredQuantityMultiple"
         Me.gcRequiredQuantityMultiple.Visible = True
-        Me.gcRequiredQuantityMultiple.VisibleIndex = 5
+        Me.gcRequiredQuantityMultiple.VisibleIndex = 6
         Me.gcRequiredQuantityMultiple.Width = 111
         '
         'repoPopupSalesOrderPhaseItem
@@ -710,7 +715,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcSupplierCode.FieldName = "SupplierCode"
         Me.gcSupplierCode.Name = "gcSupplierCode"
         Me.gcSupplierCode.Visible = True
-        Me.gcSupplierCode.VisibleIndex = 0
+        Me.gcSupplierCode.VisibleIndex = 1
         Me.gcSupplierCode.Width = 106
         '
         'gcReceivedQuantity
@@ -724,7 +729,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcReceivedQuantity.Name = "gcReceivedQuantity"
         Me.gcReceivedQuantity.OptionsColumn.ReadOnly = True
         Me.gcReceivedQuantity.Visible = True
-        Me.gcReceivedQuantity.VisibleIndex = 6
+        Me.gcReceivedQuantity.VisibleIndex = 7
         '
         'GridColumn12
         '
@@ -735,15 +740,23 @@ Partial Class frmNonManPurchaseOrder
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn12.Caption = "Valor Recibido"
-        Me.GridColumn12.DisplayFormat.FormatString = "c3"
+        Me.GridColumn12.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn12.DisplayFormat.FormatString = "c2"
         Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn12.FieldName = "TotalValueReceived"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
-        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalValueReceived", "{0:n3}")})
+        Me.GridColumn12.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalValueReceived", "{0:n2}")})
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 12
+        Me.GridColumn12.VisibleIndex = 13
         Me.GridColumn12.Width = 130
+        '
+        'RepositoryItemTextEdit2
+        '
+        Me.RepositoryItemTextEdit2.AutoHeight = False
+        Me.RepositoryItemTextEdit2.EditFormat.FormatString = "n2"
+        Me.RepositoryItemTextEdit2.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit2.Name = "RepositoryItemTextEdit2"
         '
         'GridColumn16
         '
@@ -751,14 +764,14 @@ Partial Class frmNonManPurchaseOrder
         Me.GridColumn16.AppearanceCell.Options.UseBackColor = True
         Me.GridColumn16.Caption = "Valor IVA"
         Me.GridColumn16.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
-        Me.GridColumn16.DisplayFormat.FormatString = "n4"
+        Me.GridColumn16.DisplayFormat.FormatString = "n2"
         Me.GridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn16.FieldName = "VATAmount"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.ReadOnly = True
-        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "VATAmount", "{0:n4}")})
+        Me.GridColumn16.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "VATAmount", "{0:n2}")})
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 9
+        Me.GridColumn16.VisibleIndex = 10
         '
         'GridColumn15
         '
@@ -769,21 +782,26 @@ Partial Class frmNonManPurchaseOrder
         Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn15.Caption = "Valor Total"
-        Me.GridColumn15.DisplayFormat.FormatString = "N4"
+        Me.GridColumn15.ColumnEdit = Me.RepositoryItemTextEdit2
+        Me.GridColumn15.DisplayFormat.FormatString = "N2"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn15.FieldName = "GrossAmount"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.ReadOnly = True
-        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GrossAmount", "{0:n4}")})
+        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GrossAmount", "{0:n2}")})
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 13
+        Me.GridColumn15.VisibleIndex = 14
         Me.GridColumn15.Width = 144
         '
-        'gcStockItemID
+        'gcStockCode
         '
-        Me.gcStockItemID.Caption = "StockItemID"
-        Me.gcStockItemID.FieldName = "StockItemID"
-        Me.gcStockItemID.Name = "gcStockItemID"
+        Me.gcStockCode.Caption = "Código Agro"
+        Me.gcStockCode.FieldName = "gcStockCode"
+        Me.gcStockCode.Name = "gcStockCode"
+        Me.gcStockCode.OptionsColumn.ReadOnly = True
+        Me.gcStockCode.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.gcStockCode.Visible = True
+        Me.gcStockCode.VisibleIndex = 0
         '
         'gcRequiredQuantitySimple
         '
@@ -794,7 +812,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcRequiredQuantitySimple.FieldName = "QtyRequired"
         Me.gcRequiredQuantitySimple.Name = "gcRequiredQuantitySimple"
         Me.gcRequiredQuantitySimple.Visible = True
-        Me.gcRequiredQuantitySimple.VisibleIndex = 4
+        Me.gcRequiredQuantitySimple.VisibleIndex = 5
         Me.gcRequiredQuantitySimple.Width = 93
         '
         'repitQtyReqSimp
@@ -812,7 +830,7 @@ Partial Class frmNonManPurchaseOrder
         Me.gcUoM.FieldName = "UoM"
         Me.gcUoM.Name = "gcUoM"
         Me.gcUoM.Visible = True
-        Me.gcUoM.VisibleIndex = 3
+        Me.gcUoM.VisibleIndex = 4
         Me.gcUoM.Width = 87
         '
         'gcRetentionValue
@@ -821,14 +839,14 @@ Partial Class frmNonManPurchaseOrder
         Me.gcRetentionValue.AppearanceCell.Options.UseBackColor = True
         Me.gcRetentionValue.Caption = "Valor Retención"
         Me.gcRetentionValue.ColumnEdit = Me.RepositoryItemSpinEditUnitValue
-        Me.gcRetentionValue.DisplayFormat.FormatString = "N4"
+        Me.gcRetentionValue.DisplayFormat.FormatString = "N2"
         Me.gcRetentionValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcRetentionValue.FieldName = "RetentionValue"
         Me.gcRetentionValue.Name = "gcRetentionValue"
         Me.gcRetentionValue.OptionsColumn.ReadOnly = True
-        Me.gcRetentionValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RetentionValue", "{0:N4}")})
+        Me.gcRetentionValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RetentionValue", "{0:N2}")})
         Me.gcRetentionValue.Visible = True
-        Me.gcRetentionValue.VisibleIndex = 10
+        Me.gcRetentionValue.VisibleIndex = 11
         Me.gcRetentionValue.Width = 73
         '
         'gcRequiredQuantitySimpleWO
@@ -899,6 +917,7 @@ Partial Class frmNonManPurchaseOrder
         Me.GroupControl3.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl3.AppearanceCaption.Options.UseFont = True
         Me.GroupControl3.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl3.Controls.Add(Me.rgCompanyOption)
         Me.GroupControl3.Controls.Add(Me.dtePaymentDate)
         Me.GroupControl3.Controls.Add(Me.LabelControl22)
         Me.GroupControl3.Controls.Add(Me.LabelControl21)
@@ -947,8 +966,19 @@ Partial Class frmNonManPurchaseOrder
         Me.GroupControl3.Location = New System.Drawing.Point(6, 39)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(1647, 352)
-        Me.GroupControl3.TabIndex = 248
+        Me.GroupControl3.TabIndex = 0
         Me.GroupControl3.Text = "Detalles del Proveedor"
+        '
+        'rgCompanyOption
+        '
+        Me.rgCompanyOption.EditValue = 1
+        Me.rgCompanyOption.Location = New System.Drawing.Point(207, 205)
+        Me.rgCompanyOption.MenuManager = Me.BarManager1
+        Me.rgCompanyOption.Name = "rgCompanyOption"
+        Me.rgCompanyOption.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Agro"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Hyess")})
+        Me.rgCompanyOption.Size = New System.Drawing.Size(106, 27)
+        Me.rgCompanyOption.TabIndex = 297
+        Me.rgCompanyOption.Visible = False
         '
         'dtePaymentDate
         '
@@ -962,7 +992,7 @@ Partial Class frmNonManPurchaseOrder
         Me.dtePaymentDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePaymentDate.Properties.NullDate = New Date(CType(0, Long))
         Me.dtePaymentDate.Size = New System.Drawing.Size(98, 20)
-        Me.dtePaymentDate.TabIndex = 294
+        Me.dtePaymentDate.TabIndex = 19
         '
         'LabelControl22
         '
@@ -993,7 +1023,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboValuationMode.Properties.Appearance.Options.UseFont = True
         Me.cboValuationMode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboValuationMode.Size = New System.Drawing.Size(98, 20)
-        Me.cboValuationMode.TabIndex = 293
+        Me.cboValuationMode.TabIndex = 18
         '
         'txtRetentionPercentage
         '
@@ -1006,7 +1036,7 @@ Partial Class frmNonManPurchaseOrder
         Me.txtRetentionPercentage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtRetentionPercentage.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtRetentionPercentage.Size = New System.Drawing.Size(107, 20)
-        Me.txtRetentionPercentage.TabIndex = 291
+        Me.txtRetentionPercentage.TabIndex = 8
         '
         'lblRetention
         '
@@ -1037,7 +1067,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboStage.Properties.Appearance.Options.UseFont = True
         Me.cboStage.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboStage.Size = New System.Drawing.Size(98, 20)
-        Me.cboStage.TabIndex = 289
+        Me.cboStage.TabIndex = 16
         '
         'LabelControl19
         '
@@ -1058,7 +1088,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboAccountingCategory.Properties.Appearance.Options.UseFont = True
         Me.cboAccountingCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboAccountingCategory.Size = New System.Drawing.Size(100, 20)
-        Me.cboAccountingCategory.TabIndex = 287
+        Me.cboAccountingCategory.TabIndex = 3
         '
         'ckeAccountOrder
         '
@@ -1078,7 +1108,7 @@ Partial Class frmNonManPurchaseOrder
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.xtratabPODelivery
         Me.XtraTabControl1.Size = New System.Drawing.Size(386, 321)
-        Me.XtraTabControl1.TabIndex = 283
+        Me.XtraTabControl1.TabIndex = 23
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtratabPODelivery, Me.xtraTabAppendDoc})
         '
         'xtratabPODelivery
@@ -1250,7 +1280,7 @@ Partial Class frmNonManPurchaseOrder
         Me.txtComments.MenuManager = Me.BarManager1
         Me.txtComments.Name = "txtComments"
         Me.txtComments.Size = New System.Drawing.Size(406, 66)
-        Me.txtComments.TabIndex = 281
+        Me.txtComments.TabIndex = 9
         '
         'LabelControl14
         '
@@ -1271,7 +1301,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboPaymentMethod.Properties.Appearance.Options.UseFont = True
         Me.cboPaymentMethod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboPaymentMethod.Size = New System.Drawing.Size(107, 20)
-        Me.cboPaymentMethod.TabIndex = 280
+        Me.cboPaymentMethod.TabIndex = 7
         '
         'grpPOMaterialType
         '
@@ -1287,7 +1317,7 @@ Partial Class frmNonManPurchaseOrder
         Me.grpPOMaterialType.Location = New System.Drawing.Point(509, 26)
         Me.grpPOMaterialType.Name = "grpPOMaterialType"
         Me.grpPOMaterialType.Size = New System.Drawing.Size(472, 319)
-        Me.grpPOMaterialType.TabIndex = 277
+        Me.grpPOMaterialType.TabIndex = 20
         Me.grpPOMaterialType.Text = "Referencia de Compra"
         '
         'xtabPOReqType
@@ -1662,7 +1692,7 @@ Partial Class frmNonManPurchaseOrder
         Me.GroupControl1.Location = New System.Drawing.Point(987, 193)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(263, 154)
-        Me.GroupControl1.TabIndex = 254
+        Me.GroupControl1.TabIndex = 22
         Me.GroupControl1.Text = "Datos de Entrega"
         '
         'uctDeliveryAddress
@@ -1688,7 +1718,7 @@ Partial Class frmNonManPurchaseOrder
         Me.txtNetValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtNetValue.Properties.ReadOnly = True
         Me.txtNetValue.Size = New System.Drawing.Size(98, 20)
-        Me.txtNetValue.TabIndex = 275
+        Me.txtNetValue.TabIndex = 10
         '
         'GroupControl2
         '
@@ -1702,7 +1732,7 @@ Partial Class frmNonManPurchaseOrder
         Me.GroupControl2.Location = New System.Drawing.Point(987, 26)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(263, 164)
-        Me.GroupControl2.TabIndex = 253
+        Me.GroupControl2.TabIndex = 21
         Me.GroupControl2.Text = "Detalles de Ubicación"
         '
         'UctAddress1
@@ -1749,7 +1779,7 @@ Partial Class frmNonManPurchaseOrder
         Me.txtExchangeValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtExchangeValue.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtExchangeValue.Size = New System.Drawing.Size(98, 20)
-        Me.txtExchangeValue.TabIndex = 269
+        Me.txtExchangeValue.TabIndex = 17
         Me.txtExchangeValue.Visible = False
         '
         'rgDefaultCurrency
@@ -1760,7 +1790,7 @@ Partial Class frmNonManPurchaseOrder
         Me.rgDefaultCurrency.Properties.Appearance.Options.UseBackColor = True
         Me.rgDefaultCurrency.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "USD"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "C$")})
         Me.rgDefaultCurrency.Size = New System.Drawing.Size(98, 22)
-        Me.rgDefaultCurrency.TabIndex = 268
+        Me.rgDefaultCurrency.TabIndex = 15
         '
         'btePONum
         '
@@ -1771,7 +1801,7 @@ Partial Class frmNonManPurchaseOrder
         Me.btePONum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
         Me.btePONum.Properties.ReadOnly = True
         Me.btePONum.Size = New System.Drawing.Size(107, 20)
-        Me.btePONum.TabIndex = 265
+        Me.btePONum.TabIndex = 0
         '
         'lblTitle
         '
@@ -1794,7 +1824,7 @@ Partial Class frmNonManPurchaseOrder
         Me.btedSupplier.Properties.Appearance.Options.UseFont = True
         Me.btedSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.btedSupplier.Size = New System.Drawing.Size(107, 20)
-        Me.btedSupplier.TabIndex = 245
+        Me.btedSupplier.TabIndex = 1
         '
         'LabelControl13
         '
@@ -1829,7 +1859,7 @@ Partial Class frmNonManPurchaseOrder
         Me.txtCarriage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txtCarriage.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCarriage.Size = New System.Drawing.Size(98, 20)
-        Me.txtCarriage.TabIndex = 261
+        Me.txtCarriage.TabIndex = 12
         '
         'dteDateOfOrder
         '
@@ -1842,7 +1872,7 @@ Partial Class frmNonManPurchaseOrder
         Me.dteDateOfOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateOfOrder.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDateOfOrder.Size = New System.Drawing.Size(98, 20)
-        Me.dteDateOfOrder.TabIndex = 253
+        Me.dteDateOfOrder.TabIndex = 11
         '
         'LabelControl2
         '
@@ -1873,7 +1903,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboCategory.Properties.Appearance.Options.UseFont = True
         Me.cboCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboCategory.Size = New System.Drawing.Size(107, 20)
-        Me.cboCategory.TabIndex = 248
+        Me.cboCategory.TabIndex = 4
         '
         'btnEditPurchaseOrderPDF
         '
@@ -1884,7 +1914,7 @@ Partial Class frmNonManPurchaseOrder
         Me.btnEditPurchaseOrderPDF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.btnEditPurchaseOrderPDF.Properties.ReadOnly = True
         Me.btnEditPurchaseOrderPDF.Size = New System.Drawing.Size(107, 20)
-        Me.btnEditPurchaseOrderPDF.TabIndex = 259
+        Me.btnEditPurchaseOrderPDF.TabIndex = 6
         '
         'LabelControl3
         '
@@ -1915,7 +1945,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboStatus.Properties.Appearance.Options.UseFont = True
         Me.cboStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboStatus.Size = New System.Drawing.Size(107, 20)
-        Me.cboStatus.TabIndex = 250
+        Me.cboStatus.TabIndex = 5
         '
         'cboBuyer
         '
@@ -1926,7 +1956,7 @@ Partial Class frmNonManPurchaseOrder
         Me.cboBuyer.Properties.Appearance.Options.UseFont = True
         Me.cboBuyer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboBuyer.Size = New System.Drawing.Size(98, 20)
-        Me.cboBuyer.TabIndex = 257
+        Me.cboBuyer.TabIndex = 14
         '
         'dteDueDate
         '
@@ -1939,7 +1969,7 @@ Partial Class frmNonManPurchaseOrder
         Me.dteDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteDueDate.Size = New System.Drawing.Size(98, 20)
-        Me.dteDueDate.TabIndex = 251
+        Me.dteDueDate.TabIndex = 13
         '
         'LabelControl10
         '
@@ -1970,7 +2000,7 @@ Partial Class frmNonManPurchaseOrder
         Me.txtSupplierRef.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.txtSupplierRef.Properties.Appearance.Options.UseFont = True
         Me.txtSupplierRef.Size = New System.Drawing.Size(107, 20)
-        Me.txtSupplierRef.TabIndex = 255
+        Me.txtSupplierRef.TabIndex = 2
         '
         'LabelControl5
         '
@@ -2014,6 +2044,7 @@ Partial Class frmNonManPurchaseOrder
         CType(Me.gvPurchaseOrderItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEditUnitValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoPopupSalesOrderPhaseItem, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repitQtyReqSimp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoItemPopupContainerEditPOItemAllocation, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoItemButtonEditStockItem, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2026,6 +2057,7 @@ Partial Class frmNonManPurchaseOrder
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.rgCompanyOption.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtePaymentDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtePaymentDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboValuationMode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2195,7 +2227,7 @@ Partial Class frmNonManPurchaseOrder
   Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
   Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-  Friend WithEvents gcStockItemID As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcStockCode As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents gcRequiredQuantitySimple As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repitQtyReqSimp As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
   Friend WithEvents gcPODeliveryValue As DevExpress.XtraGrid.Columns.GridColumn
@@ -2238,4 +2270,6 @@ Partial Class frmNonManPurchaseOrder
   Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents rgCompanyOption As DevExpress.XtraEditors.RadioGroup
+    Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

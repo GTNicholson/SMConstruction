@@ -70,10 +70,67 @@
 
   End Property
 
+
+
+
 End Class
 
 Public Class colPurchaseOrderItemAllocationProcessor : Inherits List(Of clsPurchaseOrderItemAllocationProcessor)
 
+  Public Function TotalNetValue() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem In Me
+      mRetVal = mRetVal + mItem.TotalPriceByDelItemQty
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function TotalVAT() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem In Me
+      If mItem.ReceivedQty > 0 Then
+        Dim mPrice As Decimal = mItem.UnitPrice
+        Dim mVATValue As Decimal = mItem.PurchaseOrderItem.VatValue * mItem.Quantity
+        mRetVal = mRetVal + mVATValue
+      End If
+
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public ReadOnly Property TotalGrossValue As Decimal
+    Get
+      Dim mRetVal As Decimal
+      Dim mPO As dmPurchaseOrder
+      For Each mItem As clsPurchaseOrderItemAllocationProcessor In Me
+        If mItem.ReceivedQty > 0 Then
+          mRetVal += (mItem.ReceivedQty * mItem.UnitPrice) + TotalVAT()
+          mPO = mItem.PurchaseOrder
+        End If
+      Next
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public Function TotalRetention() As Decimal
+    Dim mRetVal As Decimal = 0
+
+    For Each mItem In Me
+      If mItem.ReceivedQty > 0 Then
+        Dim mPrice As Decimal = mItem.UnitPrice
+        Dim mVATValue As Decimal = mItem.TotalPriceByDelItemQty * mItem.PurchaseOrderItem.TempPercentageRetention
+        mRetVal = mRetVal + mVATValue
+      End If
+
+    Next
+
+    Return mRetVal
+  End Function
 End Class
 
 

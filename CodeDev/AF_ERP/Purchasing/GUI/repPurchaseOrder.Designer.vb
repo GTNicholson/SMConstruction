@@ -34,7 +34,7 @@ Partial Public Class repPurchaseOrder
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.xrLogo = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -59,9 +59,9 @@ Partial Public Class repPurchaseOrder
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xrPurchaseOrderNo = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.xrlCompanyName = New DevExpress.XtraReports.UI.XRLabel()
+        Me.xrlAddress = New DevExpress.XtraReports.UI.XRLabel()
+        Me.xrlNumRuc = New DevExpress.XtraReports.UI.XRLabel()
         Me.FilteringUIContext1 = New DevExpress.Utils.Filtering.FilteringUIContext(Me.components)
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
@@ -279,19 +279,19 @@ Partial Public Class repPurchaseOrder
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrTable1, Me.XrTable2, Me.XrTable6, Me.XrTable12, Me.XrLabel2, Me.XrLabel4, Me.XrLabel3})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.xrLogo, Me.XrTable1, Me.XrTable2, Me.XrTable6, Me.XrTable12, Me.xrlCompanyName, Me.xrlAddress, Me.xrlNumRuc})
         Me.ReportHeader.HeightF = 264.9792!
         Me.ReportHeader.Name = "ReportHeader"
         '
-        'XrPictureBox1
+        'xrLogo
         '
-        Me.XrPictureBox1.BorderWidth = 0!
-        Me.XrPictureBox1.Image = CType(resources.GetObject("XrPictureBox1.Image"), System.Drawing.Image)
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(421.6147!, 0!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(356.3853!, 70.32913!)
-        Me.XrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
-        Me.XrPictureBox1.StylePriority.UseBorderWidth = False
+        Me.xrLogo.BorderWidth = 0!
+        Me.xrLogo.Image = CType(resources.GetObject("xrLogo.Image"), System.Drawing.Image)
+        Me.xrLogo.LocationFloat = New DevExpress.Utils.PointFloat(421.6147!, 0!)
+        Me.xrLogo.Name = "xrLogo"
+        Me.xrLogo.SizeF = New System.Drawing.SizeF(356.3853!, 70.32913!)
+        Me.xrLogo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        Me.xrLogo.StylePriority.UseBorderWidth = False
         '
         'XrTable1
         '
@@ -583,54 +583,54 @@ Partial Public Class repPurchaseOrder
         Me.xrPurchaseOrderNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         Me.xrPurchaseOrderNo.Weight = 0.51262871760358031R
         '
-        'XrLabel2
+        'xrlCompanyName
         '
-        Me.XrLabel2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.xrlCompanyName.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(379.1685!, 20.91667!)
-        Me.XrLabel2.StylePriority.UseBorders = False
-        Me.XrLabel2.StylePriority.UseFont = False
-        Me.XrLabel2.StylePriority.UseTextAlignment = False
-        Me.XrLabel2.Text = "AgroForestal S.A."
-        Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xrlCompanyName.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.xrlCompanyName.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.xrlCompanyName.Name = "xrlCompanyName"
+        Me.xrlCompanyName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.xrlCompanyName.SizeF = New System.Drawing.SizeF(379.1685!, 20.91667!)
+        Me.xrlCompanyName.StylePriority.UseBorders = False
+        Me.xrlCompanyName.StylePriority.UseFont = False
+        Me.xrlCompanyName.StylePriority.UseTextAlignment = False
+        Me.xrlCompanyName.Text = "AgroForestal S.A."
+        Me.xrlCompanyName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel4
+        'xrlAddress
         '
-        Me.XrLabel4.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.xrlAddress.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel4.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.91667!)
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(379.1685!, 41.29171!)
-        Me.XrLabel4.StylePriority.UseBorders = False
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "Km 13 carretera nueva a león, Empalme Xiloa 300 mts al este. Ciudad Sandino, Mana" &
+        Me.xrlAddress.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.xrlAddress.LocationFloat = New DevExpress.Utils.PointFloat(0!, 43.91667!)
+        Me.xrlAddress.Name = "xrlAddress"
+        Me.xrlAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.xrlAddress.SizeF = New System.Drawing.SizeF(379.1685!, 41.29171!)
+        Me.xrlAddress.StylePriority.UseBorders = False
+        Me.xrlAddress.StylePriority.UseFont = False
+        Me.xrlAddress.StylePriority.UseTextAlignment = False
+        Me.xrlAddress.Text = "Km 13 carretera nueva a león, Empalme Xiloa 300 mts al este. Ciudad Sandino, Mana" &
     "gua."
-        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xrlAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'XrLabel3
+        'xrlNumRuc
         '
-        Me.XrLabel3.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.xrlNumRuc.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel3.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.0001147941!, 20.91668!)
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(379.1684!, 23.0!)
-        Me.XrLabel3.StylePriority.UseBorders = False
-        Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.StylePriority.UseTextAlignment = False
-        Me.XrLabel3.Text = "Núm RUC J0310000096279"
-        Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xrlNumRuc.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.xrlNumRuc.LocationFloat = New DevExpress.Utils.PointFloat(0.0001147941!, 20.91668!)
+        Me.xrlNumRuc.Name = "xrlNumRuc"
+        Me.xrlNumRuc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.xrlNumRuc.SizeF = New System.Drawing.SizeF(379.1684!, 23.0!)
+        Me.xrlNumRuc.StylePriority.UseBorders = False
+        Me.xrlNumRuc.StylePriority.UseFont = False
+        Me.xrlNumRuc.StylePriority.UseTextAlignment = False
+        Me.xrlNumRuc.Text = "Núm RUC J0310000096279"
+        Me.xrlNumRuc.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportFooter
         '
@@ -1106,9 +1106,9 @@ Partial Public Class repPurchaseOrder
   Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
   Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents FilteringUIContext1 As DevExpress.Utils.Filtering.FilteringUIContext
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents xrlCompanyName As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents xrlAddress As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents xrlNumRuc As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
     Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow5 As DevExpress.XtraReports.UI.XRTableRow
@@ -1178,7 +1178,7 @@ Partial Public Class repPurchaseOrder
     Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell8 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents xrTotalNetTotal As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents xrLogo As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents XrControlStyle1 As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents XrControlStyle2 As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand

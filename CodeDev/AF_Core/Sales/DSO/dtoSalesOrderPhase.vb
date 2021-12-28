@@ -72,6 +72,10 @@ Public Class dtoSalesOrderPhase : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CommittedBy", .CommittedBy)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DateCommitted", DateToDBValue(.DateCommitted))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "JobNo", StringToDBValue(.JobNo))
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ManReqDays", .ManReqDays)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OrderReceivedDate", DateToDBValue(.OrderReceivedDate))
+
+
     End With
 
   End Sub
@@ -101,6 +105,7 @@ Public Class dtoSalesOrderPhase : Inherits dtoBase
         .CommittedBy = DBReadInt32(rDataReader, "CommittedBy")
         .DateCommitted = DBReadDateTime(rDataReader, "DateCommitted")
         .JobNo = DBReadString(rDataReader, "JobNo")
+        .ManReqDays = DBReadInt32(rDataReader, "ManReqDays")
         pSalesOrderPhase.IsDirty = False
       End With
       mOK = True

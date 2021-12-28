@@ -194,7 +194,8 @@ Public Class frmNonManPurchaseOrder
       LoadCombos()
       RefreshControls()
       RefreshGrid()
-
+      pFormController.CompanyOption = repPurchaseOrder.eCompanyOption.Agro
+      rgCompanyOption.EditValue = CType(pFormController.CompanyOption, System.Int32)
 
 
       ''If mOK Then SetupUserPermissions()
@@ -337,7 +338,6 @@ Public Class frmNonManPurchaseOrder
         UctFileControl1.RefreshControls()
         uctDeliveryAddress.Address = .DeliveryAddress
         uctDeliveryAddress.RefreshControls()
-        txtRetentionPercentage.EditValue = .RetentionPercentage
         dteDateOfOrder.EditValue = .SubmissionDate
         txtCarriage.Text = .Carriage
         txtComments.Text = .Comments
@@ -401,6 +401,7 @@ Public Class frmNonManPurchaseOrder
             grpPOMaterialType.CustomHeaderButtons(1).Properties.Checked = True
 
         End Select
+        txtRetentionPercentage.EditValue = .RetentionPercentage
 
 
       End With
@@ -696,6 +697,8 @@ Public Class frmNonManPurchaseOrder
 
 
       UpdateObject()
+      gvPurchaseOrderItems.CloseEditor()
+
       For Each mPOI In pFormController.PurchaseOrder.PurchaseOrderItems
         pFormController.CreateUpdatePOItemAllocation(mPOI, True)
 
@@ -706,9 +709,9 @@ Public Class frmNonManPurchaseOrder
 
 
           If ckeAccountOrder.Checked Then
-            pFormController.CreatePurchaseOrderPDF(pFormController.CurrentDefaultCurrency, pFormController.PurchaseOrder.Supplier.PrintAccountOption, True)
+            pFormController.CreatePurchaseOrderPDF(pFormController.CurrentDefaultCurrency, pFormController.PurchaseOrder.Supplier.PrintAccountOption, True, pFormController.CompanyOption)
           Else
-            pFormController.CreatePurchaseOrderPDF(pFormController.CurrentDefaultCurrency, pFormController.PurchaseOrder.Supplier.PrintAccountOption, False)
+            pFormController.CreatePurchaseOrderPDF(pFormController.CurrentDefaultCurrency, pFormController.PurchaseOrder.Supplier.PrintAccountOption, False, pFormController.CompanyOption)
 
           End If
 
@@ -1133,86 +1136,89 @@ Public Class frmNonManPurchaseOrder
 
   Private Sub rgDefaultCurrency_EditValueChanged(sender As Object, e As EventArgs) Handles rgDefaultCurrency.EditValueChanged
 
-    If pFormController IsNot Nothing Then
-      UpdateObject()
-      pFormController.CurrentDefaultCurrency = CInt(rgDefaultCurrency.EditValue)
-      If pFormController.CurrentDefaultCurrency = eCurrency.Cordobas Then
-        lblExchangeRate.Visible = True
-        txtExchangeValue.Visible = True
+    If pIsActive Then
+      If pFormController IsNot Nothing Then
+        'UpdateObject()
+        pFormController.CurrentDefaultCurrency = CInt(rgDefaultCurrency.EditValue)
+        If pFormController.CurrentDefaultCurrency = eCurrency.Cordobas Then
+          lblExchangeRate.Visible = True
+          txtExchangeValue.Visible = True
 
-        If pFormController.PurchaseOrder.ExchangeRateValue = 0 Then
-          pFormController.PurchaseOrder.ExchangeRateValue = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
-          'RefreshControls()
+          If pFormController.PurchaseOrder.ExchangeRateValue = 0 Then
+            pFormController.PurchaseOrder.ExchangeRateValue = pFormController.GetExchangeRate(Now, eCurrency.Cordobas)
+            'RefreshControls()
+          End If
+
+          gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = True
+
+          gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+          gvPODeliveryInfos.Columns("ExchangeRateValue").SummaryItem.DisplayFormat = "{0:c2}"
+
+          gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatString = "C$#,##0.0000;;#"
+          gvPurchaseOrderItems.Columns("VATAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
+
+
+          gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+          ''gvPODeliveryInfos.Columns("GrossAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
+
+          gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+
+          gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.00;;#"
+          ''gvPODeliveryInfos.Columns("NetAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
+          gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+
+          gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.00;;#"
+          ''gvPODeliveryInfos.Columns("TotalValueReceived").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
+
+          gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.00;;#"
+          gvPODeliveryInfos.Columns("PODeliveryValue").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
+
+        Else
+          lblExchangeRate.Visible = False
+          txtExchangeValue.Visible = False
+          gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = False
+
+
+          gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+          gvPurchaseOrderItems.Columns("VATAmount").SummaryItem.DisplayFormat = "{0:$#,##0.00;;#}"
+
+          gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+          gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+          gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+          gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+          gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.00;;#"
+
+          gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+          gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.00;;#"
+
         End If
-
-        gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = True
-
-        gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPODeliveryInfos.Columns("ExchangeRateValue").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-        gvPODeliveryInfos.Columns("ExchangeRateValue").SummaryItem.DisplayFormat = "{0:c4}"
-
-        gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-        gvPurchaseOrderItems.Columns("VATAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.0000;;#}"
-
-
-
-        gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-        ''gvPODeliveryInfos.Columns("GrossAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
-
-
-        gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-
-
-        gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-        ''gvPODeliveryInfos.Columns("NetAmount").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
-
-        gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-
-        gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-        ''gvPODeliveryInfos.Columns("TotalValueReceived").SummaryItem.DisplayFormat = "{0:C$#,##0.00;;#}"
-
-
-        gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "C$#,##0.0000;;#"
-        gvPODeliveryInfos.Columns("PODeliveryValue").SummaryItem.DisplayFormat = "{0:C$#,##0.0000;;#}"
-
-      Else
-        lblExchangeRate.Visible = False
-        txtExchangeValue.Visible = False
-        gvPODeliveryInfos.Columns("ExchangeRateValue").Visible = False
-
-
-        gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("VATAmount").DisplayFormat.FormatString = "$#,##0.0000;;#"
-        gvPurchaseOrderItems.Columns("VATAmount").SummaryItem.DisplayFormat = "{0:$#,##0.0000;;#}"
-
-        gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("GrossAmount").DisplayFormat.FormatString = "$#,##0.0000;;#"
-
-        gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("UnitPrice").DisplayFormat.FormatString = "$#,##0.0000;;#"
-
-        gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("NetAmount").DisplayFormat.FormatString = "$#,##0.0000;;#"
-
-        gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("RetentionValue").DisplayFormat.FormatString = "$#,##0.0000;;#"
-
-        gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPurchaseOrderItems.Columns("TotalValueReceived").DisplayFormat.FormatString = "$#,##0.0000;;#"
-
-        gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        gvPODeliveryInfos.Columns("PODeliveryValue").DisplayFormat.FormatString = "$#,##0.0000;;#"
-
+        'RefreshControls()
       End If
-      RefreshControls()
     End If
+
   End Sub
 
   Private Sub btnPODelivery_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnPODelivery.ItemClick
@@ -1242,6 +1248,7 @@ Public Class frmNonManPurchaseOrder
           grdPODeliveryInfos.RefreshDataSource()
 
           pFormController.ReloadPOItems()
+          RefreshRetentionValuePOItems()
 
           grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
           grdPurchaseOrderItems.RefreshDataSource()
@@ -1256,6 +1263,7 @@ Public Class frmNonManPurchaseOrder
         grdPODeliveryInfos.RefreshDataSource()
 
         pFormController.ReloadPOItems()
+        RefreshRetentionValuePOItems()
 
         grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
         grdPurchaseOrderItems.RefreshDataSource()
@@ -1278,6 +1286,8 @@ Public Class frmNonManPurchaseOrder
   Private Sub gvPurchaseOrderItems_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvPurchaseOrderItems.CustomUnboundColumnData
     Dim mPOItem As dmPurchaseOrderItem
     Dim mVatRates As colVATRates
+    Dim mStockItem As dmStockItem
+
     mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
     mPOItem = e.Row
     If mPOItem IsNot Nothing Then
@@ -1290,6 +1300,22 @@ Public Class frmNonManPurchaseOrder
           'gvPurchaseOrderItems.RefreshRow(gvPurchaseOrderItems.FocusedRowHandle)
         End If
       End If
+
+      If e.Column Is gcStockCode Then
+
+        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPOItem.StockItemID)
+
+        If mStockItem IsNot Nothing Then
+          If e.IsGetData Then
+            e.Value = mStockItem.StockCode
+          ElseIf e.IsSetData Then
+            mPOItem.StockCode = mStockItem.StockCode
+          End If
+        End If
+
+
+      End If
+
 
     End If
   End Sub
@@ -1314,56 +1340,58 @@ Public Class frmNonManPurchaseOrder
     Try
       Dim mPOA As dmPurchaseOrderAllocation
 
-      gvSalesOrderPhaseItems.CloseEditor()
-      gvSalesOrderPhaseItems.UpdateCurrentRow()
-      UpdateObject()
-      CheckSave(False)
+      If pIsActive Then
+        gvSalesOrderPhaseItems.CloseEditor()
+        gvSalesOrderPhaseItems.UpdateCurrentRow()
+        UpdateObject()
+        CheckSave(False)
 
-      Select Case e.Button.Properties.Tag
+        Select Case e.Button.Properties.Tag
 
 
 
-        Case ePOMaterialRequirementType.Sencillo
+          Case ePOMaterialRequirementType.Sencillo
 
-          If pFormController.SalesOrderPhaseItemInfo Is Nothing Then
-            pFormController.SalesOrderPhaseItemInfo = New clsSalesOrderPhaseItemInfo
+            If pFormController.SalesOrderPhaseItemInfo Is Nothing Then
+              pFormController.SalesOrderPhaseItemInfo = New clsSalesOrderPhaseItemInfo
 
-          End If
+            End If
 
-          If pFormController.PurchaseOrder.PurchaseOrderAllocations.Count > 0 Then
-            mPOA = pFormController.PurchaseOrder.PurchaseOrderAllocations(0)
-            pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
-          End If
+            If pFormController.PurchaseOrder.PurchaseOrderAllocations.Count > 0 Then
+              mPOA = pFormController.PurchaseOrder.PurchaseOrderAllocations(0)
+              pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
+            End If
 
-          pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
-          For mLoop = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 1 Step -1
-            pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mLoop)
-          Next
+            pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
+            For mLoop = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 1 Step -1
+              pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mLoop)
+            Next
 
-          grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
-          grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = False
-          grdSalesOrderPhaseItemsPhases.DataSource = pFormController.SalesOrderPhaseItemInfos
-          grdSalesOrderPhaseItemsPhases.RefreshDataSource()
-          gvPurchaseOrderItems.RefreshData()
+            grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
+            grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = False
+            grdSalesOrderPhaseItemsPhases.DataSource = pFormController.SalesOrderPhaseItemInfos
+            grdSalesOrderPhaseItemsPhases.RefreshDataSource()
+            gvPurchaseOrderItems.RefreshData()
           'pFormController.CreateUpdatePOItemAllocation(mPOItem)
-        Case ePOMaterialRequirementType.Multiple
-          pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Multiple
-          grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
-          grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = True
+          Case ePOMaterialRequirementType.Multiple
+            pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Multiple
+            grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = False
+            grpPOMaterialType.CustomHeaderButtons.Item(1).Properties.Checked = True
 
-        Case Else
-          pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
-          grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
-          ''pFormController.SalesOrderPhases.Clear()
-      End Select
+          Case Else
+            pFormController.PurchaseOrder.MaterialRequirementTypeID = ePOMaterialRequirementType.Sencillo
+            grpPOMaterialType.CustomHeaderButtons.Item(0).Properties.Checked = True
+            ''pFormController.SalesOrderPhases.Clear()
+        End Select
 
-      pFormController.LoadRefData()
-      LoadPOItemAllocationCombo()
+        pFormController.LoadRefData()
+        LoadPOItemAllocationCombo()
 
-      RefreshControls()
+        RefreshControls()
+        grdSalesOrderPhaseItemsPhases.DataSource = pFormController.SalesOrderPhaseItemInfos
+        grdSalesOrderPhaseItemsPhases.RefreshDataSource()
+      End If
       ShowHideTabs()
-      grdSalesOrderPhaseItemsPhases.DataSource = pFormController.SalesOrderPhaseItemInfos
-      grdSalesOrderPhaseItemsPhases.RefreshDataSource()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -1379,7 +1407,7 @@ Public Class frmNonManPurchaseOrder
 
         Case ePOMaterialRequirementType.Sencillo
           xtabPOReqType.SelectedTabPage = xtpSingle
-          ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultiple")
+          ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantityMultiple", "gcRequiredQuantitySimple")
 
         Case ePOMaterialRequirementType.Multiple
           xtabPOReqType.SelectedTabPage = xtpMultiple
@@ -1509,7 +1537,7 @@ Public Class frmNonManPurchaseOrder
 
       If mColum.Name = vColumnNameToShow Then
         mColum.Visible = True
-        mColum.VisibleIndex = 3 ''//To force to have The right position of the column in the view
+        mColum.VisibleIndex = 5 ''//To force to have The right position of the column in the view
       End If
 
       If mColum.Name = vColumnNameToHide Then
@@ -1527,6 +1555,7 @@ Public Class frmNonManPurchaseOrder
       mPODI = TryCast(gvPODeliveryInfos.GetFocusedRow, clsPODeliveryInfo)
 
       If mPODI IsNot Nothing Then
+        pFormController.SaveObject()
 
         If pFormController.PurchaseOrder IsNot Nothing Then
 
@@ -1545,6 +1574,7 @@ Public Class frmNonManPurchaseOrder
         grdPODeliveryInfos.RefreshDataSource()
 
         pFormController.ReloadPOItems()
+        RefreshRetentionValuePOItems()
 
         grdPurchaseOrderItems.DataSource = pFormController.PurchaseOrder.PurchaseOrderItems
         grdPurchaseOrderItems.RefreshDataSource()
@@ -1560,27 +1590,39 @@ Public Class frmNonManPurchaseOrder
 
   Private Sub txtRetentionPercentage_EditValueChanged(sender As Object, e As EventArgs) Handles txtRetentionPercentage.TextChanged
 
-    If pFormController IsNot Nothing Then
-      If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
-        pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
-        'CheckSave(False)
+    If pIsActive Then
+      If pFormController IsNot Nothing Then
 
-        RefreshControls()
-        Dim mPOItem As dmPurchaseOrderItem
-        Dim mVatRates As colVATRates
-        mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
-        For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems
 
-          If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
-            mPOItem.TempPercentageRetention = pFormController.PurchaseOrder.RetentionPercentage
 
-            mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+        If pFormController.PurchaseOrder IsNot Nothing And pFormController.PurchaseOrder.PurchaseOrderItems.Count > 0 Then
+          pFormController.PurchaseOrder.RetentionPercentage = Val(txtRetentionPercentage.EditValue)
+          'CheckSave(False)
 
-          End If
-        Next
-        gvPurchaseOrderItems.RefreshData()
+          'RefreshControls()
+          RefreshRetentionValuePOItems
+          gvPurchaseOrderItems.RefreshData()
+        End If
       End If
     End If
+  End Sub
+
+  Private Sub RefreshRetentionValuePOItems()
+    Dim mPOItem As dmPurchaseOrderItem
+    Dim mVatRates As colVATRates
+    mVatRates = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.VATRate)
+    For Each mPOItem In pFormController.PurchaseOrder.PurchaseOrderItems
+
+      If mPOItem IsNot Nothing And mVatRates IsNot Nothing Then
+        mPOItem.TempPercentageRetention = pFormController.PurchaseOrder.RetentionPercentage
+
+        mPOItem.VatValue = mPOItem.CalculateVATValue(mVatRates.GetVATRateAtDate(mPOItem.VatRateCode, pFormController.PurchaseOrder.SubmissionDate))
+
+      End If
+    Next
+    pFormController.UpdatePercentageValue(pFormController.PurchaseOrder.RetentionPercentage)
+
+    gvPurchaseOrderItems.RefreshData()
   End Sub
 
   Private Sub gvPurchaseOrderItemAllocationSalesOrderPhaseItem_CustomUnboundColumnData(sender As Object, e As CustomColumnDataEventArgs) Handles gvPurchaseOrderItemAllocationSalesOrderPhaseItem.CustomUnboundColumnData
@@ -1601,7 +1643,7 @@ Public Class frmNonManPurchaseOrder
               If mSOPII IsNot Nothing Then
                 mRow.ItemRef = mSOPII.ItemNumberRef
                 mRow.ItemRef2 = mSOPII.Description
-                mRow.ProjectRef = mSOPII.ProjectName
+                mRow.ProjectRef = mSOPII.ProjectName & "/" & mSOPII.CompanyName
               Else
                 ''To Inventory
                 mRow.ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(pFormController.PurchaseOrder.Category, ePurchaseCategories))
@@ -1624,4 +1666,17 @@ Public Class frmNonManPurchaseOrder
 
 
   End Sub
+
+  Private Sub rgCompanyOption_EditValueChanged(sender As Object, e As EventArgs) Handles rgCompanyOption.EditValueChanged
+
+    If pIsActive Then
+
+      If pFormController IsNot Nothing Then
+
+        pFormController.CompanyOption = rgCompanyOption.EditValue
+      End If
+
+    End If
+  End Sub
+
 End Class

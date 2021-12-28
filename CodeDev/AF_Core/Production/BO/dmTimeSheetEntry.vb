@@ -213,6 +213,21 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     Return mIndex
   End Function
 
+  Public Function IndexFromStartDateTime(ByVal vDateTime As Date, ByVal vTimeSheetEntryTypeID As Integer) As Integer
+    Dim mItem As dmTimeSheetEntry
+    Dim mIndex As Integer = -1
+    Dim mCount As Integer = -1
+    For Each mItem In MyBase.Items
+      mCount += 1
+      If mItem.StartTime <= vDateTime And mItem.EndTime > vDateTime And mItem.TimeSheetEntryTypeID = vTimeSheetEntryTypeID Then
+        mIndex = mCount
+        Exit For
+      End If
+    Next
+    Return mIndex
+  End Function
+
+
   Public Function IndexFromStartDateTime(ByVal vDateTime As Date) As Integer
     Dim mItem As dmTimeSheetEntry
     Dim mIndex As Integer = -1
@@ -226,11 +241,14 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     Next
     Return mIndex
   End Function
-
-  Public Function ItemEarlierSameDay(ByVal vDateTime As Date) As dmTimeSheetEntry
+  Public Function ItemEarlierSameDay(ByVal vDateTime As Date, ByVal vNumberOfWeek As Integer) As dmTimeSheetEntry
     Dim mRetVal As dmTimeSheetEntry = Nothing
+    Dim mSameDay As Integer = -1
+
     For Each mItem In MyBase.Items
-      If mItem.EndTime.Date = vDateTime.Date Then
+      mSameDay = DateAndTime.Weekday(mItem.StartTime, FirstDayOfWeek.Monday)
+
+      If mItem.EndTime.Date = vDateTime.Date And mSameDay = vNumberOfWeek Then
         If mItem.EndTime <= vDateTime Then
           If mRetVal Is Nothing Then
             mRetVal = mItem
@@ -245,10 +263,12 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     Return mRetVal
   End Function
 
-  Public Function ItemLaterSameDay(ByVal vDateTime As Date) As dmTimeSheetEntry
+  Public Function ItemLaterSameDay(ByVal vDateTime As Date, ByVal vLastDay As Integer) As dmTimeSheetEntry
     Dim mRetVal As dmTimeSheetEntry = Nothing
+    Dim mSameDay As Integer = -1
+
     For Each mItem In MyBase.Items
-      If mItem.StartTime.Date = vDateTime.Date Then
+      If mItem.StartTime.Date = vDateTime.Date And vLastDay = mSameDay Then
         If mItem.StartTime >= vDateTime Then
           If mRetVal Is Nothing Then
             mRetVal = mItem
@@ -267,6 +287,16 @@ Public Class colTimeSheetEntrys : Inherits colBase(Of dmTimeSheetEntry)
     Dim mRetVal As dmTimeSheetEntry = Nothing
     Dim mIndex As Integer
     mIndex = IndexFromStartDateTime(vDateTime)
+    If mIndex <> -1 Then
+      mRetVal = Me.Items(mIndex)
+    End If
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromStartDateTime(ByVal vDateTime As Date, ByVal vTimeSheetEntryTypeID As Integer) As dmTimeSheetEntry
+    Dim mRetVal As dmTimeSheetEntry = Nothing
+    Dim mIndex As Integer
+    mIndex = IndexFromStartDateTime(vDateTime, vTimeSheetEntryTypeID)
     If mIndex <> -1 Then
       mRetVal = Me.Items(mIndex)
     End If

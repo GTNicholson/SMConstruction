@@ -33,9 +33,15 @@ Partial Class frmSalesOrderReview
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.txtManPowerPercentage = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtActualSOPIManPower = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.txtSOPIManPower = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.tgsCosting = New DevExpress.XtraEditors.ToggleSwitch()
-        Me.txtOutsourcingMOPercetange = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtOutsourcingPercetange = New DevExpress.XtraEditors.TextEdit()
+        Me.txtIndirectCost = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.txtWoodTotalEstimatedValue = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
@@ -56,9 +62,9 @@ Partial Class frmSalesOrderReview
         Me.txtTotalSOPIMaterialsPick = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtTotalSOPISubMOValue = New DevExpress.XtraEditors.TextEdit()
+        Me.txtTotalSOPIOutsourcing = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.txtSOPIMO = New DevExpress.XtraEditors.TextEdit()
+        Me.txtSOPIOutsourcing = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.txtSIMatReqPercentage = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
@@ -131,6 +137,8 @@ Partial Class frmSalesOrderReview
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.gcMatActual = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn60 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn62 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.GroupControl7 = New DevExpress.XtraEditors.GroupControl()
         Me.GroupControl8 = New DevExpress.XtraEditors.GroupControl()
@@ -180,9 +188,12 @@ Partial Class frmSalesOrderReview
         CType(Me.gvCustomerPOs, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.txtManPowerPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtActualSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tgsCosting.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtOutsourcingMOPercetange.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtOutsourcingPercetange.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtIndirectCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodTotalEstimatedValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtEstimatedInsumosTotalValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWoodPick.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,8 +203,8 @@ Partial Class frmSalesOrderReview
         CType(Me.txtInumosPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtStockItemMatReqCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalSOPIMaterialsPick.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalSOPISubMOValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtSOPIMO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalSOPIOutsourcing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSOPIOutsourcing.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSIMatReqPercentage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtEngineeringMaterialCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSOPIMaterialCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,9 +357,15 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl2.AppearanceCaption.Options.UseFont = True
         Me.GroupControl2.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl2.Controls.Add(Me.txtManPowerPercentage)
+        Me.GroupControl2.Controls.Add(Me.LabelControl2)
+        Me.GroupControl2.Controls.Add(Me.txtActualSOPIManPower)
+        Me.GroupControl2.Controls.Add(Me.LabelControl5)
+        Me.GroupControl2.Controls.Add(Me.txtSOPIManPower)
+        Me.GroupControl2.Controls.Add(Me.LabelControl15)
         Me.GroupControl2.Controls.Add(Me.tgsCosting)
-        Me.GroupControl2.Controls.Add(Me.txtOutsourcingMOPercetange)
-        Me.GroupControl2.Controls.Add(Me.TextEdit8)
+        Me.GroupControl2.Controls.Add(Me.txtOutsourcingPercetange)
+        Me.GroupControl2.Controls.Add(Me.txtIndirectCost)
         Me.GroupControl2.Controls.Add(Me.LabelControl24)
         Me.GroupControl2.Controls.Add(Me.txtWoodTotalEstimatedValue)
         Me.GroupControl2.Controls.Add(Me.LabelControl23)
@@ -369,9 +386,9 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.Controls.Add(Me.txtTotalSOPIMaterialsPick)
         Me.GroupControl2.Controls.Add(Me.LabelControl18)
         Me.GroupControl2.Controls.Add(Me.LabelControl12)
-        Me.GroupControl2.Controls.Add(Me.txtTotalSOPISubMOValue)
+        Me.GroupControl2.Controls.Add(Me.txtTotalSOPIOutsourcing)
         Me.GroupControl2.Controls.Add(Me.LabelControl13)
-        Me.GroupControl2.Controls.Add(Me.txtSOPIMO)
+        Me.GroupControl2.Controls.Add(Me.txtSOPIOutsourcing)
         Me.GroupControl2.Controls.Add(Me.LabelControl14)
         Me.GroupControl2.Controls.Add(Me.txtSIMatReqPercentage)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
@@ -391,10 +408,88 @@ Partial Class frmSalesOrderReview
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Resumen de Gastos y Progreso del Proyecto"
         '
+        'txtManPowerPercentage
+        '
+        Me.txtManPowerPercentage.Location = New System.Drawing.Point(1131, 103)
+        Me.txtManPowerPercentage.Name = "txtManPowerPercentage"
+        Me.txtManPowerPercentage.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtManPowerPercentage.Properties.Appearance.Options.UseFont = True
+        Me.txtManPowerPercentage.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtManPowerPercentage.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtManPowerPercentage.Properties.Mask.EditMask = "p"
+        Me.txtManPowerPercentage.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtManPowerPercentage.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtManPowerPercentage.Properties.ReadOnly = True
+        Me.txtManPowerPercentage.Size = New System.Drawing.Size(72, 22)
+        Me.txtManPowerPercentage.TabIndex = 65
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl2.Appearance.Options.UseFont = True
+        Me.LabelControl2.Appearance.Options.UseForeColor = True
+        Me.LabelControl2.Location = New System.Drawing.Point(1060, 106)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(62, 15)
+        Me.LabelControl2.TabIndex = 64
+        Me.LabelControl2.Text = "Porcentaje"
+        '
+        'txtActualSOPIManPower
+        '
+        Me.txtActualSOPIManPower.Location = New System.Drawing.Point(1131, 76)
+        Me.txtActualSOPIManPower.Name = "txtActualSOPIManPower"
+        Me.txtActualSOPIManPower.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtActualSOPIManPower.Properties.Appearance.Options.UseFont = True
+        Me.txtActualSOPIManPower.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtActualSOPIManPower.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtActualSOPIManPower.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtActualSOPIManPower.Properties.NullText = "0"
+        Me.txtActualSOPIManPower.Properties.ReadOnly = True
+        Me.txtActualSOPIManPower.Size = New System.Drawing.Size(72, 22)
+        Me.txtActualSOPIManPower.TabIndex = 63
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl5.Appearance.Options.UseFont = True
+        Me.LabelControl5.Appearance.Options.UseForeColor = True
+        Me.LabelControl5.Location = New System.Drawing.Point(1060, 79)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(64, 15)
+        Me.LabelControl5.TabIndex = 62
+        Me.LabelControl5.Text = "M.O. Actual"
+        '
+        'txtSOPIManPower
+        '
+        Me.txtSOPIManPower.Location = New System.Drawing.Point(1131, 27)
+        Me.txtSOPIManPower.Name = "txtSOPIManPower"
+        Me.txtSOPIManPower.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtSOPIManPower.Properties.Appearance.Options.UseFont = True
+        Me.txtSOPIManPower.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtSOPIManPower.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtSOPIManPower.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtSOPIManPower.Properties.NullText = "0"
+        Me.txtSOPIManPower.Properties.ReadOnly = True
+        Me.txtSOPIManPower.Size = New System.Drawing.Size(72, 22)
+        Me.txtSOPIManPower.TabIndex = 61
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LabelControl15.Appearance.Options.UseFont = True
+        Me.LabelControl15.Appearance.Options.UseForeColor = True
+        Me.LabelControl15.Location = New System.Drawing.Point(1060, 30)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(49, 15)
+        Me.LabelControl15.TabIndex = 60
+        Me.LabelControl15.Text = "M.O. Est."
+        '
         'tgsCosting
         '
-        Me.tgsCosting.EditValue = True
-        Me.tgsCosting.Location = New System.Drawing.Point(1099, 26)
+        Me.tgsCosting.Location = New System.Drawing.Point(1234, 27)
         Me.tgsCosting.Name = "tgsCosting"
         Me.tgsCosting.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.tgsCosting.Properties.Appearance.Options.UseFont = True
@@ -404,34 +499,38 @@ Partial Class frmSalesOrderReview
         Me.tgsCosting.Size = New System.Drawing.Size(151, 23)
         Me.tgsCosting.TabIndex = 59
         '
-        'txtOutsourcingMOPercetange
+        'txtOutsourcingPercetange
         '
-        Me.txtOutsourcingMOPercetange.Location = New System.Drawing.Point(995, 102)
-        Me.txtOutsourcingMOPercetange.Name = "txtOutsourcingMOPercetange"
-        Me.txtOutsourcingMOPercetange.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtOutsourcingMOPercetange.Properties.Appearance.Options.UseFont = True
-        Me.txtOutsourcingMOPercetange.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtOutsourcingMOPercetange.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtOutsourcingMOPercetange.Properties.Mask.EditMask = "p"
-        Me.txtOutsourcingMOPercetange.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.txtOutsourcingMOPercetange.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtOutsourcingMOPercetange.Properties.ReadOnly = True
-        Me.txtOutsourcingMOPercetange.Size = New System.Drawing.Size(72, 22)
-        Me.txtOutsourcingMOPercetange.TabIndex = 58
+        Me.txtOutsourcingPercetange.Location = New System.Drawing.Point(964, 102)
+        Me.txtOutsourcingPercetange.Name = "txtOutsourcingPercetange"
+        Me.txtOutsourcingPercetange.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtOutsourcingPercetange.Properties.Appearance.Options.UseFont = True
+        Me.txtOutsourcingPercetange.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtOutsourcingPercetange.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtOutsourcingPercetange.Properties.Mask.EditMask = "p"
+        Me.txtOutsourcingPercetange.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtOutsourcingPercetange.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtOutsourcingPercetange.Properties.ReadOnly = True
+        Me.txtOutsourcingPercetange.Size = New System.Drawing.Size(72, 22)
+        Me.txtOutsourcingPercetange.TabIndex = 58
         '
-        'TextEdit8
+        'txtIndirectCost
         '
-        Me.TextEdit8.Location = New System.Drawing.Point(1139, 79)
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.TextEdit8.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit8.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit8.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit8.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.TextEdit8.Properties.NullText = "0"
-        Me.TextEdit8.Properties.ReadOnly = True
-        Me.TextEdit8.Size = New System.Drawing.Size(72, 22)
-        Me.TextEdit8.TabIndex = 57
+        Me.txtIndirectCost.Location = New System.Drawing.Point(1274, 80)
+        Me.txtIndirectCost.Name = "txtIndirectCost"
+        Me.txtIndirectCost.Properties.Appearance.BackColor = System.Drawing.Color.LightCyan
+        Me.txtIndirectCost.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtIndirectCost.Properties.Appearance.Options.UseBackColor = True
+        Me.txtIndirectCost.Properties.Appearance.Options.UseFont = True
+        Me.txtIndirectCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtIndirectCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtIndirectCost.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtIndirectCost.Properties.Mask.EditMask = "N2"
+        Me.txtIndirectCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.txtIndirectCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtIndirectCost.Properties.NullText = "0"
+        Me.txtIndirectCost.Size = New System.Drawing.Size(72, 22)
+        Me.txtIndirectCost.TabIndex = 57
         '
         'LabelControl24
         '
@@ -439,7 +538,7 @@ Partial Class frmSalesOrderReview
         Me.LabelControl24.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.LabelControl24.Appearance.Options.UseFont = True
         Me.LabelControl24.Appearance.Options.UseForeColor = True
-        Me.LabelControl24.Location = New System.Drawing.Point(1116, 85)
+        Me.LabelControl24.Location = New System.Drawing.Point(1251, 86)
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(17, 15)
         Me.LabelControl24.TabIndex = 56
@@ -693,19 +792,19 @@ Partial Class frmSalesOrderReview
         Me.LabelControl12.TabIndex = 26
         Me.LabelControl12.Text = "Porcentaje"
         '
-        'txtTotalSOPISubMOValue
+        'txtTotalSOPIOutsourcing
         '
-        Me.txtTotalSOPISubMOValue.Location = New System.Drawing.Point(995, 75)
-        Me.txtTotalSOPISubMOValue.Name = "txtTotalSOPISubMOValue"
-        Me.txtTotalSOPISubMOValue.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtTotalSOPISubMOValue.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalSOPISubMOValue.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtTotalSOPISubMOValue.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtTotalSOPISubMOValue.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtTotalSOPISubMOValue.Properties.NullText = "0"
-        Me.txtTotalSOPISubMOValue.Properties.ReadOnly = True
-        Me.txtTotalSOPISubMOValue.Size = New System.Drawing.Size(72, 22)
-        Me.txtTotalSOPISubMOValue.TabIndex = 25
+        Me.txtTotalSOPIOutsourcing.Location = New System.Drawing.Point(964, 75)
+        Me.txtTotalSOPIOutsourcing.Name = "txtTotalSOPIOutsourcing"
+        Me.txtTotalSOPIOutsourcing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtTotalSOPIOutsourcing.Properties.Appearance.Options.UseFont = True
+        Me.txtTotalSOPIOutsourcing.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtTotalSOPIOutsourcing.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtTotalSOPIOutsourcing.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtTotalSOPIOutsourcing.Properties.NullText = "0"
+        Me.txtTotalSOPIOutsourcing.Properties.ReadOnly = True
+        Me.txtTotalSOPIOutsourcing.Size = New System.Drawing.Size(72, 22)
+        Me.txtTotalSOPIOutsourcing.TabIndex = 25
         '
         'LabelControl13
         '
@@ -715,23 +814,23 @@ Partial Class frmSalesOrderReview
         Me.LabelControl13.Appearance.Options.UseForeColor = True
         Me.LabelControl13.Location = New System.Drawing.Point(876, 79)
         Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(116, 15)
+        Me.LabelControl13.Size = New System.Drawing.Size(82, 15)
         Me.LabelControl13.TabIndex = 24
-        Me.LabelControl13.Text = "Subcon / M.O. Actual"
+        Me.LabelControl13.Text = "Subcon Actual"
         '
-        'txtSOPIMO
+        'txtSOPIOutsourcing
         '
-        Me.txtSOPIMO.Location = New System.Drawing.Point(995, 26)
-        Me.txtSOPIMO.Name = "txtSOPIMO"
-        Me.txtSOPIMO.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.txtSOPIMO.Properties.Appearance.Options.UseFont = True
-        Me.txtSOPIMO.Properties.Appearance.Options.UseTextOptions = True
-        Me.txtSOPIMO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.txtSOPIMO.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
-        Me.txtSOPIMO.Properties.NullText = "0"
-        Me.txtSOPIMO.Properties.ReadOnly = True
-        Me.txtSOPIMO.Size = New System.Drawing.Size(72, 22)
-        Me.txtSOPIMO.TabIndex = 23
+        Me.txtSOPIOutsourcing.Location = New System.Drawing.Point(964, 26)
+        Me.txtSOPIOutsourcing.Name = "txtSOPIOutsourcing"
+        Me.txtSOPIOutsourcing.Properties.Appearance.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.txtSOPIOutsourcing.Properties.Appearance.Options.UseFont = True
+        Me.txtSOPIOutsourcing.Properties.Appearance.Options.UseTextOptions = True
+        Me.txtSOPIOutsourcing.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.txtSOPIOutsourcing.Properties.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.txtSOPIOutsourcing.Properties.NullText = "0"
+        Me.txtSOPIOutsourcing.Properties.ReadOnly = True
+        Me.txtSOPIOutsourcing.Size = New System.Drawing.Size(72, 22)
+        Me.txtSOPIOutsourcing.TabIndex = 23
         '
         'LabelControl14
         '
@@ -741,9 +840,9 @@ Partial Class frmSalesOrderReview
         Me.LabelControl14.Appearance.Options.UseForeColor = True
         Me.LabelControl14.Location = New System.Drawing.Point(876, 30)
         Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(101, 15)
+        Me.LabelControl14.Size = New System.Drawing.Size(67, 15)
         Me.LabelControl14.TabIndex = 22
-        Me.LabelControl14.Text = "Subcon / M.O. Est."
+        Me.LabelControl14.Text = "Subcon Est."
         '
         'txtSIMatReqPercentage
         '
@@ -1439,7 +1538,7 @@ Partial Class frmSalesOrderReview
         Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
         Me.gvSalesOrderPhaseItemInfo.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.gvSalesOrderPhaseItemInfo.ColumnPanelRowHeight = 40
-        Me.gvSalesOrderPhaseItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn13, Me.GridColumn22, Me.GridColumn50, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.gcMatEsp, Me.gcMatActual, Me.GridColumn60})
+        Me.gvSalesOrderPhaseItemInfo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn13, Me.GridColumn22, Me.GridColumn50, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.gcMatEsp, Me.gcMatActual, Me.GridColumn60, Me.GridColumn62, Me.GridColumn63})
         Me.gvSalesOrderPhaseItemInfo.GridControl = Me.grdSalesOrderPhaseItemInfo
         Me.gvSalesOrderPhaseItemInfo.GroupRowHeight = 40
         Me.gvSalesOrderPhaseItemInfo.Name = "gvSalesOrderPhaseItemInfo"
@@ -1461,7 +1560,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn16.OptionsColumn.ReadOnly = True
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 0
-        Me.GridColumn16.Width = 53
+        Me.GridColumn16.Width = 50
         '
         'GridColumn17
         '
@@ -1473,7 +1572,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn17.OptionsColumn.ReadOnly = True
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 1
-        Me.GridColumn17.Width = 200
+        Me.GridColumn17.Width = 189
         '
         'GridColumn18
         '
@@ -1494,7 +1593,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn18.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UnitPrice", "{0:$#,##0.00;;#}")})
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 2
-        Me.GridColumn18.Width = 81
+        Me.GridColumn18.Width = 76
         '
         'repoNumberFormat
         '
@@ -1527,7 +1626,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "StockItemStimatedCost", "{0:$#,##0.00;;#}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 3
-        Me.GridColumn20.Width = 87
+        Me.GridColumn20.Width = 82
         '
         'GridColumn21
         '
@@ -1548,7 +1647,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SOPIStockItemMatReqDollarValue", "{0:$#,##0.00;;#}")})
         Me.GridColumn21.Visible = True
         Me.GridColumn21.VisibleIndex = 4
-        Me.GridColumn21.Width = 86
+        Me.GridColumn21.Width = 81
         '
         'GridColumn13
         '
@@ -1569,7 +1668,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SOPIPickDollarValue", "{0:$#,##0.00;;#}")})
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 5
-        Me.GridColumn13.Width = 92
+        Me.GridColumn13.Width = 86
         '
         'GridColumn22
         '
@@ -1590,7 +1689,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WoodStockItemStimatedCost", "{0:$#,##0.00;;#}")})
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 6
-        Me.GridColumn22.Width = 91
+        Me.GridColumn22.Width = 86
         '
         'GridColumn50
         '
@@ -1611,7 +1710,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn50.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SpecifiedWoodCost", "{0:$#,##0.00;;#}")})
         Me.GridColumn50.Visible = True
         Me.GridColumn50.VisibleIndex = 7
-        Me.GridColumn50.Width = 103
+        Me.GridColumn50.Width = 97
         '
         'GridColumn23
         '
@@ -1632,7 +1731,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PickedWoodCost", "{0:$#,##0.00;;#}")})
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 8
-        Me.GridColumn23.Width = 106
+        Me.GridColumn23.Width = 79
         '
         'GridColumn24
         '
@@ -1643,17 +1742,17 @@ Partial Class frmSalesOrderReview
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn24.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn24.Caption = "Subcon/MO Est."
+        Me.GridColumn24.Caption = "Subcon Est."
         Me.GridColumn24.ColumnEdit = Me.repoNumberFormat
         Me.GridColumn24.DisplayFormat.FormatString = "$#,##0.00;;#"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn24.FieldName = "SubContractCostMO"
+        Me.GridColumn24.FieldName = "SubContractCost"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.ReadOnly = True
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SubContractCostMO", "{0:$#,##0.00;;#}")})
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 9
-        Me.GridColumn24.Width = 95
+        Me.GridColumn24.Width = 69
         '
         'GridColumn25
         '
@@ -1664,7 +1763,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn25.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
         Me.GridColumn25.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GridColumn25.Caption = "Subcon  / MO Actual"
+        Me.GridColumn25.Caption = "Subcon  Actual"
         Me.GridColumn25.ColumnEdit = Me.repoNumberFormat
         Me.GridColumn25.DisplayFormat.FormatString = "$#,##0.00;;#"
         Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1674,7 +1773,7 @@ Partial Class frmSalesOrderReview
         Me.GridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SOPIItemOutsourcingCost", "{0:$#,##0.00;;#}")})
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 10
-        Me.GridColumn25.Width = 92
+        Me.GridColumn25.Width = 72
         '
         'GridColumn26
         '
@@ -1694,8 +1793,8 @@ Partial Class frmSalesOrderReview
         Me.GridColumn26.OptionsColumn.ReadOnly = True
         Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Profit", "{0:$#,##0.00;;#}")})
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 12
-        Me.GridColumn26.Width = 57
+        Me.GridColumn26.VisibleIndex = 14
+        Me.GridColumn26.Width = 58
         '
         'GridColumn27
         '
@@ -1708,8 +1807,8 @@ Partial Class frmSalesOrderReview
         Me.GridColumn27.OptionsColumn.ReadOnly = True
         Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:$#,##0.00;;#}")})
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 13
-        Me.GridColumn27.Width = 76
+        Me.GridColumn27.VisibleIndex = 15
+        Me.GridColumn27.Width = 111
         '
         'gcMatEsp
         '
@@ -1760,8 +1859,35 @@ Partial Class frmSalesOrderReview
         Me.GridColumn60.OptionsColumn.ReadOnly = True
         Me.GridColumn60.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LineValue", "{0:$#,##0.00;;#}")})
         Me.GridColumn60.Visible = True
-        Me.GridColumn60.VisibleIndex = 11
-        Me.GridColumn60.Width = 73
+        Me.GridColumn60.VisibleIndex = 13
+        Me.GridColumn60.Width = 77
+        '
+        'GridColumn62
+        '
+        Me.GridColumn62.Caption = "M.O. Est."
+        Me.GridColumn62.ColumnEdit = Me.repoNumberFormat
+        Me.GridColumn62.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.GridColumn62.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn62.FieldName = "ManpowerCost"
+        Me.GridColumn62.Name = "GridColumn62"
+        Me.GridColumn62.OptionsColumn.ReadOnly = True
+        Me.GridColumn62.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ManpowerCost", "{0:$#,##0.00;;#}")})
+        Me.GridColumn62.Visible = True
+        Me.GridColumn62.VisibleIndex = 11
+        Me.GridColumn62.Width = 79
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.Caption = "M.O. Actual"
+        Me.GridColumn63.ColumnEdit = Me.repoNumberFormat
+        Me.GridColumn63.DisplayFormat.FormatString = "$#,##0.00;;#"
+        Me.GridColumn63.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn63.FieldName = "ManPowerActualTotalCostUSD"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.OptionsColumn.ReadOnly = True
+        Me.GridColumn63.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ManPowerActualTotalCostUSD", "{0:$#,##0.00;;#}")})
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 12
         '
         'RepositoryItemButtonEdit1
         '
@@ -2318,9 +2444,12 @@ Partial Class frmSalesOrderReview
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.txtManPowerPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtActualSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSOPIManPower.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tgsCosting.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtOutsourcingMOPercetange.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtOutsourcingPercetange.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtIndirectCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodTotalEstimatedValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtEstimatedInsumosTotalValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWoodPick.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2330,8 +2459,8 @@ Partial Class frmSalesOrderReview
         CType(Me.txtInumosPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtStockItemMatReqCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotalSOPIMaterialsPick.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalSOPISubMOValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtSOPIMO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalSOPIOutsourcing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSOPIOutsourcing.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSIMatReqPercentage.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtEngineeringMaterialCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSOPIMaterialCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2446,9 +2575,9 @@ Partial Class frmSalesOrderReview
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl7 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtTotalSOPISubMOValue As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalSOPIOutsourcing As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents txtSOPIMO As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtSOPIOutsourcing As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtSIMatReqPercentage As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
@@ -2517,13 +2646,13 @@ Partial Class frmSalesOrderReview
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents xtpHonorarios As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents TextEdit8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtIndirectCost As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents repoNumberFormat As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents RepositoryItemTextEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn61 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents txtOutsourcingMOPercetange As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtOutsourcingPercetange As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GroupControl4 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents grdHonorarios As DevExpress.XtraGrid.GridControl
     Friend WithEvents gvPOHonorarios As DevExpress.XtraGrid.Views.Grid.GridView
@@ -2541,4 +2670,12 @@ Partial Class frmSalesOrderReview
     Friend WithEvents GridColumn59 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn60 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents tgsCosting As DevExpress.XtraEditors.ToggleSwitch
+    Friend WithEvents GridColumn62 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtManPowerPercentage As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtActualSOPIManPower As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txtSOPIManPower As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
 End Class

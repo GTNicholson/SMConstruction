@@ -11,11 +11,13 @@ Public Class dsoBITimeSheet
   Private pBIReportView As clsBIReportView
 
   Private pTimeSheetInfos As colTimeSheetEntryInfos
+  Private pTempExcludeWO As Boolean
 
-  Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView)
+  Public Sub New(ByRef rDBConn As clsDBConnBase, rRTISGlobal As AppRTISGlobal, rBIReportView As clsBIReportView, ByVal vExcludeWO As Boolean)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
     pBIReportView = rBIReportView
+    pTempExcludeWO = vExcludeWO
   End Sub
 
   Public Property DataSource As Object Implements iDataSourceLoader.DataSource
@@ -70,6 +72,12 @@ Public Class dsoBITimeSheet
       mSQLWhere = mSQLWhere1
       If mSQLWhere <> "" And mSQLWhere2 <> "" Then mSQLWhere = mSQLWhere & " And "
       mSQLWhere = mSQLWhere & mSQLWhere2
+
+      If pTempExcludeWO Then
+        mSQLWhere &= " and IsNull(WorkOrderID,0)=0"
+      Else
+        mSQLWhere &= " and IsNull(WorkOrderID,0)<>0"
+      End If
 
       mdto.LoadTimeSheetEntryInfoCollectionByWhere(pTimeSheetInfos, mSQLWhere)
 

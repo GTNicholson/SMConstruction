@@ -63,6 +63,10 @@ Public Class dmWorkOrder : Inherits dmBase
   Private pPurchasingDate As Date
   Private pDrawingStatus As Integer
   Private pWorkOrderMatReqCategoryStatuss As colWorkOrderMatReqCategoryStatuss
+  Private pRequisaDocumentPath As String
+  Private pRequisaDate As Date
+  Private pRequisaNumber As String
+  Private pWoodPalletType As Byte
 
   Public Sub New()
     MyBase.New()
@@ -162,6 +166,10 @@ Public Class dmWorkOrder : Inherits dmBase
       .Status = Status
       .PurchasingDate = PurchasingDate
       .DrawingStatus = DrawingStatus
+      .RequisaDocumentPath = RequisaDocumentPath
+      .RequisaDate = RequisaDate
+      .RequisaNumber = RequisaNumber
+      .WoodPalletType = WoodPalletType
       .StockItemMaterialRequirements = StockItemMaterialRequirements.Clone
       .WoodMaterialRequirements = WoodMaterialRequirements.Clone
       'Add entries here for each collection and class property
@@ -690,6 +698,46 @@ Public Class dmWorkOrder : Inherits dmBase
     End Get
     Set(value As colWorkOrderMatReqCategoryStatuss)
       pWorkOrderMatReqCategoryStatuss = value
+    End Set
+  End Property
+
+  Public Property RequisaDocumentPath As String
+    Get
+      Return pRequisaDocumentPath
+    End Get
+    Set(value As String)
+      If pRequisaDocumentPath <> value Then IsDirty = True
+      pRequisaDocumentPath = value
+    End Set
+  End Property
+
+  Public Property RequisaDate As Date
+    Get
+      Return pRequisaDate
+    End Get
+    Set(value As Date)
+      If pRequisaDate <> value Then IsDirty = True
+      pRequisaDate = value
+    End Set
+  End Property
+
+  Public Property RequisaNumber As String
+    Get
+      Return pRequisaNumber
+    End Get
+    Set(value As String)
+      If pRequisaNumber <> value Then IsDirty = True
+      pRequisaNumber = value
+    End Set
+  End Property
+
+  Public Property WoodPalletType As Byte
+    Get
+      Return pWoodPalletType
+    End Get
+    Set(value As Byte)
+      If pWoodPalletType <> value Then IsDirty = True
+      pWoodPalletType = value
     End Set
   End Property
 End Class

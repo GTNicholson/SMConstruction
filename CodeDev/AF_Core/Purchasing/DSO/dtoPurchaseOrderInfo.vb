@@ -85,7 +85,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .DelStatus = DBReadByte(rDataReader, "DelStatus")
           .Instructions = DBReadString(rDataReader, "Instructions")
           .Comments = DBReadString(rDataReader, "Comments")
-          .BuyerID = DBReadByte(rDataReader, "BuyerID")
+          .BuyerID = DBReadInt32(rDataReader, "BuyerID")
           .AcknowledgementNo = DBReadString(rDataReader, "AcknowledgementNo")
           .OrderType = DBReadByte(rDataReader, "OrderType")
           .Carriage = DBReadDouble(rDataReader, "Carriage")
@@ -119,6 +119,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .RetentionPercentage = DBReadDecimal(rDataReader, "RetentionPercentage")
           .MaterialRequirementTypeWorkOrderID = DBReadInt32(rDataReader, "MaterialRequirementTypeWorkOrderID")
           .MaterialRequirementTypeID = DBReadInt32(rDataReader, "MaterialRequirementTypeID")
+
         End With
       End With
       mOK = True

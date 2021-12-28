@@ -5,8 +5,9 @@ Imports RTIS.Elements
 Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
   Public Enum eListOption
-    DefaultListOption = 1
-
+    LiveWO = 1
+    Cancelled = 2
+    All = 3
   End Enum
 
   Public Enum eAddEditDeleteView
@@ -23,7 +24,7 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
   End Enum
 
 
-  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.DefaultListOption)
+  Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal, ByVal vBrowseID As Integer, Optional ByVal vListOption As Integer = eListOption.LiveWO)
     MyBase.New(rDBConn, rRTISGlobal, vBrowseID, vListOption)
 
   End Sub
@@ -93,24 +94,30 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
     ''If mGridView.IsDataRow(GridView1.FocusedRowHandle) Then
   End Function
 
-  ''Public Overrides Function ListChangeLoadData() As Boolean
-  ''  Static sDataOption As Integer = -1
-  ''  Dim mNewGroup As Integer = 0
-  ''  Dim mOK As Boolean
-  ''  Select Case Me.ListOptionID
-  ''    Case eListOption.DefaultListOption
-  ''      mNewGroup = 1
-  ''    Case Else
-  ''      mNewGroup = 0
-  ''  End Select
-  ''  If mNewGroup <> sDataOption Then
-  ''    mNewGroup = sDataOption
-  ''    mOK = LoadData()
-  ''  Else
-  ''    mOK = True
-  ''  End If
-  ''  Return mOK
-  ''End Function
+  Public Overrides Function ListChangeLoadData() As Boolean
+    Static sDataOption As Integer = -1
+    Dim mNewGroup As Integer = 0
+    Dim mOK As Boolean
+    Select Case Me.ListOptionID
+      Case eListOption.LiveWO
+        mNewGroup = 1
+      ''Case eListOption.Paid
+      ''  mNewGroup = 2
+      Case eListOption.Cancelled
+        mNewGroup = 2
+      Case eListOption.All
+        mNewGroup = 3
+      Case Else
+        mNewGroup = 0
+    End Select
+    If mNewGroup <> sDataOption Then
+      mNewGroup = sDataOption
+      mOK = LoadData()
+    Else
+      mOK = True
+    End If
+    Return mOK
+  End Function
 
   Public Overrides Function LoadData() As Boolean 'Implements intBrowseList.LoadData
     'Dim mdsoSalesQuote As New dsoSalesQuote(Me.DBConn)
@@ -123,7 +130,19 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
     gridBrowseList.MainView.BeginDataUpdate()
     Try
       Dim mWhere As String
-      mWhere = String.Format("(Status not in ({0},{1}) or Status is null) and  ProductTypeID = {2}", CInt(eWorkOrderStatus.Cancelled), CInt(eWorkOrderStatus.Complete), CInt(eProductType.StructureAF))
+
+      Select Case Me.ListOptionID
+        Case eListOption.LiveWO
+          mWhere += String.Format("Status in (0,{0},{1})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised))
+          mWhere &= " and Description<>'' and ProductTypeID<>" & eProductType.WoodWorkOrder
+
+        Case eListOption.Cancelled
+          mWhere += String.Format("Status not in (0,{0},{1},{2})", CInt(eWorkOrderStatus.InProcess), CInt(eWorkOrderStatus.Raised), CInt(eWorkOrderStatus.Complete))
+
+        Case eListOption.All
+          mWhere = ""
+      End Select
+
 
       mDSO.LoadInternalWorkOrderInfos(mWOIs, mWhere)
 
@@ -206,9 +225,9 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
 
         .ReLabelToolBarButtons("Agregar OT de Venta", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
-        '.AddListOption("Activar OT", eListOption.DefaultListOption)
-        '.AddListOption("Nueva OT", eListOption.DefaultListOption)
-        '.AddListOption("OT Caducada", eListOption.DefaultListOption)
+        .AddListOption("Orden de Trabajo: En Proceso", eListOption.LiveWO)
+        .AddListOption("Orden de Trabajo: Cancelada", eListOption.Cancelled)
+        .AddListOption("Orden de Trabajo: Todas", eListOption.All)
 
         '.AddAddOption("Agregar para Inventario", eAddingOption.ToInventory)
 
@@ -258,7 +277,21 @@ Public Class brwStructureWorkOrder : Inherits brwBrowserListBase
     Dim mOK As Boolean = True
     Try
       LayoutFile = System.IO.Path.Combine(RTISGlobal.AuxFilePath, "gvlInternalWorkOrder.xml")
-      ListTitle = "Lista de Ordenes de Trabajos de Estructuras"
+
+      Select Case Me.ListOptionID
+        Case eListOption.LiveWO
+          ListTitle = "Orden de Trabajo: Activas y en Proceso"
+
+
+        Case eListOption.All
+          ListTitle = "Orden de Trabajo: Todas las Ordenes de Trabajos"
+
+
+        Case eListOption.Cancelled
+          ListTitle = "Orden de Trabajo: Ordenes de Trabajo Canceladas"
+
+
+      End Select
       GridEditable = False
       'PrimaryKeyColumnName = "PrimaryID"
 

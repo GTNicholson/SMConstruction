@@ -109,11 +109,8 @@ Public Class clsSMSharedFuncs
     Dim mExportDirectory As String = String.Empty
 
 
-    If rWorkOrder.isInternal = False Then
-      mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rSalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
-    Else
-      mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rWorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
-    End If
+
+    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, rWorkOrder.DateCreated.Year, clsGeneralA.GetFileSafeName(rWorkOrder.WorkOrderID.ToString("00000")))
 
     If rWorkOrder.ImageFile <> "" Then
       mRetVal = IO.Path.Combine(mExportDirectory, rWorkOrder.ImageFile)
@@ -181,7 +178,7 @@ Public Class clsSMSharedFuncs
       mRetVal = mRetVal + 15
     End If
     If vStartTime.TimeOfDay <= New TimeSpan(12, 0, 0) And vEndTime.TimeOfDay >= New TimeSpan(13, 0, 0) Then
-      mRetVal = mRetVal + 30
+      mRetVal = mRetVal + 45
     End If
     Return mRetVal
   End Function

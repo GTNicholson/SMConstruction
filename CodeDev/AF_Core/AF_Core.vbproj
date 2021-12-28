@@ -172,6 +172,7 @@
     <Compile Include="App\BO\dmOutputDocument.vb" />
     <Compile Include="App\BO\dmVATRate.vb" />
     <Compile Include="App\BO\dmWoodSpecie.vb" />
+    <Compile Include="App\clsMilestoneDependentOn.vb" />
     <Compile Include="App\DSO\dtoTempPallet.vb" />
     <Compile Include="App\DSO\dtoWoodTypeValue.vb" />
     <Compile Include="App\DSO\dtoThicknessValue.vb" />
@@ -227,9 +228,11 @@
     <Compile Include="ERPStock\clsStockItemRegistryComp.vb" />
     <Compile Include="ERPStock\clsStockItemRegistryBase.vb" />
     <Compile Include="ERPStock\intdtoStockItem.vb" />
+    <Compile Include="General\BO\dmHoliday.vb" />
     <Compile Include="General\BO\clsCompanyDay.vb" />
     <Compile Include="General\BO\dmExchangeRate.vb" />
     <Compile Include="General\BO\dmWoodValue.vb" />
+    <Compile Include="General\DSO\dtoHoliday.vb" />
     <Compile Include="General\DSO\dsoBICompanyDay.vb" />
     <Compile Include="General\DSO\dsoCompanyDay.vb" />
     <Compile Include="General\DSO\dtoExchangeRate.vb" />
@@ -335,6 +338,7 @@
     <Compile Include="Sales\BO\clsProductRequirementProcessor.vb" />
     <Compile Include="Sales\BO\clsSalesOrderInfo.vb" />
     <Compile Include="Sales\BO\clsSalesOrderPhaseItemInfo.vb" />
+    <Compile Include="Sales\BO\clsSalesProjectReviewCost.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationEditor.vb" />
     <Compile Include="Sales\BO\clsWorkOrderAllocationInfo.vb" />
     <Compile Include="Sales\BO\dmGroupType.vb" />
@@ -360,6 +364,9 @@
     <Compile Include="Sales\BO\dmSalesOrderPhaseItem.vb" />
     <Compile Include="Sales\BO\dmSalesOrderStage.vb" />
     <Compile Include="Sales\BO\dmStageType.vb" />
+    <Compile Include="Sales\clsMilestoneHandler.vb" />
+    <Compile Include="Sales\dmSalesOrderPhaseMilestoneStatus.vb" />
+    <Compile Include="Sales\DSO\dtoSalesOrderPhaseMilestoneStatus.vb" />
     <Compile Include="Sales\DSO\dsoWoodSalesOrderItemReportSource.vb" />
     <Compile Include="Sales\DSO\dtoModel.vb" />
     <Compile Include="Sales\DSO\dtoCustomerContact.vb" />
@@ -420,6 +427,7 @@
     <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
     <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\dmWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\BO\clsStockCostingPricing.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemInfo.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemSharedFuncs.vb" />
@@ -443,6 +451,7 @@
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
     <Compile Include="Stock Admin\BO\StockItemDefManagers.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\DSO\dsoReception.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />
     <Compile Include="Stock Admin\DSO\dsoStockTransactions.vb" />

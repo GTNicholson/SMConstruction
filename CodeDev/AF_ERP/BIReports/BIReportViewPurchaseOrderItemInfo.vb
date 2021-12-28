@@ -140,7 +140,7 @@ Public Class BIReportViewPurchaseOrderItemInfo
 
 
     mParam = New clsManRepParameter
-    mParam.FieldName = "Status"
+    mParam.FieldName = "POStatus"
     mParam.AllowMultiple = True
     mParam.ParamOperator = "="
     mParam.FieldType = MRConstENUM.eMRFieldType.emrftRefList

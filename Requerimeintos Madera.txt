@@ -1,0 +1,39 @@
+Madera en Rollo
+El rollo se recibe por packing list de un excel que les manda la finca
+En ese archivo se encuentra todo el detalle de trozas
+Y ese archivo funciona como Inventario de Rollos por especie.
+
+Benjamin indica si se puede copiar y pegar ese excel.
+
+Hasta que el aserrío empiece su operación, no verifican las cantidades o dimensiones
+Por lo que el archivo que lo mandan lo dan como correcto y es su invetnario en
+rollos.
+
+Benjamin lo que hace es un resumen que ocupa INAFOR con el diametro promedio y las
+cantidades de trozas, por cada uno de los largos.
+No se necesita ingresar la cantidad de trozas de la guía y el promedio de diametro
+
+Para el proceso de Rollos, se utiliza un archivo llamado Producción Aserrío AgroForestal
+El input es el formato que entrega el encargado de madera a los operarios
+e indican cuantas trozas procesaron
+En este archivo se obtiene
+
+Posible opción:
+Tener un botón que indique consumir rastra, y se disminuya el volumen.
+Se deberá de tener una opción que se seleccione la rastra y lo disminuya
+Y por cada rastra indicar el volumen que salió de madera verde
+Por ejemplo, se ocupa caoba de rastra numero 6 y numero 7.
+El operario espera formar el buto de madera verde hasta tener cierta altura.
+Por lo que se tendrá que procesar todo lo que se tenga de esa especie, y si existe
+en inventario más rastra de la misma especie, la ocupan lo necesario para llenar
+el bulto
+
+Para la madera seca, únicamente selecciona el bulto y cambiar el estado
+de verde a seco y seleccionar el Horno, el número del bulto se mantiene
+
+Todo lo anterior aplica para los movimeitnos de inventario
+Cuando se ocupa una OT, se busca disponibilidad de madera seca, y el operario destruye distintos bultos para seleccionar únicamente la madera requerida por la OT
+Luego, se crea un nuevo bulto con la madera seleccionada y se vuelve a armar los bultos destruidos con nuevo números.
+Para el traslado a producción, solo le ponen el número de OT y la fecha del traslado
+
+Para la devolución de madera, únicamente se necesita el OT y las piezas se crea bultos por especie

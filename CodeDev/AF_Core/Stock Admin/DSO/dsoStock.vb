@@ -25,15 +25,37 @@ Public Class dsoStock
     Return mStockItemLocation
   End Function
 
+  Public Function LoadWoodPalletGuideItems(ByRef rWoodPalletGuideItems As colWoodPalletGuideItems, ByVal vPalletID As Integer) As Boolean
+    Dim mdto As dtoWoodPalletGuideItem
+    Dim mOK As Boolean
+    Try
+      If pDBConn.Connect Then
+        mdto = New dtoWoodPalletGuideItem(pDBConn)
+
+        mOK = mdto.LoadWoodPalletGuideItemCollection(rWoodPalletGuideItems, vPalletID)
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+      mOK = False
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+    Return mOK
+  End Function
+
   Public Function LoadWoodPalletsDownByWhere(ByRef rWoodPallets As colWoodPallets, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet
     Dim mdtoWoodPalletItem As dtoWoodPalletItem
+    Dim mdtoWoodPalletGuideItem As dtoWoodPalletGuideItem
 
     Try
 
       pDBConn.Connect()
       mdtoWoodPallet = New dtoWoodPallet(pDBConn)
+      mdtoWoodPalletGuideItem = New dtoWoodPalletGuideItem(pDBConn)
       mRetVal = mdtoWoodPallet.LoadWoodPalletByWhere(rWoodPallets, vWhere)
 
 
@@ -44,6 +66,7 @@ Public Class dsoStock
         For Each mWoodPallet In rWoodPallets
 
           mRetVal = mdtoWoodPalletItem.LoadWoodPalletItemCollection(mWoodPallet.WoodPalletItems, mWoodPallet.WoodPalletID)
+          mRetVal = mdtoWoodPalletGuideItem.LoadWoodPalletGuideItemCollection(mWoodPallet.WoodPalletGuideItems, mWoodPallet.WoodPalletID)
 
         Next
 
@@ -192,6 +215,7 @@ Public Class dsoStock
     Dim mRetVal As Boolean
     Dim mdtoWoodPallet As dtoWoodPallet
     Dim mdtoWoodPalletItem As dtoWoodPalletItem
+    Dim mdtoWoodPalletItemGuide As dtoWoodPalletGuideItem
     Dim mStockItem As dmStockItem
     Try
 
@@ -200,18 +224,22 @@ Public Class dsoStock
       If rWoodPallet IsNot Nothing Then
 
         mdtoWoodPallet = New dtoWoodPallet(pDBConn)
+        mdtoWoodPalletItemGuide = New dtoWoodPalletGuideItem(pDBConn)
 
-        rWoodPallet.Description = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(rWoodPallet.WoodPalletItems)
+        If rWoodPallet.PalletType <> eStockItemTypeTimberWood.Rollo Then
+          rWoodPallet.TotalVolume = clsWoodPalletSharedFuncs.GetTotalBoardFeet(rWoodPallet)
+          rWoodPallet.Description = clsWoodPalletSharedFuncs.GetWoodPalletContentDescription(rWoodPallet.WoodPalletItems)
+
+        End If
         clsWoodPalletSharedFuncs.GetNextWoodPalletRefConnected(rWoodPallet, pDBConn)
 
-        rWoodPallet.TotalVolume = clsWoodPalletSharedFuncs.GetTotalBoardFeet(rWoodPallet)
 
         mRetVal = mdtoWoodPallet.SaveWoodPallet(rWoodPallet)
 
         mdtoWoodPalletItem = New dtoWoodPalletItem(pDBConn)
 
         mRetVal = mdtoWoodPalletItem.SaveWoodPalletItemCollection(rWoodPallet.WoodPalletItems, rWoodPallet.WoodPalletID)
-
+        mRetVal = mdtoWoodPalletItemGuide.SaveWoodPalletGuideItemCollection(rWoodPallet.WoodPalletGuideItems, rWoodPallet.WoodPalletID)
 
       End If
       pDBConn.Disconnect()
@@ -803,7 +831,7 @@ Public Class dsoStock
     Try
       If pDBConn.Connect() Then
         '// The Qty has already been updated so the current total qty in stock item locations includes the recently arrived.
-        mSQL = String.Format("Select Sum(Qty) as TotalQty From StockItemLocation Where StockItemID = {0}", vStockItemID)
+        mSQL = String.Format("Select Sum(IsNull(Qty,0)) as TotalQty From StockItemLocation Where StockItemID = {0}", vStockItemID)
         mNewTotalQty = pDBConn.ExecuteScalar(mSQL)
         mExistingQty = mNewTotalQty - vReceivedQty
 
@@ -811,7 +839,13 @@ Public Class dsoStock
         mSQL = String.Format("Select IsNull(AverageCost,0) From StockItem Where StockItemID = {0}", vStockItemID)
         mCurrentAverageCost = pDBConn.ExecuteScalar(mSQL)
 
-        mNewAverageCost = ((mExistingQty * mCurrentAverageCost) + vReceivedValue) / mNewTotalQty
+        If mNewTotalQty > 0 Then
+          mNewAverageCost = ((mExistingQty * mCurrentAverageCost) + vReceivedValue) / mNewTotalQty
+
+        Else
+          mNewAverageCost = mCurrentAverageCost
+
+        End If
 
         '// Set the new value
         mSQL = String.Format("Update StockItem Set AverageCost = {0} Where StockItemID = {1}", mNewAverageCost, vStockItemID)

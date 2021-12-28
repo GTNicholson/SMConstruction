@@ -1,4 +1,5 @@
-﻿Imports RTIS.CommonVB
+﻿Imports DevExpress.Spreadsheet
+Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 
 Public Class fccSalesOrderReview
@@ -15,6 +16,8 @@ Public Class fccSalesOrderReview
 
   Private pSalesOrder As dmSalesOrder
   Private pDBConn As clsDBConnBase
+  Private pMaterialsByCategories As colMaterialRequirementInfos 'colPurchaseOrderItemAllocationInfos
+  Private pTimeSheetProjects As New colTimeSheetEntryInfos
 
   Public Sub New(ByRef rSalesOrder As dmSalesOrder, ByRef rDBConn As clsDBConnBase)
     pSalesOrder = rSalesOrder
@@ -32,10 +35,11 @@ Public Class fccSalesOrderReview
     Dim mCostBookEntrys As New colCostBookEntrys
     Dim mdsoCostBook As New dsoCostBook(pDBConn)
     Dim mStockItem As dmStockItem
-    Dim mExchangeRate As Decimal
     Dim mWherePOCategories As String = ""
     Dim mAllPOAllocationInfos As New colPurchaseOrderItemAllocationInfos
+    Dim mdsoTimeSheet As New dsoProduction(pDBConn)
 
+    pMaterialsByCategories = New colMaterialRequirementInfos
     pPOItemWOAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pOtherCategoriesPOItemAllocationInfos = New colPurchaseOrderItemAllocationInfos
     pHonorariosPOIAllocationInfos = New colPurchaseOrderItemAllocationInfos
@@ -43,29 +47,12 @@ Public Class fccSalesOrderReview
     pWoodPalletItemInfosPicked = New colWoodPalletItemInfos
     pWorkOrderInfos = New colWorkOrderInfos
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
-
+    pTimeSheetProjects = New colTimeSheetEntryInfos
 
 
     ''Load all Purchasing
     mWhere = String.Format("SalesOrderID = {0} and  POStatus not in ({1})", pSalesOrder.SalesOrderID, CInt(ePurchaseOrderDueDateStatus.Cancelled))
     mdsoPurchasing.LoadPurchaseOrderItemAllocationWorkOrderInfos(mAllPOAllocationInfos, mWhere)
-
-
-    ''Load other categories for the Purchase Orders
-    'For Each mVI In RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(ePurchaseCategories))
-    '  Select Case mVI.ItemValue
-    '    'Case ePurchaseCategories.ConsumibleProduccion, ePurchaseCategories.InsumosProduccion,
-    '    'ePurchaseCategories.PatioYAserrio
-
-    '    'Case Else
-    '    '  If mWherePOCategories <> "" Then mWherePOCategories &= ","
-    '    '  mWherePOCategories &= mVI.ItemValue
-    '  End Select
-    'Next
-
-    'mWhere &= String.Format(" and PO_CATEGORY in ({0})", mWherePOCategories)
-
-    'mWhere &= " and AccoutingCategoryID<>1" ''1-- this is honorarios in the AccoutingCategory table
 
 
     mdsoPurchasing.LoadPurchaseOrderItemAllocationInfos(mAllPOAllocationInfos, mWhere)
@@ -109,13 +96,77 @@ Public Class fccSalesOrderReview
 
     Next
 
+    ''Load Material Requirements
+    mdsoSalesOrder.LoadWorkOrderMatReqInfosByWhere(pMaterialsByCategories, "SalesOrderID = " & pSalesOrder.SalesOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems))
 
+    ''Update the ExchangeRate
+    For Each mMaterialRequirementInfo In pMaterialsByCategories
+      mMaterialRequirementInfo.ExchangeRate = GetExchangeRate(Now.Date, eCurrency.Cordobas)
+
+
+      If mMaterialRequirementInfo.DateCommitted = Date.MinValue Then
+        mMaterialRequirementInfo.TempDateExchange = mMaterialRequirementInfo.DateEntered
+      Else
+        mMaterialRequirementInfo.TempDateExchange = mMaterialRequirementInfo.DateCommitted
+      End If
+      If mMaterialRequirementInfo.TempDateExchange = Date.MinValue Then mMaterialRequirementInfo.TempDateExchange = Now
+      mMaterialRequirementInfo.ExchangeRate = GetExchangeRate(mMaterialRequirementInfo.TempDateExchange, eCurrency.Cordobas)
+
+    Next
+
+    ''Load Material Requirements Other Expenses
+    For Each mPOIAI In pHonorariosPOIAllocationInfos
+      Dim mOtherExpenses As New clsMaterialRequirementInfo
+      mOtherExpenses.StockItem.Category = 255
+      mOtherExpenses.PickedQty = 1
+      mOtherExpenses.ExchangeRate = mPOIAI.ExchangeRateValue
+
+      Select Case mPOIAI.DefaultCurrency
+        Case eCurrency.Cordobas
+          mOtherExpenses.AverageCost = mPOIAI.Quantity * mPOIAI.UnitPrice
+
+        Case eCurrency.Dollar
+          If mPOIAI.ExchangeRateValue > 0 Then
+            mOtherExpenses.AverageCost = (mPOIAI.Quantity * mPOIAI.UnitPrice) * mPOIAI.ExchangeRateValue
+          Else
+            mOtherExpenses.AverageCost = 0
+          End If
+
+      End Select
+
+      pMaterialsByCategories.Add(mOtherExpenses)
+    Next
+
+    For Each mPOIAI In pOtherCategoriesPOItemAllocationInfos
+      Dim mOtherExpenses As New clsMaterialRequirementInfo
+      mOtherExpenses.StockItem.Category = 255
+      mOtherExpenses.PickedQty = 1
+      mOtherExpenses.ExchangeRate = mPOIAI.ExchangeRateValue
+
+      Select Case mPOIAI.DefaultCurrency
+        Case eCurrency.Cordobas
+          mOtherExpenses.AverageCost = mPOIAI.Quantity * mPOIAI.UnitPrice
+
+        Case eCurrency.Dollar
+          If mPOIAI.ExchangeRateValue > 0 Then
+            mOtherExpenses.AverageCost = (mPOIAI.Quantity * mPOIAI.UnitPrice) * mPOIAI.ExchangeRateValue
+          Else
+            mOtherExpenses.AverageCost = 0
+          End If
+
+      End Select
+
+
+
+
+      pMaterialsByCategories.Add(mOtherExpenses)
+    Next
     'pPOItemWOAllocationInfos = mAllPOAllocationInfos
 
 
 
     ''Load SalesItems
-    mdsoSalesOrder.LoadWorkOrderAllocationsByWhere(mWOAs, "")
+    mdsoSalesOrder.LoadWorkOrderAllocationsByWhere(mWOAs, " WorkOrderID In (Select WorkOrderID from WorkOrder where Status In(1,2,4))")
     mWhere = ""
 
     For Each mSOPI As dmSalesOrderPhaseItem In pSalesOrder.SalesOrderPhases(0).SalesOrderPhaseItems
@@ -163,12 +214,12 @@ Public Class fccSalesOrderReview
       If mSOPII.ExchangeRate > 0 Then
         mSOPII.SOPIStockItemMatReqDollarValue = mSOPII.SOPItemMatReqCost / mSOPII.ExchangeRate
         mSOPII.SOPIPickDollarValue = mSOPII.SOPItemPickMatReqCost / mSOPII.ExchangeRate
-
+        mSOPII.ManPowerActualTotalCostUSD = mSOPII.ManPowerActualTotalCost ' / mSOPII.ExchangeRate
         mSOPII.SOPIItemOutsourcingCost = mAllPOAllocationInfos.GetTotalPurchaseOrderItemOutsourcingValueUSDBySOPItemID(mSOPII.SalesOrderPhaseItemID, mSOPII.ExchangeRate)
 
       End If
 
-      If mSOPII.Description = "ARTÍCULO GENERAL" Then
+      If mSOPII.IsGeneral Then
         mSOPII.SOPIPickDollarValue = mAllPOAllocationInfos.GetTotalPurchaseOrderItemAmountUSDBySOPItemID(mSOPII.SalesOrderPhaseItemID)
       End If
 
@@ -201,6 +252,16 @@ Public Class fccSalesOrderReview
       End If
 
     Next
+
+    ''//TimeSheet
+    mWhere = "SalesOrderID = " & pSalesOrder.SalesOrderID & " and IsNull(WorkOrderID,0)<>0"
+    mdsoTimeSheet.LoadTimeSheetInfosByWhere(pTimeSheetProjects, mWhere)
+
+
+
+    ''Load CIF
+    TotalIndirectCost = pSalesOrder.CIFValue
+
 
     Return mOK
   End Function
@@ -263,6 +324,69 @@ Public Class fccSalesOrderReview
     Return mRetValDecimal
   End Function
 
+  Friend Sub CreateExcelProjectReview(ByRef vWorkBook As Workbook)
+    ' Dim mWB As DevExpress.Spreadsheet.Workbook
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String
+
+    mFileName = "Sales Project Review" & "_" & SalesOrder.OrderNo & ".xls"
+
+
+
+    mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+    mExportDirectory = IO.Path.Combine(CType(AppRTISGlobal.GetInstance, AppRTISGlobal).DefaultExportPath, clsConstants.SalesOrderFileFolderUsr, SalesOrder.DateEntered.Year, SalesOrder.SalesOrderID)
+    mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+    If IO.Directory.Exists(mExportDirectory) = False Then
+      IO.Directory.CreateDirectory(mExportDirectory)
+    End If
+
+    PreparePrintSpreadSheet(vWorkBook.Worksheets(0))
+
+    mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+    vWorkBook.SaveDocument(mFilePath, DevExpress.Spreadsheet.DocumentFormat.Xls)
+
+
+    pSalesOrder.OutputDocuments.SetFilePath(eParentType.InternalWorkOrder, eDocumentType.SalesProjectReview, eFileType.Excel, mFilePath)
+
+  End Sub
+
+  Public Sub PreparePrintSpreadSheet(ByRef rWorkSheet As DevExpress.Spreadsheet.Worksheet)
+    Dim mRange As DevExpress.Spreadsheet.Range
+    With rWorkSheet
+      .DefinedNames.Remove("_xlnm.Print_Area")
+      mRange = .GetUsedRange
+      .DefinedNames.Add("_xlnm.Print_Area", mRange.ToString)
+      .DefinedNames(0).Range = mRange
+      .ActiveView.PaperKind = System.Drawing.Printing.PaperKind.A3
+      .ActiveView.Orientation = DevExpress.Spreadsheet.PageOrientation.Landscape
+      .ActiveView.Margins.Top = 70
+      .ActiveView.Margins.Left = 70
+      .ActiveView.Margins.Right = 70
+      .ActiveView.Margins.Bottom = 70
+      .ActiveView.Zoom = 90                 '// MDH 05/11/20
+
+      .PrintOptions.FitToPage = True
+      .PrintOptions.FitToWidth = 1
+      .PrintOptions.FitToHeight = 0
+    End With
+  End Sub
+
+
+  Public Function GetExcelSalesProjectReviewDetail(ByRef rSalesOrder As dmSalesOrder, ByVal vSalesOrderPhaseItemInfos As colSalesOrderPhaseItemInfos) As Workbook
+    Dim mWB As DevExpress.Spreadsheet.Workbook = Nothing
+    Dim mSOProjectExcelReview As clsExcelSalesOrderReview_Detail
+    Dim mDT As New Data.DataTable
+
+    mSOProjectExcelReview = New clsExcelSalesOrderReview_Detail(rSalesOrder, vSalesOrderPhaseItemInfos, pWoodPalletItemInfosPicked, pMaterialsByCategories, pTimeSheetProjects)
+
+
+    mSOProjectExcelReview.CreateSummarisedExport()
+
+    mWB = mSOProjectExcelReview.WorkBook
+    Return mWB
+  End Function
 
   Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
     Dim mdsoGeneral As New dsoGeneral(DBConn)
@@ -279,6 +403,11 @@ Public Class fccSalesOrderReview
     Return mExchangeRate
   End Function
 
+  Public ReadOnly Property TimeSheetProjects As colTimeSheetEntryInfos
+    Get
+      Return pTimeSheetProjects
+    End Get
+  End Property
   Public ReadOnly Property Invoices As colInvoices
     Get
       Return pSalesOrder.Invoices
@@ -303,6 +432,12 @@ Public Class fccSalesOrderReview
     End Get
   End Property
 
+
+  Public ReadOnly Property MaterialsByCategories As colMaterialRequirementInfos
+    Get
+      Return pMaterialsByCategories
+    End Get
+  End Property
   Public ReadOnly Property CustomerPOInfos As colCustomerPurchaseOrders
     Get
       Return pSalesOrder.CustomerPurchaseOrder
@@ -358,4 +493,21 @@ Public Class fccSalesOrderReview
   End Property
 
   Public Property CostingMethod As Boolean
+  Public Property TotalIndirectCost As Decimal
+
+  Public Sub UpdateIndirectCost()
+    Try
+      Dim mWhere As String = "Update SalesOrder set CIFValue = " & TotalIndirectCost & " where SalesOrderID = " & pSalesOrder.SalesOrderID
+      pDBConn.Connect()
+
+      pDBConn.ExecuteNonQuery(mWhere)
+
+      pSalesOrder.CIFValue = TotalIndirectCost
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
 End Class

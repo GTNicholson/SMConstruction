@@ -39,7 +39,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
         frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
 
       Case ePurchaseOrderAddingOption.GeneralPO
-        frmNonManPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
+        frmGeneralPurchaseOrder.OpenFormMDI(0, pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.General)
 
     End Select
 
@@ -70,6 +70,8 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
           frmNonManPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
 
+        Else
+          frmGeneralPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.General)
 
         End If
 
@@ -279,7 +281,7 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
       With CType(Me.BrowseForm, frmBrowseList)
 
-        .ReLabelToolBarButtons("", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
+        .ReLabelToolBarButtons("Agregar", "Editar", "Ver", "Eliminar", "Actualizar", "Listas", "Seleccionar", "Procesar", "Imprimir", "Exportar", "Opciones")
 
         .AddListOption("Órden de Compras: Activas", eListOption.LivePO)
         ''.AddListOption("Órden de Compras: Pagadas", eListOption.Paid)

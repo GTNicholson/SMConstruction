@@ -1,5 +1,4 @@
-﻿Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid
 Imports RTIS.CommonVB
 Imports RTIS.DataLayer
@@ -35,11 +34,40 @@ Public Class frmPickMaterials
 
   Private Sub LoadCombos()
     Dim mVIs As colValueItems
+    Dim mVI As clsValueItem
+    Dim mSITLIs As New colStockItemTransactionLogInfos
+    Dim mRequisaLists As New List(Of String)
+
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementInfo, gcCategory, mVIs)
 
     mVIs = RTIS.CommonVB.clsEnumsConstants.EnumToVIs(GetType(eWorkCentre))
     clsDEControlLoading.LoadGridLookUpEditiVI(grdMaterialRequirementInfo, gcAreaID, mVIs)
+
+
+    mVIs = New colValueItems
+    mVI = New clsValueItem
+    mVI.ItemValue = 0
+    mVI.DisplayValue = "Todos"
+    mVIs.Add(mVI)
+
+    For Each mVI In clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)).AsList.OrderBy(Function(x) x.DisplayValue).ToList
+
+      Select Case mVI.ItemValue
+        Case eWorkCentre.Engineering, eWorkCentre.Undefined, eWorkCentre.Insumos, eWorkCentre.Purchasing, eWorkCentre.Wood
+        Case Else
+          mVIs.Add(mVI)
+
+      End Select
+
+    Next
+
+
+    clsDEControlLoading.FillDEComboVI(cboArea, mVIs)
+
+
+
+
 
   End Sub
 
@@ -125,10 +153,43 @@ Public Class frmPickMaterials
       pFormController.CurrentWorkOrderInfo = mWO
       RefreshControls()
 
+      LoadRequisaCombos()
+      grdMaterialRequirementInfo.DataSource = Nothing
     End If
 
 
 
+  End Sub
+
+  Private Sub LoadRequisaCombos()
+    Dim mVIS As colValueItems
+    Dim mVI As clsValueItem
+    Dim mRequisaLists As New List(Of String)
+    Dim mSITLIs As New colStockItemTransactionLogInfos
+
+    mVIS = New colValueItems
+    mVI = New clsValueItem
+    mVI.ItemValue = 0
+    mVI.DisplayValue = "Imprimir Resumen"
+    mVIS.Add(mVI)
+
+    pFormController.GetSITLInfos(mSITLIs)
+
+    For Each mSITLI In mSITLIs
+
+      If mRequisaLists.Contains(mSITLI.ReferenceNo) = False Then
+
+        mVI = New clsValueItem
+        mVI.ItemValue = mSITLI.StockItemTransactionLogID
+        mVI.DisplayValue = mSITLI.ReferenceNo
+        mVIS.Add(mVI)
+        mRequisaLists.Add(mSITLI.ReferenceNo)
+
+      End If
+
+    Next
+
+    clsDEControlLoading.FillDEComboVI(cboRequisas, mVIS)
   End Sub
 
   Private Sub RefreshControls()
@@ -145,12 +206,9 @@ Public Class frmPickMaterials
         txtReference.Text = .OrderNo
         txtWODescription.Text = .Description
         txtWOQty.Text = .Quantity
-
+        txtPlannedDate.Text = .PlannedStartDate
       End With
 
-      pFormController.LoadMaterialRequirementProcessorss()
-      grdMaterialRequirementInfo.DataSource = pFormController.MaterialRequirementProcessors
-      gvMaterialRequirementInfos.RefreshData()
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -170,9 +228,42 @@ Public Class frmPickMaterials
 
   Private Sub frmPickMaterials_Load(sender As Object, e As EventArgs) Handles Me.Load
     ''Dim mWOIs As New colWorkOrderInfos
+    SetPermissions()
 
     LoadCombos()
 
+    clsDEControlLoading.SetDECombo(cboArea, 0) 'Todos
+
+    SetGroupField()
+
+  End Sub
+
+  Private Sub SetPermissions()
+    Dim mPermissionCode As ePermissionCode = pFormController.DBConn.RTISUser.ActivityPermission(eActivityCode.PickingMatReq)
+
+    If mPermissionCode = ePermissionCode.ePC_Full Then
+    Else
+      grpMaterialRequirements.CustomHeaderButtons(0).Properties.Visible = False
+      grpMaterialRequirements.CustomHeaderButtons(1).Properties.Visible = False
+      grpMaterialRequirements.CustomHeaderButtons(2).Properties.Visible = False
+
+
+    End If
+
+
+
+
+  End Sub
+
+  Private Sub SetGroupField()
+    Dim item1 As GridGroupSummaryItem = New GridGroupSummaryItem
+
+    item1.FieldName = "TotalAmount"
+
+    item1.SummaryType = DevExpress.Data.SummaryItemType.Sum
+    item1.DisplayFormat = "{0:C$#,##0.00;;#}"
+    item1.ShowInGroupColumnFooter = gvMaterialRequirementInfos.Columns("UnitPrice")
+    gvMaterialRequirementInfos.GroupSummary.Add(item1)
   End Sub
 
   Private Sub frmPickMaterials_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -181,13 +272,21 @@ Public Class frmPickMaterials
   End Sub
 
   Private Sub grpMaterialRequirements_CustomButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles grpMaterialRequirements.CustomButtonClick
+    Dim mCountToProcess As Integer
     Try
       Select Case e.Button.Properties.Tag
         Case eGroupItemButtons.Process
           gvMaterialRequirementInfos.CloseEditor()
           gvMaterialRequirementInfos.UpdateCurrentRow()
-          pFormController.ProcessPicks()
+
+          mCountToProcess = pFormController.MaterialRequirementProcessors.GetTotalItemsToProcess()
+
+          If mCountToProcess > 0 Then
+            pFormController.ProcessPicks()
+          End If
+
           gvMaterialRequirementInfos.RefreshData()
+          LoadRequisaCombos()
         Case eGroupItemButtons.AddItems
           Dim mPicker As clsPickerStockItem
           Dim mSIList As List(Of RTIS.ERPStock.intStockItemDef)
@@ -209,8 +308,102 @@ Public Class frmPickMaterials
           gvMaterialRequirementInfos.RefreshData()
 
       End Select
-      pFormController.LoadMaterialRequirementProcessorss()
-      grdMaterialRequirementInfo.RefreshDataSource()
+      LoadGrid()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+
+
+
+  End Sub
+
+  Private Sub btnPrintRequisa_Click(sender As Object, e As EventArgs) Handles btnPrintRequisa.Click
+    Dim mReportPath As String
+    Dim mRequisaID As Integer = clsDEControlLoading.GetDEComboValue(cboRequisas)
+
+    If mRequisaID = 0 Then
+      pFormController.CreateRequisaSummary()
+    Else
+      pFormController.CreateRequisaPicking(cboRequisas.Text)
+
+    End If
+
+    'MessageBox.Show(cboRequisas.Text)
+    'mReportPath = pFormController.CreateRequisaSummary()
+    'pFormController.CurrentWorkOrderInfo.WorkOrder.RequisaDocumentPath = mReportPath
+  End Sub
+
+  Private Sub btnLoadMatReq_Click(sender As Object, e As EventArgs) Handles btnLoadMatReq.Click
+
+    If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
+      If pFormController.CurrentWorkOrderInfo.WorkOrder.WorkOrderID > 0 Then
+        LoadGrid()
+
+      End If
+    End If
+
+  End Sub
+
+  Private Sub LoadGrid()
+    Dim mArea As Integer = clsDEControlLoading.GetDEComboValue(cboArea)
+
+
+
+    pFormController.LoadMaterialRequirementProcessorss(mArea)
+    grdMaterialRequirementInfo.DataSource = pFormController.MaterialRequirementProcessors
+    gvMaterialRequirementInfos.RefreshData()
+    gvMaterialRequirementInfos.ExpandAllGroups()
+
+
+  End Sub
+
+  Private Sub gvMaterialRequirementInfos_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gvMaterialRequirementInfos.RowCellStyle
+    Dim mCurrentRow As clsMaterialRequirementProcessor
+
+
+    Try
+
+      mCurrentRow = TryCast(gvMaterialRequirementInfos.GetRow(e.RowHandle), clsMaterialRequirementProcessor)
+      If mCurrentRow IsNot Nothing Then
+
+        Select Case e.Column.FieldName
+          Case "ToProcessQty"
+
+            If mCurrentRow.FromStockQty = 0 And mCurrentRow.QtyOS <> 0 Then ''//Pending to Despatch
+              e.Appearance.BackColor = Color.LightGreen
+
+            Else
+
+
+            End If
+
+            If mCurrentRow.FromStockQty <> 0 And mCurrentRow.QtyOS <> 0 Then ''//Pending Picking from Stock
+              e.Appearance.BackColor = Color.LightGreen
+
+            Else
+
+
+            End If
+
+            If mCurrentRow.QtyOS <= 0 Then ''//ALready picked
+              e.Appearance.BackColor = Color.LightGray
+
+            Else
+
+
+            End If
+
+        End Select
+
+
+      Else
+
+
+        End If
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 

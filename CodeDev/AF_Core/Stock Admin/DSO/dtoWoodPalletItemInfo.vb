@@ -109,6 +109,7 @@ Public Class dtoWoodPalletItemInfo : Inherits dtoBase
 
         With .SalesOrder
           .ProjectName = DBReadString(rDataReader, "ProjectName")
+          .SalesOrderID = DBReadInt32(rDataReader, "SalesOrderID")
         End With
       End With
       mOK = True

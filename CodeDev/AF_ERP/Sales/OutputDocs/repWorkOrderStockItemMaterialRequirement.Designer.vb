@@ -20,11 +20,12 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
     Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.xtcDescription = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.xtcUoM = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+    Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
+    Me.xtcDescription = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xtcQuantity = New DevExpress.XtraReports.UI.XRTableCell()
+    Me.xtcUoM = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.xtcArea = New DevExpress.XtraReports.UI.XRTableCell()
         Me.xtcComments = New DevExpress.XtraReports.UI.XRTableCell()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -35,6 +36,7 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -74,7 +76,7 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         '
         'XrTableRow2
         '
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcDescription, Me.xtcQuantity, Me.xtcUoM, Me.xtcComments})
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.xtcDescription, Me.xtcQuantity, Me.xtcUoM, Me.xtcArea, Me.xtcComments})
         Me.XrTableRow2.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
@@ -84,9 +86,15 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         '
         'xtcDescription
         '
+        Me.xtcDescription.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xtcDescription.BorderWidth = 1.0!
         Me.xtcDescription.CanGrow = False
         Me.xtcDescription.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcDescription.Name = "xtcDescription"
+        Me.xtcDescription.StylePriority.UseBorders = False
+        Me.xtcDescription.StylePriority.UseBorderWidth = False
         Me.xtcDescription.StylePriority.UseFont = False
         Me.xtcDescription.StylePriority.UseTextAlignment = False
         Me.xtcDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -94,9 +102,15 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         '
         'xtcQuantity
         '
+        Me.xtcQuantity.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xtcQuantity.BorderWidth = 1.0!
         Me.xtcQuantity.CanGrow = False
         Me.xtcQuantity.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcQuantity.Name = "xtcQuantity"
+        Me.xtcQuantity.StylePriority.UseBorders = False
+        Me.xtcQuantity.StylePriority.UseBorderWidth = False
         Me.xtcQuantity.StylePriority.UseFont = False
         Me.xtcQuantity.StylePriority.UseTextAlignment = False
         Me.xtcQuantity.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
@@ -104,23 +118,52 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         '
         'xtcUoM
         '
+        Me.xtcUoM.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xtcUoM.BorderWidth = 1.0!
         Me.xtcUoM.CanGrow = False
         Me.xtcUoM.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcUoM.Name = "xtcUoM"
+        Me.xtcUoM.StylePriority.UseBorders = False
+        Me.xtcUoM.StylePriority.UseBorderWidth = False
         Me.xtcUoM.StylePriority.UseFont = False
         Me.xtcUoM.StylePriority.UseTextAlignment = False
         Me.xtcUoM.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.xtcUoM.Weight = 0.49477032868344667R
         '
+        'xtcArea
+        '
+        Me.xtcArea.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xtcArea.BorderWidth = 1.0!
+        Me.xtcArea.CanGrow = False
+        Me.xtcArea.Font = New System.Drawing.Font("Arial", 7.0!)
+        Me.xtcArea.Name = "xtcArea"
+        Me.xtcArea.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Merge
+        Me.xtcArea.StylePriority.UseBorders = False
+        Me.xtcArea.StylePriority.UseBorderWidth = False
+        Me.xtcArea.StylePriority.UseFont = False
+        Me.xtcArea.StylePriority.UseTextAlignment = False
+        Me.xtcArea.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.xtcArea.Weight = 1.2479094460549374R
+        '
         'xtcComments
         '
+        Me.xtcComments.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.xtcComments.BorderWidth = 1.0!
         Me.xtcComments.CanGrow = False
         Me.xtcComments.Font = New System.Drawing.Font("Arial", 7.0!)
         Me.xtcComments.Name = "xtcComments"
+        Me.xtcComments.StylePriority.UseBorders = False
+        Me.xtcComments.StylePriority.UseBorderWidth = False
         Me.xtcComments.StylePriority.UseFont = False
         Me.xtcComments.StylePriority.UseTextAlignment = False
         Me.xtcComments.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.xtcComments.Weight = 5.4506060001194623R
+        Me.xtcComments.Weight = 4.2026954711413929R
         '
         'TopMargin
         '
@@ -138,8 +181,8 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine1})
-        Me.ReportHeader.HeightF = 9.111116!
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrLine1})
+        Me.ReportHeader.HeightF = 48.69445!
         Me.ReportHeader.Name = "ReportHeader"
         '
         'XrLine1
@@ -170,7 +213,7 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrTable2.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Bold)
         Me.XrTable2.ForeColor = System.Drawing.Color.Black
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 28.81435!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(813.0!, 18.58152!)
@@ -184,7 +227,7 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         '
         'XrTableRow1
         '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell4})
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell2, Me.XrTableCell3, Me.XrTableCell6, Me.XrTableCell4})
         Me.XrTableRow1.Font = New System.Drawing.Font("Cambria", 7.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableRow1.Name = "XrTableRow1"
         Me.XrTableRow1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 5, 5, 100.0!)
@@ -237,6 +280,21 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell3.Weight = 0.49476957007457117R
         '
+        'XrTableCell6
+        '
+        Me.XrTableCell6.BackColor = System.Drawing.Color.LightGray
+        Me.XrTableCell6.CanGrow = False
+        Me.XrTableCell6.Font = New System.Drawing.Font("Arial", 7.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell6.ForeColor = System.Drawing.Color.Black
+        Me.XrTableCell6.Name = "XrTableCell6"
+        Me.XrTableCell6.StylePriority.UseBackColor = False
+        Me.XrTableCell6.StylePriority.UseFont = False
+        Me.XrTableCell6.StylePriority.UseForeColor = False
+        Me.XrTableCell6.StylePriority.UseTextAlignment = False
+        Me.XrTableCell6.Text = "Área"
+        Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell6.Weight = 1.2479098214583544R
+        '
         'XrTableCell4
         '
         Me.XrTableCell4.BackColor = System.Drawing.Color.LightGray
@@ -250,19 +308,20 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "Observaciones"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell4.Weight = 5.45060574541626R
+        Me.XrTableCell4.Weight = 4.2026956992152975R
         '
         'GroupHeader1
         '
-        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrTable2})
+        Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
         Me.GroupHeader1.GroupFields.AddRange(New DevExpress.XtraReports.UI.GroupField() {New DevExpress.XtraReports.UI.GroupField("SalesItemType", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)})
-        Me.GroupHeader1.HeightF = 47.39588!
+        Me.GroupHeader1.HeightF = 18.58152!
         Me.GroupHeader1.Name = "GroupHeader1"
+        Me.GroupHeader1.RepeatEveryPage = True
         '
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0.00002384186!, 23.81938!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(813.0!, 24.87507!)
@@ -301,4 +360,6 @@ Partial Public Class repWorkOrderStockItemMaterialRequirement
     Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents xtcArea As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
 End Class

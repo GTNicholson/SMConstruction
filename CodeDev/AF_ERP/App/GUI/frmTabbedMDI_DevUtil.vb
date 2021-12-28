@@ -252,6 +252,9 @@ Public Class frmTabbedMDI_DevUtil
 
     For Each mTSE In mTSEs
       mOTMins = clsTimeSheetSharedFuncs.getOverTimeMinutes(mTSE, mShift)
+      mTSE.OverTimeMinutes = mOTMins
+      mdso.SaveTimeSheetEntry(mTSE)
+
     Next
 
   End Sub
@@ -650,6 +653,10 @@ Public Class frmTabbedMDI_DevUtil
           mNewWoodPallet.CreatedDate = Now
           mNewWoodPallet.LocationID = mTP.LocationID
           mNewWoodPallet.PalletType = eStockItemTypeTimberWood.Primera
+          mNewWoodPallet.WorkOrderID = mTP.WorkOrderID
+          mNewWoodPallet.IntoWIPDate = Now
+          mNewWoodPallet.Archive = True
+          mNewWoodPallet.IsComplete = True
           mListBultos.Add(mTP.Bulto)
           mNewListWoodPallet.Add(mNewWoodPallet)
 
@@ -711,6 +718,7 @@ Public Class frmTabbedMDI_DevUtil
 
 
         mdsoTran.CreatePositiveTransaction(eTransactionType.WoodAmendment, mWP, mWP.LocationID, Now, eCurrency.Dollar, 1, False)
+        mdsoTran.CreateNegativeTransaction(eTransactionType.IntoWIP, mWP, mWP.LocationID, Now, eCurrency.Dollar, 1, eObjectType.WoodPallet, False)
 
 
       Next
@@ -1256,5 +1264,161 @@ Public Class frmTabbedMDI_DevUtil
 
 
     frmUpdatePOManToPONonMan.OpenModal(mdbconn, "ToMan")
+  End Sub
+
+  Private Sub btnUpdatePrices2DecimalPlaces_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdatePrices2DecimalPlaces.LinkClicked
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mdso As New dsoPurchasing(mdbconn)
+    Dim mPurchaseOrder As New colPurchaseOrders
+    Dim mVatRates As AF_Core.colVATRates
+    mVatRates = AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.VATRate)
+    Dim msql As String = ""
+
+    mdso.LoadPurchaseOrderCollectionDown(mPurchaseOrder, "")
+
+    For Each mPO As dmPurchaseOrder In mPurchaseOrder
+
+      For Each mPOItem As dmPurchaseOrderItem In mPO.PurchaseOrderItems
+
+        mPOItem.UnitPrice = Math.Round(mPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero)
+        mPOItem.VatValue = Math.Round(mPOItem.VatValue, 2, MidpointRounding.AwayFromZero)
+
+        mPOItem.TempPercentageRetention = mPO.RetentionPercentage
+
+        mPOItem.RetentionValue = Math.Round(mPOItem.RetentionValue, 2, MidpointRounding.AwayFromZero)
+
+        If Not mdbconn.IsConnected Then mdbconn.Connect()
+
+        msql = String.Format("Update PurchaseOrderItem set UnitPrice = {0}, VATValue = {1}, RetentionValue = {2} where PurchaseOrderItemID = {3}", mPOItem.UnitPrice, mPOItem.VatValue, mPOItem.RetentionValue, mPOItem.PurchaseOrderItemID)
+
+        mdbconn.ExecuteNonQuery(msql)
+
+      Next
+      mPO.TotalNetValue = Math.Round(mPO.TotalNetValue, 2, MidpointRounding.AwayFromZero)
+      msql = String.Format("Update PurchaseOrder set TotalNetValue= {0} where PurchaseOrderID = {1}", mPO.TotalNetValue, mPO.PurchaseOrderID)
+
+      mdbconn.ExecuteNonQuery(msql)
+
+    Next
+
+
+
+  End Sub
+
+
+
+
+  Private Sub btnInsertGeneralItem_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnInsertGeneralItem.LinkClicked
+    Try
+      Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+
+      Dim mSQL As String = "SELECT DISTINCT SO.SalesOrderID,SOP.SalesOrderPhaseID from SalesOrder SO"
+      mSQL &= " inner join SalesOrderPhase SOP ON SOP.SalesOrderID=SO.SalesOrderID"
+      mSQL &= " LEFT JOIN SalesOrderItem SOI ON SOI.SalesOrderID=SO.SalesOrderID and SOI.Description NOT LIKE '%ARTÍCULO GENERAL%'"
+      mSQL &= " where so.OrderTypeID in (2,4) and ISNULL(so.OrderStatusENUM,0)<>3"
+
+      Dim mDT As New DataTable
+      Dim mList As New List(Of Tuple(Of Integer, Integer))
+      Dim mdtoSOI As New dtoSalesOrderItem(mdbconn)
+      Dim mdtoSOPI As New dtoSalesOrderPhaseItem(mdbconn)
+      Dim mSOIDT As New DataTable
+
+      If mdbconn.Connect Then
+
+        mDT = mdbconn.CreateDataTable(mSQL)
+
+
+        For Each mRow As DataRow In mDT.Rows
+          Dim mNewSOPI As New dmSalesOrderPhaseItem
+          Dim mNewSalesOrderItem As New dmSalesOrderItem
+          Dim mSalesOrderPhaseID As Integer
+          Dim mSalesOrderID As Integer
+          Dim mHouseTypeID As Integer
+
+          mSalesOrderPhaseID = mRow("SalesOrderPhaseID")
+          mSalesOrderID = mRow("SalesOrderID")
+
+          mSOIDT = mdbconn.CreateDataTable(String.Format("select top 1 HouseTypeID from SalesOrderItem where SalesOrderID={0}", mSalesOrderID))
+
+          For Each mRowSOI In mSOIDT.Rows
+            mHouseTypeID = mRowSOI("HouseTypeID")
+          Next
+
+
+          mNewSalesOrderItem.Description = "ARTÍCULO GENERAL"
+          mNewSalesOrderItem.ItemNumber = "AG"
+          mNewSalesOrderItem.Quantity = 1
+          mNewSalesOrderItem.SalesOrderID = mSalesOrderID
+          mNewSalesOrderItem.UoM = eUoM.GLB
+          mNewSalesOrderItem.SalesHouseID = mHouseTypeID
+          mdtoSOI.SaveSalesOrderItem(mNewSalesOrderItem)
+
+          mNewSOPI.SalesOrderID = mSalesOrderID
+          mNewSOPI.SalesOrderPhaseID = mSalesOrderPhaseID
+          mNewSOPI.SalesItemID = mNewSalesOrderItem.SalesOrderItemID
+          mNewSOPI.Qty = 1
+
+          mdtoSOPI.SaveSalesOrderPhaseItem(mNewSOPI)
+
+        Next
+
+        mdbconn.Disconnect()
+      End If
+
+    Catch ex As Exception
+    Finally
+
+    End Try
+  End Sub
+
+  Private Sub btnUpdatePOINonMan_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnUpdatePOINonMan.LinkClicked
+    Dim mWHere As String = ""
+
+    Dim mdbconn As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+    Dim mDT As New DataTable
+
+    Try
+      mWHere = "select poi.PurchaseOrderItemID,"
+      mWHere &= " POA.SalesorderPhaseItemID "
+      mWHere &= " from PurchaseOrderItem POI"
+      mWHere &= " INNER join PurchaseOrder PO on po.PurchaseOrderID=poi.PurchaseOrderID and MaterialRequirementTypeWorkOrderID=0 and MaterialRequirementTypeID=2"
+      mWHere &= " LEFT JOIN PurchaseOrderAllocation POA ON POA.PurchaseOrderID=PO.PurchaseOrderID"
+      mWHere &= " WHERE ISNULL(POA.SalesorderPhaseItemID,0)>0"
+
+      If mdbconn.Connect Then
+
+        mDT = mdbconn.CreateDataTable(mWHere)
+
+        For Each mRow As DataRow In mDT.Rows
+          Dim mPurchaseOrderItemID As Integer
+          Dim mSalesorderPhaseItemID As Integer
+
+          mPurchaseOrderItemID = mRow("PurchaseOrderItemID")
+          mSalesorderPhaseItemID = mRow("SalesorderPhaseItemID")
+
+
+          If mPurchaseOrderItemID > 0 And mSalesorderPhaseItemID > 0 Then
+
+            Dim mUpdate As String = ""
+
+            mUpdate = String.Format("Update PurchaseOrderItemAllocation set SalesOrderPhaseItemID ={0} where PurchaseOrderItemID ={1}", mSalesorderPhaseItemID, mPurchaseOrderItemID)
+
+            mdbconn.ExecuteNonQuery(mUpdate)
+
+
+          End If
+        Next
+
+      End If
+
+
+      mdbconn.Disconnect()
+
+
+    Catch ex As Exception
+
+    End Try
+
+
   End Sub
 End Class

@@ -434,7 +434,6 @@ Partial Class frmPurchaseManagement
         Me.GridColumn1.FieldName = "WorkOrderNo"
         Me.GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -448,7 +447,6 @@ Partial Class frmPurchaseManagement
         Me.gcOTDescription.FieldName = "Description"
         Me.gcOTDescription.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gcOTDescription.Name = "gcOTDescription"
-        Me.gcOTDescription.OptionsColumn.AllowEdit = False
         Me.gcOTDescription.OptionsColumn.ReadOnly = True
         Me.gcOTDescription.Visible = True
         Me.gcOTDescription.VisibleIndex = 1
@@ -489,6 +487,7 @@ Partial Class frmPurchaseManagement
         Me.gcJobNo.FieldName = "OrderNo"
         Me.gcJobNo.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.gcJobNo.Name = "gcJobNo"
+        Me.gcJobNo.OptionsColumn.ReadOnly = True
         Me.gcJobNo.Visible = True
         Me.gcJobNo.VisibleIndex = 2
         '
@@ -793,7 +792,7 @@ Partial Class frmPurchaseManagement
         '
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1439, 676)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1437, 675)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'frmPurchaseManagement

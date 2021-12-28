@@ -13,7 +13,7 @@ Public Class repPODelivery
   Private pToStringCordobas As String = "C$#,##0.00;;#"
   Private pToStringDollar As String = "$#,##0.00;;#"
   Private pReprintOption As Boolean
-
+  Private pDataSource As colPurchaseOrderItemAllocationProcessor
   Public Sub New()
 
     InitializeComponent()
@@ -27,6 +27,7 @@ Public Class repPODelivery
     Dim mRep As New repPODelivery(rPurchaseOrderInfo, rPurchaseOrderProcessors, rPODelivery)
     Dim mPrintTool As ReportPrintTool
     mRep.pReprintOption = vReprintOption
+    mRep.pDataSource = rPurchaseOrderProcessors
     mRep.CreateDocument()
 
 
@@ -97,10 +98,10 @@ Public Class repPODelivery
 
     xrtcDescription.DataBindings.Add("Text", DataSource, "Description")
 
-    xrGrossTotal.Text = pPOInfo.TotalGrossValue.ToString(mToString)
-    xrTotalNetTotal.Text = pPOInfo.TotalNetValue.ToString(mToString)
-    xrTotalVAT.Text = pPOInfo.TotalVAT.ToString(mToString)
-
+    xrGrossTotal.Text = (pDataSource.TotalNetValue - pDataSource.TotalRetention + pDataSource.TotalVAT).ToString(mToString)
+    xrTotalNetTotal.Text = pDataSource.TotalNetValue.ToString(mToString)
+    xrTotalVAT.Text = pDataSource.TotalVAT.ToString(mToString)
+    xtcTotalRetention.Text = pDataSource.TotalRetention.ToString(mToString)
   End Sub
 
 

@@ -32,7 +32,7 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
 
     Select Case CType(e, DevExpress.XtraBars.ItemClickEventArgs).Item.Tag
       Case eAddEditDeleteView.Aserrio
-        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.MAV, eWorkOrderWoodProcess.Aserrio)
+        frmWoodProcessRollo.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.Rollo, eStockItemTypeTimberWood.MAV, eWorkOrderWoodProcess.Aserrio)
 
       Case eAddEditDeleteView.Horno
         frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, Me.DBConn, Me.RTISGlobal, 0, eStockItemTypeTimberWood.MAV, eStockItemTypeTimberWood.MAS, eWorkOrderWoodProcess.Horno)
@@ -63,7 +63,16 @@ Public Class brwWorkOrderWoodProcess : Inherits brwBrowserListBase
     If mGridView.FocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
       MsgBox("Ninguna fila seleccionada")
     Else
-      frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, pDBConn, pRTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderTargetWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderProcessOption")))
+      Dim mWoodType As Integer
+      mWoodType = mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderWoodType"))
+
+      If mWoodType = eStockItemTypeTimberWood.Rollo Then
+        frmWoodProcessRollo.OpenForm(rForm.ParentForm, pDBConn, pRTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderTargetWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderProcessOption")))
+
+      Else
+        frmWorkOrderWoodProcess.OpenForm(rForm.ParentForm, pDBConn, pRTISGlobal, mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderID")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderTargetWoodType")), mGridView.GetFocusedRowCellValue(mGridView.Columns("WorkOrderProcessOption")))
+
+      End If
     End If
     Return mReloadData
   End Function

@@ -90,7 +90,6 @@ Public Class fccWoodReception
   Public Function LoadObject() As Boolean
 
     Dim mdsoReception As New dsoReception(DBConn)
-    Dim mdsoStock As New dsoStock(pDBConn)
     Dim mOK As Boolean
     Dim mWhere As String = ""
     Try
@@ -107,6 +106,7 @@ Public Class fccWoodReception
         pWoodReception.ReceptionDate = Today
         pWoodReception.ReceptionNo = GetNextOrderNo()
         pWoodReception.ItemType = eStockItemTypeTimberWood.Rollo
+        pWoodReception.Status = eReceptionStatus.InProgress
         SaveObjects()
         mOK = True
       End If
@@ -262,9 +262,27 @@ Public Class fccWoodReception
   Public Sub SaveWoodPalletDown(ByRef rWoodPallet As dmWoodPallet)
     Dim mdso As New dsoStock(pDBConn)
 
+    rWoodPallet.Description = GetDescriptionBySpecies(rWoodPallet)
     mdso.SaveWoodPalletDown(rWoodPallet)
 
   End Sub
+
+  Private Function GetDescriptionBySpecies(rWoodPallet As dmWoodPallet) As String
+
+    Dim mRetVal As String = ""
+
+    For Each mSpeciesID As Integer In rWoodPallet.GetAllSpeciesInWoodPalletGuideItems
+
+      If mRetVal <> "" Then mRetVal &= ","
+
+      mRetVal &= "Madera Rollo de " & AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WoodSpecie).ItemValueToDisplayValue(mSpeciesID).TrimEnd
+      mRetVal &= " de " & rWoodPallet.WoodPalletGuideItems.GetTotalVolumenBySpecies(mSpeciesID).ToString("N3") & " m3"
+
+
+
+    Next
+    Return mRetVal
+  End Function
 
   Public Function GetWoodPalletSource() As colWoodPallets
     Dim mdso As New dsoStock(pDBConn)

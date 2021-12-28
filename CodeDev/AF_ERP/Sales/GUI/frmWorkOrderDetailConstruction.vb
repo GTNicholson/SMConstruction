@@ -289,6 +289,9 @@ Public Class frmWorkOrderDetailConstruction
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcSIUoM, clsEnumsConstants.EnumToVIs(GetType(eUoM)))
 
+    clsDEControlLoading.LoadGridLookUpEditiVI(grdStockItemMatReq, gcArea, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.WorkCentre))
+
+
     mVIs = pFormController.RTISGlobal.RefLists.RefListVI(appRefLists.Material)
 
     clsDEControlLoading.LoadGridLookUpEditiVI(grdWoodMatReq, gcMaterialType, mVIs)
@@ -558,7 +561,7 @@ Public Class frmWorkOrderDetailConstruction
   Public Function GetReport(ByVal vDocType As eDocumentType) As DevExpress.XtraReports.UI.XtraReport
     Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
     Dim mProductStructure As dmProductStructure
-
+    Dim mFinishDate As DateTime
 
     Select Case vDocType
       Case eDocumentType.WorkOrderDoc
@@ -568,14 +571,19 @@ Public Class frmWorkOrderDetailConstruction
           mProductStructure = pFormController.GetCurrentProduct
           If mProductStructure IsNot Nothing Then
             Dim mProjectName As String = ""
+            Dim mCustomerName As String = ""
+            Dim mOrderNo As String = ""
 
             If pFormController.WorkOrderAllocationEditors.Count > 0 Then
               mProjectName = pFormController.WorkOrderAllocationEditors(0).ProjectName
+              mCustomerName = pFormController.WorkOrderAllocationEditors(0).ClientName
+              mOrderNo = pFormController.WorkOrderAllocationEditors(0).SalesOrderNo
+              mFinishDate = pFormController.WorkOrderAllocationEditors(0).FinishDate
             End If
             UpdateTempInStockQty()
             UpdateTempThickness()
 
-            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName)
+            mRetVal = repWorkOrderDoc.GenerateReport(pFormController.WorkOrder, mProjectName, mCustomerName, mOrderNo, mFinishDate)
 
           End If
         End If
@@ -927,7 +935,7 @@ Public Class frmWorkOrderDetailConstruction
 
           For Each mWorkderAllocation In pFormController.WorkOrder.WorkOrderAllocations
             If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
-              mSalesOrderPhaseInfo = pFormController.SalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
+              mSalesOrderPhaseInfo = pFormController.SalesOrderPhaseInfos.ItemBySalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
 
               If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseInfo) Then
                 mPicker.SelectedObjects.Add(mSalesOrderPhaseInfo)
@@ -964,7 +972,7 @@ Public Class frmWorkOrderDetailConstruction
           For mindex As Integer = pFormController.WorkOrder.WorkOrderAllocations.Count - 1 To 0 Step -1
             mWorkderAllocation = pFormController.WorkOrder.WorkOrderAllocations(mindex)
             If mWorkderAllocation.SalesOrderPhaseItemID > 0 Then
-              mSalesOrderPhaseInfo = mSelectedSalesOrderPhaseInfos.ItemFromSalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
+              mSalesOrderPhaseInfo = mSelectedSalesOrderPhaseInfos.ItemBySalesOrderPhaseID(mWorkderAllocation.SalesOrderPhaseItemID)
 
               If Not mPicker.SelectedObjects.Contains(mSalesOrderPhaseInfo) Then
                 pFormController.WorkOrder.WorkOrderAllocations.Remove(mWorkderAllocation)
@@ -1169,20 +1177,26 @@ Public Class frmWorkOrderDetailConstruction
 
   Private Sub btnGenerateMatReq_Click(sender As Object, e As EventArgs) Handles btnGenerateMatReq.Click
     Dim mProductStructure As dmProductStructure
+    Dim mDialogResult As DialogResult
 
-    mProductStructure = TryCast(uctProductDetail.FormController.CurrentProductInfo.Product, dmProductStructure)
+    mDialogResult = MessageBox.Show("¿Está seguro que desea generar los requerimientos de materiales para esta O.T.?", "Información", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2)
 
-    CheckSave(False)
-    pFormController.GenerateMatReq(mProductStructure)
+    If mDialogResult = DialogResult.Yes Then
+      mProductStructure = TryCast(uctProductDetail.FormController.CurrentProductInfo.Product, dmProductStructure)
 
-    pFormController.SaveObjects()
+      CheckSave(False)
+      pFormController.GenerateMatReq(mProductStructure)
 
-    grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
-    gvStockItemMatReq.RefreshData()
 
-    grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
-    gvWoodMatReq.RefreshData()
 
+      grdStockItemMatReq.DataSource = pFormController.WorkOrder.StockItemMaterialRequirements
+      gvStockItemMatReq.RefreshData()
+
+      grdWoodMatReq.DataSource = pFormController.WorkOrder.WoodMaterialRequirements
+      gvWoodMatReq.RefreshData()
+
+      pFormController.SaveObjects()
+    End If
 
   End Sub
 
@@ -1307,5 +1321,38 @@ Public Class frmWorkOrderDetailConstruction
     If RTIS.CommonVB.clsGeneralA.GetSaveFileName(mFileName) = DialogResult.OK Then
       gvWoodMatReq.ExportToXlsx(mFileName)
     End If
+  End Sub
+
+  Private Sub gvStockItemMatReq_CustomUnboundColumnData_1(sender As Object, e As CustomColumnDataEventArgs) Handles gvStockItemMatReq.CustomUnboundColumnData
+
+    Dim mMatReq As dmMaterialRequirement
+    Dim mSI As dmStockItem
+
+    mMatReq = TryCast(e.Row, dmMaterialRequirement)
+    If mMatReq IsNot Nothing Then
+      Select Case e.Column.Name
+        Case gcSIStockCode.Name
+          If e.IsGetData Then
+            mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
+
+            If mSI IsNot Nothing Then
+              e.Value = mSI.StockCode
+            End If
+
+          End If
+
+        Case gcSIDescription.Name
+          If e.IsGetData Then
+            mSI = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mMatReq.StockItemID)
+
+            If mSI IsNot Nothing Then
+              e.Value = mSI.Description
+            End If
+
+          End If
+
+      End Select
+    End If
+
   End Sub
 End Class

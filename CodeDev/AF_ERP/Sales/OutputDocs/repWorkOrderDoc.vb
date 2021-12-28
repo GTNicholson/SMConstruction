@@ -6,15 +6,19 @@ Public Class repWorkOrderDoc
   Private pStockItemMatReqs As colMaterialRequirements
   Private pFurniture As dmProductFurniture
   Private pProjectName As String
+  Private pCustomerName As String
+  Private pOrderNo As String
+  Private pFinishDate As Date
 
-
-  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String) As repWorkOrderDoc
+  Public Shared Function GenerateReport(ByRef rWorkOrder As dmWorkOrder, ByVal vProjectName As String, ByVal vCustomerName As String, ByVal vOrderNo As String, ByVal vFinishDate As Date) As repWorkOrderDoc
     Dim mRep As New repWorkOrderDoc
     mRep.pWorkOrder = rWorkOrder
     mRep.pProjectName = vProjectName
     mRep.pWoodMatReqs = rWorkOrder.WoodMaterialRequirements
     mRep.pStockItemMatReqs = rWorkOrder.StockItemMaterialRequirements
-
+    mRep.pCustomerName = vCustomerName
+    mRep.pOrderNo = vOrderNo
+    mRep.pFinishDate = vFinishDate
     mRep.CreateDocument()
 
     ''Dim mpt As DevExpress.XtraReports.UI.ReportPrintTool
@@ -30,10 +34,23 @@ Public Class repWorkOrderDoc
     ''m.StockCode
 
     '// Head informatio from pWorkOrder
-    xtcOTNumber.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
+    xtcWorkOrderNo.DataBindings.Add("Text", pWorkOrder, "WorkOrderNo")
     xtcProjectName.Text = pProjectName
+    xtcOrderNo.Text = pOrderNo
+    xtcCustomerName.Text = pCustomerName
+    xtcQuantity.Text = pWorkOrder.Quantity
     xtcDescription.DataBindings.Add("Text", pWorkOrder, "Description")
     xtcEmployee.DataBindings.Add("Text", pWorkOrder, "EmployeeDesc")
+
+
+    If pFinishDate = Date.MinValue Then
+
+    Else
+      xtcFinishDate.Text = pFinishDate.Date.ToString("dd/MM/yyyy")
+
+    End If
+
+
     If pWorkOrder.PlannedDeliverDate = Date.MinValue Then
 
     Else
@@ -70,8 +87,9 @@ Public Class repWorkOrderDoc
     'Dim mPicHeight As Single
     Dim mrepWorkOrderWoodMaterialRequirementInfo As repWorkOrderWoodMaterialRequirement
     Dim mrepStockItemMaterialRequirement As repWorkOrderStockItemMaterialRequirement
-    Dim mRepSignatures As srepWorkOrderSignOffs
 
+    Dim mFileName As String
+    Dim mImage As Image
 
 
     SetUpDataBindings()
@@ -84,11 +102,18 @@ Public Class repWorkOrderDoc
 
     mrepStockItemMaterialRequirement = New repWorkOrderStockItemMaterialRequirement()
 
-    mrepStockItemMaterialRequirement.DataSource = pStockItemMatReqs
+    mrepStockItemMaterialRequirement.DataSource = pStockItemMatReqs.OrderBy(Function(x) x.AreaDesc)
     xrSubWorkOrderStockItemMatReq.ReportSource = mrepStockItemMaterialRequirement
 
-    'mRepSignatures = New srepWorkOrderSignOffs
-    'xrsubSigns.ReportSource = mRepSignatures
+
+    'mFileName = clsSMSharedFuncs.GetWOImageFileName(pSalesOrderPhaseItemInfos, pWorkOrder)
+
+    'If IO.File.Exists(mFileName) Then
+    '  mImage = Drawing.Image.FromFile(mFileName)
+    'End If
+
+    'xrPic.Image = mImage
+
 
   End Sub
 

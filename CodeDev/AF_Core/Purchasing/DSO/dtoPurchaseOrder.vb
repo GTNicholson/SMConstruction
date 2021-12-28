@@ -142,7 +142,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .DelStatus = DBReadByte(rDataReader, "DelStatus")
         .Instructions = DBReadString(rDataReader, "Instructions")
         .Comments = DBReadString(rDataReader, "Comments")
-        .BuyerID = DBReadByte(rDataReader, "BuyerID")
+        .BuyerID = DBReadInt32(rDataReader, "BuyerID")
         .AcknowledgementNo = DBReadString(rDataReader, "AcknowledgementNo")
         .OrderType = DBReadByte(rDataReader, "OrderType")
         .Carriage = DBReadDouble(rDataReader, "Carriage")
@@ -198,6 +198,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .ValuationMode = DBReadInt32(rDataReader, "ValuationMode")
         .PaymentDate = DBReadDate(rDataReader, "PaymentDate")
         .MaterialRequirementTypeWorkOrderID = DBReadInt32(rDataReader, "MaterialRequirementTypeWorkOrderID")
+
         pPurchaseOrder.IsDirty = False
         pPurchaseOrder.DeliveryAddress.IsDirty = False
         pPurchaseOrder.SupplierAddress.IsDirty = False

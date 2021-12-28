@@ -23,6 +23,9 @@ Public Class dmSalesOrderPhase : Inherits dmBase
   Private pJobNo As String
   Private pSalesOrderPhaseItems As colSalesOrderPhaseItems
   Private pPhaseItemComponents As colPhaseItemComponents
+  Private pManReqDays As Integer
+  Private pOrderReceivedDate As Date
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -84,6 +87,8 @@ Public Class dmSalesOrderPhase : Inherits dmBase
       .JobNo = JobNo
       .SalesOrderPhaseItems = SalesOrderPhaseItems
       .PhaseItemComponents = PhaseItemComponents
+      .ManReqDays = ManReqDays
+      .OrderReceivedDate = OrderReceivedDate
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -300,7 +305,25 @@ Public Class dmSalesOrderPhase : Inherits dmBase
     End Set
   End Property
 
+  Public Property ManReqDays As Integer
+    Get
+      Return pManReqDays
+    End Get
+    Set(value As Integer)
+      If pManReqDays <> value Then IsDirty = True
+      pManReqDays = value
+    End Set
+  End Property
 
+  Public Property OrderReceivedDate As Date
+    Get
+      Return pOrderReceivedDate
+    End Get
+    Set(value As Date)
+      If pOrderReceivedDate <> value Then IsDirty = True
+      pOrderReceivedDate = value
+    End Set
+  End Property
 End Class
 
 

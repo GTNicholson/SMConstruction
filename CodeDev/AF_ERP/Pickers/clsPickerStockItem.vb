@@ -34,8 +34,10 @@
   Public Function SelectedCount(ByVal vCategory As eStockItemCategory) As Integer
     Dim mRetVal As Integer = 0
     For Each mSI In SelectedObjects
-      If mSI.Category = vCategory Then
-        mRetVal += 1
+      If mSI IsNot Nothing Then
+        If mSI.Category = vCategory Then
+          mRetVal += 1
+        End If
       End If
     Next
     Return mRetVal

@@ -9,6 +9,7 @@ Public Class dmReception : Inherits dmBase
   Private pReceptionNo As String
   Private pWoodPallets As colWoodPallets
   Private pCardNumber As String
+  Private pStatus As Byte
   Public Sub New()
     MyBase.New()
   End Sub
@@ -51,6 +52,7 @@ Public Class dmReception : Inherits dmBase
       .ItemType = ItemType
       .ReceptionNo = ReceptionNo
       .CardNumber = CardNumber
+      .Status = Status
       'Add entries here for each collection and class property
 
       .WoodPallets = WoodPallets
@@ -144,6 +146,18 @@ Public Class dmReception : Inherits dmBase
       pWoodPallets = value
     End Set
   End Property
+
+  Public Property Status As Byte
+    Get
+      Return pStatus
+    End Get
+    Set(value As Byte)
+      If pStatus <> value Then IsDirty = True
+      pStatus = value
+    End Set
+  End Property
+
+
 End Class
 
 

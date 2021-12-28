@@ -47,9 +47,9 @@ Partial Class frmProductDetail_New
         '
         Me.Panel1.Controls.Add(Me.uctProductDetail)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 33)
+        Me.Panel1.Location = New System.Drawing.Point(0, 30)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1376, 598)
+        Me.Panel1.Size = New System.Drawing.Size(1376, 601)
         Me.Panel1.TabIndex = 1
         '
         'uctProductDetail
@@ -59,7 +59,7 @@ Partial Class frmProductDetail_New
         Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(0, 0)
         Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1376, 598)
+        Me.uctProductDetail.Size = New System.Drawing.Size(1376, 601)
         Me.uctProductDetail.TabIndex = 0
         Me.uctProductDetail.TempInWoodStock = 0
         Me.uctProductDetail.WoodItemsSelected = 0
@@ -138,7 +138,7 @@ Partial Class frmProductDetail_New
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1376, 33)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1376, 30)
         '
         'barDockControlBottom
         '
@@ -152,17 +152,17 @@ Partial Class frmProductDetail_New
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 598)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 601)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1376, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1376, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 598)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 601)
         '
         'bbtnChangeSpecies
         '

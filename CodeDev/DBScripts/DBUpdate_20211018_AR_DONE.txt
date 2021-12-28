@@ -1,0 +1,113 @@
+alter table WorkOrder
+add RequisaDocumentPath varchar (1000)
+go
+
+
+ALTER view [dbo].[vwWorkOrderInfo]
+as
+
+SELECT        
+WO.WorkOrderID, 
+WO.SalesOrderItemWOIndex,
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate,
+Wo.PlannedDeliverDate,
+WO.WorkOrderWoodType, 
+WO.PurchasingDate,
+wo.status,
+SO.ProjectName, 
+WO.ProductID,
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+C.CompanyName, 
+C.SalesAreaID, 
+WO.UnitPrice, 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName, 
+SO.DueTime, 
+SO.FinishDate, 
+WO.WorkOrderType, 
+WO.EmployeeID,
+WO.WorkOrderProcessOption,
+WO.RequisaDocumentPath
+FROM            
+dbo.WorkOrder AS WO 
+INNER JOIN dbo.SalesOrderItem AS SOI ON SOI.SalesOrderItemID = WO.SalesOrderItemID 
+INNER JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = WO.SalesOrderID 
+LEFT OUTER JOIN  dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT OUTER JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE (ISNULL(WO.isInternal, 0) = 0)
+
+GO
+
+
+
+ALTER view [dbo].[vwWorkOrderTracking]
+as
+SELECT
+WO.*,
+SO.ProjectName, 
+SO.OrderTypeID, 
+SO.OrderStatusENUM, 
+SO.OrderNo, 
+SO.CustomerRef, 
+SO.ContractManagerID, 
+SO.BusinessSectorID, 
+SO.DueTime, 
+SO.FinishDate,
+
+C.CompanyName, 
+C.SalesAreaID, 
+ 
+CONCAT(Emp.FirstName, ' ', Emp.LastName) AS EmployeeName  
+
+FROM            
+dbo.WorkOrder AS WO
+left JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left JOIN dbo.SalesOrder AS SO ON SO.SalesOrderID = SOPI.SalesOrderID 
+LEFT JOIN dbo.Customer AS C ON C.CustomerID = SO.CustomerID 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+WHERE WO.Status<>3
+
+
+GO
+
+
+USE [AgroForestal]
+GO
+ALTER view [dbo].[vwWorkOrderInternalInfo]
+as
+
+SELECT        
+WO.WorkOrderID, 
+WO.WorkOrderNo, 
+WO.ProductTypeID, 
+wo.WorkOrderWoodType, 
+WO.Quantity, 
+WO.Description, 
+WO.PlannedStartDate, 
+WO.PlannedDeliverDate, 
+WO.ProductID,
+WO.PurchasingDate,
+CONCAT(Emp.FirstName, ' ', Emp.LastName)  AS EmployeeName, 
+WO.WorkOrderType,
+wo.UnitPrice,
+WO.WorkOrderProcessOption,
+WO.WorkOrderTargetWoodType,
+WO.STATUS,
+WO.RequisaDocumentPath,
+Emp.EmployeeID
+FROM dbo.WorkOrder AS WO 
+LEFT JOIN dbo.Employee AS Emp ON Emp.EmployeeID = WO.EmployeeID
+Where IsInternal = 1
+
+GO
+
+

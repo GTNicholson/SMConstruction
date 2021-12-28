@@ -631,6 +631,7 @@ Public Class fccWorkOrderDetailConstruction
 
         ' pWorkOrder.WoodMaterialRequirements.SetQuantitysToZero()
         pWorkOrder.StockItemMaterialRequirements.SetQuantitysToZero()
+        pWorkOrder.StockItemMaterialRequirements.IsAlreadyUsedFalse()
 
         For Each mPBOM As dmProductBOM In mWoodProductBOMs
 
@@ -653,6 +654,7 @@ Public Class fccWorkOrderDetailConstruction
           mNewMatReq.UoM = mPBOM.UoM
           mNewMatReq.WoodSpecie = mPBOM.WoodSpecie
           mNewMatReq.Comments = mPBOM.Comments
+          mNewMatReq.AreaID = mPBOM.AreaID
 
           mNewMatReq.Quantity = clsSMSharedFuncs.BoardFeetFromCMAndQty(mNewMatReq.UnitPiece, mNewMatReq.NetLenght, mNewMatReq.NetWidth, mNewMatReq.NetThickness)
           pWorkOrder.WoodMaterialRequirements.Add(mNewMatReq)
@@ -663,7 +665,11 @@ Public Class fccWorkOrderDetailConstruction
         For Each mPBOM As dmProductBOM In mStockItemProductBOMs
           Dim mProductStockItemFound As dmMaterialRequirement
 
-          mProductStockItemFound = pWorkOrder.StockItemMaterialRequirements.ItemFromStockItemID(mPBOM.StockItemID)
+          mProductStockItemFound = pWorkOrder.StockItemMaterialRequirements.ItemFromStockItemIDAndAreaID(mPBOM.StockItemID, mPBOM.AreaID)
+
+          If mProductStockItemFound Is Nothing Then
+            mProductStockItemFound = pWorkOrder.StockItemMaterialRequirements.ItemFromStockItemIDProcess(mPBOM.StockItemID)
+          End If
 
           If mProductStockItemFound Is Nothing Then
             mNewMatReq = New dmMaterialRequirement
@@ -686,13 +692,20 @@ Public Class fccWorkOrderDetailConstruction
             mNewMatReq.Comments = mPBOM.Comments
             mNewMatReq.FromStockQty = 0
             mNewMatReq.GeneratedQty = mPBOM.Quantity * pWorkOrder.Quantity
-
+            mNewMatReq.AreaID = mPBOM.AreaID
+            mNewMatReq.SetPickedQty(0)
+            mNewMatReq.SetReturndQty(0)
+            mNewMatReq.IsAlreadyUsed = True
+            mNewMatReq.DateChange = Now
             pWorkOrder.StockItemMaterialRequirements.Add(mNewMatReq)
           Else
             mProductStockItemFound.Quantity = mPBOM.Quantity * pWorkOrder.Quantity
             mProductStockItemFound.Comments = mPBOM.Comments
             mProductStockItemFound.Description = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mPBOM.StockItemID).Description
             mProductStockItemFound.GeneratedQty = mPBOM.Quantity * pWorkOrder.Quantity
+            mProductStockItemFound.AreaID = mPBOM.AreaID
+            mProductStockItemFound.IsAlreadyUsed = True
+            mProductStockItemFound.DateChange = Now
 
           End If
 
@@ -722,7 +735,7 @@ Public Class fccWorkOrderDetailConstruction
     Dim mStockItemID As Integer
     Dim mMaterialRequirement As dmMaterialRequirement
 
-    While mIndex < mCount - 1
+    While mIndex < mCount
       mRequiredQty = pWorkOrder.StockItemMaterialRequirements(mIndex).Quantity
       mPickedQty = pWorkOrder.StockItemMaterialRequirements(mIndex).PickedQty
       mReturnQty = pWorkOrder.StockItemMaterialRequirements(mIndex).ReturnQty

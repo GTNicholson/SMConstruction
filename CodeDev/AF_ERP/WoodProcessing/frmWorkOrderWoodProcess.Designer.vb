@@ -186,9 +186,9 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.PanelControl1.Controls.Add(Me.TableLayoutPanel1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 33)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1924, 683)
+        Me.PanelControl1.Size = New System.Drawing.Size(1924, 686)
         Me.PanelControl1.TabIndex = 4
         '
         'TableLayoutPanel1
@@ -205,7 +205,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 205.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1920, 679)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1920, 682)
         Me.TableLayoutPanel1.TabIndex = 3
         '
         'grpGeneralInformation
@@ -287,7 +287,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1924, 33)
+        Me.BarDockControl1.Size = New System.Drawing.Size(1924, 30)
         '
         'barDockControlBottom
         '
@@ -301,17 +301,17 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 33)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 683)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 686)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 33)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 30)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 683)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 686)
         '
         'bbtnAddNew
         '
@@ -345,7 +345,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.xtpKiln.Controls.Add(Me.PanelControl3)
         Me.xtpKiln.Name = "xtpKiln"
-        Me.xtpKiln.Size = New System.Drawing.Size(623, 79)
+        Me.xtpKiln.Size = New System.Drawing.Size(621, 78)
         Me.xtpKiln.Text = "Horno"
         '
         'PanelControl3
@@ -361,7 +361,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(623, 79)
+        Me.PanelControl3.Size = New System.Drawing.Size(621, 78)
         Me.PanelControl3.TabIndex = 0
         '
         'cboKilnNumber
@@ -666,7 +666,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grpConsumedWoodPalletItemInfo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpConsumedWoodPalletItemInfo.Location = New System.Drawing.Point(3, 208)
         Me.grpConsumedWoodPalletItemInfo.Name = "grpConsumedWoodPalletItemInfo"
-        Me.grpConsumedWoodPalletItemInfo.Size = New System.Drawing.Size(887, 468)
+        Me.grpConsumedWoodPalletItemInfo.Size = New System.Drawing.Size(887, 471)
         Me.grpConsumedWoodPalletItemInfo.TabIndex = 2
         Me.grpConsumedWoodPalletItemInfo.Text = "Madera Consumido"
         '
@@ -679,10 +679,10 @@ Partial Class frmWorkOrderWoodProcess
         Me.xtabSourcePallet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabSourcePallet.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabSourcePallet.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabSourcePallet.Location = New System.Drawing.Point(2, 26)
+        Me.xtabSourcePallet.Location = New System.Drawing.Point(2, 24)
         Me.xtabSourcePallet.Name = "xtabSourcePallet"
         Me.xtabSourcePallet.SelectedTabPage = Me.XtraTabPage2
-        Me.xtabSourcePallet.Size = New System.Drawing.Size(883, 440)
+        Me.xtabSourcePallet.Size = New System.Drawing.Size(883, 445)
         Me.xtabSourcePallet.TabIndex = 1
         Me.xtabSourcePallet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage2})
         '
@@ -690,7 +690,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.XtraTabPage2.Controls.Add(Me.pnlSourcePallets)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(807, 434)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(806, 437)
         Me.XtraTabPage2.Text = "Bulto: ###"
         '
         'pnlSourcePallets
@@ -699,7 +699,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.pnlSourcePallets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSourcePallets.Location = New System.Drawing.Point(0, 0)
         Me.pnlSourcePallets.Name = "pnlSourcePallets"
-        Me.pnlSourcePallets.Size = New System.Drawing.Size(807, 434)
+        Me.pnlSourcePallets.Size = New System.Drawing.Size(806, 437)
         Me.pnlSourcePallets.TabIndex = 0
         '
         'grdSourceWoodPalletItem
@@ -712,7 +712,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grdSourceWoodPalletItem.MainView = Me.gvSourceWoodPalletItem
         Me.grdSourceWoodPalletItem.Name = "grdSourceWoodPalletItem"
         Me.grdSourceWoodPalletItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoAddDuplicated})
-        Me.grdSourceWoodPalletItem.Size = New System.Drawing.Size(803, 430)
+        Me.grdSourceWoodPalletItem.Size = New System.Drawing.Size(802, 433)
         Me.grdSourceWoodPalletItem.TabIndex = 10
         Me.grdSourceWoodPalletItem.UseEmbeddedNavigator = True
         Me.grdSourceWoodPalletItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSourceWoodPalletItem})
@@ -904,7 +904,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grpOutputWood.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpOutputWood.Location = New System.Drawing.Point(896, 208)
         Me.grpOutputWood.Name = "grpOutputWood"
-        Me.grpOutputWood.Size = New System.Drawing.Size(1021, 468)
+        Me.grpOutputWood.Size = New System.Drawing.Size(1021, 471)
         Me.grpOutputWood.TabIndex = 3
         Me.grpOutputWood.Text = "Madera Producido"
         '
@@ -917,10 +917,10 @@ Partial Class frmWorkOrderWoodProcess
         Me.xtabOutputWood.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabOutputWood.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.xtabOutputWood.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Horizontal
-        Me.xtabOutputWood.Location = New System.Drawing.Point(2, 26)
+        Me.xtabOutputWood.Location = New System.Drawing.Point(2, 24)
         Me.xtabOutputWood.Name = "xtabOutputWood"
         Me.xtabOutputWood.SelectedTabPage = Me.XtraTabPage3
-        Me.xtabOutputWood.Size = New System.Drawing.Size(1017, 440)
+        Me.xtabOutputWood.Size = New System.Drawing.Size(1017, 445)
         Me.xtabOutputWood.TabIndex = 2
         Me.xtabOutputWood.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3})
         '
@@ -928,7 +928,7 @@ Partial Class frmWorkOrderWoodProcess
         '
         Me.XtraTabPage3.Controls.Add(Me.pnlOutputWoodPallet)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(941, 434)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(940, 437)
         Me.XtraTabPage3.Text = "Bulto: ###"
         '
         'pnlOutputWoodPallet
@@ -937,7 +937,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.pnlOutputWoodPallet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlOutputWoodPallet.Location = New System.Drawing.Point(0, 0)
         Me.pnlOutputWoodPallet.Name = "pnlOutputWoodPallet"
-        Me.pnlOutputWoodPallet.Size = New System.Drawing.Size(941, 434)
+        Me.pnlOutputWoodPallet.Size = New System.Drawing.Size(940, 437)
         Me.pnlOutputWoodPallet.TabIndex = 0
         '
         'grdOutputWoodPalletItem
@@ -950,7 +950,7 @@ Partial Class frmWorkOrderWoodProcess
         Me.grdOutputWoodPalletItem.MainView = Me.gvOutputWoodPaleltItem
         Me.grdOutputWoodPalletItem.Name = "grdOutputWoodPalletItem"
         Me.grdOutputWoodPalletItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoOutputAddButton, Me.RepositoryItemTextEdit1})
-        Me.grdOutputWoodPalletItem.Size = New System.Drawing.Size(937, 430)
+        Me.grdOutputWoodPalletItem.Size = New System.Drawing.Size(936, 433)
         Me.grdOutputWoodPalletItem.TabIndex = 10
         Me.grdOutputWoodPalletItem.UseEmbeddedNavigator = True
         Me.grdOutputWoodPalletItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOutputWoodPaleltItem})

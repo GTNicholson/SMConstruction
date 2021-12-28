@@ -33,6 +33,8 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Private pFromStockQty As Decimal
   Private pGeneratedQty As Decimal
   Private pReturnQty As Decimal
+  Private pIsFromStockValidated As Boolean
+  Private pIsAlreayUsed As Boolean
 
   Public Sub New()
     MyBase.New()
@@ -93,7 +95,9 @@ Public Class dmMaterialRequirement : Inherits dmBase
       .Comments = Comments
       .FromStockQty = FromStockQty
       .GeneratedQty = GeneratedQty
+      .IsFromStockValidated = IsFromStockValidated
       .SetReturndQty(ReturnQty)
+      .IsAlreadyUsed = IsAlreadyUsed
 
       'Add entries here for each collection and class property
 
@@ -151,6 +155,18 @@ Public Class dmMaterialRequirement : Inherits dmBase
       pAreaID = value
     End Set
   End Property
+
+
+  Public ReadOnly Property AreaDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eWorkCentre), CType(AreaID, eWorkCentre))
+
+      Return mRetVal
+    End Get
+  End Property
+
 
   Public Property StockItemID() As Int32
     Get
@@ -235,8 +251,23 @@ Public Class dmMaterialRequirement : Inherits dmBase
   Public ReadOnly Property QuantityFraction As String
     Get
       Dim mRetVal As String
+      Dim mStockItem As dmStockItem
+      mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(StockItemID)
 
-      mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+      If mStockItem IsNot Nothing Then
+
+        Select Case mStockItem.Category
+          Case eStockItemCategory.PinturaYQuimico
+            mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+
+          Case Else
+            mRetVal = Quantity.ToString("N2")
+        End Select
+
+      Else
+        mRetVal = clsSMSharedFuncs.FractStrFromDec(Quantity)
+
+      End If
 
       Return mRetVal
     End Get
@@ -529,6 +560,27 @@ Public Class dmMaterialRequirement : Inherits dmBase
       pReturnQty = value
     End Set
   End Property
+
+  Public Property IsFromStockValidated As Boolean
+    Get
+      Return pIsFromStockValidated
+    End Get
+    Set(value As Boolean)
+      If pIsFromStockValidated <> value Then IsDirty = True
+      pIsFromStockValidated = value
+    End Set
+  End Property
+
+  Public Property IsAlreadyUsed As Boolean
+    Get
+      Return pIsAlreayUsed
+    End Get
+    Set(value As Boolean)
+      pIsAlreayUsed = value
+    End Set
+  End Property
+
+
 End Class
 
 
@@ -625,6 +677,44 @@ Public Class colMaterialRequirements : Inherits colBase(Of dmMaterialRequirement
     Next
     Return mRetVal
   End Function
+
+  Public Function ItemFromStockItemIDAndAreaID(ByVal vStockItemID As Integer, ByVal vAreaID As Integer) As dmMaterialRequirement
+    Dim mRetVal As dmMaterialRequirement = Nothing
+
+
+    For Each mItem As dmMaterialRequirement In Me.Items
+
+      If mItem.StockItemID = vStockItemID And mItem.IsAlreadyUsed = False And mItem.AreaID = vAreaID Then ' mItem.AreaID = vAreaID  Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+
+    Return mRetVal
+
+  End Function
+
+  Public Function ItemFromStockItemIDProcess(ByVal vStockItemID As Integer) As dmMaterialRequirement
+    Dim mRetVal As dmMaterialRequirement = Nothing
+
+
+    For Each mItem As dmMaterialRequirement In Me.Items
+
+      If mItem.StockItemID = vStockItemID And mItem.IsAlreadyUsed = False Then ' mItem.AreaID = vAreaID  Then
+        mRetVal = mItem
+        Exit For
+      End If
+    Next
+
+    Return mRetVal
+
+  End Function
+
+  Public Sub IsAlreadyUsedFalse()
+    For Each mItem As dmMaterialRequirement In Me.Items
+      mItem.IsAlreadyUsed = False
+    Next
+  End Sub
 End Class
 
 

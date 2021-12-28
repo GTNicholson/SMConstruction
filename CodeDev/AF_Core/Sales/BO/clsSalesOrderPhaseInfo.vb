@@ -3,10 +3,16 @@
   Private pSalesOrder As dmSalesOrder
   Private pCustomer As dmCustomer
   Private pProduct As dmProductBase
+  Private pSalesOrderPhaseMilestoneStatuss As colSalesOrderPhaseMilestoneStatuss
+  Private pFirstDatePlanned As Object
+  Private pQtyOT As Integer
+
   Public Sub New()
     pSalesOrderPhase = New dmSalesOrderPhase
     pSalesOrder = New dmSalesOrder
     pCustomer = New dmCustomer
+    pSalesOrderPhaseMilestoneStatuss = New colSalesOrderPhaseMilestoneStatuss
+
   End Sub
 
   Public Property SalesOrderPhase As dmSalesOrderPhase
@@ -67,6 +73,14 @@
     End Get
   End Property
 
+  Public Property QtyOT As Integer
+    Get
+      Return pQtyOT
+    End Get
+    Set(value As Integer)
+      pQtyOT = value
+    End Set
+  End Property
 
 
   Public ReadOnly Property PhaseNumber As Integer
@@ -215,6 +229,134 @@
     End Get
   End Property
 
+  Public ReadOnly Property SalesOrderPhaseMilestoneStatuss As colSalesOrderPhaseMilestoneStatuss
+    Get
+      Return pSalesOrderPhaseMilestoneStatuss
+    End Get
+  End Property
+
+  Public ReadOnly Property ConfirmationOrder As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.ConfirmationOrder)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property Handover As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.Handover)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property Carpinteria As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.Carpinteria)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property Compras As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.Compras)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+
+  Public ReadOnly Property Metales As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.Metales)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property Tapizado As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.Tapizado)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property Empaque As Date?
+    Get
+      Dim mMS As dmSalesOrderPhaseMilestoneStatus
+      Dim mRetVal As Date? = Nothing
+      mMS = pSalesOrderPhaseMilestoneStatuss.ItemFromMilestoneENUM(eSalesOrderPhaseMileStone.Empaque)
+      If mMS IsNot Nothing AndAlso mMS.TargetDate <> New Date Then
+        mRetVal = mMS.TargetDate
+      End If
+      Return mRetVal
+    End Get
+  End Property
+  Public Property OrderReceivedDateMileStone As Date
+    Get
+      Return pSalesOrderPhase.OrderReceivedDate
+    End Get
+    Set(value As Date)
+      pSalesOrderPhase.DateCreated = value
+    End Set
+  End Property
+
+  Public ReadOnly Property OrderTypeDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      mRetVal = RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(eOrderType), CType(pSalesOrder.OrderTypeID, eOrderType))
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property MilestoneGroupDate As Date
+    Get
+
+      If RTIS.CommonVB.clsGeneralA.IsBlankDate(FirstDatePlanned) Then
+        Return Nothing
+      Else
+        Return RTIS.CommonVB.libDateTime.MondayOfWeek(FirstDatePlanned).Date
+      End If
+    End Get
+
+  End Property
+  Public Property FirstDatePlanned As Date
+    Get
+      Return pFirstDatePlanned.Date
+
+    End Get
+    Set(value As Date)
+      pFirstDatePlanned = value
+    End Set
+  End Property
 End Class
 
 
@@ -242,7 +384,7 @@ Public Class colSalesOrderPhaseInfos : Inherits List(Of clsSalesOrderPhaseInfo)
     Return mRetVal
   End Function
 
-  Public Function ItemFromSalesOrderPhaseID(ByVal vSalesOrderPhaseID As String) As clsSalesOrderPhaseInfo
+  Public Function ItemBySalesOrderPhaseID(ByVal vSalesOrderPhaseID As Integer) As clsSalesOrderPhaseInfo
     Dim mRetVal As clsSalesOrderPhaseInfo = Nothing
     Dim mIndex As Integer
     mIndex = IndexFromSOPhaseID(vSalesOrderPhaseID)
@@ -251,5 +393,6 @@ Public Class colSalesOrderPhaseInfos : Inherits List(Of clsSalesOrderPhaseInfo)
     End If
     Return mRetVal
   End Function
+
 
 End Class

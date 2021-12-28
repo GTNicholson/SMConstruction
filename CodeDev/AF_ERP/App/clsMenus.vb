@@ -14,7 +14,12 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Casas", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderBrowse, eActivityCode.SalesOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Muebles", eMenuIconType.Grid, AddressOf clsMenuFunctions.FurnitureSalesOrderBrowse, eActivityCode.FurnitureSalesOrder)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Venta de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodSalesOrder, eActivityCode.WoodSalesOrder)
-    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Ventas por OT", eMenuIconType.Grid, AddressOf clsMenuFunctions.SalesOrderProgress, eActivityCode.TrackingSalesOrder)
+
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Progreso de Proyectos", eMenuIconType.Pivot, AddressOf clsMenuFunctions.ProjectTracker, eActivityCode.SalesOrder)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Revisión de Proyectos", eMenuIconType.Pivot, AddressOf clsMenuFunctions.ProjectReviewAll, eActivityCode.SalesOrder)
+
+
+
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Ventas", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Ventas de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodSalesOrderInfoBI, eActivityCode.WoodSalesOrderBI)
 
@@ -32,6 +37,8 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Salida de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.PickWood, eActivityCode.WoodPicking)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Producción", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informe de Materiales", eMenuIconType.Report, AddressOf clsMenuFunctions.MaterialRequirementInfoBI, eActivityCode.ProductionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Horas de tiempo muerto", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeOutSheetBI, eActivityCode.ProductionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Horas consumidas x O.T.", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetWOBI, eActivityCode.ProductionReport)
 
 
     'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
@@ -112,6 +119,7 @@ Public Class MenuFactory
     mLastGroup = mMenuList.AddNewGroup("Configuracion", 0, eActivityCode.Configuration, True)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Tablas de Configuracion", eMenuIconType.Admin, AddressOf clsMenuFunctions.LookUpLists, eActivityCode.Configuration)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Configuración de Etiquetas de Pallets de Madera", eMenuIconType.Admin, AddressOf clsMenuFunctions.ReportDesignerWoodPallet, eActivityCode.Configuration)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Horas Laborales", eMenuIconType.Admin, AddressOf clsMenuFunctions.ShiftDetails, eActivityCode.Configuration)
 
 
     Return mMenuList
@@ -443,6 +451,31 @@ Class clsMenuFunctions
     frmWoodMaterialRequirement.OpenFormAsMDIChild(rParentForm, rRTISGlobal, rRTISUserSession.CreateMainDBConn, 0)
   End Sub
 
+  Public Shared Sub ProjectTracker(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmPhaseManagement.OpenForm(AppRTISGlobal.GetInstance, rRTISUserSession.CreateMainDBConn, rParentForm)
+  End Sub
+
+  Public Shared Sub TimeOutSheetBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewTimeOutSheet.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+  Public Shared Sub TimeSheetWOBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewTimeSheetOT.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
+
+  Public Shared Sub ShiftDetails(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    frmShiftDetails.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+  End Sub
+
+  Public Shared Sub ProjectReviewAll(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    frmProjectReviewAll.OpenModal(rRTISUserSession.CreateMainDBConn)
+
+  End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 

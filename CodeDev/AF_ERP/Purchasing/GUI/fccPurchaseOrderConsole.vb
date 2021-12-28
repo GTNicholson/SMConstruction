@@ -100,6 +100,7 @@ Public Class fccPurchaseOrderConsole
           mPOItem.StockItemID = mMatReqProc.StockItem.StockItemID
           mPOItem.Description = mMatReqProc.StockItem.Description
           mPOItem.QtyRequired = mMatReqProc.ToOrder
+          mPOItem.UoM = mMatReqProc.StockItem.UoM
 
           mPOIAllocation = New dmPurchaseOrderItemAllocation
 
@@ -201,6 +202,7 @@ Public Class fccPurchaseOrderConsole
           mPOItem = New dmPurchaseOrderItem
           mPOItem.StockItemID = mStockItemProcessor.StockItemID
           mPOItem.Description = mStockItemProcessor.Description
+          mPOItem.UoM = mStockItemProcessor.UoM
 
           mPOIAllocation = New dmPurchaseOrderItemAllocation
           mPOIAllocation.CallOffID = 0 ''this 0 is for Stock
