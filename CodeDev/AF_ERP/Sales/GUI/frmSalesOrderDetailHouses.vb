@@ -875,6 +875,39 @@ Public Class frmSalesOrderDetailHouses
 
   End Sub
 
+
+
+  Public Function CreateReportPDFWO(ByVal vParentType As eParentType, ByVal vDocumentType As eDocumentType, ByVal vOverride As Boolean, ByRef vReport As DevExpress.XtraReports.UI.XtraReport) As String
+    Dim mFilePath As String
+    Dim mFileName As String
+    Dim mExportDirectory As String = String.Empty
+    ' Dim mReport As DevExpress.XtraReports.UI.XtraReport
+
+    mFileName = "WO Pack_OrderNo_" & pFormController.SalesOrder.OrderNo
+
+    mExportDirectory = IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.SalesOrderFileFolderSys, pFormController.SalesOrder.DateEntered.Year, clsGeneralA.GetFileSafeName(pFormController.SalesOrder.SalesOrderID.ToString("00000")))
+
+    mFileName &= ".pdf"
+    mFileName = clsGeneralA.GetFileSafeName(mFileName)
+
+    mExportDirectory = clsGeneralA.GetDirectorySafeString(mExportDirectory)
+    If IO.Directory.Exists(mExportDirectory) = False Then
+      IO.Directory.CreateDirectory(mExportDirectory)
+    End If
+
+    mFilePath = IO.Path.Combine(mExportDirectory, mFileName)
+    If vReport IsNot Nothing Then
+
+      pFormController.CreateSalesOrderPack(vReport, mFilePath)
+
+      vReport.Dispose()
+
+    End If
+
+    Return mFilePath
+
+  End Function
+
   Private Sub btnedCustomer_EditValueChanged(sender As Object, e As EventArgs) Handles btnedCustomer.EditValueChanged
 
   End Sub
@@ -1568,21 +1601,190 @@ Public Class frmSalesOrderDetailHouses
     Dim mProductReqProc As clsProductRequirementProcessor
     Try
 
-      mProductReqProc = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
+      Select Case e.Button.Properties.Tag
+        Case "DeleteProduct"
+          mProductReqProc = TryCast(gvProductsRequired.GetFocusedRow, clsProductRequirementProcessor)
 
-      If mProductReqProc IsNot Nothing Then
-        pFormController.RemoveProductRequirement(mProductReqProc.ProductRequirement)
-        pFormController.ProductRequirementProcessors.Remove(mProductReqProc)
-        pFormController.LoadProductRequirement()
-        grdProductsRequired.DataSource = pFormController.ProductRequirementProcessors
-        gvProductsRequired.RefreshData()
-      End If
+          If mProductReqProc IsNot Nothing Then
+            pFormController.RemoveProductRequirement(mProductReqProc.ProductRequirement)
+            pFormController.ProductRequirementProcessors.Remove(mProductReqProc)
+            pFormController.LoadProductRequirement()
+            grdProductsRequired.DataSource = pFormController.ProductRequirementProcessors
+            gvProductsRequired.RefreshData()
+          End If
+
+        Case "PrintWOPack"
+
+          PrintWOPacks()
+
+      End Select
+
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
 
     End Try
   End Sub
+
+  Private Sub PrintWOPacks()
+    Dim mFilePath As String = String.Empty
+    Dim mOK As Boolean = True
+
+    Try
+
+      If mOK Then
+        pFormController.SaveObjects()
+
+
+
+        AddWorkOrderDocument()
+        RefreshControls()
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+  End Sub
+
+  Public Sub AddWorkOrderDocument()
+    Dim mReport As repWorkOrderDoc
+    Dim mFilePath As String
+    Dim mRepMerge As New DevExpress.XtraReports.UI.XtraReport
+
+    Dim mMatReqInfos As New colMaterialRequirementInfos
+    Dim mMatReqInfoChanges As New colMaterialRequirementInfos
+    Dim mOtherMatInfoChanges As New colMaterialRequirementInfos
+    Dim mWorkOrders As New colWorkOrders
+    Dim mWhere As String = ""
+
+
+    For Each mPRP As clsProductRequirementProcessor In pFormController.ProductRequirementProcessors
+
+      If mPRP.Workorderno <> "" Then
+
+        If mWhere <> "" Then mWhere &= ","
+
+        mWhere &= "'" & mPRP.Workorderno & "'"
+      End If
+
+    Next
+
+    pFormController.LoadWorkOrderByWorkOrderNoAndProductID(mWorkOrders, mWhere)
+
+    If mWorkOrders IsNot Nothing Then
+
+      For Each mWO As dmWorkOrder In mWorkOrders
+
+        mReport = GetReport(eDocumentType.WorkOrderDoc, mWO)
+
+        For Each mRepPage As DevExpress.XtraPrinting.Page In mReport.Pages
+          mRepMerge.Pages.Add(mRepPage)
+        Next
+
+      Next
+
+
+
+    End If
+    mFilePath = CreateReportPDFWO(eParentType.WorkOrder, eDocumentType.WorkOrderDoc, True, mRepMerge)
+    If IO.File.Exists(mFilePath) Then
+      frmPDFViewer.OpenFormAsModal(Me.ParentForm, mFilePath)
+    End If
+
+
+
+
+  End Sub
+
+  Public Function GetReport(ByVal vDocType As eDocumentType, ByVal vWorkOrder As dmWorkOrder) As DevExpress.XtraReports.UI.XtraReport
+    Dim mRetVal As DevExpress.XtraReports.UI.XtraReport = Nothing
+    Dim mProductStructure As dmProductStructure
+    Dim mFinishDate As DateTime
+
+    Select Case vDocType
+      Case eDocumentType.WorkOrderDoc
+
+
+        If vWorkOrder IsNot Nothing Then
+          Dim mProjectName As String = ""
+          Dim mCustomerName As String = ""
+          Dim mOrderNo As String = ""
+
+          mProjectName = pFormController.SalesOrder.ProjectName
+          mCustomerName = pFormController.SalesOrder.Customer.CompanyName
+          mOrderNo = pFormController.SalesOrder.OrderNo
+          mFinishDate = pFormController.SalesOrder.FinishDate
+
+          UpdateTempInStockQty(vWorkOrder)
+          UpdateTempThickness(vWorkOrder)
+
+          mRetVal = repWorkOrderDoc.GenerateReport(vWorkOrder, mProjectName, mCustomerName, mOrderNo, mFinishDate)
+
+        End If
+
+
+
+
+    End Select
+
+    Return mRetVal
+  End Function
+
+  Private Sub UpdateTempThickness(ByVal vWorkOrder As dmWorkOrder)
+    Dim mWoodMatReq As dmMaterialRequirement
+
+    Dim mdso As New dsoStock(pFormController.DBConn)
+    Dim mstockitem As dmStockItem
+
+
+    For Each mWoodMatReq In vWorkOrder.WoodMaterialRequirements
+
+      If mWoodMatReq.StockItemID > 0 Then
+
+        mstockitem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWoodMatReq.StockItemID)
+
+        If mstockitem IsNot Nothing Then
+          mWoodMatReq.ThicknessInch = mstockitem.Thickness
+        End If
+
+      End If
+
+    Next
+
+
+
+  End Sub
+
+  Private Sub UpdateTempInStockQty(ByVal vWorkOrder As dmWorkOrder)
+    Dim mStockItemMatReq As dmMaterialRequirement
+
+    Dim mStockItemLocations As New colStockItemLocations
+
+    Dim mdso As New dsoStock(pFormController.DBConn)
+
+    mdso.LoadStockItemLocationsByWhere(mStockItemLocations, "")
+
+    For Each mSIL As dmStockItemLocation In mStockItemLocations
+
+      mStockItemMatReq = vWorkOrder.StockItemMaterialRequirements.ItemFromStockItemID(mSIL.StockItemID)
+
+      If mStockItemMatReq IsNot Nothing Then
+        mStockItemMatReq.TempAllocatedQty = mSIL.Qty
+
+      End If
+
+
+    Next
+
+
+
+  End Sub
+
+
+
+
 
   Private Sub cheIsVAT_CheckedChanged(sender As Object, e As EventArgs) Handles cheIsVAT.CheckedChanged
     pFormController.IsVAT = cheIsVAT.EditValue

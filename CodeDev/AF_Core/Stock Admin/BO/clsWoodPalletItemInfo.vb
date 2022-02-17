@@ -384,7 +384,16 @@ Public Class clsWoodPalletItemInfo
     End Get
   End Property
 
+  Public ReadOnly Property ProjectNameWithReference As String
+    Get
+      Dim mRetVal As String = ""
 
+
+      mRetVal = pSalesOrder.OrderNo & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
 End Class
 
 Public Class colWoodPalletItemInfos : Inherits List(Of clsWoodPalletItemInfo)

@@ -318,7 +318,7 @@ Partial Class frmSalesOrderReview_New
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1752, 493)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1720, 493)
         Me.TableLayoutPanel1.TabIndex = 10
         '
         'GroupControl4
@@ -329,9 +329,9 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl4.Controls.Add(Me.grdMaterials)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(1387, 3)
+        Me.GroupControl4.Location = New System.Drawing.Point(1361, 3)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(362, 240)
+        Me.GroupControl4.Size = New System.Drawing.Size(356, 240)
         Me.GroupControl4.TabIndex = 11
         Me.GroupControl4.Text = "Detalle de Consumo de Materiales"
         '
@@ -346,7 +346,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdMaterials.Location = New System.Drawing.Point(2, 23)
         Me.grdMaterials.Name = "grdMaterials"
         Me.grdMaterials.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
-        Me.grdMaterials.Size = New System.Drawing.Size(358, 215)
+        Me.grdMaterials.Size = New System.Drawing.Size(352, 215)
         Me.grdMaterials.TabIndex = 3
         '
         'PivotGridField12
@@ -420,9 +420,9 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdTimeSheetEntry)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(511, 3)
+        Me.GroupControl5.Location = New System.Drawing.Point(501, 3)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(870, 240)
+        Me.GroupControl5.Size = New System.Drawing.Size(854, 240)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Detalle de Mano de Obra por OT"
         '
@@ -455,7 +455,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdTimeSheetEntry.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
         Me.grdTimeSheetEntry.OptionsData.DataFieldUnboundExpressionMode = DevExpress.XtraPivotGrid.DataFieldUnboundExpressionMode.UseSummaryValues
         Me.grdTimeSheetEntry.OptionsView.ShowColumnGrandTotalHeader = False
-        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(866, 215)
+        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(850, 215)
         Me.grdTimeSheetEntry.TabIndex = 3
         '
         'PivotGridField369
@@ -584,7 +584,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(502, 240)
+        Me.GroupControl3.Size = New System.Drawing.Size(492, 240)
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Detalle de PT Consumido por OT"
         '
@@ -604,7 +604,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdSpeciesByOT.Name = "grdSpeciesByOT"
         Me.grdSpeciesByOT.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
         Me.grdSpeciesByOT.OptionsView.ShowFilterHeaders = False
-        Me.grdSpeciesByOT.Size = New System.Drawing.Size(498, 215)
+        Me.grdSpeciesByOT.Size = New System.Drawing.Size(488, 215)
         Me.grdSpeciesByOT.TabIndex = 3
         '
         'PivotGridField1
@@ -751,7 +751,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrTimeSheet.Legend.Shadow.Size = 1
         Me.chrTimeSheet.Legend.Shadow.Visible = True
         Me.chrTimeSheet.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrTimeSheet.Location = New System.Drawing.Point(511, 249)
+        Me.chrTimeSheet.Location = New System.Drawing.Point(501, 249)
         Me.chrTimeSheet.Name = "chrTimeSheet"
         Me.chrTimeSheet.Padding.Bottom = 2
         Me.chrTimeSheet.Padding.Left = 2
@@ -802,7 +802,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrTimeSheet.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrTimeSheet.SeriesTemplate.ToolTipSeriesPattern = "{S:#.00}"
         Me.chrTimeSheet.SeriesTemplate.View = StackedBarSeriesView3
-        Me.chrTimeSheet.Size = New System.Drawing.Size(870, 241)
+        Me.chrTimeSheet.Size = New System.Drawing.Size(854, 241)
         Me.chrTimeSheet.TabIndex = 27
         ChartTitle1.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle1.Text = "Costo M.O. por O.T."
@@ -855,7 +855,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrOtherExpenses.Legend.Shadow.Size = 1
         Me.chrOtherExpenses.Legend.Shadow.Visible = True
         Me.chrOtherExpenses.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrOtherExpenses.Location = New System.Drawing.Point(1387, 249)
+        Me.chrOtherExpenses.Location = New System.Drawing.Point(1361, 249)
         Me.chrOtherExpenses.Name = "chrOtherExpenses"
         Me.chrOtherExpenses.Padding.Bottom = 2
         Me.chrOtherExpenses.Padding.Left = 2
@@ -889,7 +889,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrOtherExpenses.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrOtherExpenses.SeriesTemplate.ToolTipPointPattern = "{V:#.00}"
         Me.chrOtherExpenses.SeriesTemplate.View = StackedBarSeriesView5
-        Me.chrOtherExpenses.Size = New System.Drawing.Size(362, 241)
+        Me.chrOtherExpenses.Size = New System.Drawing.Size(356, 241)
         Me.chrOtherExpenses.TabIndex = 28
         ChartTitle2.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle2.Text = "Costo de Consumo de Materiales"
@@ -980,7 +980,7 @@ Partial Class frmSalesOrderReview_New
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrWoodPalletItemInfo.SeriesTemplate.View = StackedBarSeriesView7
-        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(502, 241)
+        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(492, 241)
         Me.chrWoodPalletItemInfo.TabIndex = 29
         ChartTitle3.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle3.Text = "Costos P.T. por Especie"
@@ -999,7 +999,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl7.Controls.Add(Me.grdSalesOrderPhaseItemInfo)
         Me.GroupControl7.Location = New System.Drawing.Point(1, 722)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(1754, 295)
+        Me.GroupControl7.Size = New System.Drawing.Size(1722, 279)
         Me.GroupControl7.TabIndex = 7
         Me.GroupControl7.Text = "Costo por línea de artículo de venta"
         '
@@ -1010,7 +1010,7 @@ Partial Class frmSalesOrderReview_New
         Me.grdSalesOrderPhaseItemInfo.MainView = Me.gvSalesOrderPhaseItemInfo
         Me.grdSalesOrderPhaseItemInfo.Name = "grdSalesOrderPhaseItemInfo"
         Me.grdSalesOrderPhaseItemInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemTextEdit1, Me.repoNumberFormat})
-        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1750, 267)
+        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1718, 251)
         Me.grdSalesOrderPhaseItemInfo.TabIndex = 1
         Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItemInfo})
         '
@@ -1482,7 +1482,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl2.Controls.Add(Me.LabelControl27)
         Me.GroupControl2.Location = New System.Drawing.Point(3, 102)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1752, 115)
+        Me.GroupControl2.Size = New System.Drawing.Size(1720, 115)
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Resumen de Costos"
         '
@@ -2044,7 +2044,7 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl1.Controls.Add(Me.LabelControl11)
         Me.GroupControl1.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1752, 93)
+        Me.GroupControl1.Size = New System.Drawing.Size(1720, 93)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Detalle General de la Venta"
         '

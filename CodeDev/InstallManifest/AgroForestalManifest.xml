@@ -545,5 +545,16 @@
    <AuxFiles>
     <Filename>BITimeSheetSummaryOT.xml</Filename>
   </AuxFiles>
+  
+  <AuxFiles>
+    <Filename>BITimeSheetSummaryEmployee.xml</Filename>
+  </AuxFiles>
+
+  <AuxFiles>
+    <Filename>BITimeSheetListEmployee.xml</Filename>
+  </AuxFiles>
+  <AuxFiles>
+    <Filename>BITimeSheetListEmployeeSummary.xml</Filename>
+  </AuxFiles>
 
 </AppUpdateManifest>

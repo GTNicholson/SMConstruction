@@ -568,6 +568,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mRetVal
   End Function
 
+
   Public Function LoadInvoiceDown(ByRef rInvoice As dmInvoice, ByVal vID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoInvoice
@@ -1515,14 +1516,19 @@ Public Class dsoSalesOrder : Inherits dsoBase
 
   Public Function LoadWorkOrderByWhere(ByRef rWorkOrders As colWorkOrders, ByVal vWhere As String) As Boolean
     Dim mOk As Boolean
-
+    Dim mWOs As New colWorkOrders
     Try
 
       If pDBConn.Connect Then
         Dim mdto As New dtoWorkOrder(pDBConn)
 
-        mOk = mdto.LoadWorkOrderCollectionByWhere(rWorkOrders, vWhere)
+        mOk = mdto.LoadWorkOrderCollectionByWhere(mWOs, vWhere)
 
+
+        For Each mWO As dmWorkOrder In mWOs
+          LoadWorkOrderDown(mWO, mWO.WorkOrderID)
+          rWorkOrders.Add(mWO)
+        Next
         mdto = Nothing
       End If
 

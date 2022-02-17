@@ -22,6 +22,7 @@ Partial Class frmListToStockTake
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmListToStockTake))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.btnGenerate = New DevExpress.XtraEditors.SimpleButton()
         Me.cboItemType = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -94,6 +95,7 @@ Partial Class frmListToStockTake
         Me.ClientSize = New System.Drawing.Size(340, 154)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmListToStockTake"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

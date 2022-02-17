@@ -158,6 +158,7 @@
     <Compile Include="App\appLockEntitys.vb" />
     <Compile Include="App\appXtraGridPrintExport.vb" />
     <Compile Include="App\BO\appRefLists.vb" />
+    <Compile Include="App\BO\dmExcelMapping.vb" />
     <Compile Include="App\BO\colRTISUsers.vb" />
     <Compile Include="App\BO\clsRecipientFinderFactory.vb" />
     <Compile Include="App\BO\clsContextConverterFactory.vb" />
@@ -172,7 +173,11 @@
     <Compile Include="App\BO\dmOutputDocument.vb" />
     <Compile Include="App\BO\dmVATRate.vb" />
     <Compile Include="App\BO\dmWoodSpecie.vb" />
+    <Compile Include="App\modValueItemExtensions.vb" />
+    <Compile Include="App\iExcelNumbericRef.vb" />
     <Compile Include="App\clsMilestoneDependentOn.vb" />
+    <Compile Include="App\DSO\dsoExcelMapping.vb" />
+    <Compile Include="App\DSO\dtoExcelMapping.vb" />
     <Compile Include="App\DSO\dtoTempPallet.vb" />
     <Compile Include="App\DSO\dtoWoodTypeValue.vb" />
     <Compile Include="App\DSO\dtoThicknessValue.vb" />
@@ -193,6 +198,7 @@
     <Compile Include="App\DSO\dtoOutputDocument.vb" />
     <Compile Include="App\DSO\dtoVATRate.vb" />
     <Compile Include="App\DSO\dtoWoodSpecie.vb" />
+    <Compile Include="BIReports\DSO\dsoBITimeSheetEmpleado.vb" />
     <Compile Include="BIReports\DSO\dsoBIPODeliveryItemInfo.vb" />
     <Compile Include="BIReports\DSO\dsoBIInvoice.vb" />
     <Compile Include="BIReports\DSO\dsoBIPODelivery.vb" />
@@ -264,6 +270,7 @@
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
+    <Compile Include="Production\BO\clsWorkOrderCostingSummaryInfo.vb" />
     <Compile Include="Production\BO\dmWorkOrderPickStatus.vb" />
     <Compile Include="Production\BO\dmWorkOrderMatReqCategoryStatus.vb" />
     <Compile Include="Production\BO\clsMaterialRequirementInfo.vb" />
@@ -427,6 +434,8 @@
     <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
     <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\dmWoodGuideItemSummary.vb" />
+    <Compile Include="Stock Admin\BO\clsWoodReceptionSummaryInfo.vb" />
     <Compile Include="Stock Admin\BO\dmWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\BO\clsStockCostingPricing.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemInfo.vb" />
@@ -451,6 +460,7 @@
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
     <Compile Include="Stock Admin\BO\StockItemDefManagers.vb" />
+    <Compile Include="Stock Admin\DSO\dtoWoodGuideItemSummary.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\DSO\dsoReception.vb" />
     <Compile Include="Stock Admin\DSO\dsoStock.vb" />

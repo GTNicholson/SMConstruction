@@ -185,11 +185,11 @@ Partial Class uctEmployeeDetailsReplacement
         'grdRateOfPay
         '
         Me.grdRateOfPay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdRateOfPay.Location = New System.Drawing.Point(2, 22)
+        Me.grdRateOfPay.Location = New System.Drawing.Point(2, 21)
         Me.grdRateOfPay.MainView = Me.gvRateOfPay
         Me.grdRateOfPay.Name = "grdRateOfPay"
         Me.grdRateOfPay.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitchkcboShiftOptions})
-        Me.grdRateOfPay.Size = New System.Drawing.Size(321, 177)
+        Me.grdRateOfPay.Size = New System.Drawing.Size(321, 178)
         Me.grdRateOfPay.TabIndex = 36
         Me.grdRateOfPay.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvRateOfPay})
         '

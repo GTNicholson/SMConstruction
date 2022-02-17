@@ -39,6 +39,10 @@ Public Class MenuFactory
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informe de Materiales", eMenuIconType.Report, AddressOf clsMenuFunctions.MaterialRequirementInfoBI, eActivityCode.ProductionReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Horas de tiempo muerto", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeOutSheetBI, eActivityCode.ProductionReport)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Horas consumidas x O.T.", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetWOBI, eActivityCode.ProductionReport)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Horas Totales consumidas x Empleado", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetEmployeeBI, eActivityCode.ProductionReport)
+
+
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Resumen de Costos por OT ", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderCostingSummary, eActivityCode.WorkOrderCostReport)
 
 
     'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
@@ -88,6 +92,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Recepción de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WoodReception, eActivityCode.WoodReception)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("OT Proceso de Madera", eMenuIconType.Grid, AddressOf clsMenuFunctions.WorkOrderWoodProcessBrowse, eActivityCode.WorkOrderWoodProcess)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Madera", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfosWood, eActivityCode.WoodInventory)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Entrada de Horas Laborales", eMenuIconType.Console, AddressOf clsMenuFunctions.TimeSheetEntryWood, eActivityCode.TimeSheetEntry)
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Madera", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.WoodGroup)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones de Madera.", eMenuIconType.Report, AddressOf clsMenuFunctions.WoodStockItemTransactionInfoBI, eActivityCode.TransactionReport)
@@ -277,7 +282,11 @@ Class clsMenuFunctions
   End Sub
 
   Public Shared Sub TimeSheetEntry(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
-    frmTimeSheetEntry.OpenFormModal(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance)
+    frmTimeSheetEntry.OpenFormModal(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, frmTimeSheetEntry.eTSEEmode.Production)
+  End Sub
+
+  Public Shared Sub TimeSheetEntryWood(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmTimeSheetEntry.OpenFormModal(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, frmTimeSheetEntry.eTSEEmode.Wood)
   End Sub
 
   Public Shared Sub SalesRegion(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
@@ -467,7 +476,11 @@ Class clsMenuFunctions
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
 
-
+  Public Shared Sub TimeSheetEmployeeBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewTimeSheetEmployee.CreateBIReportViewFactoryTimeSheet(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
   Public Shared Sub ShiftDetails(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     frmShiftDetails.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal)
   End Sub
@@ -475,6 +488,10 @@ Class clsMenuFunctions
   Public Shared Sub ProjectReviewAll(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     frmProjectReviewAll.OpenModal(rRTISUserSession.CreateMainDBConn)
 
+  End Sub
+
+  Public Shared Sub WorkOrderCostingSummary(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    frmWorkOrderCostingReview.OpenModal(rRTISUserSession.CreateMainDBConn)
   End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)

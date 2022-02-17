@@ -8,6 +8,7 @@ Public Class BIReportViewTimeSheetOT
     TimeSheetList = 1
     TimeSheetSummary = 2
     TimeSheetByDescription = 3
+    TimeSheetByEmployee = 4
   End Enum
 
   Private Enum eBIReportDefs
@@ -107,6 +108,13 @@ Public Class BIReportViewTimeSheetOT
     mRepLayout.LayoutName = "Resumen de Horas de tiempo muerto x O.T."
     vReportSource.BIGridLayouts.Add(mRepLayout)
 
+    mRepLayout = New dmBIGridLayout
+    mRepLayout.BIGridLayoutID = eBITimeSheetLayoutID.TimeSheetByEmployee
+    mRepLayout.InterfaceType = 0
+    mRepLayout.ParentLayoutID = 0
+    mRepLayout.LayoutFileName = "BITimeSheetSummaryEmployee.xml"
+    mRepLayout.LayoutName = "Análisis de Horas Trabajadas por Empleado"
+    vReportSource.BIGridLayouts.Add(mRepLayout)
 
   End Sub
 

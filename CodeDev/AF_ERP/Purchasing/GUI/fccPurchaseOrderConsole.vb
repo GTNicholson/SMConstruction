@@ -126,6 +126,8 @@ Public Class fccPurchaseOrderConsole
             If mAlloc.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID Then
               mExistingAllocation = mAlloc
               Exit For
+            Else
+              mExistingAllocation = Nothing
             End If
           Next
           If mExistingAllocation Is Nothing Then '//add a new allocation to the exiting po item

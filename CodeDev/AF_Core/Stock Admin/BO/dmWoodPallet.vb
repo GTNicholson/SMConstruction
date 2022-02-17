@@ -391,6 +391,30 @@ Public Class dmWoodPallet : Inherits dmBase
       Return mRetVal
     End Get
   End Property
+
+  Public Function GetDiameterAverageItems(ByVal vLength As Decimal) As Decimal
+    Dim mRetVal As Decimal
+    Dim mCount As Integer = 0
+    If WoodPalletItems.Count > 0 Then
+
+      For Each mWPI In WoodPalletItems
+        If mWPI.Length = vLength Then
+          mRetVal += mWPI.Thickness
+          mCount = mCount + 1
+        End If
+
+      Next
+
+      If mCount > 0 Then
+        mRetVal = Math.Round(mRetVal / mCount, 0, MidpointRounding.AwayFromZero)
+
+      Else
+        mRetVal = 0
+      End If
+    End If
+
+      Return mRetVal
+  End Function
 End Class
 
 
@@ -446,6 +470,20 @@ Public Class colWoodPallets : Inherits colBase(Of dmWoodPallet)
         If mWP.TotalVolume = 0 Then
           mWP.TotalVolume = Math.Round(clsWoodPalletSharedFuncs.GetTotalBoardFeet(mWP), 4, MidpointRounding.AwayFromZero)
         End If
+      End If
+    Next
+
+    Return mRetVal
+  End Function
+
+  Public Function ItemFromCardNumber(ByVal vCardNumber As String) As dmWoodPallet
+    Dim mRetVal As dmWoodPallet = Nothing
+
+    For Each mItem In MyBase.Items
+
+      If mItem.CardNumber = vCardNumber Then
+        mRetVal = mItem
+        Exit For
       End If
     Next
 

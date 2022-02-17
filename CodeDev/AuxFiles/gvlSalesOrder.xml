@@ -55,6 +55,7 @@
   <property name="OptionsView" isnull="true" iskey="true">
     <property name="ColumnAutoWidth">false</property>
     <property name="ShowAutoFilterRow">true</property>
+    <property name="ShowFooter">true</property>
     <property name="ShowGroupPanel">false</property>
     <property name="EnableAppearanceOddRow">true</property>
     <property name="EnableAppearanceEvenRow">true</property>
@@ -88,7 +89,7 @@
     </property>
   </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="13">
+  <property name="Columns" iskey="true" value="14">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
@@ -142,7 +143,7 @@
       <property name="Caption">Estado de Orden</property>
       <property name="FieldName">OrderStatusENUM</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">89</property>
     </property>
@@ -154,7 +155,7 @@
       <property name="Caption">Tipo de Venta</property>
       <property name="FieldName">OrderTypeID</property>
       <property name="ColumnEditName">repitDateDefault</property>
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">70</property>
     </property>
@@ -194,7 +195,7 @@
       <property name="Caption">País</property>
       <property name="FieldName">SalesAreaID</property>
       <property name="ColumnEditName">RepositoryItemTextEdit1</property>
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">71</property>
       <property name="GroupFormat" isnull="true" iskey="true">
@@ -230,7 +231,7 @@
       <property name="Caption">Empleado</property>
       <property name="FieldName">FirstName</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
       <property name="Width">140</property>
     </property>
@@ -239,9 +240,26 @@
       <property name="Caption">Costo de Envío</property>
       <property name="FieldName">ShippingCost</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">122</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="Name">GridColumn4</property>
+      <property name="Caption">Valor Total</property>
+      <property name="FieldName">TotalValue</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">5</property>
+      <property name="Visible">true</property>
+      <property name="Width">97</property>
+      <property name="Summary" iskey="true" value="1">
+        <property name="Item1" isnull="true" iskey="true">
+          <property name="Tag" isnull="true" />
+          <property name="FieldName">TotalValue</property>
+          <property name="SummaryType">Sum</property>
+          <property name="DisplayFormat">{0:0.##}</property>
+        </property>
+      </property>
     </property>
   </property>
   <property name="ViewCaption" />

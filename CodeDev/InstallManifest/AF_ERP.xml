@@ -1,0 +1,31 @@
+<rtisSettingFile>
+  <ConnInfo>
+    <ConnName>MainConn</ConnName>
+    <ServerName>DefaultServer</ServerName>
+    <DatabaseName>DefaultDatabase</DatabaseName>
+    <UserName>DefaultUser</UserName>
+    <UserPrompt>PFzzFuNfglEehmFOyQh3uQ_x003D__x003D_</UserPrompt>
+    <Protocol>0</Protocol>
+    <ExplicitConnectionString />
+  </ConnInfo>
+  <StringSetting>
+    <SettingName>DatasetName</SettingName>
+    <SettingValue />
+  </StringSetting>
+  <StringSetting>
+    <SettingName>DefaultErrorLogPath</SettingName>
+    <SettingValue />
+  </StringSetting>
+  <StringSetting>
+    <SettingName>ServerSettingsPath</SettingName>
+    <SettingValue>\\192.168.2.5\Realtime\RTIS\AgroForestal</SettingValue>
+  </StringSetting>
+  <StringSetting>
+    <SettingName>UpdateManifestFilePath</SettingName>
+    <SettingValue />
+  </StringSetting>
+  <IntegerSetting>
+    <SettingName>DataSetID</SettingName>
+    <SettingValue>1</SettingValue>
+  </IntegerSetting>
+</rtisSettingFile>

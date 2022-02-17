@@ -537,10 +537,10 @@ Partial Class frmPODelivery
         'grdPurchaseOrderItemInfo
         '
         Me.grdPurchaseOrderItemInfo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdPurchaseOrderItemInfo.Location = New System.Drawing.Point(2, 25)
+        Me.grdPurchaseOrderItemInfo.Location = New System.Drawing.Point(2, 26)
         Me.grdPurchaseOrderItemInfo.MainView = Me.gvMaterialRequirementInfos
         Me.grdPurchaseOrderItemInfo.Name = "grdPurchaseOrderItemInfo"
-        Me.grdPurchaseOrderItemInfo.Size = New System.Drawing.Size(1281, 346)
+        Me.grdPurchaseOrderItemInfo.Size = New System.Drawing.Size(1281, 345)
         Me.grdPurchaseOrderItemInfo.TabIndex = 0
         Me.grdPurchaseOrderItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementInfos})
         '

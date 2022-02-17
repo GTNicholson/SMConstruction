@@ -889,7 +889,7 @@ Partial Class frmStockTake
         Me.grpItemDetail.Name = "grpItemDetail"
         Me.grpItemDetail.Size = New System.Drawing.Size(1359, 577)
         Me.grpItemDetail.TabIndex = 94
-        Me.grpItemDetail.Text = "Stock Items"
+        Me.grpItemDetail.Text = "Artículos de Inventario"
         '
         'PanelControl1
         '

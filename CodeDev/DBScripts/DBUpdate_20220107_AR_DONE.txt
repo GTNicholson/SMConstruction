@@ -1,0 +1,7 @@
+alter table WoodPalletItem
+alter column Length decimal (12,5)
+go
+
+alter table WoodPalletItem
+alter column VolumeM3 decimal (12,5)
+go

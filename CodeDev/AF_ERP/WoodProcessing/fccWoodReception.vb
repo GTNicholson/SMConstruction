@@ -14,6 +14,8 @@ Public Class fccWoodReception
   Private pBrowseRefreshTracker As clsBasicBrowseRefreshTracker
   Private pCurrentSourceWoodPallet As dmWoodPallet
   Private pSourceWoodPalletItemEditors As colWoodPalletItemEditors
+  Private pWoodGuideItemSummarys As colWoodGuideItemSummarys
+
   Public Property DBConn() As RTIS.DataLayer.clsDBConnBase
     Get
       DBConn = pDBConn
@@ -28,6 +30,7 @@ Public Class fccWoodReception
     pWoodReception = New dmReception
     pRTISGlobal = rRTISGlobal
     pPrimaryKeyID = vReceptionID
+    pWoodGuideItemSummarys = New colWoodGuideItemSummarys
     ' pCurrentSourceWoodPallet = New dmWoodPallet
   End Sub
 
@@ -86,10 +89,20 @@ Public Class fccWoodReception
     End Set
   End Property
 
+  Public Property WoodGuideItemSummary As colWoodGuideItemSummarys
+    Get
+      Return pWoodGuideItemSummarys
+    End Get
+    Set(value As colWoodGuideItemSummarys)
+      pWoodGuideItemSummarys = value
+    End Set
+  End Property
+
 
   Public Function LoadObject() As Boolean
 
     Dim mdsoReception As New dsoReception(DBConn)
+    Dim mdso As New dsoStock(pDBConn)
     Dim mOK As Boolean
     Dim mWhere As String = ""
     Try
@@ -101,6 +114,7 @@ Public Class fccWoodReception
 
         mOK = mdsoReception.LoadReceptionDown(pWoodReception, PrimaryKeyID)
 
+        mdso.LoadWoodGuideItemSummarys(pWoodGuideItemSummarys, PrimaryKeyID)
 
       Else
         pWoodReception.ReceptionDate = Today
@@ -379,5 +393,55 @@ Public Class fccWoodReception
 
 
 
+  End Sub
+
+  Public Sub CreateWoodGuideItemSummarys()
+    Dim mStockItem As dmStockItem
+    Dim mNewWGIS As dmWoodGuideItemSummary
+    Dim mdso As New dsoStock(pDBConn)
+    pWoodGuideItemSummarys = New colWoodGuideItemSummarys
+    Try
+
+      For Each mWP In CurrentReception.WoodPallets
+        For Each mWPI In mWP.WoodPalletItems
+
+          mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mWPI.StockItemID)
+
+          If mStockItem IsNot Nothing Then
+
+
+            mNewWGIS = pWoodGuideItemSummarys.GetItemFromSpeciesAndLength(mStockItem.Species, mWPI.Length, mWPI.Thickness)
+
+            If mNewWGIS Is Nothing Then
+              mNewWGIS = New dmWoodGuideItemSummary
+              mNewWGIS.WoodReceptionID = CurrentReception.ReceptionID
+              mNewWGIS.SpeciesID = mStockItem.Species
+              mNewWGIS.Length = mWPI.Length
+              mNewWGIS.Quantity = 1
+
+              mNewWGIS.TempTotalDiameterSUM = mWPI.Thickness
+              pWoodGuideItemSummarys.Add(mNewWGIS)
+            Else ''//Update the average and other fields
+              mNewWGIS.Quantity += 1
+              mNewWGIS.TempTotalDiameterSUM += mWPI.Thickness
+            End If
+
+
+          End If
+
+
+        Next
+      Next
+
+      For Each mWGIS As dmWoodGuideItemSummary In pWoodGuideItemSummarys
+        mWGIS.AverageDiameter = Math.Round(mWGIS.TempTotalDiameterSUM / mWGIS.Quantity, 5, MidpointRounding.AwayFromZero)
+        mWGIS.VolumeM3 = clsWoodPalletSharedFuncs.GetTrunkVolume(mWGIS.Length, mWGIS.AverageDiameter, mWGIS.Quantity)
+      Next
+
+      mdso.SaveWoodGuideItemSummarys(pWoodGuideItemSummarys, CurrentReception.ReceptionID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
   End Sub
 End Class

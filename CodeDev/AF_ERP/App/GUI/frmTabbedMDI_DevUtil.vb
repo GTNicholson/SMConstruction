@@ -1164,7 +1164,7 @@ Public Class frmTabbedMDI_DevUtil
 
             End If
           Else
-              If mCallOffID IsNot Nothing Then
+            If mCallOffID IsNot Nothing Then
               mSQL = "select top 1 SalesOrderPhaseItemID from SalesOrderPhaseItem SOPI "
               mSQL &= " inner join SalesOrderItem SOI on SOI.SalesOrderItemID = SOPI.SALESITEMID"
               mSQL &= String.Format(" where SalesOrderPhaseID={0}", mCallOffID)
@@ -1187,7 +1187,7 @@ Public Class frmTabbedMDI_DevUtil
 
           End If
 
-          End If
+        End If
 
       Next
 
@@ -1421,4 +1421,88 @@ Public Class frmTabbedMDI_DevUtil
 
 
   End Sub
+
+  Private Sub btnGeneratePickingSI_LinkClicked(sender As Object, e As NavBarLinkEventArgs) Handles btnGeneratePickingSI.LinkClicked
+
+    Try
+      Dim mdsoTran As dsoStockTransactions
+      Dim mExchangeValue As Decimal
+      Dim mTranDate As DateTime
+      Dim mdsoStock As dsoStock
+      Dim mSIL As New dmStockItemLocation
+      Dim mMatReqProcessorsToRequisa As New colMaterialRequirementProcessors
+      Dim mDBConnBase As clsDBConnBase = My.Application.RTISUserSession.CreateMainDBConn
+      Dim mDataTable As New DataTable()
+      Dim mMaterialRequirements As New colMaterialRequirements
+      Dim mdtoMatReq As New dtoMaterialRequirement(mDBConnBase)
+      Dim mAverageCost As Decimal
+      Dim msql As String = ""
+
+      mdsoTran = New dsoStockTransactions(mDBConnBase)
+      Dim mToProcessQty As Decimal
+      Dim mStockItemID As Integer
+      Dim mMatReqFound As dmMaterialRequirement
+      Dim mMaterialRequirementID As Integer
+      mdsoStock = New dsoStock(mDBConnBase)
+      mTranDate = Now
+
+
+      msql = "select MR.MaterialRequirementID, MR.StockItemID, (isnull(MR.Quantity,0)-isnull(MR.PickedQty,0)) PickedQty, IsNull(SI.AverageCost,0) AverageCost"
+      msql &= " from MaterialRequirement MR"
+      msql &= " INNER JOIN StockItem SI ON SI.StockItemID=MR.StockItemID"
+      msql &= " WHERE MR.MaterialRequirementType=2 AND MR.MaterialRequirementID NOT IN ("
+      msql &= " sELECT SITL.RefObjectID FROM StockItemTransactionLog SITL"
+      msql &= " WHERE SITL.RefObjectType=6 "
+      msql &= " ) AND (isnull(MR.Quantity,0)-isnull(MR.PickedQty,0))  >0"
+
+      If mDBConnBase.Connect Then
+
+
+        mDataTable = mDBConnBase.CreateDataTable(msql)
+
+        mdtoMatReq.LoadMaterialRequirementCollectionByWhere(mMaterialRequirements, "")
+
+        For Each mMRP As DataRow In mDataTable.Rows
+          mToProcessQty = 0
+          mToProcessQty = mMRP("PickedQty")
+          mStockItemID = 0
+          mStockItemID = mMRP("StockItemID")
+          mMaterialRequirementID = 0
+          mMaterialRequirementID = mMRP("MaterialRequirementID")
+          mAverageCost = 0
+          mAverageCost = mMRP("AverageCost")
+          If mToProcessQty <> 0 Then
+            If mStockItemID <> 0 Then
+              mSIL = mdsoStock.GetOrCreateStockItemLocation(mStockItemID, 1)
+            Else
+              mSIL = Nothing
+            End If
+            mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas, mDBConnBase)
+
+            mMatReqFound = mMaterialRequirements.ItemFromKey(mMaterialRequirementID)
+
+            If mMatReqFound IsNot Nothing Then
+              mdsoTran.PickMatReqStockItemLocationQty(mSIL, mToProcessQty, mMatReqFound, Now, eCurrency.Cordobas, mAverageCost, mExchangeValue, "")
+
+            End If
+
+          End If
+
+        Next
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
+
+  Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer, ByRef rDBConnBase As clsDBConnBase) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(rDBConnBase)
+    Dim mExchangeRate As Decimal = 0
+
+    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
+
+
 End Class

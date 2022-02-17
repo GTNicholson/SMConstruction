@@ -32,6 +32,8 @@ Public Class frmWoodReception
     Edit = 4
     Save = 5
     DeletePack = 6
+    UpdateSummary = 7
+    ExportExcel = 8
   End Enum
 
   Public Sub New()
@@ -112,7 +114,8 @@ Public Class frmWoodReception
 
       pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
       grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
-      grdWoodPalletGuideItems.DataSource = pFormController.CurrentSourceWoodPallet.WoodPalletGuideItems
+
+      grdWoodPalletGuideItems.DataSource = pFormController.WoodGuideItemSummary
 
       RefreshDetailButtons()
 
@@ -382,7 +385,6 @@ Public Class frmWoodReception
 
       UpdateObject()
       pFormController.SaveObjects()
-      gvWoodPalletGuideItem.CloseEditor()
       RefreshControls()
       If pFormController.CurrentSourceWoodPallet.PalletType > 0 Then
         pFormController.SaveWoodPalletDown(pFormController.CurrentSourceWoodPallet)
@@ -395,8 +397,7 @@ Public Class frmWoodReception
       gvSourceWoodPalletItem.RefreshData()
 
 
-      grdWoodPalletGuideItems.DataSource = pFormController.CurrentSourceWoodPallet.WoodPalletGuideItems
-      gvWoodPalletGuideItem.RefreshData()
+
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
@@ -473,17 +474,17 @@ Public Class frmWoodReception
 
     For Each mWP As dmWoodPallet In pFormController.CurrentReception.WoodPallets
       mWP.PalletType = pFormController.CurrentReception.ItemType
-      If txtCardNumber.Text = "" Then
-        mWP.CardNumber = ""
-      Else
-        mWP.CardNumber = txtCardNumber.Text
+      'If txtCardNumber.Text = "" Then
+      '  mWP.CardNumber = ""
+      'Else
+      '  mWP.CardNumber = txtCardNumber.Text
 
-      End If
+      'End If
 
     Next
 
     With pFormController.CurrentSourceWoodPallet
-      .CardNumber = txtCardNumber.Text
+      ' .CardNumber = txtCardNumber.Text
     End With
   End Sub
 
@@ -653,6 +654,10 @@ Public Class frmWoodReception
         SetDetailsControlsReadonly(True)
         RefreshControls()
         RefreshDetailButtons()
+
+      Case ePalletOptions.UpdateSummary
+        pFormController.CreateWoodGuideItemSummarys()
+        grdWoodPalletGuideItems.DataSource = pFormController.WoodGuideItemSummary
     End Select
 
 
@@ -791,42 +796,22 @@ Public Class frmWoodReception
 
 
       Select Case e.Column.Name
+
+        Case gcLengthFeet.Name
+          Dim mLengthFeet As Integer
+
+          mLengthFeet = Math.Round(mWPIE.WoodPalletItem.Length / clsConstants.CMToFeet, 0, MidpointRounding.AwayFromZero)
+          e.Value = mLengthFeet
+
         Case gcM3.Name
           Dim mBF As Decimal
 
 
-
-
-          'If mWPIE.QuantityUI > 0 Then
-          If mWPIE.ToProcessQty <> 0 Then
-            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
-            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
-            mWPIE.VolumeM3 = e.Value
-          Else
-
-            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
-            e.Value = clsWoodPalletSharedFuncs.BoardFeetToM3(mBF)
-          End If
-
-
-
-        Case gcPT.Name
-          Dim mBF As Decimal
-
-
-
-          'If mWPIE.QuantityUI > 0 Then
-          If mWPIE.ToProcessQty <> 0 Then
-            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.ToProcessQty)
-            e.Value = mBF
-
-          Else
-
-            mBF = clsWoodPalletSharedFuncs.GetWoodPalletItemVolumeBoardFeet(mWPIE.WoodPalletItem, mWPIE.StockItem, mWPIE.QuantityUI)
-            e.Value = mBF
-          End If
-
-
+          e.Value = clsWoodPalletSharedFuncs.GetTrunkVolume(mWPIE.WoodPalletItem.Length, mWPIE.WoodPalletItem.Thickness, 1)
+          mWPIE.VolumeM3 = e.Value
+          mWPIE.WoodPalletItem.VolumeM3 = e.Value
+        Case gcBF.Name
+          e.Value = clsWoodPalletSharedFuncs.GetTrunkVolume(mWPIE.WoodPalletItem.Length, mWPIE.WoodPalletItem.Thickness, 1) * 424
 
         Case gcToProcessQty.Name
 
@@ -924,6 +909,33 @@ Public Class frmWoodReception
         RefreshSourceTabs()
 
     End Select
+  End Sub
+
+  Private Sub btnImportFromExcel_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btnImportFromExcel.ItemClick
+    Dim mDSModel As clsWoodReceptionExcelImportModel
+
+    UpdateObject()
+
+    pFormController.SaveObjects()
+
+    mDSModel = New clsWoodReceptionExcelImportModel(pFormController)
+
+    RTIS.Elements.frmSpreadSheetProcessing.OpenModalForm(pFormController.DBConn, mDSModel)
+
+    pFormController.SaveObjects()
+    RefreshControls()
+
+    If pFormController.CurrentSourceWoodPallet.PalletType > 0 Then
+      pFormController.SaveWoodPalletDown(pFormController.CurrentSourceWoodPallet)
+
+    End If
+    RefreshSourceTabs()
+    RefreshControls()
+    pFormController.RefreshSourceWoodPalletItemEditors(pFormController.CurrentSourceWoodPallet)
+    grdSourceWoodPalletItem.DataSource = pFormController.SourceWoodPalletItemEditors
+    gvSourceWoodPalletItem.RefreshData()
+    pFormController.SaveObjects()
+
   End Sub
 
 
