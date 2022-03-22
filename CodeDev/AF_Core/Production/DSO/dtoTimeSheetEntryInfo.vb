@@ -75,6 +75,7 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
 
       With pTimeSheetEntryInfo.SalesOrder
         .ProjectName = DBReadString(rDataReader, "ProjectName")
+        .OrderTypeID = DBReadInteger(rDataReader, "OrderTypeID")
       End With
 
       With pTimeSheetEntryInfo.Customer

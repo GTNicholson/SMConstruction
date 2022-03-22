@@ -253,6 +253,12 @@ Public Class clsTimeSheetEntryInfo
     End Get
   End Property
 
+  Public ReadOnly Property OrderTypeID As Integer
+    Get
+      Return pSalesOrder.OrderTypeID
+    End Get
+  End Property
+
   Public ReadOnly Property Description As String
     Get
       Return pWorkOrder.Description
