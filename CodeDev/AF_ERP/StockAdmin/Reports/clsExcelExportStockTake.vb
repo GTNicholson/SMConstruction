@@ -48,7 +48,7 @@ Public Class clsExcelExportStockTake
   End Property
 
   Private Sub AddHeadings(ByVal vRowForTitlesToStartIn As Integer)
-    Dim mRange As DevExpress.Spreadsheet.Range
+    Dim mRange As DevExpress.Spreadsheet.CellRange
     Dim mCurColPos As Integer
     Dim mIMHead As String
 
@@ -181,7 +181,7 @@ Public Class clsExcelExportStockTake
     Dim mTotalAmount As Decimal = 0
 
     Dim mRow As Integer
-    Dim mRange As DevExpress.Spreadsheet.Range
+    Dim mRange As DevExpress.Spreadsheet.CellRange
 
     mRow = rStartPosition + 1
 

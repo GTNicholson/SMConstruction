@@ -336,9 +336,17 @@ Public Class clsStockItemInfo
     End Set
   End Property
 
+  Public Property LastPrice As Decimal
 
+  Public ReadOnly Property ItemTypeDesc As String
+    Get
+      Dim mRetVal As String
 
+      mRetVal = clsStockItemSharedFuncs.GetStockItemTypeDescription(pStockItem)
 
+      Return mRetVal
+    End Get
+  End Property
 End Class
 
 

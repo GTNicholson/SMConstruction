@@ -80,11 +80,11 @@ Partial Class frmWorkOrderTracking
         'grdWorksOrders
         '
         Me.grdWorksOrders.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdWorksOrders.Location = New System.Drawing.Point(0, 30)
+        Me.grdWorksOrders.Location = New System.Drawing.Point(0, 28)
         Me.grdWorksOrders.MainView = Me.gvWorksOrders
         Me.grdWorksOrders.Name = "grdWorksOrders"
         Me.grdWorksOrders.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1})
-        Me.grdWorksOrders.Size = New System.Drawing.Size(1924, 596)
+        Me.grdWorksOrders.Size = New System.Drawing.Size(1924, 598)
         Me.grdWorksOrders.TabIndex = 0
         Me.grdWorksOrders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorksOrders})
         '
@@ -524,7 +524,7 @@ Partial Class frmWorkOrderTracking
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1924, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1924, 28)
         '
         'barDockControlBottom
         '
@@ -538,17 +538,17 @@ Partial Class frmWorkOrderTracking
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 596)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 598)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1924, 28)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 596)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 598)
         '
         'GroupControl1
         '

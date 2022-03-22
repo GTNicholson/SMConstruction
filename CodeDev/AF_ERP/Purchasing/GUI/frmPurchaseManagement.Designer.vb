@@ -147,7 +147,7 @@ Partial Class frmPurchaseManagement
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1445, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1445, 29)
         '
         'barDockControlBottom
         '
@@ -161,17 +161,17 @@ Partial Class frmPurchaseManagement
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 704)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 705)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1445, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1445, 29)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 704)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 705)
         '
         'BarButtonItem1
         '
@@ -194,11 +194,11 @@ Partial Class frmPurchaseManagement
         'XtraTabControl1
         '
         Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 30)
+        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 29)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
         Me.XtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1445, 704)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1445, 705)
         Me.XtraTabControl1.TabIndex = 91
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -206,7 +206,7 @@ Partial Class frmPurchaseManagement
         '
         Me.XtraTabPage1.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1437, 675)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1437, 676)
         Me.XtraTabPage1.Text = "XtraTabPage1"
         '
         'PanelControl1
@@ -216,7 +216,7 @@ Partial Class frmPurchaseManagement
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1437, 675)
+        Me.PanelControl1.Size = New System.Drawing.Size(1437, 676)
         Me.PanelControl1.TabIndex = 0
         '
         'GroupControl1
@@ -342,7 +342,7 @@ Partial Class frmPurchaseManagement
         Me.grdSOPMatReqStatuses.MainView = Me.gvSOPMatReqStatuses
         Me.grdSOPMatReqStatuses.Name = "grdSOPMatReqStatuses"
         Me.grdSOPMatReqStatuses.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2, Me.RepositoryItemMemoEdit1})
-        Me.grdSOPMatReqStatuses.Size = New System.Drawing.Size(1433, 673)
+        Me.grdSOPMatReqStatuses.Size = New System.Drawing.Size(1433, 674)
         Me.grdSOPMatReqStatuses.TabIndex = 85
         Me.grdSOPMatReqStatuses.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSOPMatReqStatuses})
         '
@@ -792,7 +792,7 @@ Partial Class frmPurchaseManagement
         '
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1437, 675)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1443, 680)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'frmPurchaseManagement

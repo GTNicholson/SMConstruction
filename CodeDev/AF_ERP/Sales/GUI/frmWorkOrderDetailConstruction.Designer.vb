@@ -286,7 +286,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1480, 28)
         '
         'barDockControlBottom
         '
@@ -300,17 +300,17 @@ Partial Class frmWorkOrderDetailConstruction
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 841)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 843)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1480, 28)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 841)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 843)
         '
         'StandaloneBarDockControl2
         '
@@ -342,12 +342,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.TableLayoutPanel1.Controls.Add(Me.grpProduct, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupControl1, 0, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 28)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 333.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 841)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1480, 843)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'grpProduct
@@ -361,7 +361,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpProduct.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpProduct.Location = New System.Drawing.Point(3, 336)
         Me.grpProduct.Name = "grpProduct"
-        Me.grpProduct.Size = New System.Drawing.Size(1474, 502)
+        Me.grpProduct.Size = New System.Drawing.Size(1474, 504)
         Me.grpProduct.TabIndex = 1
         Me.grpProduct.Text = "Detalles del Producto"
         '
@@ -371,7 +371,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(2, 51)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1470, 449)
+        Me.Panel1.Size = New System.Drawing.Size(1470, 451)
         Me.Panel1.TabIndex = 171
         '
         'uctProductDetail
@@ -383,7 +383,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.uctProductDetail.ItemsSelected = 0
         Me.uctProductDetail.Location = New System.Drawing.Point(3, 6)
         Me.uctProductDetail.Name = "uctProductDetail"
-        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 443)
+        Me.uctProductDetail.Size = New System.Drawing.Size(1467, 445)
         Me.uctProductDetail.TabIndex = 0
         Me.uctProductDetail.TempInWoodStock = 0
         Me.uctProductDetail.WoodItemsSelected = 0
@@ -482,7 +482,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(576, 83)
+        Me.Label4.Location = New System.Drawing.Point(576, 78)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(86, 14)
         Me.Label4.TabIndex = 180
@@ -504,7 +504,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(576, 109)
+        Me.Label3.Location = New System.Drawing.Point(576, 104)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(44, 14)
         Me.Label3.TabIndex = 178
@@ -539,7 +539,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(576, 57)
+        Me.Label7.Location = New System.Drawing.Point(576, 52)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(58, 14)
         Me.Label7.TabIndex = 175
@@ -563,7 +563,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(576, 30)
+        Me.Label5.Location = New System.Drawing.Point(576, 25)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(68, 14)
         Me.Label5.TabIndex = 173
@@ -587,7 +587,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblUnidad.AutoSize = True
         Me.lblUnidad.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUnidad.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblUnidad.Location = New System.Drawing.Point(178, 83)
+        Me.lblUnidad.Location = New System.Drawing.Point(178, 78)
         Me.lblUnidad.Name = "lblUnidad"
         Me.lblUnidad.Size = New System.Drawing.Size(44, 14)
         Me.lblUnidad.TabIndex = 171
@@ -611,7 +611,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(10, 83)
+        Me.Label8.Location = New System.Drawing.Point(10, 78)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(84, 14)
         Me.Label8.TabIndex = 169
@@ -628,7 +628,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.Controls.Add(Me.grdWorkOrderAllocationsInfos)
         Me.grpWorkOrderAllocations.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Proyecto", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar para Inventario", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, CType(2, Short), -1)})
         Me.grpWorkOrderAllocations.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 25)
+        Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 20)
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
         Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(679, 208)
         Me.grpWorkOrderAllocations.TabIndex = 11
@@ -790,7 +790,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(10, 108)
+        Me.Label10.Location = New System.Drawing.Point(10, 103)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(41, 14)
         Me.Label10.TabIndex = 44
@@ -813,7 +813,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(10, 31)
+        Me.Label12.Location = New System.Drawing.Point(10, 26)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(55, 14)
         Me.Label12.TabIndex = 139
@@ -824,7 +824,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(10, 57)
+        Me.Label1.Location = New System.Drawing.Point(10, 52)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 14)
         Me.Label1.TabIndex = 14
@@ -859,7 +859,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(234, 30)
+        Me.Label2.Location = New System.Drawing.Point(234, 25)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(72, 14)
         Me.Label2.TabIndex = 15
@@ -882,7 +882,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(236, 57)
+        Me.Label6.Location = New System.Drawing.Point(236, 52)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(86, 14)
         Me.Label6.TabIndex = 19
@@ -906,7 +906,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(234, 83)
+        Me.Label11.Location = New System.Drawing.Point(234, 78)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(75, 14)
         Me.Label11.TabIndex = 137
@@ -921,7 +921,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirementInsumos)
         Me.XtraTabPage2.Controls.Add(Me.grpWOMatReqWood)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1466, 273)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1470, 276)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
         '
         'grpMaterialRequirementInsumos
@@ -944,12 +944,12 @@ Partial Class frmWorkOrderDetailConstruction
         'grdStockItemMatReq
         '
         Me.grdStockItemMatReq.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemMatReq.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemMatReq.MainView = Me.gvStockItemMatReq
         Me.grdStockItemMatReq.MenuManager = Me.BarManager1
         Me.grdStockItemMatReq.Name = "grdStockItemMatReq"
         Me.grdStockItemMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1})
-        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 245)
+        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 247)
         Me.grdStockItemMatReq.TabIndex = 14
         Me.grdStockItemMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMatReq})
         '
@@ -1117,12 +1117,12 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMatReq.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 26)
+        Me.grdWoodMatReq.Location = New System.Drawing.Point(2, 24)
         Me.grdWoodMatReq.MainView = Me.gvWoodMatReq
         Me.grdWoodMatReq.MenuManager = Me.BarManager1
         Me.grdWoodMatReq.Name = "grdWoodMatReq"
         Me.grdWoodMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoChangeSpecie})
-        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 245)
+        Me.grdWoodMatReq.Size = New System.Drawing.Size(864, 247)
         Me.grdWoodMatReq.TabIndex = 14
         Me.grdWoodMatReq.UseEmbeddedNavigator = True
         Me.grdWoodMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMatReq})
@@ -1281,7 +1281,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcQtyBoardFeet.DisplayFormat.FormatString = "n3"
         Me.gcQtyBoardFeet.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.gcQtyBoardFeet.FieldName = "Ub_QtyBoardFeet"
-        Me.gcQtyBoardFeet.ImageAlignment = System.Drawing.StringAlignment.Center
+        Me.gcQtyBoardFeet.ImageOptions.Alignment = System.Drawing.StringAlignment.Center
         Me.gcQtyBoardFeet.Name = "gcQtyBoardFeet"
         Me.gcQtyBoardFeet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Ub_QtyBoardFeet", "{0:0.##}")})
         Me.gcQtyBoardFeet.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]

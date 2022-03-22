@@ -239,6 +239,10 @@ Partial Class frmStockItem
         CType(Me.grdStockItems, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoIsSelected, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainerControl1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.Panel1.SuspendLayout()
+        CType(Me.SplitContainerControl1.Panel2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerControl1.Panel2.SuspendLayout()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.grpCurrentStockItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpCurrentStockItem.SuspendLayout()
@@ -540,7 +544,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 29)
         '
         'barDockControlBottom
         '
@@ -554,17 +558,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 726)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 727)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 29)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 726)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 727)
         '
         'BarButtonItem1
         '
@@ -1567,7 +1571,7 @@ Partial Class frmStockItem
         Me.grdStockItems.MenuManager = Me.BarManager1
         Me.grdStockItems.Name = "grdStockItems"
         Me.grdStockItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoIsSelected})
-        Me.grdStockItems.Size = New System.Drawing.Size(1488, 351)
+        Me.grdStockItems.Size = New System.Drawing.Size(1488, 352)
         Me.grdStockItems.TabIndex = 0
         Me.grdStockItems.UseEmbeddedNavigator = True
         Me.grdStockItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItems})
@@ -1584,11 +1588,17 @@ Partial Class frmStockItem
         Me.SplitContainerControl1.Horizontal = False
         Me.SplitContainerControl1.Location = New System.Drawing.Point(2, 2)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
+        '
+        'SplitContainerControl1.Panel1
+        '
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.grdStockItems)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
+        '
+        'SplitContainerControl1.Panel2
+        '
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 722)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 723)
         Me.SplitContainerControl1.SplitterPosition = 363
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1613,9 +1623,9 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 30)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 29)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1492, 726)
+        Me.PanelControl1.Size = New System.Drawing.Size(1492, 727)
         Me.PanelControl1.TabIndex = 4
         '
         'frmStockItem
@@ -1681,6 +1691,10 @@ Partial Class frmStockItem
         CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdStockItems, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoIsSelected, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainerControl1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.Panel1.ResumeLayout(False)
+        CType(Me.SplitContainerControl1.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.grpCurrentStockItem, System.ComponentModel.ISupportInitialize).EndInit()

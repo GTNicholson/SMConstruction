@@ -92,7 +92,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.BarHeaderItem1 = New DevExpress.XtraBars.BarHeaderItem()
         Me.BarWorkspaceMenuItem1 = New DevExpress.XtraBars.BarWorkspaceMenuItem()
-        Me.WorkspaceManager1 = New DevExpress.Utils.WorkspaceManager()
+        Me.WorkspaceManager1 = New DevExpress.Utils.WorkspaceManager(Me.components)
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.tabHouses = New DevExpress.XtraTab.XtraTabControl()
@@ -491,7 +491,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1665, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1665, 28)
         '
         'barDockControlBottom
         '
@@ -505,17 +505,17 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 780)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 782)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1665, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1665, 28)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 780)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 782)
         '
         'BarButtonItem1
         '
@@ -566,7 +566,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(3, 296)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1659, 481)
+        Me.PanelControl1.Size = New System.Drawing.Size(1659, 483)
         Me.PanelControl1.TabIndex = 14
         '
         'tabHouses
@@ -578,7 +578,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.tabHouses.Location = New System.Drawing.Point(2, 2)
         Me.tabHouses.Name = "tabHouses"
         Me.tabHouses.SelectedTabPage = Me.XtraTabPage4
-        Me.tabHouses.Size = New System.Drawing.Size(1655, 477)
+        Me.tabHouses.Size = New System.Drawing.Size(1655, 479)
         Me.tabHouses.TabIndex = 0
         Me.tabHouses.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage4, Me.xtbDespatchesAndInvoices})
         '
@@ -587,7 +587,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.XtraTabPage4.AutoScroll = True
         Me.XtraTabPage4.Controls.Add(Me.cpnHouseType)
         Me.XtraTabPage4.Name = "XtraTabPage4"
-        Me.XtraTabPage4.Size = New System.Drawing.Size(1647, 445)
+        Me.XtraTabPage4.Size = New System.Drawing.Size(1647, 447)
         Me.XtraTabPage4.Text = "Modelos de Casa"
         '
         'cpnHouseType
@@ -596,7 +596,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.cpnHouseType.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cpnHouseType.Location = New System.Drawing.Point(0, 0)
         Me.cpnHouseType.Name = "cpnHouseType"
-        Me.cpnHouseType.Size = New System.Drawing.Size(1647, 445)
+        Me.cpnHouseType.Size = New System.Drawing.Size(1647, 447)
         Me.cpnHouseType.TabIndex = 1
         '
         'xtraTabHouseType
@@ -614,7 +614,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.xtraTabHouseType.Location = New System.Drawing.Point(2, 2)
         Me.xtraTabHouseType.Name = "xtraTabHouseType"
         Me.xtraTabHouseType.SelectedTabPage = Me.XtraTabPage5
-        Me.xtraTabHouseType.Size = New System.Drawing.Size(1643, 441)
+        Me.xtraTabHouseType.Size = New System.Drawing.Size(1643, 443)
         Me.xtraTabHouseType.TabIndex = 0
         Me.xtraTabHouseType.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage5})
         '
@@ -622,7 +622,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.XtraTabPage5.Controls.Add(Me.PanelControl4)
         Me.XtraTabPage5.Name = "XtraTabPage5"
-        Me.XtraTabPage5.Size = New System.Drawing.Size(1549, 433)
+        Me.XtraTabPage5.Size = New System.Drawing.Size(1549, 435)
         Me.XtraTabPage5.Tag = ""
         Me.XtraTabPage5.Text = "Casa Modelo"
         '
@@ -632,7 +632,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(1549, 433)
+        Me.PanelControl4.Size = New System.Drawing.Size(1549, 435)
         Me.PanelControl4.TabIndex = 0
         '
         'pnlHouseDetail
@@ -653,7 +653,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.pnlHouseDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlHouseDetail.Location = New System.Drawing.Point(2, 2)
         Me.pnlHouseDetail.Name = "pnlHouseDetail"
-        Me.pnlHouseDetail.Size = New System.Drawing.Size(1545, 429)
+        Me.pnlHouseDetail.Size = New System.Drawing.Size(1545, 431)
         Me.pnlHouseDetail.TabIndex = 0
         '
         'txtShippingCost
@@ -700,7 +700,7 @@ Partial Class frmSalesOrderDetailHouses
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.grpProductsRequired)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1520, 369)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1520, 371)
         Me.SplitContainer1.SplitterDistance = 854
         Me.SplitContainer1.TabIndex = 52
         '
@@ -716,7 +716,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpOrderItem.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpOrderItem.Location = New System.Drawing.Point(0, 0)
         Me.grpOrderItem.Name = "grpOrderItem"
-        Me.grpOrderItem.Size = New System.Drawing.Size(854, 369)
+        Me.grpOrderItem.Size = New System.Drawing.Size(854, 371)
         Me.grpOrderItem.TabIndex = 0
         Me.grpOrderItem.Text = "Articulos"
         '
@@ -728,7 +728,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdOrderItem.MenuManager = Me.BarManager1
         Me.grdOrderItem.Name = "grdOrderItem"
         Me.grdOrderItem.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCalcEdit1, Me.RepositoryItemMemoExEdit1, Me.RepositoryItemMemoEdit1, Me.repoAddProduct, Me.repoGeneralItem})
-        Me.grdOrderItem.Size = New System.Drawing.Size(850, 343)
+        Me.grdOrderItem.Size = New System.Drawing.Size(850, 345)
         Me.grdOrderItem.TabIndex = 0
         Me.grdOrderItem.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOrderItem, Me.GridView7, Me.GridView3})
         '
@@ -1051,7 +1051,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grpProductsRequired.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpProductsRequired.Location = New System.Drawing.Point(0, 0)
         Me.grpProductsRequired.Name = "grpProductsRequired"
-        Me.grpProductsRequired.Size = New System.Drawing.Size(662, 369)
+        Me.grpProductsRequired.Size = New System.Drawing.Size(662, 371)
         Me.grpProductsRequired.TabIndex = 0
         Me.grpProductsRequired.Text = "Productos Requeridos"
         '
@@ -1063,7 +1063,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdProductsRequired.MenuManager = Me.BarManager1
         Me.grdProductsRequired.Name = "grdProductsRequired"
         Me.grdProductsRequired.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repitbtWorkOrder, Me.repoProductOption, Me.RepositoryItemSpinEdit1})
-        Me.grdProductsRequired.Size = New System.Drawing.Size(658, 343)
+        Me.grdProductsRequired.Size = New System.Drawing.Size(658, 345)
         Me.grdProductsRequired.TabIndex = 0
         Me.grdProductsRequired.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvProductsRequired, Me.GridView6, Me.GridView4})
         '
@@ -1342,7 +1342,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.xtbDespatchesAndInvoices.Controls.Add(Me.TableLayoutPanel2)
         Me.xtbDespatchesAndInvoices.Name = "xtbDespatchesAndInvoices"
-        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1649, 443)
+        Me.xtbDespatchesAndInvoices.Size = New System.Drawing.Size(1653, 451)
         Me.xtbDespatchesAndInvoices.Text = "Adelantos, Facturas y Despachos"
         '
         'TableLayoutPanel2
@@ -1360,7 +1360,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1649, 443)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1653, 451)
         Me.TableLayoutPanel2.TabIndex = 13
         '
         'GroupControl6
@@ -1373,7 +1373,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl6.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl6.Name = "GroupControl6"
-        Me.GroupControl6.Size = New System.Drawing.Size(818, 215)
+        Me.GroupControl6.Size = New System.Drawing.Size(820, 219)
         Me.GroupControl6.TabIndex = 11
         Me.GroupControl6.Text = "Orden de Compra del Cliente"
         '
@@ -1395,7 +1395,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdCustomerPurchaseOrder.MenuManager = Me.BarManager1
         Me.grdCustomerPurchaseOrder.Name = "grdCustomerPurchaseOrder"
         Me.grdCustomerPurchaseOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemDateEdit2, Me.repOrderDate})
-        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(814, 190)
+        Me.grdCustomerPurchaseOrder.Size = New System.Drawing.Size(816, 194)
         Me.grdCustomerPurchaseOrder.TabIndex = 8
         Me.grdCustomerPurchaseOrder.UseEmbeddedNavigator = True
         Me.grdCustomerPurchaseOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvCustomerPurchaseOrder})
@@ -1500,9 +1500,9 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdInvoices)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(827, 224)
+        Me.GroupControl5.Location = New System.Drawing.Point(829, 228)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(819, 216)
+        Me.GroupControl5.Size = New System.Drawing.Size(821, 220)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Facturas"
         '
@@ -1524,7 +1524,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdInvoices.MenuManager = Me.BarManager1
         Me.grdInvoices.Name = "grdInvoices"
         Me.grdInvoices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repInvoiceDate, Me.repCreatedDate})
-        Me.grdInvoices.Size = New System.Drawing.Size(815, 191)
+        Me.grdInvoices.Size = New System.Drawing.Size(817, 195)
         Me.grdInvoices.TabIndex = 7
         Me.grdInvoices.UseEmbeddedNavigator = True
         Me.grdInvoices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvInvoices})
@@ -1651,9 +1651,9 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl1.Controls.Add(Me.GridControl2)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(827, 3)
+        Me.GroupControl1.Location = New System.Drawing.Point(829, 3)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(819, 215)
+        Me.GroupControl1.Size = New System.Drawing.Size(821, 219)
         Me.GroupControl1.TabIndex = 9
         Me.GroupControl1.Text = "Despachos"
         '
@@ -1664,7 +1664,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.MenuManager = Me.BarManager1
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(815, 190)
+        Me.GridControl2.Size = New System.Drawing.Size(817, 194)
         Me.GridControl2.TabIndex = 2
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -1734,9 +1734,9 @@ Partial Class frmSalesOrderDetailHouses
         Me.GroupControl7.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl7.Controls.Add(Me.grdPaymentAccounts)
         Me.GroupControl7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl7.Location = New System.Drawing.Point(3, 224)
+        Me.GroupControl7.Location = New System.Drawing.Point(3, 228)
         Me.GroupControl7.Name = "GroupControl7"
-        Me.GroupControl7.Size = New System.Drawing.Size(818, 216)
+        Me.GroupControl7.Size = New System.Drawing.Size(820, 220)
         Me.GroupControl7.TabIndex = 12
         Me.GroupControl7.Text = "Adelantos del Cliente"
         '
@@ -1758,7 +1758,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdPaymentAccounts.MenuManager = Me.BarManager1
         Me.grdPaymentAccounts.Name = "grdPaymentAccounts"
         Me.grdPaymentAccounts.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit5, Me.RepositoryItemDateEdit6, Me.RepositoryItemDateEdit4})
-        Me.grdPaymentAccounts.Size = New System.Drawing.Size(814, 191)
+        Me.grdPaymentAccounts.Size = New System.Drawing.Size(816, 195)
         Me.grdPaymentAccounts.TabIndex = 8
         Me.grdPaymentAccounts.UseEmbeddedNavigator = True
         Me.grdPaymentAccounts.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPaymentAccounts})
@@ -2101,10 +2101,10 @@ Partial Class frmSalesOrderDetailHouses
         Me.xtcOrderType.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.xtcOrderType.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtcOrderType.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.xtcOrderType.Location = New System.Drawing.Point(2, 26)
+        Me.xtcOrderType.Location = New System.Drawing.Point(2, 24)
         Me.xtcOrderType.Name = "xtcOrderType"
         Me.xtcOrderType.SelectedTabPage = Me.xtpSingle
-        Me.xtcOrderType.Size = New System.Drawing.Size(466, 133)
+        Me.xtcOrderType.Size = New System.Drawing.Size(466, 135)
         Me.xtcOrderType.TabIndex = 9
         Me.xtcOrderType.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpSingle, Me.xtpMultiple})
         '
@@ -2112,7 +2112,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.xtpSingle.Controls.Add(Me.PanelControl3)
         Me.xtpSingle.Name = "xtpSingle"
-        Me.xtpSingle.Size = New System.Drawing.Size(436, 125)
+        Me.xtpSingle.Size = New System.Drawing.Size(436, 127)
         Me.xtpSingle.Text = "Single"
         '
         'PanelControl3
@@ -2133,7 +2133,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(436, 125)
+        Me.PanelControl3.Size = New System.Drawing.Size(436, 127)
         Me.PanelControl3.TabIndex = 0
         '
         'TextEdit3
@@ -2261,7 +2261,7 @@ Partial Class frmSalesOrderDetailHouses
         '
         Me.xtpMultiple.Controls.Add(Me.PanelControl2)
         Me.xtpMultiple.Name = "xtpMultiple"
-        Me.xtpMultiple.Size = New System.Drawing.Size(437, 127)
+        Me.xtpMultiple.Size = New System.Drawing.Size(440, 134)
         Me.xtpMultiple.Text = "Muiti"
         '
         'PanelControl2
@@ -2270,7 +2270,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(437, 127)
+        Me.PanelControl2.Size = New System.Drawing.Size(440, 134)
         Me.PanelControl2.TabIndex = 0
         '
         'grdSalesOrderPhases
@@ -2288,7 +2288,7 @@ Partial Class frmSalesOrderDetailHouses
         Me.grdSalesOrderPhases.MenuManager = Me.BarManager1
         Me.grdSalesOrderPhases.Name = "grdSalesOrderPhases"
         Me.grdSalesOrderPhases.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit3})
-        Me.grdSalesOrderPhases.Size = New System.Drawing.Size(433, 123)
+        Me.grdSalesOrderPhases.Size = New System.Drawing.Size(436, 130)
         Me.grdSalesOrderPhases.TabIndex = 0
         Me.grdSalesOrderPhases.UseEmbeddedNavigator = True
         Me.grdSalesOrderPhases.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhases})
@@ -2502,12 +2502,12 @@ Partial Class frmSalesOrderDetailHouses
         'txtVisibleNotes
         '
         Me.txtVisibleNotes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtVisibleNotes.Location = New System.Drawing.Point(2, 21)
+        Me.txtVisibleNotes.Location = New System.Drawing.Point(2, 22)
         Me.txtVisibleNotes.MenuManager = Me.BarManager1
         Me.txtVisibleNotes.Name = "txtVisibleNotes"
         Me.txtVisibleNotes.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtVisibleNotes.Properties.Appearance.Options.UseFont = True
-        Me.txtVisibleNotes.Size = New System.Drawing.Size(375, 231)
+        Me.txtVisibleNotes.Size = New System.Drawing.Size(375, 230)
         Me.txtVisibleNotes.TabIndex = 0
         '
         'txtSalesOrderID
@@ -2807,12 +2807,12 @@ Partial Class frmSalesOrderDetailHouses
         Me.TableLayoutPanel1.Controls.Add(Me.gcDetails, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.PanelControl1, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 30)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 28)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 293.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1665, 780)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1665, 782)
         Me.TableLayoutPanel1.TabIndex = 4
         '
         'GridView1
