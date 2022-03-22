@@ -1,0 +1,29 @@
+CREATE VIEW [dbo].[vwLastPurchaseOrderStockItemID]
+AS
+Select StockItemID, 
+Max(SubmissionDate) As LastPODate
+From PurchaseOrderItem POI
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+WHERE POI.StockItemID>0
+Group By StockItemID
+
+GO
+
+CREATE VIEW [dbo].[vwLastPriceStockItemID]
+AS
+Select POI.StockItemID, 
+POI.UnitPrice
+From PurchaseOrderItem POI
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+INNER JOIN vwLastPurchaseOrderStockItemID vwLPOSI ON vwLPOSI.StockItemID=POI.StockItemID AND vwLPOSI.LastPODate=po.SubmissionDate
+WHERE POI.StockItemID>0
+GO
+
+create VIEW vwSILastPriceByLastDateInfo
+as
+Select
+SI.*,
+vwLPSI.UnitPrice
+from StockItem SI
+left JOIN vwLastPriceStockItemID vwLPSI on vwLPSI.StockItemID=SI.StockItemID
+GO

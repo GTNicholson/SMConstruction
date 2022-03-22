@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -10,7 +10,7 @@
     <AssemblyName>SM_Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,48 +43,52 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Xpf.Grid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Grid.v21.2.Core, Version=21.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Grid.v17.1.dll</HintPath>
+      
     </Reference>
-    <Reference Include="DevExpress.Xpf.Grid.v17.1.Extensions, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Grid.v21.2, Version=21.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Grid.v17.1.Extensions.dll</HintPath>
+      
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Xpf.Grid.v21.2.Extensions, Version=21.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraEditors.v17.1.dll</HintPath>
+      
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.16.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraGrid.v17.1.dll</HintPath>
+      
     </Reference>
-    <Reference Include="RTIS.BIReport.V17.1">
-      <HintPath>..\..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_17_1\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V17.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraGrid.v21.2, Version=21.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      
     </Reference>
-    <Reference Include="RTIS.CandidateElements.V17.1">
-      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_CandidateElements_17_1\CodeRep\CandidateElements\bin\Debug\RTIS.CandidateElements.V17.1.dll</HintPath>
+    <Reference Include="RTIS.BIReport.V21.2">
+      <HintPath>..\..\..\..\..\RTISFramework\CandidateCode\RTIS_BIReports_21_2\CodeRep\BIReport\bin\Debug\RTIS.BIReport.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.CommonVB.V17.1">
-      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\CommonVB\bin\Debug\RTIS.CommonVB.V17.1.dll</HintPath>
+    <Reference Include="RTIS.CandidateElements.V21.2">
+      <HintPath>..\..\..\..\RTISFramework\CandidateCode\RTIS_CandidateElements_21_2\CodeRep\CandidateElements\bin\Debug\RTIS.CandidateElements.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.DataLayer.V17.1">
-      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\DataLayer\bin\Debug\RTIS.DataLayer.V17.1.dll</HintPath>
+    <Reference Include="RTIS.CommonVB.V21.2">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V21_02\SourceCode\Components\CommonVB\bin\Debug\RTIS.CommonVB.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.Elements.V17.1">
-      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\Elements\bin\Debug\RTIS.Elements.V17.1.dll</HintPath>
+    <Reference Include="RTIS.DataLayer.V21.2">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V21_02\SourceCode\Components\DataLayer\bin\Debug\RTIS.DataLayer.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.EmailLib.V17.1">
-      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\EmailLib\bin\Debug\RTIS.EmailLib.V17.1.dll</HintPath>
+    <Reference Include="RTIS.Elements.V21.2">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V21_02\SourceCode\Components\Elements\bin\Debug\RTIS.Elements.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.ERPCore.V17.1">
-      <HintPath>..\..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\ERPCore\bin\Debug\RTIS.ERPCore.V17.1.dll</HintPath>
+    <Reference Include="RTIS.EmailLib.V21.2">
+      <HintPath>..\..\..\..\RTISFramework\realtime_V21_02\SourceCode\Components\EmailLib\bin\Debug\RTIS.EmailLib.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.ERPStock.V17.1">
-      <HintPath>..\..\..\..\..\RTISFramework\CandidateCode\RTIS_ERPStock_17_1\bin\Debug\RTIS.ERPStock.V17.1.dll</HintPath>
+    <Reference Include="RTIS.ERPCore.V21.2">
+      <HintPath>..\..\..\..\..\RTISFramework\realtime_V21_02\SourceCode\Components\ERPCore\bin\Debug\RTIS.ERPCore.V21.2.dll</HintPath>
     </Reference>
-    <Reference Include="RTIS.WorkflowCore.V17.1">
-      <HintPath>..\..\..\..\RTISFramework\realtime_V17_01\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V17.1.dll</HintPath>
+    <Reference Include="RTIS.ERPStock.V21.2">
+      <HintPath>..\..\..\..\..\RTISFramework\CandidateCode\RTIS_ERPStock_21_2\bin\Debug\RTIS.ERPStock.V21.2.dll</HintPath>
+    </Reference>
+    <Reference Include="RTIS.WorkflowCore.V21.2">
+      <HintPath>..\..\..\..\RTISFramework\realtime_V21_02\SourceCode\Components\WorkflowCore\bin\Debug\RTIS.WorkflowCore.V21.2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

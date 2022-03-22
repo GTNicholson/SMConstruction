@@ -83,6 +83,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Conteo de Inv.", eMenuIconType.Grid, AddressOf clsMenuFunctions.StockTakeBrowse, eActivityCode.StockTake)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Info de Inv. Insumos", eMenuIconType.Console, AddressOf clsMenuFunctions.StockInfos, eActivityCode.StockItemInfos)
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Transacciones.", eMenuIconType.Report, AddressOf clsMenuFunctions.StockItemTransactionInfoBI, eActivityCode.TransactionReport)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Última Compra", eMenuIconType.Report, AddressOf clsMenuFunctions.PurchaseOrderItemInfoLastPrice, eActivityCode.TransactionReport)
 
 
 
@@ -351,6 +352,13 @@ Class clsMenuFunctions
     mBIReport = BIReportViewPurchaseOrderItemInfo.CreateBIReportViewFactoryPurchaseOrderItem(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
     RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
   End Sub
+
+  Public Shared Sub PurchaseOrderItemInfoLastPrice(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBIReport As New RTIS.BIReport.clsBIReportView
+    mBIReport = BIReportViewLastPurchaseStockItemInfo.CreateBIReportViewFactoryStockItem(rRTISUserSession.CreateMainDBConn, rRTISGlobal)
+    RTIS.BIReport.frmManReportMain.OpenFormManReportMDI(mBIReport, rParentForm, rRTISGlobal, True)
+  End Sub
+
   Public Shared Sub PODeliveryItemInfoBI(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     Dim mBIReport As New RTIS.BIReport.clsBIReportView
     mBIReport = BIReportViewPODeliveryItem.CreateBIReportViewFactoryPODeliveryItemInfo(rRTISUserSession.CreateMainDBConn, rRTISGlobal)

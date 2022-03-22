@@ -413,7 +413,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1841, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1841, 28)
         '
         'barDockControlBottom
         '
@@ -427,17 +427,17 @@ Partial Class frmManPurchaseOrderDetail
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 774)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 776)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1841, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1841, 28)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 774)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 776)
         '
         'GridView1
         '
@@ -602,12 +602,12 @@ Partial Class frmManPurchaseOrderDetail
         Me.grdPurchaseOrderItems.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         GridLevelNode1.RelationName = "Level1"
         Me.grdPurchaseOrderItems.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 26)
+        Me.grdPurchaseOrderItems.Location = New System.Drawing.Point(2, 24)
         Me.grdPurchaseOrderItems.MainView = Me.gvPurchaseOrderItems
         Me.grdPurchaseOrderItems.MenuManager = Me.BarManager1
         Me.grdPurchaseOrderItems.Name = "grdPurchaseOrderItems"
         Me.grdPurchaseOrderItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemPopupContainerEditPOItemAllocation, Me.RepoItemButtonEditStockItem, Me.RepositoryItemSpinEditUnitValue, Me.RepoItemPopupContainerEditQtyReceived, Me.repoPopupWorkOrder, Me.repitQtyReqSimp, Me.RepositoryItemTextEdit1, Me.repoPopupWorkOrderAllocation, Me.repoWOAllocationSelect, Me.repoPopupWOAllocationSelect, Me.repoPopupPOItem, Me.RepositoryItemTextEdit2})
-        Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1643, 347)
+        Me.grdPurchaseOrderItems.Size = New System.Drawing.Size(1643, 349)
         Me.grdPurchaseOrderItems.TabIndex = 0
         Me.grdPurchaseOrderItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPurchaseOrderItems})
         '
@@ -1061,10 +1061,10 @@ Partial Class frmManPurchaseOrderDetail
         '
         Me.xtabPOReqTypeWO.Dock = System.Windows.Forms.DockStyle.Fill
         Me.xtabPOReqTypeWO.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Right
-        Me.xtabPOReqTypeWO.Location = New System.Drawing.Point(2, 26)
+        Me.xtabPOReqTypeWO.Location = New System.Drawing.Point(2, 24)
         Me.xtabPOReqTypeWO.Name = "xtabPOReqTypeWO"
         Me.xtabPOReqTypeWO.SelectedTabPage = Me.xtpInventoryWO
-        Me.xtabPOReqTypeWO.Size = New System.Drawing.Size(463, 298)
+        Me.xtabPOReqTypeWO.Size = New System.Drawing.Size(463, 300)
         Me.xtabPOReqTypeWO.TabIndex = 272
         Me.xtabPOReqTypeWO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtpInventoryWO, Me.xtpSingleWO, Me.xtpMultipleWO})
         '
@@ -1072,7 +1072,7 @@ Partial Class frmManPurchaseOrderDetail
         '
         Me.xtpInventoryWO.Controls.Add(Me.PanelControl3)
         Me.xtpInventoryWO.Name = "xtpInventoryWO"
-        Me.xtpInventoryWO.Size = New System.Drawing.Size(433, 290)
+        Me.xtpInventoryWO.Size = New System.Drawing.Size(433, 292)
         Me.xtpInventoryWO.Text = "Inv."
         '
         'PanelControl3
@@ -1081,7 +1081,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(433, 290)
+        Me.PanelControl3.Size = New System.Drawing.Size(433, 292)
         Me.PanelControl3.TabIndex = 0
         '
         'LabelControl27
@@ -1098,7 +1098,7 @@ Partial Class frmManPurchaseOrderDetail
         '
         Me.xtpSingleWO.Controls.Add(Me.GroupControl8)
         Me.xtpSingleWO.Name = "xtpSingleWO"
-        Me.xtpSingleWO.Size = New System.Drawing.Size(434, 292)
+        Me.xtpSingleWO.Size = New System.Drawing.Size(437, 299)
         Me.xtpSingleWO.Text = "Senc."
         '
         'GroupControl8
@@ -1120,7 +1120,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl8.Name = "GroupControl8"
         Me.GroupControl8.ShowCaption = False
-        Me.GroupControl8.Size = New System.Drawing.Size(434, 292)
+        Me.GroupControl8.Size = New System.Drawing.Size(437, 299)
         Me.GroupControl8.TabIndex = 268
         Me.GroupControl8.Text = "Admon. OTs"
         '
@@ -1132,7 +1132,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.grdPurchaseOrderWorkOrderBudget.Location = New System.Drawing.Point(5, 117)
         Me.grdPurchaseOrderWorkOrderBudget.MainView = Me.GridView2
         Me.grdPurchaseOrderWorkOrderBudget.Name = "grdPurchaseOrderWorkOrderBudget"
-        Me.grdPurchaseOrderWorkOrderBudget.Size = New System.Drawing.Size(424, 170)
+        Me.grdPurchaseOrderWorkOrderBudget.Size = New System.Drawing.Size(427, 177)
         Me.grdPurchaseOrderWorkOrderBudget.TabIndex = 282
         Me.grdPurchaseOrderWorkOrderBudget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         Me.grdPurchaseOrderWorkOrderBudget.Visible = False
@@ -1222,7 +1222,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.dteRequiredDateWO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteRequiredDateWO.Properties.NullDate = New Date(CType(0, Long))
         Me.dteRequiredDateWO.Properties.ReadOnly = True
-        Me.dteRequiredDateWO.Size = New System.Drawing.Size(318, 20)
+        Me.dteRequiredDateWO.Size = New System.Drawing.Size(321, 20)
         Me.dteRequiredDateWO.TabIndex = 281
         '
         'LabelControl28
@@ -1276,7 +1276,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtCustomerNameWO.Properties.Appearance.Options.UseFont = True
         Me.txtCustomerNameWO.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCustomerNameWO.Properties.ReadOnly = True
-        Me.txtCustomerNameWO.Size = New System.Drawing.Size(318, 20)
+        Me.txtCustomerNameWO.Size = New System.Drawing.Size(321, 20)
         Me.txtCustomerNameWO.TabIndex = 263
         '
         'txtProjectNameWO
@@ -1290,7 +1290,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.txtProjectNameWO.Properties.Appearance.Options.UseFont = True
         Me.txtProjectNameWO.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtProjectNameWO.Properties.ReadOnly = True
-        Me.txtProjectNameWO.Size = New System.Drawing.Size(318, 20)
+        Me.txtProjectNameWO.Size = New System.Drawing.Size(321, 20)
         Me.txtProjectNameWO.TabIndex = 262
         '
         'btnSelectWorkOrder
@@ -1307,14 +1307,14 @@ Partial Class frmManPurchaseOrderDetail
         EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
         Me.btnSelectWorkOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.btnSelectWorkOrder.Properties.ReadOnly = True
-        Me.btnSelectWorkOrder.Size = New System.Drawing.Size(318, 22)
+        Me.btnSelectWorkOrder.Size = New System.Drawing.Size(321, 22)
         Me.btnSelectWorkOrder.TabIndex = 246
         '
         'xtpMultipleWO
         '
         Me.xtpMultipleWO.Controls.Add(Me.GroupControl9)
         Me.xtpMultipleWO.Name = "xtpMultipleWO"
-        Me.xtpMultipleWO.Size = New System.Drawing.Size(434, 292)
+        Me.xtpMultipleWO.Size = New System.Drawing.Size(437, 299)
         Me.xtpMultipleWO.Text = "Mult."
         '
         'GroupControl9
@@ -1329,7 +1329,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.GroupControl9.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl9.Name = "GroupControl9"
         Me.GroupControl9.ShowCaption = False
-        Me.GroupControl9.Size = New System.Drawing.Size(434, 292)
+        Me.GroupControl9.Size = New System.Drawing.Size(437, 299)
         Me.GroupControl9.TabIndex = 267
         Me.GroupControl9.Text = "Admon. OTs"
         '
@@ -1350,7 +1350,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.grdPOIWorkOrderInfo.MenuManager = Me.BarManager1
         Me.grdPOIWorkOrderInfo.Name = "grdPOIWorkOrderInfo"
         Me.grdPOIWorkOrderInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
-        Me.grdPOIWorkOrderInfo.Size = New System.Drawing.Size(424, 206)
+        Me.grdPOIWorkOrderInfo.Size = New System.Drawing.Size(427, 206)
         Me.grdPOIWorkOrderInfo.TabIndex = 266
         Me.grdPOIWorkOrderInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWorkOrderInfos})
         '
@@ -1700,7 +1700,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.xtraTabAppendDoc.Appearance.Header.Options.UseForeColor = True
         Me.xtraTabAppendDoc.Controls.Add(Me.UctFileControl1)
         Me.xtraTabAppendDoc.Name = "xtraTabAppendDoc"
-        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(380, 291)
+        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(384, 294)
         Me.xtraTabAppendDoc.Text = "Documentos Adjuntos"
         '
         'UctFileControl1
@@ -1708,7 +1708,7 @@ Partial Class frmManPurchaseOrderDetail
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(0, 0)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(380, 291)
+        Me.UctFileControl1.Size = New System.Drawing.Size(384, 294)
         Me.UctFileControl1.TabIndex = 1
         Me.UctFileControl1.UserController = Nothing
         '

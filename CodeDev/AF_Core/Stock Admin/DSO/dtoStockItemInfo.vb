@@ -13,6 +13,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
     StockItemInfos = 2
     StockItemProcessor = 3
     WoodStockInfo = 4
+    LastPurchasing = 5
   End Enum
 
   Public Sub New(ByRef rDBSource As clsDBConnBase, ByVal vMode As eMode)
@@ -30,6 +31,9 @@ Public Class dtoStockItemInfo : Inherits dtoBase
         pTableName = "vwStockItemInfo"
       Case eMode.StockItemProcessor
         pTableName = "StockItem"
+
+      Case eMode.LastPurchasing
+        pTableName = "vwSILastPriceByLastDateInfo"
 
       Case eMode.WoodStockInfo
         pTableName = "vwWoodStockItemInfo"
@@ -91,6 +95,11 @@ Public Class dtoStockItemInfo : Inherits dtoBase
             ''.Balance = DBReadDecimal(rDataReader, "Balance")
           End With
 
+        Case eMode.LastPurchasing
+          With pStockItemInfo
+            .LastPrice = DBReadDecimal(rDataReader, "UnitPrice")
+          End With
+
           ''With pStockItemInfo
           ''.DefaultSupplier = DBReadString(rDataReader, "DefaultSupplier")
           ''End With
@@ -137,7 +146,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
   Protected Overrides Function SetObjectToNew() As Object
 
     Select Case pMode
-      Case eMode.StockItemInfos, eMode.WoodStockInfo
+      Case eMode.StockItemInfos, eMode.WoodStockInfo, eMode.LastPurchasing
         pStockItemInfo = New clsStockItemInfo
       Case eMode.StockItemProcessor
         pStockItemInfo = New clsStockItemProcessor(New dmPurchaseOrderItem)

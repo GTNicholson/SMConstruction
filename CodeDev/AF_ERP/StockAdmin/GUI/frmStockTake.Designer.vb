@@ -89,6 +89,7 @@ Partial Class frmStockTake
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grdStockCheckItem = New DevExpress.XtraGrid.GridControl()
         Me.repitPUStockItemValuationHistorys = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
         Me.grpDetail = New DevExpress.XtraEditors.GroupControl()
@@ -104,7 +105,6 @@ Partial Class frmStockTake
         Me.txtStockCheckDesc = New DevExpress.XtraEditors.TextEdit()
         Me.grpItemDetail = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.puccStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.puccStockItemValuationHistorys.SuspendLayout()
         CType(Me.grdStockItemValuationHistorys, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -696,6 +696,15 @@ Partial Class frmStockTake
         Me.GridColumn22.VisibleIndex = 15
         Me.GridColumn22.Width = 125
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "UdM"
+        Me.GridColumn6.FieldName = "UoM"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.Width = 50
+        '
         'grdStockCheckItem
         '
         Me.grdStockCheckItem.Dock = System.Windows.Forms.DockStyle.Fill
@@ -901,15 +910,6 @@ Partial Class frmStockTake
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1370, 679)
         Me.PanelControl1.TabIndex = 10
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "UdM"
-        Me.GridColumn6.FieldName = "UoM"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
-        Me.GridColumn6.Width = 50
         '
         'frmStockTake
         '

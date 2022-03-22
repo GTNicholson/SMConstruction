@@ -353,7 +353,7 @@ Public Class fccSalesOrderReview
   End Sub
 
   Public Sub PreparePrintSpreadSheet(ByRef rWorkSheet As DevExpress.Spreadsheet.Worksheet)
-    Dim mRange As DevExpress.Spreadsheet.Range
+    Dim mRange As DevExpress.Spreadsheet.CellRange
     With rWorkSheet
       .DefinedNames.Remove("_xlnm.Print_Area")
       mRange = .GetUsedRange

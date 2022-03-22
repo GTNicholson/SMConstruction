@@ -57,11 +57,11 @@ Public Class clsExcelSalesOrderReview_Detail
 
 
   Private Sub AddLines(ByVal vRowForTitlesToStartIn As Integer, ByVal vLastRow As Integer)
-    Dim mRange As DevExpress.Spreadsheet.Range
-    Dim rangeformatting As DevExpress.Spreadsheet.Formatting
+    Dim mRange As DevExpress.Spreadsheet.CellRange
+    Dim Rangeformatting As DevExpress.Spreadsheet.Formatting
     mRange = pSpreadSheet.Worksheets(0).Range("a" & vRowForTitlesToStartIn + 1 & ":av" & vLastRow + 1)
-    rangeformatting = mRange.BeginUpdateFormatting()
-    rangeformatting.Borders.SetAllBorders(Color.Black, DevExpress.Spreadsheet.BorderLineStyle.Thin)
+    Rangeformatting = mRange.BeginUpdateFormatting()
+    Rangeformatting.Borders.SetAllBorders(Color.Black, DevExpress.Spreadsheet.BorderLineStyle.Thin)
 
   End Sub
 
@@ -90,7 +90,7 @@ Public Class clsExcelSalesOrderReview_Detail
   End Function
 
   Private Sub CreateReviewSpreadSheet()
-    Dim mRange As Range
+    Dim mRange As CellRange
     Dim mCurrentRow As Integer
 
 
@@ -170,7 +170,7 @@ Public Class clsExcelSalesOrderReview_Detail
     Dim mTotalValue As Integer = 22
 
 
-    Dim mRange As Range
+    Dim mRange As CellRange
     Dim mRow As Integer = 0
     pSpreadSheet.Worksheets("Data").Cells(mRow, mCategoria).Value = "Categoría"
     pSpreadSheet.Worksheets("Data").Cells(mRow, mTotalValue).Value = "Valor Neto"
@@ -194,7 +194,7 @@ Public Class clsExcelSalesOrderReview_Detail
 
     pSpreadSheet.Worksheets.ActiveWorksheet = worksheet
 
-    ' Create a pivot table using the cell range "A1:D41" as the data source.
+    ' Create a pivot table using the cell Range "A1:D41" as the data source.
     mWoodReferenceSource = "V1:W" & mRow + 1
 
     Dim pivotTable As PivotTable = worksheet.PivotTables.Add(sourceWorksheet(mWoodReferenceSource), worksheet(mWoodReferenceTarget))
@@ -241,76 +241,76 @@ Public Class clsExcelSalesOrderReview_Detail
     Dim mOvertTimeCost As Integer = 13
     Dim mTotalCost As Integer = 14
 
-    Dim mRange As Range
+    Dim mRange As CellRange
     Dim mRow As Integer = 0
 
 
 
     pSpreadSheet.Worksheets("Data").Cells(mRow, mWODescription).Value = "Descripción"
-      pSpreadSheet.Worksheets("Data").Cells(mRow, mDuration).Value = "Duración (hr)"
-      pSpreadSheet.Worksheets("Data").Cells(mRow, mOverTime).Value = "Tiempo Extra (hr)"
-      pSpreadSheet.Worksheets("Data").Cells(mRow, mCostStd).Value = "Costo Stand."
-      pSpreadSheet.Worksheets("Data").Cells(mRow, mOvertTimeCost).Value = "Costo Hr Extra"
-      pSpreadSheet.Worksheets("Data").Cells(mRow, mTotalCost).Value = "Costo Total"
+    pSpreadSheet.Worksheets("Data").Cells(mRow, mDuration).Value = "Duración (hr)"
+    pSpreadSheet.Worksheets("Data").Cells(mRow, mOverTime).Value = "Tiempo Extra (hr)"
+    pSpreadSheet.Worksheets("Data").Cells(mRow, mCostStd).Value = "Costo Stand."
+    pSpreadSheet.Worksheets("Data").Cells(mRow, mOvertTimeCost).Value = "Costo Hr Extra"
+    pSpreadSheet.Worksheets("Data").Cells(mRow, mTotalCost).Value = "Costo Total"
 
 
-      For Each mTSE In pTimeSheetProjects
+    For Each mTSE In pTimeSheetProjects
 
-        pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mWODescription).Value = mTSE.WODescriptionRef
-        pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mDuration).Value = mTSE.Duration
-        pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mOverTime).Value = mTSE.OverTimeHour
-        pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mCostStd).Value = mTSE.TotalStandardValue
-        pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mOvertTimeCost).Value = mTSE.TotalOverTimeValue
-        pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mTotalCost).Value = mTSE.TotalStandardValueIncludingOverTimeCost
+      pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mWODescription).Value = mTSE.WODescriptionRef
+      pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mDuration).Value = mTSE.Duration
+      pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mOverTime).Value = mTSE.OverTimeHour
+      pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mCostStd).Value = mTSE.TotalStandardValue
+      pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mOvertTimeCost).Value = mTSE.TotalOverTimeValue
+      pSpreadSheet.Worksheets("Data").Cells(mRow + 1, mTotalCost).Value = mTSE.TotalStandardValueIncludingOverTimeCost
 
-        mRow = mRow + 1
+      mRow = mRow + 1
 
-      Next
-
-
-
-      Dim sourceWorksheet As Worksheet = WorkBook.Worksheets("Data")
-      Dim worksheet As Worksheet = pSpreadSheet.Worksheets(0)
-      Dim mWoodReferenceSource As String
-      Dim mWoodReferenceTarget As String = "F" & vRow + 2
+    Next
 
 
-      pSpreadSheet.Worksheets.ActiveWorksheet = worksheet
 
-      ' Create a pivot table using the cell range "A1:D41" as the data source.
-      mWoodReferenceSource = "J1:O" & mRow + 1
-
-      Dim pivotTable As PivotTable = worksheet.PivotTables.Add(sourceWorksheet(mWoodReferenceSource), worksheet(mWoodReferenceTarget))
-
-      ' Add the "Category" field to the row axis area.
-      pivotTable.RowFields.Add(pivotTable.Fields("Descripción"))
-      ' Add the "Product" field to the row axis area.
-      pivotTable.DataFields.Add(pivotTable.Fields("Duración (hr)"))
-      ' Add the "Sales" field to the data area.
-      pivotTable.DataFields.Add(pivotTable.Fields("Tiempo Extra (hr)"))
-      pivotTable.DataFields.Add(pivotTable.Fields("Costo Stand."))
-      pivotTable.DataFields.Add(pivotTable.Fields("Costo Hr Extra"))
-
-      pivotTable.Fields("Duración (hr)").SetSubtotal(PivotSubtotalFunctions.Sum)
-      pivotTable.Fields("Tiempo Extra (hr)").SetSubtotal(PivotSubtotalFunctions.Sum)
+    Dim sourceWorksheet As Worksheet = WorkBook.Worksheets("Data")
+    Dim worksheet As Worksheet = pSpreadSheet.Worksheets(0)
+    Dim mWoodReferenceSource As String
+    Dim mWoodReferenceTarget As String = "F" & vRow + 2
 
 
-      pivotTable.Layout.SetReportLayout(PivotReportLayout.Tabular)
-      pivotTable.Fields("Descripción").Layout.Outline = True
+    pSpreadSheet.Worksheets.ActiveWorksheet = worksheet
+
+    ' Create a pivot table using the cell Range "A1:D41" as the data source.
+    mWoodReferenceSource = "J1:O" & mRow + 1
+
+    Dim pivotTable As PivotTable = worksheet.PivotTables.Add(sourceWorksheet(mWoodReferenceSource), worksheet(mWoodReferenceTarget))
+
+    ' Add the "Category" field to the row axis area.
+    pivotTable.RowFields.Add(pivotTable.Fields("Descripción"))
+    ' Add the "Product" field to the row axis area.
+    pivotTable.DataFields.Add(pivotTable.Fields("Duración (hr)"))
+    ' Add the "Sales" field to the data area.
+    pivotTable.DataFields.Add(pivotTable.Fields("Tiempo Extra (hr)"))
+    pivotTable.DataFields.Add(pivotTable.Fields("Costo Stand."))
+    pivotTable.DataFields.Add(pivotTable.Fields("Costo Hr Extra"))
+
+    pivotTable.Fields("Duración (hr)").SetSubtotal(PivotSubtotalFunctions.Sum)
+    pivotTable.Fields("Tiempo Extra (hr)").SetSubtotal(PivotSubtotalFunctions.Sum)
 
 
-      mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(5, vRow, 9, vRow)
-      mRange.Fill.BackgroundColor = Color.LightGray
-      mRange.Alignment.WrapText = True
-      mRange.Font.Bold = True
+    pivotTable.Layout.SetReportLayout(PivotReportLayout.Tabular)
+    pivotTable.Fields("Descripción").Layout.Outline = True
 
-      mRange.Value = "Detalle de Mano de Obra por OT"
-      mRange.Font.Bold = True
-      mRange.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left
-      mRange.Font.Color = Color.FromArgb(166, 18, 18)
-      mRange.Merge
-      mRange.Font.Size = 12
-      mRange.Borders.SetAllBorders(Color.Black, BorderLineStyle.Medium)
+
+    mRange = pSpreadSheet.Worksheets(0).Range.FromLTRB(5, vRow, 9, vRow)
+    mRange.Fill.BackgroundColor = Color.LightGray
+    mRange.Alignment.WrapText = True
+    mRange.Font.Bold = True
+
+    mRange.Value = "Detalle de Mano de Obra por OT"
+    mRange.Font.Bold = True
+    mRange.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left
+    mRange.Font.Color = Color.FromArgb(166, 18, 18)
+    mRange.Merge
+    mRange.Font.Size = 12
+    mRange.Borders.SetAllBorders(Color.Black, BorderLineStyle.Medium)
 
 
 
@@ -428,7 +428,7 @@ Public Class clsExcelSalesOrderReview_Detail
 
   Private Function GetLastRowUsed() As Integer
     Dim mRetVal As Integer
-    Dim mUsedRange As Range
+    Dim mUsedRange As CellRange
     mUsedRange = pSpreadSheet.Worksheets(0).GetDataRange
 
     mRetVal = mUsedRange.BottomRowIndex
@@ -442,7 +442,7 @@ Public Class clsExcelSalesOrderReview_Detail
     Dim mWoodSpecieColumn As Integer = 1
     Dim mBoardFeetColumn As Integer = 2
     Dim mWoodTotalCost As Integer = 3
-    Dim mRange As Range
+    Dim mRange As CellRange
     Dim mRow As Integer = 0
     pSpreadSheet.Worksheets("Data").Cells(mRow, mWoodDescriptionColumn).Value = "Descripción"
     pSpreadSheet.Worksheets("Data").Cells(mRow, mWoodSpecieColumn).Value = "Especie"
@@ -469,7 +469,7 @@ Public Class clsExcelSalesOrderReview_Detail
 
     pSpreadSheet.Worksheets.ActiveWorksheet = worksheet
 
-    ' Create a pivot table using the cell range "A1:D41" as the data source.
+    ' Create a pivot table using the cell Range "A1:D41" as the data source.
     mWoodReferenceSource = "A1:D" & mRow + 1
 
     Dim pivotTable As PivotTable = worksheet.PivotTables.Add(sourceWorksheet(mWoodReferenceSource), worksheet(mWoodReferenceTarget))
@@ -509,7 +509,7 @@ Public Class clsExcelSalesOrderReview_Detail
   End Sub
 
   Private Sub AddGeneralCostSalesProject(ByVal vRow As Integer)
-    Dim mRange As Range
+    Dim mRange As CellRange
     Dim mTotalValueSalesOrderLabel As Integer = 0
     Dim mTotalValueSalesOrderValue As Integer = 1
     Dim mInsumosEstimadosLabel As Integer = 4
@@ -739,7 +739,7 @@ Public Class clsExcelSalesOrderReview_Detail
   End Sub
 
   Private Sub AddGeneralDetailsSalesProject(ByVal vRow As Integer)
-    Dim mRange As Range
+    Dim mRange As CellRange
     Dim mOrderNumberLabel As Integer = 0
     Dim mOrderNumberValue As Integer = 2
     Dim mProyectoLabel As Integer = 8
