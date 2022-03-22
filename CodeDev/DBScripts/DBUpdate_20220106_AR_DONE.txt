@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].WoodGuideItemSummary(
+	WoodGuideItemSummaryID [int] IDENTITY(1,1) NOT NULL,
+	[WoodReceptionID] [int] NULL,
+	[SpeciesID] int NULL,
+	Quantity int NULL,
+	AverageDiameter decimal (4,2) NULL,
+	Length decimal (8,3) NULL,
+	VolumeM3 decimal (10,3),
+ CONSTRAINT [PK_WoodGuideItemSummary] PRIMARY KEY CLUSTERED 
+(
+	WoodGuideItemSummaryID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO

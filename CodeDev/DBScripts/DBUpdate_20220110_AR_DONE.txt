@@ -1,0 +1,4 @@
+insert into ApplicationActivity (ActivityCode,ActivityArea,ApplicationModuleID)
+values (208,'Reporte de Costos por OT',5)
+go
+

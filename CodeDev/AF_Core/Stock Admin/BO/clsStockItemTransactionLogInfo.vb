@@ -526,7 +526,10 @@ Public Class clsStockItemTransactionLogInfo
         Case eObjectType.PODeliveryItem
           mRetVal = "#O.C. " & PONum
         Case eObjectType.WoodPallet
-          mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eLocations), CType(LocationID, eLocations))
+          If pTransType = eTransactionType.IntoWIP Then
+            mRetVal = WorkOrderNo
+
+          End If
 
 
       End Select

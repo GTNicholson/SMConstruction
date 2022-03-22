@@ -187,6 +187,7 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
 
           With pStockItemTransactionLogInfo
             .WorkOrder.Description = DBReadString(rDataReader, "WODESCRIPTION")
+            .WorkOrder.WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
           End With
       End Select
 

@@ -625,7 +625,26 @@ Public Class fccSalesOrderDetailHouses
 
 
   End Sub
+  Public Sub LoadWorkOrderByWorkOrderNoAndProductID(ByRef rWorkOrders As colWorkOrders, ByVal vWhere As String)
+    Dim mdso As New dsoSalesOrder(pDBConn)
+    Dim mWhere As String = ""
 
+
+    Try
+
+      mWhere = String.Format("WorkOrderNo in ({0})", vWhere)
+
+      mdso.LoadWorkOrderByWhere(rWorkOrders, mWhere)
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+
+  End Sub
   Public Sub CreateSalesItemsFromHouseTypeConfig(ByRef rHouseType As dmHouseType, ByVal vProductCostBookID As Integer)
     pCurrentSalesOrderHouse.HouseTypeID = rHouseType.HouseTypeID
     pSalesOrderHandler.CreateSalesItemsFromHouseTypeConfig(pCurrentSalesOrderHouse, rHouseType, pDBConn, vProductCostBookID)

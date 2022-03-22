@@ -194,6 +194,7 @@
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="App\appInit.vb" />
     <Compile Include="App\appLockEntitys.vb" />
+    <Compile Include="App\clsExcelImportModel.vb" />
     <Compile Include="App\clsMDISystemAdmin.vb" />
     <Compile Include="App\clsMenuHandler.vb" />
     <Compile Include="App\clsMenus.vb" />
@@ -268,6 +269,7 @@
     <Compile Include="BIReports\BIReportViewWorkOrder.vb" />
     <Compile Include="BIReports\BIReportWoodReqMatInfo.vb" />
     <Compile Include="BIReports\BIReportViewPODeliveryItem.vb" />
+    <Compile Include="BIReports\BIReportViewTimeSheetEmployee.vb" />
     <Compile Include="Candidates\frmSpreadSheetControl.Designer.vb">
       <DependentUpon>frmSpreadSheetControl.vb</DependentUpon>
     </Compile>
@@ -526,6 +528,12 @@
       <DependentUpon>frmWoodWorkOrderMilestoneStatus.vb</DependentUpon>
     </Compile>
     <Compile Include="Production\GUI\frmWoodWorkOrderMilestoneStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderCostingReview.Designer.vb">
+      <DependentUpon>frmWorkOrderCostingReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderCostingReview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Production\GUI\frmWorkOrderMilestoneStatus.Designer.vb">
@@ -854,6 +862,12 @@
     <Compile Include="Sales\OutputDocs\repWorkOrderMatReqsWood.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repCoverWOPack.Designer.vb">
+      <DependentUpon>repCoverWOPack.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\SalesReport\repCoverWOPack.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\OutputDocs\SalesReport\repPOIADetail.Designer.vb">
       <DependentUpon>repPOIADetail.vb</DependentUpon>
     </Compile>
@@ -996,6 +1010,7 @@
     <Compile Include="StockAdmin\Reports\repoListToStockTake.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WoodProcessing\Excel\clsWoodReceptionExcelImportModel.vb" />
     <Compile Include="WoodProcessing\fccWoodMaterialRequirement.vb" />
     <Compile Include="WoodProcessing\fccWoodReception.vb" />
     <Compile Include="WoodProcessing\fccWorkOrderWoodProcess.vb" />
@@ -1160,6 +1175,9 @@
     <EmbeddedResource Include="Production\GUI\frmWoodWorkOrderMilestoneStatus.resx">
       <DependentUpon>frmWoodWorkOrderMilestoneStatus.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmWorkOrderCostingReview.resx">
+      <DependentUpon>frmWorkOrderCostingReview.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmWorkOrderMilestoneStatus.resx">
       <DependentUpon>frmWorkOrderMilestoneStatus.vb</DependentUpon>
     </EmbeddedResource>
@@ -1306,6 +1324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repWorkOrderMatReqsWood.resx">
       <DependentUpon>repWorkOrderMatReqsWood.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repCoverWOPack.resx">
+      <DependentUpon>repCoverWOPack.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\SalesReport\repPOIADetail.resx">
       <DependentUpon>repPOIADetail.vb</DependentUpon>

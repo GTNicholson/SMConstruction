@@ -129,7 +129,7 @@ Public Class dtoReception : Inherits dtoBase
     Dim mParams As New Hashtable
     Dim mOK As Boolean
     ' mParams.Add("@ParentID", vParentID)
-    mOK = MyBase.LoadCollection(rReceptions, mParams, "ReceptionID")
+    mOK = MyBase.LoadCollection(rReceptions, mParams, "ReceptionID desc")
     rReceptions.TrackDeleted = True
     If mOK Then rReceptions.IsDirty = False
     Return mOK

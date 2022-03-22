@@ -7,12 +7,20 @@ Imports RTIS.Elements
 
 Public Class frmTimeSheetEntry
   Private pController As fccTimeSheetEntry
+  Private pRadioGroupWorkCentre As DevExpress.XtraEditors.RadioGroup
+  Public pTSEEmode As eTSEEmode
 
-  Public Shared Sub OpenFormModal(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal)
+  Public Enum eTSEEmode
+    Production = 1
+    Wood = 2
+  End Enum
+
+  Public Shared Sub OpenFormModal(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByVal vEmode As eTSEEmode)
     Dim mfrm As frmTimeSheetEntry
     mfrm = New frmTimeSheetEntry
 
     mfrm.pController = New fccTimeSheetEntry(rDBConn, rRTISGlobal)
+    mfrm.pTSEEmode = vEmode
 
     mfrm.ShowDialog()
   End Sub
@@ -26,6 +34,18 @@ Public Class frmTimeSheetEntry
       If pController.DBConn.RTISUser.IsSecurityAllowAll = False Then
         XtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False
       End If
+      Select Case pTSEEmode
+        Case eTSEEmode.Production
+          pRadioGroupWorkCentre = radgrpWorkCentreID
+          xtpProduction.PageVisible = True
+          xtpWood.PageVisible = False
+        Case eTSEEmode.Wood
+          pRadioGroupWorkCentre = rgWoodOptions
+          xtpProduction.PageVisible = False
+          xtpWood.PageVisible = True
+      End Select
+      AddHandler pRadioGroupWorkCentre.EditValueChanged, AddressOf Me.RadioGroupWorkCentreEditValueChanged
+
 
       pController.SetInitialDefaultValues()
       pController.LoadTimeSheetEntrys()
@@ -77,7 +97,7 @@ Public Class frmTimeSheetEntry
     datWeekCommencing.DateTime = pController.WCDate.Date
     timTimeStart.EditValue = New Date(1, 1, 1, pController.StartTime.Hour, pController.StartTime.Minute, pController.StartTime.Second)
     timTimeEnd.EditValue = New Date(1, 1, 1, pController.EndTime.Hour, pController.EndTime.Minute, pController.EndTime.Second)
-    radgrpWorkCentreID.EditValue = pController.WorkCentreID
+    pRadioGroupWorkCentre.EditValue = pController.WorkCentreID
   End Sub
 
   Private Sub UpdateObjects()
@@ -172,8 +192,8 @@ Public Class frmTimeSheetEntry
     gvTimeSheet.RefreshData()
   End Sub
 
-  Private Sub radgrpWorkCentreID_EditValueChanged(sender As Object, e As EventArgs) Handles radgrpWorkCentreID.EditValueChanged
-    pController.WorkCentreID = radgrpWorkCentreID.EditValue
+  Private Sub RadioGroupWorkCentreEditValueChanged(sender As Object, e As EventArgs)
+    pController.WorkCentreID = pRadioGroupWorkCentre.EditValue
   End Sub
 
   Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged

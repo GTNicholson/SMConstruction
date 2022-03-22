@@ -316,9 +316,14 @@ Public Class clsWoodPalletSharedFuncs
     End If
   End Sub
 
-  Public Shared Function GetTrunkVolume(ByVal vLength As Decimal, ByVal vThickness As Decimal) As Decimal
+  Public Shared Function GetTrunkVolume(ByVal vLength As Decimal, ByVal vThickness As Decimal, ByVal vQty As Integer) As Decimal
     Dim mRetVal As Decimal
-    mRetVal = Math.Round(Math.PI * Math.Pow(vThickness / 2 / 100, 2) * vLength, 4, MidpointRounding.AwayFromZero)
+    'mRetVal = Math.Round(Math.PI * Math.Pow(vThickness / 2 / 100, 2) * vLength, 4, MidpointRounding.AwayFromZero)
+    'Return mRetVal
+    mRetVal = clsConstants.TrunkVolumeFactor * (vThickness / 100) * (vThickness / 100) * vLength * vQty
+    mRetVal = Math.Round(mRetVal, 5, MidpointRounding.AwayFromZero)
     Return mRetVal
   End Function
+
+
 End Class

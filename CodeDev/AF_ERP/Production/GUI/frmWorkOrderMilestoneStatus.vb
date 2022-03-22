@@ -49,6 +49,7 @@ Public Class frmWorkOrderMilestoneStatus
   End Sub
 
   Private Sub CloseForm() 'Needs exit mode set first
+    pController.UpdateWorkOrderStatus()
     Me.Close()
   End Sub
 

@@ -56,8 +56,16 @@ Public Class frmListToStockTake
 
   Private Sub LoadCombos()
 
-    Dim mVIs As colValueItems
-    mVIs = clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+    Dim mVIs As New colValueItems
+
+    mVIs.Add(New clsValueItem(-1, "Todos"))
+
+
+    For Each mVA In clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
+      mVIs.Add(mVA)
+    Next
+
+
     RTIS.Elements.clsDEControlLoading.FillDEComboVI(cboCategory, mVIs)
 
 
@@ -205,6 +213,8 @@ Public Class frmListToStockTake
 
       Else
         If mStockTakeItemEditor.StockItem.ItemType = pItemType And mStockTakeItemEditor.StockItem.Category = pCategory Then
+          mDataSource.Add(mStockTakeItemEditor)
+        Else
           mDataSource.Add(mStockTakeItemEditor)
         End If
       End If

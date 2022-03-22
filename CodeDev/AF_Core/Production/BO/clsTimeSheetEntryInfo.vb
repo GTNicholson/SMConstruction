@@ -92,6 +92,14 @@ Public Class clsTimeSheetEntryInfo
     End Get
   End Property
 
+  Public ReadOnly Property TimeSheetDateGUI As String
+    Get
+      Dim mRetVal As String
+      mRetVal = TimeSheetDateWC.ToString("dddd-dd") & " al " & TimeSheetDateWC.AddDays(6).ToString("dddd-dd")
+
+      Return mRetVal
+    End Get
+  End Property
   Public ReadOnly Property TimeSheetEntryTypeDesc As String
     Get
       Return colTimeSheetCodes.GetInstance.DisplayValueFromKey(pTimeSheetEntry.TimeSheetEntryTypeID)
@@ -290,6 +298,18 @@ Public Class clsTimeSheetEntryInfo
       Return mRetVal
     End Get
   End Property
+
+  Public ReadOnly Property ProjectNameWithReference As String
+    Get
+      Dim mRetVal As String = ""
+
+
+      mRetVal = pSalesOrder.OrderNo & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
+
 End Class
 
 Public Class colTimeSheetEntryInfos : Inherits List(Of clsTimeSheetEntryInfo)

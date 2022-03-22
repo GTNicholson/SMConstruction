@@ -113,6 +113,7 @@ Partial Class frmProjectReviewAll
         Me.PivotGridField16 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField17 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField18 = New DevExpress.XtraPivotGrid.PivotGridField()
+        Me.PivotGridField33 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.chrSalesProjectCost = New DevExpress.XtraCharts.ChartControl()
         Me.btnAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.cboSalesOrderType = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -207,10 +208,9 @@ Partial Class frmProjectReviewAll
         Me.Panel1.Controls.Add(Me.btnAccept)
         Me.Panel1.Controls.Add(Me.cboSalesOrderType)
         Me.Panel1.Controls.Add(Me.LabelControl11)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1783, 1061)
+        Me.Panel1.Size = New System.Drawing.Size(1750, 1061)
         Me.Panel1.TabIndex = 0
         '
         'cboStatus
@@ -254,7 +254,7 @@ Partial Class frmProjectReviewAll
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1762, 512)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1729, 512)
         Me.TableLayoutPanel2.TabIndex = 21
         '
         'GroupControl4
@@ -265,9 +265,9 @@ Partial Class frmProjectReviewAll
         Me.GroupControl4.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl4.Controls.Add(Me.grdMaterials)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(1359, 3)
+        Me.GroupControl4.Location = New System.Drawing.Point(1333, 3)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(400, 250)
+        Me.GroupControl4.Size = New System.Drawing.Size(393, 250)
         Me.GroupControl4.TabIndex = 11
         Me.GroupControl4.Text = "Detalle de Consumo de Materiales"
         '
@@ -282,7 +282,7 @@ Partial Class frmProjectReviewAll
         Me.grdMaterials.Location = New System.Drawing.Point(2, 23)
         Me.grdMaterials.Name = "grdMaterials"
         Me.grdMaterials.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
-        Me.grdMaterials.Size = New System.Drawing.Size(396, 225)
+        Me.grdMaterials.Size = New System.Drawing.Size(389, 225)
         Me.grdMaterials.TabIndex = 3
         '
         'PivotGridField19
@@ -357,9 +357,9 @@ Partial Class frmProjectReviewAll
         Me.GroupControl5.AppearanceCaption.Options.UseForeColor = True
         Me.GroupControl5.Controls.Add(Me.grdTimeSheetEntry)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(531, 3)
+        Me.GroupControl5.Location = New System.Drawing.Point(521, 3)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(822, 250)
+        Me.GroupControl5.Size = New System.Drawing.Size(806, 250)
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Detalle de Mano de Obra por Proyecto"
         '
@@ -393,7 +393,7 @@ Partial Class frmProjectReviewAll
         Me.grdTimeSheetEntry.OptionsData.DataFieldUnboundExpressionMode = DevExpress.XtraPivotGrid.DataFieldUnboundExpressionMode.UseSummaryValues
         Me.grdTimeSheetEntry.OptionsView.ShowColumnGrandTotalHeader = False
         Me.grdTimeSheetEntry.OptionsView.ShowDataHeaders = False
-        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(818, 225)
+        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(802, 225)
         Me.grdTimeSheetEntry.TabIndex = 3
         '
         'PivotGridField22
@@ -522,7 +522,7 @@ Partial Class frmProjectReviewAll
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(3, 3)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(522, 250)
+        Me.GroupControl3.Size = New System.Drawing.Size(512, 250)
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Detalle de PT Consumido por Proyecto"
         '
@@ -543,7 +543,7 @@ Partial Class frmProjectReviewAll
         Me.grdSpeciesByProject.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
         Me.grdSpeciesByProject.OptionsView.ShowDataHeaders = False
         Me.grdSpeciesByProject.OptionsView.ShowFilterHeaders = False
-        Me.grdSpeciesByProject.Size = New System.Drawing.Size(518, 225)
+        Me.grdSpeciesByProject.Size = New System.Drawing.Size(508, 225)
         Me.grdSpeciesByProject.TabIndex = 3
         '
         'PivotGridField29
@@ -690,7 +690,7 @@ Partial Class frmProjectReviewAll
         Me.chrTimeSheet.Legend.Shadow.Size = 1
         Me.chrTimeSheet.Legend.Shadow.Visible = True
         Me.chrTimeSheet.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrTimeSheet.Location = New System.Drawing.Point(531, 259)
+        Me.chrTimeSheet.Location = New System.Drawing.Point(521, 259)
         Me.chrTimeSheet.Name = "chrTimeSheet"
         Me.chrTimeSheet.Padding.Bottom = 2
         Me.chrTimeSheet.Padding.Left = 2
@@ -741,7 +741,7 @@ Partial Class frmProjectReviewAll
         Me.chrTimeSheet.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrTimeSheet.SeriesTemplate.ToolTipSeriesPattern = "{S:#.00}"
         Me.chrTimeSheet.SeriesTemplate.View = StackedBarSeriesView3
-        Me.chrTimeSheet.Size = New System.Drawing.Size(822, 250)
+        Me.chrTimeSheet.Size = New System.Drawing.Size(806, 250)
         Me.chrTimeSheet.TabIndex = 27
         ChartTitle1.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle1.Text = "Costo M.O. por O.T."
@@ -794,7 +794,7 @@ Partial Class frmProjectReviewAll
         Me.chrOtherExpenses.Legend.Shadow.Size = 1
         Me.chrOtherExpenses.Legend.Shadow.Visible = True
         Me.chrOtherExpenses.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrOtherExpenses.Location = New System.Drawing.Point(1359, 259)
+        Me.chrOtherExpenses.Location = New System.Drawing.Point(1333, 259)
         Me.chrOtherExpenses.Name = "chrOtherExpenses"
         Me.chrOtherExpenses.Padding.Bottom = 2
         Me.chrOtherExpenses.Padding.Left = 2
@@ -828,7 +828,7 @@ Partial Class frmProjectReviewAll
         Me.chrOtherExpenses.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrOtherExpenses.SeriesTemplate.ToolTipPointPattern = "{V:#.00}"
         Me.chrOtherExpenses.SeriesTemplate.View = StackedBarSeriesView5
-        Me.chrOtherExpenses.Size = New System.Drawing.Size(400, 250)
+        Me.chrOtherExpenses.Size = New System.Drawing.Size(393, 250)
         Me.chrOtherExpenses.TabIndex = 28
         ChartTitle2.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle2.Text = "Costo de Consumo de Materiales"
@@ -919,7 +919,7 @@ Partial Class frmProjectReviewAll
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.[True]
         Me.chrWoodPalletItemInfo.SeriesTemplate.ToolTipPointPattern = "{A},{V:#.00}"
         Me.chrWoodPalletItemInfo.SeriesTemplate.View = StackedBarSeriesView7
-        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(522, 250)
+        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(512, 250)
         Me.chrWoodPalletItemInfo.TabIndex = 29
         ChartTitle3.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle3.Text = "Costos P.T. por Especie"
@@ -981,7 +981,7 @@ Partial Class frmProjectReviewAll
         Me.GroupControl2.Controls.Add(Me.TableLayoutPanel1)
         Me.GroupControl2.Location = New System.Drawing.Point(9, 55)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(1762, 490)
+        Me.GroupControl2.Size = New System.Drawing.Size(1729, 490)
         Me.GroupControl2.TabIndex = 16
         Me.GroupControl2.Text = "Resumen de Costos"
         '
@@ -997,7 +997,7 @@ Partial Class frmProjectReviewAll
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1758, 462)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1725, 462)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'grdSalesOrderPhaseItemInfos
@@ -1025,14 +1025,13 @@ Partial Class frmProjectReviewAll
         Me.grdSalesOrderPhaseItemInfos.Appearance.TotalCell.Options.UseBackColor = True
         Me.grdSalesOrderPhaseItemInfos.Appearance.TotalCell.Options.UseFont = True
         Me.grdSalesOrderPhaseItemInfos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdSalesOrderPhaseItemInfos.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField4, Me.PivotGridField6, Me.PivotGridField7, Me.PivotGridField8, Me.PivotGridField9, Me.PivotGridField10, Me.PivotGridField11, Me.PivotGridField13, Me.PivotGridField14, Me.PivotGridField16, Me.PivotGridField17, Me.PivotGridField18})
+        Me.grdSalesOrderPhaseItemInfos.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField4, Me.PivotGridField6, Me.PivotGridField7, Me.PivotGridField8, Me.PivotGridField9, Me.PivotGridField10, Me.PivotGridField11, Me.PivotGridField13, Me.PivotGridField14, Me.PivotGridField16, Me.PivotGridField17, Me.PivotGridField18, Me.PivotGridField33})
         Me.grdSalesOrderPhaseItemInfos.Location = New System.Drawing.Point(3, 3)
         Me.grdSalesOrderPhaseItemInfos.Name = "grdSalesOrderPhaseItemInfos"
         Me.grdSalesOrderPhaseItemInfos.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.LegacyOptimized
         Me.grdSalesOrderPhaseItemInfos.OptionsView.ShowColumnGrandTotalHeader = False
         Me.grdSalesOrderPhaseItemInfos.OptionsView.ShowDataHeaders = False
-        Me.grdSalesOrderPhaseItemInfos.OptionsView.ShowFilterHeaders = False
-        Me.grdSalesOrderPhaseItemInfos.Size = New System.Drawing.Size(1224, 456)
+        Me.grdSalesOrderPhaseItemInfos.Size = New System.Drawing.Size(1201, 456)
         Me.grdSalesOrderPhaseItemInfos.TabIndex = 1
         '
         'PivotGridField4
@@ -1054,7 +1053,7 @@ Partial Class frmProjectReviewAll
         Me.PivotGridField4.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
         Me.PivotGridField4.AreaIndex = 0
         Me.PivotGridField4.Caption = "Proyecto"
-        Me.PivotGridField4.FieldName = "ProjectNameWithCustomer"
+        Me.PivotGridField4.FieldName = "ProjectNameWithReference"
         Me.PivotGridField4.Name = "PivotGridField4"
         Me.PivotGridField4.Width = 300
         '
@@ -1421,6 +1420,15 @@ Partial Class frmProjectReviewAll
         Me.PivotGridField18.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField18.Width = 90
         '
+        'PivotGridField33
+        '
+        Me.PivotGridField33.Appearance.Header.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.PivotGridField33.Appearance.Header.Options.UseFont = True
+        Me.PivotGridField33.AreaIndex = 0
+        Me.PivotGridField33.Caption = "Cliente"
+        Me.PivotGridField33.FieldName = "CompanyName"
+        Me.PivotGridField33.Name = "PivotGridField33"
+        '
         'chrSalesProjectCost
         '
         Me.chrSalesProjectCost.AppearanceNameSerializable = "Nature Colors"
@@ -1466,7 +1474,7 @@ Partial Class frmProjectReviewAll
         Me.chrSalesProjectCost.Legend.Shadow.Size = 1
         Me.chrSalesProjectCost.Legend.Shadow.Visible = True
         Me.chrSalesProjectCost.Legend.TextColor = System.Drawing.Color.Black
-        Me.chrSalesProjectCost.Location = New System.Drawing.Point(1233, 3)
+        Me.chrSalesProjectCost.Location = New System.Drawing.Point(1210, 3)
         Me.chrSalesProjectCost.Name = "chrSalesProjectCost"
         Me.chrSalesProjectCost.Padding.Bottom = 2
         Me.chrSalesProjectCost.Padding.Left = 2
@@ -1545,7 +1553,7 @@ Partial Class frmProjectReviewAll
         Me.chrSalesProjectCost.SeriesTemplate.SeriesPointsSorting = DevExpress.XtraCharts.SortingMode.Descending
         Me.chrSalesProjectCost.SeriesTemplate.SeriesPointsSortingKey = DevExpress.XtraCharts.SeriesPointKey.Value_1
         Me.chrSalesProjectCost.SeriesTemplate.View = StackedBarSeriesView12
-        Me.chrSalesProjectCost.Size = New System.Drawing.Size(522, 456)
+        Me.chrSalesProjectCost.Size = New System.Drawing.Size(512, 456)
         Me.chrSalesProjectCost.TabIndex = 2
         ChartTitle4.Text = "Top 5 Proyectos según Costos de Fábrica"
         Me.chrSalesProjectCost.Titles.AddRange(New DevExpress.XtraCharts.ChartTitle() {ChartTitle4})
@@ -1860,7 +1868,9 @@ Partial Class frmProjectReviewAll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1783, 1061)
+        Me.AutoScroll = True
+        Me.AutoScrollMinSize = New System.Drawing.Size(1700, 1060)
+        Me.ClientSize = New System.Drawing.Size(1784, 1061)
         Me.Controls.Add(Me.Panel1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmProjectReviewAll"
@@ -1997,4 +2007,5 @@ Partial Class frmProjectReviewAll
     Friend WithEvents chrWoodPalletItemInfo As DevExpress.XtraCharts.ChartControl
     Friend WithEvents cboStatus As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents PivotGridField33 As DevExpress.XtraPivotGrid.PivotGridField
 End Class

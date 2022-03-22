@@ -21,7 +21,7 @@ Public Class repoListToStockTake
   Public Shared Function GenerateReport(ByRef rStockItemInfos As colStockTakeItemEditors) As repoListToStockTake
     Dim mRep As New repoListToStockTake
     mRep.pStockItemInfos = rStockItemInfos
-    mRep.DataSource = mRep.pStockItemInfos
+    mRep.DataSource = mRep.pStockItemInfos.OrderBy(Function(f) f.StockItem.StockCode).ThenBy(Function(f) f.StockItemCategoryDesc).ThenBy(Function(f) f.StockItem.ItemType)
 
     mRep.CreateDocument()
 

@@ -79,7 +79,6 @@ Public Class AppRTISGlobal : Inherits RTIS.Elements.clsRTISGlobal
 
     pUsersIDWithSmallScreen.Add(1025)
     pUsersIDWithSmallScreen.Add(1024)
-    pUsersIDWithSmallScreen.Add(1028)
     pUsersIDWithSmallScreen.Add(3029)
   End Sub
 

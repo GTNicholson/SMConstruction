@@ -904,7 +904,16 @@ Public Class clsMaterialRequirementInfo
       Return mRetVal
     End Get
   End Property
+  Public ReadOnly Property ProjectNameWithReference As String
+    Get
+      Dim mRetVal As String = ""
 
+
+      mRetVal = pSalesOrder.OrderNo & ": " & ProjectName
+
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

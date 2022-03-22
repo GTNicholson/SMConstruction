@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("RealTime")>
 <Assembly: AssemblyProduct("AgroForestal")>
-<Assembly: AssemblyCopyright("Copyright ©  2021")>
+<Assembly: AssemblyCopyright("Copyright ©  2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' mediante el carácter '*', como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("17.1.44.0")>
-<Assembly: AssemblyFileVersion("17.1.44.0")>
+<Assembly: AssemblyVersion("17.1.59.0")>
+<Assembly: AssemblyFileVersion("17.1.59.0")>

@@ -27,7 +27,7 @@ Public Enum eActivityCode
   ProductionReport = 205
   InstallationWorkOrder = 206
   WoodPicking = 207
-
+  WorkOrderCostReport = 208
 
   HumanResourcesGroup = 300
   EmployeeSalaries = 301
@@ -407,7 +407,7 @@ Public Enum eCurrency
 End Enum
 Public Enum eWorkCentre
   <Description("Sin Def.")> Undefined = 0
-  <Description("Madera")> Wood = 1
+  <Description("Patio")> Wood = 1
   <Description("Insumos")> Insumos = 2
   <Description("Ingeniería")> Engineering = 3
   <Description("Compras")> Purchasing = 4
@@ -424,6 +424,16 @@ Public Enum eWorkCentre
   <Description("Tapizado")> Tapizado = 18
   <Description("Tejido")> Tejido = 19
   <Description("Instalación")> Installation = 20
+
+  <Description("Aserrado")> Aserrado = 21
+  <Description("Empalillado")> Empalillado = 22
+  <Description("DespacharMadera")> DespacharMadera = 23
+  <Description("CargarHorno")> CargarHorno = 24
+
+
+
+
+
 End Enum
 
 Public Enum eProductType
@@ -580,6 +590,11 @@ Public Class colTimeSheetCodes : Inherits RTIS.CommonVB.colPropertyENUMOfT(Of cl
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cInventory, "Inventario", "I", System.Drawing.Color.SkyBlue))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPrototype, "Prototipo", "P", System.Drawing.Color.DodgerBlue))
     Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cPermission, "Consentimiento", "C", System.Drawing.Color.Gainsboro))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cAserrado, "Aserrado", "AS", System.Drawing.Color.Blue))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cEmpalillado, "Empalillado", "EM", System.Drawing.Color.BurlyWood))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cSelection, "Selección", "SE", System.Drawing.Color.DarkSeaGreen))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cDespachoWood, "Despacho", "DE", System.Drawing.Color.DarkGoldenrod))
+    Me.Items.Add(New clsTimeSheetCode(clsTimeSheetCode.cOven, "Cargar Horno", "H", System.Drawing.Color.Crimson))
 
 
   End Sub
@@ -622,7 +637,11 @@ Public Class clsTimeSheetCode : Inherits RTIS.CommonVB.clsPropertyENUM
   Public Const cInventory = 10
   Public Const cPrototype = 11
   Public Const cPermission = 12
-
+  Public Const cAserrado = 13
+  Public Const cEmpalillado = 14
+  Public Const cSelection = 15
+  Public Const cOven = 16
+  Public Const cDespachoWood = 17
   Public Sub New(ByVal vID As Integer, vDescription As String, vKeyCode As String, vColour As System.Drawing.Color)
     MyBase.New(vID, vDescription)
     pKeyCode = vKeyCode
@@ -680,6 +699,8 @@ Public Class clsConstants
 
   Public Const cConstantVolume = 0.7854
   Public Const cConstantVolumeHubert = 0.00007854
+  Public Const CMToFeet As Decimal = 0.3048
+  Friend Const TrunkVolumeFactor As Decimal = 0.7854
 End Class
 
 Public Class clsStockItemTypeAbrasivos : Inherits clsPropertyENUM

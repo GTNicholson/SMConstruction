@@ -15,7 +15,7 @@ Public Class dmWoodPalletItem : Inherits dmBase
   Private pOutstandingQty As Decimal
   Private pVolumeM3 As Decimal
   Private pDifferenceTranQty As Decimal
-
+  Private PTrozaRef As String
   Public Sub New()
     MyBase.New()
   End Sub
@@ -60,6 +60,7 @@ Public Class dmWoodPalletItem : Inherits dmBase
       .Thickness = Thickness
       .OutstandingQty = OutstandingQty
       .VolumeM3 = VolumeM3
+      .TrozaRef = TrozaRef
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -206,6 +207,16 @@ Public Class dmWoodPalletItem : Inherits dmBase
     End Get
     Set(value As Decimal)
       pDifferenceTranQty = value
+    End Set
+  End Property
+
+  Public Property TrozaRef As String
+    Get
+      Return pTrozaRef
+    End Get
+    Set(value As String)
+      If pTrozaRef <> value Then IsDirty = True
+      pTrozaRef = value
     End Set
   End Property
 End Class

@@ -71,13 +71,30 @@
     End Set
   End Property
 
-
-  Public ReadOnly Property SIDescription As String
+  Public ReadOnly Property UoM As String
     Get
       Dim mRetVal As String = ""
       If pStockItem IsNot Nothing Then
-        mRetVal = pStockItem.Description
+
+        mRetVal = pStockItem.UoMDesc
       End If
+
+
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property SIDescription As String
+    Get
+      Dim mRetVal As String = ""
+      If pStockItem.StockItemID > 0 Then
+        Dim mStockItem As dmStockItem
+        mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItem.StockItemID)
+        If mStockItem IsNot Nothing Then
+          mRetVal = pStockItem.Description
+        End If
+
+      End If
+
       Return mRetVal
     End Get
   End Property

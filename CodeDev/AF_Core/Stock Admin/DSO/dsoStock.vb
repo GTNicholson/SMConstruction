@@ -408,6 +408,40 @@ Public Class dsoStock
 
   End Function
 
+  Public Sub SaveWoodGuideItemSummarys(ByRef rWoodGuideItemSummarys As colWoodGuideItemSummarys, ByVal vWoodReceptionID As Integer)
+    Dim mdto As New dtoWoodGuideItemSummary(pDBConn)
+    Try
+
+      If pDBConn.Connect Then
+
+        mdto.SaveWoodGuideItemSummaryCollection(rWoodGuideItemSummarys, vWoodReceptionID)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+  End Sub
+
+  Public Sub LoadWoodGuideItemSummarys(ByRef rWoodGuideItemSummarys As colWoodGuideItemSummarys, ByVal vWoodReceptionID As Integer)
+    Dim mdto As New dtoWoodGuideItemSummary(pDBConn)
+    Try
+
+      If pDBConn.Connect Then
+
+        mdto.LoadWoodGuideItemSummaryCollection(rWoodGuideItemSummarys, vWoodReceptionID)
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+  End Sub
+
   Public Sub LoadStockItemsByWhere(ByRef rStockItems As colStockItems, ByVal vWhere As String)
     Dim mdto As dtoStockItem
     Try

@@ -339,7 +339,7 @@ Public Class clsTimeSheetEntryUI
   Public ReadOnly Property StartTimeAndBreak As String
     Get
       Dim mRetVal As String
-      mRetVal = pStartTime.ToString("HH:mm")
+      mRetVal = pStartTime.ToString("HH:mm") & " a " & pStartTime.AddHours(1).ToString("HH:mm")
       If pBreakMins <> 0 Then
         mRetVal = mRetVal & " (Pausa:" & pBreakMins.ToString("#") & "mins)"
       End If
