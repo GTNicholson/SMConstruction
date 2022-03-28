@@ -54,6 +54,8 @@ Public Class dtoTimeSheetEntryInfo : Inherits dtoBase
     Try
       If pTimeSheetEntryInfo Is Nothing Then SetObjectToNew()
 
+      pTimeSheetEntryInfo.UserIDDesc = DBReadString(rDataReader, "UserName")
+
       With pTimeSheetEntryInfo.TimeSheetEntry
         .TimeSheetEntryID = DBReadInteger(rDataReader, "TimeSheetEntryID")
         .TimeSheetEntryTypeID = DBReadInt32(rDataReader, "TimeSheetEntryTypeID")

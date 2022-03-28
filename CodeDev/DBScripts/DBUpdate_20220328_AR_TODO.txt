@@ -1,0 +1,49 @@
+alter table TimeSheetEntry
+add UserID int
+go
+
+
+
+ALTER view [dbo].[vwTimeSheetEntryInfo]
+as
+
+
+SELECT        
+TS.TimeSheetEntryID, 
+TS.TimeSheetEntryTypeID,
+TS.EmployeeID, 
+TS.WorkOrderID, 
+TS.StartTime, 
+TS.EndTime, 
+TS.Note, 
+TS.WorkcentreID,
+TS.OverTimeMinutes, 
+TS.BreakMins,
+TS.UserID,
+WO.WorkOrderNo, 
+WO.Description,
+SO.SalesOrderID,
+SO.OrderStatusENUM,
+SO.OrderTypeID,
+SO.ProjectName,
+SO.DateEntered,
+C.CompanyName,
+EROP.StandardRate,
+EROP.OverTimeRate,
+USL.UserName
+FROM dbo.TimeSheetEntry AS TS
+INNER JOIN Employee E ON E.EmployeeID=TS.EmployeeID
+LEFT join EmployeeRateOfPay EROP on EROP.EmployeeID=E.EmployeeID
+LEFT JOIN dbo.WorkOrder AS WO ON WO.WorkOrderID = TS.WorkOrderID
+LEFT JOIN WorkOrderAllocation WOA ON WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+Left Join SalesOrder SO on SO.SalesOrderID = SOPI.SalesOrderID
+Left Join Customer C on C.CustomerId = SO.CustomerID
+LEFT JOIN UserList USL ON USL.UserID=TS.UserID
+
+GO
+
+
+
+
+

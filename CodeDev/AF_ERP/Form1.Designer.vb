@@ -22,11 +22,11 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,6 +36,7 @@ Partial Class Form1
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.repitDateDefault = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -564,7 +565,7 @@ Partial Class Form1
         Me.PivotGridField418 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField419 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField420 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PivotGridField431 = New DevExpress.XtraPivotGrid.PivotGridField()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -691,6 +692,14 @@ Partial Class Form1
         Me.GridColumn7.VisibleIndex = 4
         Me.GridColumn7.Width = 238
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Part No"
+        Me.GridColumn8.FieldName = "PartNo"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 6
+        '
         'RepositoryItemDateEdit1
         '
         Me.RepositoryItemDateEdit1.AutoHeight = False
@@ -743,7 +752,7 @@ Partial Class Form1
         'repoViewDocument
         '
         Me.repoViewDocument.AutoHeight = False
-        Me.repoViewDocument.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Abrir", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.repoViewDocument.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "Abrir", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.repoViewDocument.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
         Me.repoViewDocument.Name = "repoViewDocument"
         '
@@ -811,7 +820,7 @@ Partial Class Form1
         Me.PivotGridControl1.Appearance.TotalCell.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Bold)
         Me.PivotGridControl1.Appearance.TotalCell.Options.UseBackColor = True
         Me.PivotGridControl1.Appearance.TotalCell.Options.UseFont = True
-        Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField421, Me.PivotGridField422, Me.PivotGridField423, Me.PivotGridField424, Me.PivotGridField425, Me.PivotGridField426, Me.PivotGridField427, Me.PivotGridField428, Me.PivotGridField430, Me.PivotGridField429})
+        Me.PivotGridControl1.Fields.AddRange(New DevExpress.XtraPivotGrid.PivotGridField() {Me.PivotGridField421, Me.PivotGridField422, Me.PivotGridField423, Me.PivotGridField424, Me.PivotGridField425, Me.PivotGridField426, Me.PivotGridField427, Me.PivotGridField428, Me.PivotGridField429, Me.PivotGridField430, Me.PivotGridField431})
         Me.PivotGridControl1.Location = New System.Drawing.Point(69, 276)
         Me.PivotGridControl1.Name = "PivotGridControl1"
         Me.PivotGridControl1.OptionsChartDataSource.FieldValuesProvideMode = DevExpress.XtraPivotGrid.PivotChartFieldValuesProvideMode.DisplayText
@@ -848,14 +857,14 @@ Partial Class Form1
         Me.PivotGridField422.FieldName = "EmployeeName"
         Me.PivotGridField422.Name = "PivotGridField422"
         Me.PivotGridField422.Options.AllowRunTimeSummaryChange = True
-        Me.PivotGridField422.Width = 250
+        Me.PivotGridField422.Width = 178
         '
         'PivotGridField423
         '
         Me.PivotGridField423.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea
         Me.PivotGridField423.AreaIndex = 1
         Me.PivotGridField423.Caption = "Tipo Actividad"
-        Me.PivotGridField423.FieldName = "TimeSheetEntryTypeDesc"
+        Me.PivotGridField423.FieldName = "WODescriptionRef"
         Me.PivotGridField423.Name = "PivotGridField423"
         Me.PivotGridField423.Options.AllowRunTimeSummaryChange = True
         Me.PivotGridField423.Width = 199
@@ -903,16 +912,28 @@ Partial Class Form1
         'PivotGridField426
         '
         Me.PivotGridField426.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
-        Me.PivotGridField426.AreaIndex = 0
+        Me.PivotGridField426.AreaIndex = 1
         Me.PivotGridField426.Caption = "Semana"
-        Me.PivotGridField426.FieldName = "TimeSheetDateGUI"
+        Me.PivotGridField426.CellFormat.FormatString = "dddd-dd"
+        Me.PivotGridField426.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.PivotGridField426.FieldName = "TimeSheetDateWC"
+        Me.PivotGridField426.GrandTotalCellFormat.FormatString = "dddd-dd"
+        Me.PivotGridField426.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.PivotGridField426.GroupInterval = DevExpress.XtraPivotGrid.PivotGroupInterval.[Date]
         Me.PivotGridField426.Name = "PivotGridField426"
         Me.PivotGridField426.Options.AllowRunTimeSummaryChange = True
+        Me.PivotGridField426.TotalCellFormat.FormatString = "dddd-dd"
+        Me.PivotGridField426.TotalCellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.PivotGridField426.TotalValueFormat.FormatString = "dddd-dd"
+        Me.PivotGridField426.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.PivotGridField426.UnboundFieldName = "PivotGridField407"
+        Me.PivotGridField426.ValueFormat.FormatString = "dddd-dd"
+        Me.PivotGridField426.ValueFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         '
         'PivotGridField427
         '
-        Me.PivotGridField427.AreaIndex = 4
+        Me.PivotGridField427.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea
+        Me.PivotGridField427.AreaIndex = 0
         Me.PivotGridField427.Caption = "Mes"
         Me.PivotGridField427.CellFormat.FormatString = "MMMM-yy"
         Me.PivotGridField427.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -967,7 +988,7 @@ Partial Class Form1
         Me.PivotGridField429.Caption = "Costo Total"
         Me.PivotGridField429.CellFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField429.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.PivotGridField429.FieldName = "TotalStandardValueIncludingOverTimeCost"
+        Me.PivotGridField429.FieldName = "ProjectNameWithCustomer"
         Me.PivotGridField429.GrandTotalCellFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField429.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField429.Name = "PivotGridField429"
@@ -979,6 +1000,7 @@ Partial Class Form1
         Me.PivotGridField429.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField429.ValueFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField429.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.PivotGridField429.Width = 287
         '
         'PivotGridField369
         '
@@ -6114,13 +6136,12 @@ Partial Class Form1
         Me.PivotGridField420.ValueFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField420.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         '
-        'GridColumn8
+        'PivotGridField431
         '
-        Me.GridColumn8.Caption = "Part No"
-        Me.GridColumn8.FieldName = "PartNo"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.PivotGridField431.AreaIndex = 4
+        Me.PivotGridField431.Caption = "Usuario"
+        Me.PivotGridField431.FieldName = "UserIDDesc"
+        Me.PivotGridField431.Name = "PivotGridField431"
         '
         'Form1
         '
@@ -6693,4 +6714,5 @@ Partial Class Form1
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PivotGridField431 As DevExpress.XtraPivotGrid.PivotGridField
 End Class
