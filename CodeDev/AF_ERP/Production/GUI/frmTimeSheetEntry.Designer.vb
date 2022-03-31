@@ -194,7 +194,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.xtpWood.Controls.Add(Me.rgWoodOptions)
         Me.xtpWood.Name = "xtpWood"
-        Me.xtpWood.Size = New System.Drawing.Size(742, 81)
+        Me.xtpWood.Size = New System.Drawing.Size(745, 85)
         Me.xtpWood.Text = "Madera"
         '
         'rgWoodOptions
@@ -206,7 +206,7 @@ Partial Class frmTimeSheetEntry
         Me.rgWoodOptions.Properties.Appearance.Options.UseFont = True
         Me.rgWoodOptions.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Patio")})
         Me.rgWoodOptions.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
-        Me.rgWoodOptions.Size = New System.Drawing.Size(742, 81)
+        Me.rgWoodOptions.Size = New System.Drawing.Size(745, 85)
         Me.rgWoodOptions.TabIndex = 10
         '
         'GroupControl1
@@ -819,7 +819,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.XtraTabPage2.Controls.Add(Me.gpTimeSheetEntries)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1411, 428)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1415, 431)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'gpTimeSheetEntries
@@ -830,17 +830,17 @@ Partial Class frmTimeSheetEntry
         Me.gpTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
         Me.gpTimeSheetEntries.Name = "gpTimeSheetEntries"
-        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1411, 428)
+        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1415, 431)
         Me.gpTimeSheetEntries.TabIndex = 1
         Me.gpTimeSheetEntries.Text = "GroupControl1"
         '
         'grdTimeSheetEntries
         '
         Me.grdTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 26)
+        Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 24)
         Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
         Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1407, 400)
+        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1411, 405)
         Me.grdTimeSheetEntries.TabIndex = 0
         Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
         '
