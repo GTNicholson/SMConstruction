@@ -48,6 +48,8 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mRetVal
   End Function
 
+
+
   Public Sub LoadSalesOrderPhaseInfoWithMilestones(ByRef rSalesOrderPhases As colSalesOrderPhaseInfos, ByVal vWhere As String, ByVal Optional vWhere3 As String = "")
     Dim mdtoSalesOrderPhaseInfo As New dtoSalesOrderPhaseInfo(pDBConn)
     Dim mdtoSalesOrderPhaseMilestoneStatus As New dtoSalesOrderPhaseMilestoneStatus(pDBConn)

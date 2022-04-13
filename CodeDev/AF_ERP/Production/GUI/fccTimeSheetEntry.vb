@@ -178,6 +178,10 @@ Public Class fccTimeSheetEntry
       mDSO = New dsoHR(pDBConn)
       ''RefreshTimeSheetEntrys
 
+      For Each mTimeSheetEntry As dmTimeSheetEntry In pTimeSheetEntrys
+        mTimeSheetEntry.UserID = pDBConn.RTISUser.UserID
+      Next
+
       mDSO.SaveTimeSheetEntrys(pTimeSheetEntrys, pEmployee.EmployeeID)
     End If
 

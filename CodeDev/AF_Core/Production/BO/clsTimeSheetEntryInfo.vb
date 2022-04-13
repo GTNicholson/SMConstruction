@@ -10,7 +10,7 @@ Public Class clsTimeSheetEntryInfo
   Private Shared sEmployeeVIs As RTIS.CommonVB.colValueItems
   Private pStandarRate As Decimal
   Private pOverTimeRate As Decimal
-
+  Private pUserName As String
 
 
   Public Sub New()
@@ -302,6 +302,15 @@ Public Class clsTimeSheetEntryInfo
 
       Return mRetVal
     End Get
+  End Property
+
+  Public Property UserIDDesc As String
+    Get
+      Return pUserName
+    End Get
+    Set(value As String)
+      pUserName = value
+    End Set
   End Property
 
 End Class

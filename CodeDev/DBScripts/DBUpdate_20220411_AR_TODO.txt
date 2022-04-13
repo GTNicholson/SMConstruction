@@ -1,0 +1,40 @@
+CREATE TABLE [dbo].[MaintenanceWorkOrder](
+	[MaintenanceWorkOrderID] [int] IDENTITY(1,1) NOT NULL,
+	MaintenanceWorkOrderNo varchar (50),
+	Description varchar (250),
+	WorkCentreID tinyint,
+	MaintenanceType tinyint,
+	EquipmentID int,
+	EmployeeID int,
+	Priority int,
+	PlannedDate date,
+	Status tinyint,
+	Duration decimal (10,4),
+	Notes varchar(max),
+	MaintenanceWorkOrderDocument varchar (max),
+ CONSTRAINT [PK_MaintenanceWorkOrder] PRIMARY KEY CLUSTERED 
+(
+	[MaintenanceWorkOrderID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].MaintenanceWorkOrderItem(
+	MaintenanceWorkOrderItemID [int] IDENTITY(1,1) NOT NULL,
+	[MaintenanceWorkOrderID] [int] NULL,
+	[StockItemID] [int] NULL,
+	Quantity decimal (10,4),
+	UnitCost decimal (10,4),
+	Comments varchar (max),
+ CONSTRAINT [pkMaintenanceWorkOrderItem] PRIMARY KEY CLUSTERED 
+(
+	MaintenanceWorkOrderItemID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+insert into Tally (Tally,Description,StartingValue,EndingValue,Increment) values (1,'Ordern Mantenimiento',1000,99999,1)
+go

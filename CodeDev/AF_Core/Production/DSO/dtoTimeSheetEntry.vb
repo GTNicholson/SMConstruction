@@ -64,6 +64,10 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "BreakMins", .BreakMins)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "Note", StringToDBValue(.Note))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "OverTimeMinutes", .OverTimeMinutes)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "UserID", .UserID)
+
+
+
     End With
 
   End Sub
@@ -84,6 +88,7 @@ Public Class dtoTimeSheetEntry : Inherits dtoBase
         .BreakMins = DBReadInt32(rDataReader, "BreakMins")
         .Note = DBReadString(rDataReader, "Note")
         .OverTimeMinutes = DBReadInt32(rDataReader, "OverTimeMinutes")
+        .UserID = DBReadInt32(rDataReader, "UserID")
         pTimeSheetEntry.IsDirty = False
       End With
       mOK = True

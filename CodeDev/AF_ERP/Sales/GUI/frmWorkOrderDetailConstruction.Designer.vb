@@ -466,7 +466,7 @@ Partial Class frmWorkOrderDetailConstruction
         'dtePurchasingDate
         '
         Me.dtePurchasingDate.EditValue = Nothing
-        Me.dtePurchasingDate.Location = New System.Drawing.Point(668, 80)
+        Me.dtePurchasingDate.Location = New System.Drawing.Point(668, 70)
         Me.dtePurchasingDate.MenuManager = Me.BarManager1
         Me.dtePurchasingDate.Name = "dtePurchasingDate"
         Me.dtePurchasingDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
@@ -490,7 +490,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'cboStatus
         '
-        Me.cboStatus.Location = New System.Drawing.Point(649, 106)
+        Me.cboStatus.Location = New System.Drawing.Point(649, 94)
         Me.cboStatus.MenuManager = Me.BarManager1
         Me.cboStatus.Name = "cboStatus"
         Me.cboStatus.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -504,7 +504,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(576, 98)
+        Me.Label3.Location = New System.Drawing.Point(576, 96)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(44, 14)
         Me.Label3.TabIndex = 178
@@ -523,7 +523,7 @@ Partial Class frmWorkOrderDetailConstruction
         'dteDueDate
         '
         Me.dteDueDate.EditValue = Nothing
-        Me.dteDueDate.Location = New System.Drawing.Point(649, 54)
+        Me.dteDueDate.Location = New System.Drawing.Point(649, 46)
         Me.dteDueDate.MenuManager = Me.BarManager1
         Me.dteDueDate.Name = "dteDueDate"
         Me.dteDueDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
@@ -539,7 +539,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(576, 46)
+        Me.Label7.Location = New System.Drawing.Point(576, 48)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(58, 14)
         Me.Label7.TabIndex = 175
@@ -548,7 +548,7 @@ Partial Class frmWorkOrderDetailConstruction
         'dtePlannedStartDate
         '
         Me.dtePlannedStartDate.EditValue = Nothing
-        Me.dtePlannedStartDate.Location = New System.Drawing.Point(649, 27)
+        Me.dtePlannedStartDate.Location = New System.Drawing.Point(649, 22)
         Me.dtePlannedStartDate.MenuManager = Me.BarManager1
         Me.dtePlannedStartDate.Name = "dtePlannedStartDate"
         Me.dtePlannedStartDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
@@ -563,7 +563,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(576, 19)
+        Me.Label5.Location = New System.Drawing.Point(576, 24)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(68, 14)
         Me.Label5.TabIndex = 173
@@ -572,7 +572,7 @@ Partial Class frmWorkOrderDetailConstruction
         'dteCreatedDate
         '
         Me.dteCreatedDate.EditValue = Nothing
-        Me.dteCreatedDate.Location = New System.Drawing.Point(97, 54)
+        Me.dteCreatedDate.Location = New System.Drawing.Point(97, 46)
         Me.dteCreatedDate.MenuManager = Me.BarManager1
         Me.dteCreatedDate.Name = "dteCreatedDate"
         Me.dteCreatedDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
@@ -595,7 +595,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'txtQuantity
         '
-        Me.txtQuantity.Location = New System.Drawing.Point(97, 80)
+        Me.txtQuantity.Location = New System.Drawing.Point(97, 70)
         Me.txtQuantity.MenuManager = Me.BarManager1
         Me.txtQuantity.Name = "txtQuantity"
         Me.txtQuantity.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -790,7 +790,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(10, 97)
+        Me.Label10.Location = New System.Drawing.Point(10, 96)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(41, 14)
         Me.Label10.TabIndex = 44
@@ -798,7 +798,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'btnWorkOrderNumber
         '
-        Me.btnWorkOrderNumber.Location = New System.Drawing.Point(97, 28)
+        Me.btnWorkOrderNumber.Location = New System.Drawing.Point(97, 22)
         Me.btnWorkOrderNumber.MenuManager = Me.BarManager1
         Me.btnWorkOrderNumber.Name = "btnWorkOrderNumber"
         Me.btnWorkOrderNumber.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -813,7 +813,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(10, 20)
+        Me.Label12.Location = New System.Drawing.Point(10, 24)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(55, 14)
         Me.Label12.TabIndex = 139
@@ -824,7 +824,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(10, 46)
+        Me.Label1.Location = New System.Drawing.Point(10, 48)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 14)
         Me.Label1.TabIndex = 14
@@ -832,7 +832,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'txtDescription
         '
-        Me.txtDescription.Location = New System.Drawing.Point(313, 27)
+        Me.txtDescription.Location = New System.Drawing.Point(313, 22)
         Me.txtDescription.MenuManager = Me.BarManager1
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -859,7 +859,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(234, 19)
+        Me.Label2.Location = New System.Drawing.Point(234, 24)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(72, 14)
         Me.Label2.TabIndex = 15
@@ -868,7 +868,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'cboElaboratedBy
         '
-        Me.cboElaboratedBy.Location = New System.Drawing.Point(328, 54)
+        Me.cboElaboratedBy.Location = New System.Drawing.Point(328, 46)
         Me.cboElaboratedBy.MenuManager = Me.BarManager1
         Me.cboElaboratedBy.Name = "cboElaboratedBy"
         Me.cboElaboratedBy.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -882,7 +882,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(236, 46)
+        Me.Label6.Location = New System.Drawing.Point(236, 48)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(86, 14)
         Me.Label6.TabIndex = 19
@@ -890,7 +890,7 @@ Partial Class frmWorkOrderDetailConstruction
         '
         'btneWorkOrderDocument
         '
-        Me.btneWorkOrderDocument.Location = New System.Drawing.Point(313, 80)
+        Me.btneWorkOrderDocument.Location = New System.Drawing.Point(313, 70)
         Me.btneWorkOrderDocument.MenuManager = Me.BarManager1
         Me.btneWorkOrderDocument.Name = "btneWorkOrderDocument"
         Me.btneWorkOrderDocument.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke
