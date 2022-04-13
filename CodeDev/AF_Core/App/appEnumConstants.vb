@@ -292,6 +292,7 @@ Public Enum eBrowseList
   WoodCostBook = 17
   WoodReception = 18
   FurnitureSalesOrders = 19
+  MaintenanceWorkOrder = 20
 End Enum
 
 
@@ -383,6 +384,7 @@ Public Enum eTallyIDs
   ClassifiedWoodOT = 1008
   WoodReception = 1009
   RequisaNumber = 1010
+  MaintenanceOrder = 1011
 End Enum
 
 Public Enum ePaymentStatus
@@ -2698,5 +2700,18 @@ Public Enum eReceptionStatus
   <Description("En Proceso")> InProgress = 1
   <Description("Recibido")> Complete = 2
   <Description("Cancelado")> Cancelled = 3
+
+End Enum
+
+Public Enum eMaintenanceWorkOrderStatus
+  <Description("En Proceso")> InProgress = 1
+  <Description("Completado")> Completed = 2
+  <Description("Cancelado")> Cancelled = 3
+
+End Enum
+
+Public Enum eMaintenanceType
+  <Description("Preventivo")> Preventive = 1
+  <Description("Corrective")> Corrective = 2
 
 End Enum

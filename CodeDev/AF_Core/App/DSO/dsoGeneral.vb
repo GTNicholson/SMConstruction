@@ -76,6 +76,18 @@ Public Class dsoGeneral
     Return mRetVal
   End Function
 
+  Public Function GetNextTallyMaintenanceNo() As Object
+    Dim mRetVal As Integer
+    Try
+      pDBConn.Connect()
+      mRetVal = pDBConn.NextTally(eTallyIDs.MaintenanceOrder)
+    Catch ex As Exception
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
   Public Function LoadHolidays(ByRef rHolidays As colHolidays) As Boolean
     Dim mdtoHoliday As New dtoHoliday(pDBConn)
     Dim mOK As Boolean

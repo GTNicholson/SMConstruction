@@ -50,6 +50,60 @@ Public Class dsoProduction
     Return mRetVal
   End Function
 
+  Public Function SaveMaintenanceWorkOrder(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoMaintenanceWorkOrder
+    Dim mdtoItem As dtoMaintenanceWorkOrderItem
+    Try
+
+      mdto = New dtoMaintenanceWorkOrder(pDBConn)
+      mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
+
+      If pDBConn.Connect Then
+        mRetVal = mdto.SaveMaintenanceWorkOrder(rMaintenanceWorkOrder)
+
+        If mRetVal Then mdtoItem.SaveMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, rMaintenanceWorkOrder.MaintenanceWorkOrderID)
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Function LoadMaintenanceWorkOrder(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vPrimaryKeyID As Integer) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoMaintenanceWorkOrder
+    Dim mdtoItem As dtoMaintenanceWorkOrderItem
+
+    Try
+      mdto = New dtoMaintenanceWorkOrder(pDBConn)
+      mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
+
+      If pDBConn.Connect Then
+
+        mRetVal = mdto.LoadMaintenanceWorkOrder(rMaintenanceWorkOrder, vPrimaryKeyID)
+
+
+        If mRetVal Then mdtoItem.LoadMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, vPrimaryKeyID)
+
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+    Return mRetVal
+  End Function
+
   Public Sub SaveShiftDetails(ByRef rShiftDetails As colShiftDetailss)
     Dim mdto As New dtoShiftDetails(pDBConn)
 

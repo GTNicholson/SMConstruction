@@ -494,6 +494,7 @@
     <Compile Include="ProductAdmin\GUI\uctProductBaseDetail.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Production\GUI\brwMaintenanceWorkOrder.vb" />
     <Compile Include="Production\GUI\clsTimeSheetEntryUI.vb" />
     <Compile Include="Production\GUI\fccWoodWorkOrderMilestoneStatus.vb" />
     <Compile Include="Production\GUI\fccPaySlipDetails.vb" />
@@ -502,6 +503,7 @@
     <Compile Include="Production\GUI\fccSalesOrderPhaseItemPicker.vb" />
     <Compile Include="Production\GUI\fccSalesOrderPhasePicker.vb" />
     <Compile Include="Production\GUI\fccTimeSheetEntry.vb" />
+    <Compile Include="Production\GUI\fccWorkOrderMaintenance.vb" />
     <Compile Include="Production\GUI\fccWorkOrderMilestoneStatus.vb" />
     <Compile Include="Production\GUI\fccWorkOrderTracking.vb" />
     <Compile Include="Production\GUI\frmPaySlipDetails.Designer.vb">
@@ -538,6 +540,12 @@
       <DependentUpon>frmWorkOrderCostingReview.vb</DependentUpon>
     </Compile>
     <Compile Include="Production\GUI\frmWorkOrderCostingReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderMaintenance.Designer.vb">
+      <DependentUpon>frmWorkOrderMaintenance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Production\GUI\frmWorkOrderMaintenance.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Production\GUI\frmWorkOrderMilestoneStatus.Designer.vb">
@@ -1181,6 +1189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmWorkOrderCostingReview.resx">
       <DependentUpon>frmWorkOrderCostingReview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\GUI\frmWorkOrderMaintenance.resx">
+      <DependentUpon>frmWorkOrderMaintenance.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Production\GUI\frmWorkOrderMilestoneStatus.resx">
       <DependentUpon>frmWorkOrderMilestoneStatus.vb</DependentUpon>

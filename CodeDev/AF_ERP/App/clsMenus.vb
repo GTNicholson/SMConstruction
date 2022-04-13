@@ -45,9 +45,9 @@ Public Class MenuFactory
     mLastItem.ChildGroupMenuEntries.AddNewItem("Resumen de Costos por OT ", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderCostingSummary, eActivityCode.WorkOrderCostReport)
 
 
-    'mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Informes de Produccion", eMenuIconType.Report, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.ProductionGroup)
-    'mLastItem.ChildGroupMenuEntries.AddNewItem("Ordenes de Trabajo", eMenuIconType.Report, AddressOf clsMenuFunctions.WorkOrderInfoBI, eActivityCode.ProductionReport)
-    'mLastItem.ChildGroupMenuEntries.AddNewItem("Hojas de Tiempo", eMenuIconType.Report, AddressOf clsMenuFunctions.TimeSheetEntryInfoBI, eActivityCode.ProductionReport)
+
+    mLastGroup = mMenuList.AddNewGroup("Mantenimiento", 0, eActivityCode.ProductionGroup, True)
+    mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("O.T. Mantenimiento", eMenuIconType.Grid, AddressOf clsMenuFunctions.MaintenanceWorkOrder, eActivityCode.ProductionGroup)
 
 
     mLastGroup = mMenuList.AddNewGroup("Compras", 0, eActivityCode.PurchasingGroup, True)
@@ -500,6 +500,11 @@ Class clsMenuFunctions
 
   Public Shared Sub WorkOrderCostingSummary(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
     frmWorkOrderCostingReview.OpenModal(rRTISUserSession.CreateMainDBConn)
+  End Sub
+
+  Public Shared Sub MaintenanceWorkOrder(ByRef rMenuOption As intMenuOption, ByRef rParentForm As Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As clsRTISGlobal)
+    Dim mBrw As New brwMaintenanceWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.MaintenanceWorkOrder)
+    frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
