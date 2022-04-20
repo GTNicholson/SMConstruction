@@ -443,6 +443,7 @@
     <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
     <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\clsStockItemCategoryBase.vb" />
     <Compile Include="Stock Admin\BO\dmWoodGuideItemSummary.vb" />
     <Compile Include="Stock Admin\BO\clsWoodReceptionSummaryInfo.vb" />
     <Compile Include="Stock Admin\BO\dmWoodPalletGuideItem.vb" />

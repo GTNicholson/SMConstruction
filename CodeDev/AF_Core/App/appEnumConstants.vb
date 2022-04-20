@@ -2213,7 +2213,7 @@ End Class
 Public Class clsStockItemTypePintura : Inherits clsPropertyENUM
   Private pStockSubItemTypePintura As colStockSubItemTypePintura
   Private pStockCodeStr As String
-  Public Property StockSubItemTypePintura As colStockSubItemTypePintura
+  Public Property StockSubItemTypePinturas As colStockSubItemTypePintura
     Get
       Return pStockSubItemTypePintura
     End Get
@@ -2281,6 +2281,16 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
   Public Const Pegamento = 7
   Public Const AccesoriosPintura = 8
 
+
+  ''---------New Item types to improve this category
+  Public Const Pintura As Integer = 9
+  Public Const Acabado As Integer = 10
+  Public Const Adhesivo As Integer = 11
+  Public Const Lubricantes As Integer = 12
+  Public Const Quimicos As Integer = 13
+
+  ------------------------------
+
   Public Const Otros = 99
 
   Private Shared mSharedInstance As eStockItemTypePintura
@@ -2292,7 +2302,7 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     mType = New clsStockItemTypePintura(Recubrimiento, "Recubrimiento para Madera", "RMA")
     MyBase.Add(mType)
 
-    mType = New clsStockItemTypePintura(Diluyente, "Diluyente", "DIL")
+    mType = New clsStockItemTypePintura(Diluyente, "Diluyente", "DI")
     MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Barniz, "Barniz", "BAR")
@@ -2302,10 +2312,10 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     mType = New clsStockItemTypePintura(Componentes, "Componentes", "COM")
     MyBase.Add(mType)
 
-    mType = New clsStockItemTypePintura(Tintes, "Tintes", "TIN")
+    mType = New clsStockItemTypePintura(Tintes, "Tintes", "TI")
     MyBase.Add(mType)
 
-    mType = New clsStockItemTypePintura(Combustibles, "Combustibles", "COM")
+    mType = New clsStockItemTypePintura(Combustibles, "Combustibles", "CO")
     MyBase.Add(mType)
 
 
@@ -2314,6 +2324,25 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
 
     mType = New clsStockItemTypePintura(AccesoriosPintura, "Accesorios para Pintar", "ACP")
     MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Pintura, "Pintura", "PI")
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(ePinturaSubItemType.BaseAgua, "Base Agua", "AG"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(ePinturaSubItemType.BaseAceite, "Base Aceite", "AC"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(ePinturaSubItemType.EnPolvo, "En Polvo", "PO"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(ePinturaSubItemType.Esmalte, "Esmalte", "ES"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(ePinturaSubItemType.Other, "Otros", "OT"))
+
+    MyBase.Add(mType)
+
+    mType = New clsStockItemTypePintura(Acabado, "Acabado", "AC")
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Aceite, "Aceite", "ACE"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Barniz, "Barniz", "BAR"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Poliuretano, "Poliuretano", "POL"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Componentes, "Componentes", "COM"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.BaseAgua, "Base Agua", "BAG"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Other, "Otros", "OT"))
+
+
 
     mType = New clsStockItemTypePintura(Otros, "Los demás", "OTR")
     MyBase.Add(mType)
@@ -2390,6 +2419,23 @@ Public Class colStockSubItemTypeHerrajes : Inherits List(Of clsStockSubItemTypeH
 
 End Class
 
+Public Enum ePinturaSubItemType
+  None = 0
+  BaseAgua = 1
+  BaseAceite = 2
+  EnPolvo = 3
+  Esmalte = 4
+  Other = 99
+End Enum
+
+Public Enum eAcabadoType
+  Aceite = 1
+  Barniz = 2
+  Poliuretano = 3
+  Componentes = 4
+  BaseAgua = 5
+  Other = 99
+End Enum
 
 Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockItemTypeHerrajes)
 
