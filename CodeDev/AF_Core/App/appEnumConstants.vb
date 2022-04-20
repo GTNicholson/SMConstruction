@@ -2715,3 +2715,10 @@ Public Enum eMaintenanceType
   <Description("Corrective")> Corrective = 2
 
 End Enum
+
+Public Enum eMaintenancePriority
+  <Description("Alto")> High = 1
+  <Description("Medio")> Medium = 2
+  <Description("Bajo")> Low = 3
+
+End Enum

@@ -73,6 +73,8 @@ Public Class frmWorkOrderMaintenance
 
     clsDEControlLoading.FillDEComboVI(cboMaintenanceType, clsEnumsConstants.EnumToVIs(GetType(eMaintenanceType)))
 
+    clsDEControlLoading.FillDEComboVI(cboPriority, clsEnumsConstants.EnumToVIs(GetType(eMaintenancePriority)))
+
     mVIs = New colValueItems
     For Each mEmployee As RTIS.ERPCore.dmEmployee In TryCast(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Employees), RTIS.ERPCore.colEmployees)
 
@@ -426,5 +428,7 @@ Public Class frmWorkOrderMaintenance
 
   End Sub
 
+  Private Sub BarButtonItem2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
 
+  End Sub
 End Class

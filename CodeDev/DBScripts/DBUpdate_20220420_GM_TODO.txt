@@ -1,0 +1,55 @@
+CREATE TABLE StockItemManufacturer
+(
+StockItemManufacturerID int IDENTITY(1,1) NOT NULL,
+Name varchar (100),
+Abbreviation varchar (10),
+CONSTRAINT [pk_StockItemManufacturer] PRIMARY KEY CLUSTERED
+(
+[StockItemManufacturerID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+Insert into LookUpTable
+(
+DisplayOrder,
+LookUpTableDescription,
+TableName,
+KeyIDFieldName,
+DisplayFieldName,
+PermissionID,
+ActivityCode,
+SelectionCode
+)
+values(41,'Fabricante de Producto', 'StockItemManufacturer', 'StockItemManufacturerID', 'Name',4,1,7)
+GO
+
+Insert into LookUpField(
+LookUpTableID,
+DisplayOrder,
+FieldName,
+DisplayName,
+PermissionID
+)
+Values (5037,1,'StockItemManufacturerID', 'StockItemManufacturerID',4)
+GO
+
+Insert into LookUpField(
+LookUpTableID,
+DisplayOrder,
+FieldName,
+DisplayName,
+PermissionID
+)
+Values (5037,2,'Name', 'Nombre',4)
+GO
+
+Insert into LookUpField(
+LookUpTableID,
+DisplayOrder,
+FieldName,
+DisplayName,
+PermissionID
+)
+Values (5037,3,'Abbreviation', 'Abreviacion',4)
+GO
