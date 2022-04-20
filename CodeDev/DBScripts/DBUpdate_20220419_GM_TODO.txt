@@ -1,0 +1,7 @@
+CREATE TABLE Machinery
+(
+MachineryID int Primary Key,
+Code varchar(15),
+Description varchar(30),
+);
+GO

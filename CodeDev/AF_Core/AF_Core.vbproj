@@ -133,10 +133,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -275,6 +271,7 @@
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
+    <Compile Include="Production\BO\clsMaintenanceWorkOrderInfo.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrder.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrderItem.vb" />
     <Compile Include="Production\BO\clsWorkOrderCostingSummaryInfo.vb" />
@@ -443,6 +440,7 @@
     <Compile Include="Stock Admin\BI\BIReportViewWoodPalletItemInfo.vb" />
     <Compile Include="Stock Admin\BI\dsoStockTransactionLogItemReportSource.vb" />
     <Compile Include="Stock Admin\BI\dsoWoodPalletItemReportSource.vb" />
+    <Compile Include="Stock Admin\BO\dmStockItemManufacturer.vb" />
     <Compile Include="Stock Admin\BO\clsStockItemCategoryBase.vb" />
     <Compile Include="Stock Admin\BO\dmWoodGuideItemSummary.vb" />
     <Compile Include="Stock Admin\BO\clsWoodReceptionSummaryInfo.vb" />
@@ -470,6 +468,7 @@
     <Compile Include="Stock Admin\BO\dtoMaterialRequirementInfo.vb" />
     <Compile Include="Stock Admin\BO\dmSourcePallet.vb" />
     <Compile Include="Stock Admin\BO\StockItemDefManagers.vb" />
+    <Compile Include="Stock Admin\DSO\dtoStockItemManufacturer.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodGuideItemSummary.vb" />
     <Compile Include="Stock Admin\DSO\dtoWoodPalletGuideItem.vb" />
     <Compile Include="Stock Admin\DSO\dsoReception.vb" />
