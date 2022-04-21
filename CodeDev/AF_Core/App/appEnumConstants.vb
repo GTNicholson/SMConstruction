@@ -2289,7 +2289,7 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
   Public Const Lubricantes As Integer = 12
   Public Const Quimicos As Integer = 13
 
-  ------------------------------
+  '------------------------------
 
   Public Const Otros = 99
 
@@ -2341,6 +2341,7 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Componentes, "Componentes", "COM"))
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.BaseAgua, "Base Agua", "BAG"))
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Other, "Otros", "OT"))
+    MyBase.Add(mType)
 
 
 

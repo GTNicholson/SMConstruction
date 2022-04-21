@@ -54,6 +54,7 @@ Public Class dmStockItem : Inherits dmBase
   Private pHeadTypeID As Integer
   Private pIsProvisional As Boolean
   Private pIsSelected As Boolean
+  Private pDefaultManufacturerID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -149,7 +150,8 @@ Public Class dmStockItem : Inherits dmBase
       .IsTracked = IsTracked
       .HeadTypeID = HeadTypeID
       .IsProvisional = IsProvisional
-      Supplier = Supplier.Clone
+      .DefaultManufacturerID = DefaultManufacturerID
+      .Supplier = Supplier.Clone
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -231,6 +233,7 @@ Public Class dmStockItem : Inherits dmBase
       pImageFile = value
     End Set
   End Property
+
 
   Public Property ASISID() As Integer
     Get
@@ -796,6 +799,16 @@ Public Class dmStockItem : Inherits dmBase
     End Get
     Set(value As Boolean)
       pIsSelected = value
+    End Set
+  End Property
+
+  Public Property DefaultManufacturerID As Integer
+    Get
+      Return pDefaultManufacturerID
+    End Get
+    Set(value As Integer)
+      If pDefaultManufacturerID <> value Then IsDirty = True
+      pDefaultManufacturerID = value
     End Set
   End Property
 End Class

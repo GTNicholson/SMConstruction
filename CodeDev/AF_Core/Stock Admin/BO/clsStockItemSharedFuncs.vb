@@ -1,4 +1,5 @@
-﻿Imports RTIS.DataLayer
+﻿Imports RTIS.CommonVB
+Imports RTIS.DataLayer
 
 Public Class clsStockItemSharedFuncs
 
@@ -474,7 +475,7 @@ Public Class clsStockItemSharedFuncs
             End If
 
           Else
-              mSICode = mSICode & "_" & mThicknessInteger.ToString("n1")
+            mSICode = mSICode & "_" & mThicknessInteger.ToString("n1")
 
           End If
 
@@ -491,5 +492,60 @@ Public Class clsStockItemSharedFuncs
     End If
 
     Return mSICode
+  End Function
+
+  Public Shared Function GetStockCodeReleventPropertyDefEnums(ByRef rStockItem As dmStockItem) As List(Of Integer)
+    Dim mRetVal As New List(Of Integer)
+    mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.Category)
+    Select Case rStockItem.Category
+
+      Case eStockItemCategoryEnums.PinturaYQuimico
+
+        mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.ItemType)
+
+        Select Case rStockItem.ItemType
+          Case eStockItemTypePintura.Acabado, eStockItemTypePintura.Pintura
+            mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.SubItemType)
+
+        End Select
+
+
+
+
+      Case Else
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.ItemType)
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.SubItemType)
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.Species)
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.Finish)
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.Length)
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.Width)
+        'mRetVal.Add(clsStockItemPropertyHandler.ePropertyDefENUM.Thickness)
+    End Select
+        Return mRetVal
+  End Function
+
+
+
+  Public Shared Function IsStockCodeSpecValid(ByRef rStockItem As dmStockItem) As clsValidate
+    Dim mValidate As New clsValidate
+    'Dim mRetVal As Boolean = True
+    Dim mPropEnums As List(Of Integer)
+    Dim mPropHandler As clsStockItemPropertyHandler
+
+    mValidate.ValOk = True
+
+    mPropHandler = New clsStockItemPropertyHandler(rStockItem, AppRTISGlobal.GetInstance)
+
+    mPropEnums = GetStockCodeReleventPropertyDefEnums(rStockItem)
+
+    For Each mPropEnum As Integer In mPropEnums
+      If Val(mPropHandler.PropertyValue(mPropEnum)) = 0 Then
+        mValidate.ValOk = False
+        mValidate.AddMsgLine("Campo no llenado: " & RTIS.CommonVB.clsEnumsConstants.GetEnumDescription(GetType(clsStockItemPropertyHandler.ePropertyDefENUM), CType(mPropEnum, clsStockItemPropertyHandler.ePropertyDefENUM)))
+        'mRetVal = False
+        'Exit For
+      End If
+    Next
+    Return mValidate
   End Function
 End Class

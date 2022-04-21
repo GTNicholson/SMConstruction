@@ -239,6 +239,17 @@ Public Class clsStockItemCategoryPinturaYQuimico : Inherits clsStockItemCategory
 
     End If
 
+    If mStockItem.DefaultManufacturerID > 0 Then
+      Dim mManufacturer As dmStockItemManufacturer
+
+      mManufacturer = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.StockItemManufacturer), colStockItemManufacturers).ItemFromKey(mStockItem.DefaultManufacturerID)
+
+      If mManufacturer IsNot Nothing Then
+
+        mRetVal = mRetVal & "." & mManufacturer.Abbreviation
+      End If
+    End If
+
     If mStockItem.PartNo <> "" Then
       mRetVal = mRetVal & "(" & mStockItem.PartNo & ")"
     End If

@@ -199,7 +199,7 @@ Public Class frmStockItem
         RefreshControls()
       Case eDetailButtons.Save
         UpdateObjects()
-        CheckStockCode()
+        'CheckStockCode()
         CheckDescriptionTimber()
         pFormController.SaveObject()
         pCurrentDetailMode = eCurrentDetailMode.eView
@@ -289,6 +289,7 @@ Public Class frmStockItem
         clsDEControlLoading.SetDECombo(cboItemSubType, .SubItemType)
 
         clsDEControlLoading.SetDECombo(cboSupplierUoM, .SupplierUoM)
+        clsDEControlLoading.SetDECombo(cboDefaultManufacturer, .DefaultManufacturerID)
 
         clsDEControlLoading.SetDECombo(cboSupplier, .DefaultSupplier)
         txtAverageCost.EditValue = .AverageCost
@@ -365,6 +366,9 @@ Public Class frmStockItem
     mSuppliers = pFormController.RTISGlobal.RefLists.RefIList(appRefLists.Supplier)
     clsDEControlLoading.FillDEComboVIi(cboSupplier, mSuppliers)
 
+    clsDEControlLoading.FillDEComboVIi(cboDefaultManufacturer, pFormController.RTISGlobal.RefLists.RefIList(appRefLists.StockItemManufacturer))
+
+
   End Sub
 
   Private Sub UpdateObjects()
@@ -387,6 +391,7 @@ Public Class frmStockItem
         .HeadTypeID = clsDEControlLoading.GetDEComboValue(cboHeadType)
         .UoM = clsDEControlLoading.GetDEComboValue(cboUoM)
         .SupplierUoM = clsDEControlLoading.GetDEComboValue(cboSupplierUoM)
+        .DefaultManufacturerID = clsDEControlLoading.GetDEComboValue(cboDefaultManufacturer)
         .IsGeneric = chkIsGeneric.Checked
         .IsTracked = chkIsTracked.Checked
         .Inactive = chkIsObsolete.Checked
@@ -406,6 +411,16 @@ Public Class frmStockItem
     End If
 
   End Sub
+
+  Private Sub cboItemType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboItemType.SelectedIndexChanged
+    If pIsActive Then
+      UpdateObjects()
+      RefreshCategorySpecificControls()
+      RefreshControls()
+    End If
+  End Sub
+
+
 
   Private Sub RefreshCategorySpecificControls()
 
@@ -541,13 +556,31 @@ Public Class frmStockItem
           cboItemSubType.Enabled = False
 
         Case eStockItemCategory.PinturaYQuimico
+          Dim mItemType As clsStockItemTypePintura
 
           clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePintura.GetInstance.ValueItems)
+
+          mItemType = eStockItemTypePintura.GetInstance.ItemFromKey(pFormController.CurrentStockItem.ItemType)
+
+
+          If mItemType IsNot Nothing Then
+
+
+            Select Case mItemType.ItemValue
+              Case eStockItemTypePintura.Pintura, eStockItemTypePintura.Acabado
+                clsDEControlLoading.FillDEComboVI(cboItemSubType, eStockItemTypePintura.GetInstance.ValueItems)
+                cboItemSubType.Enabled = True
+
+              Case Else
+                clsDEControlLoading.FillDEComboVI(cboItemSubType, New colValueItems)
+                cboItemSubType.Enabled = False
+            End Select
+
+          End If
 
           cboSpecies.Enabled = False
           cboItemType.Enabled = True
           cboHeadType.Enabled = False
-          cboItemSubType.Enabled = False
 
         Case eStockItemCategory.Laminas
 
@@ -654,6 +687,8 @@ Public Class frmStockItem
     txtThicknessFrac.ReadOnly = vReadOnly
     txtWidthFrac.ReadOnly = vReadOnly
     txtLengthFrac.ReadOnly = vReadOnly
+    cboDefaultManufacturer.ReadOnly = vReadOnly
+
     ''    btnedImageFile.ReadOnly = vReadOnly
 
     ''gvAlternateCodes.OptionsBehavior.ReadOnly = vReadOnly
@@ -871,14 +906,38 @@ Public Class frmStockItem
 
   Private Sub txtDescription_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtDescription.ButtonClick
     UpdateObjects()
-    pFormController.SaveObject()
-    pFormController.GenerateDescription()
-    txtDescription.Text = pFormController.CurrentStockItem.Description
+    txtDescription.Text = GenerateDescription(pFormController.CurrentStockItem)
+
   End Sub
 
-  Private Sub cboItemType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboItemType.SelectedIndexChanged
-    RefreshTypeSpecificControls()
-  End Sub
+  Private Function GenerateDescription(ByRef rStockItem As dmStockItem) As String
+    Dim mRetval As String = ""
+    Dim mVal As clsValidate
+
+    Dim mStockItemCategory As clsStockItemCategoryBase = eStockItemCategoryEnums.GetInstance.ItemFromCategory(rStockItem.Category)
+
+    mVal = clsStockItemSharedFuncs.IsStockCodeSpecValid(pFormController.CurrentStockItem)
+
+    If mVal.ValOk Then
+      mRetval = mStockItemCategory.GetDescription(rStockItem) 'clsStockItemSharedFuncs.DeriveDescription(False, rStockItem)
+
+    Else
+      If MsgBox("La información no es suficiente para generar la descripción del artículo de inventario" & vbCrLf & mVal.Msg & vbCrLf & "¿Desea guardar de igual forma?", vbYesNo) = vbYes Then
+        If pFormController.SaveObject() Then
+          'If pFormController.IsSaveByRecord Then '' Save each item as you go
+          '  pFormController.ReleaseCurrentLock()
+          'End If
+          pCurrentDetailMode = eCurrentDetailMode.eView
+        End If
+      End If
+
+    End If
+
+
+    ''End If
+
+    Return mRetval
+  End Function
 
 
   Private Sub spnLength_EditValueChanged(sender As Object, e As EventArgs) Handles spnLength.EditValueChanged
@@ -1044,6 +1103,87 @@ Public Class frmStockItem
     End If
   End Sub
 
+
+  Private Sub txtStockCode_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtStockCode.ButtonClick
+    UpdateObjects()
+
+    If pFormController.CurrentStockItem.StockCode = "" Then
+      CheckCreateStockCodeSave()
+      RefreshControls()
+
+    Else
+      MsgBox("No disponible hasta que se limpie el código del producto actual")
+    End If
+  End Sub
+
+  Private Sub CheckCreateStockCodeSave()
+    Dim mStockCodeStem As String
+    Dim mVal As clsValidate
+    Dim mOK As Boolean = True
+
+    UpdateObjects()
+
+    Try
+
+      mVal = clsStockItemSharedFuncs.IsStockCodeSpecValid(pFormController.CurrentStockItem)
+
+      If mVal.ValOk Then
+
+        mStockCodeStem = eStockItemCategoryEnums.GetInstance.ItemFromCategory(pFormController.CurrentStockItem.Category).GetStockCode(pFormController.CurrentStockItem)
+
+        'Select Case pFormController.CurrentStockItem.Category
+        '  Case eStockItemCategoryEnums.cConsumablesGeneral, eStockItemCategoryEnums.cIronmongery, eStockItemCategoryEnums.cLock
+        '    mStockCodeStem = mStockCodeStem & "." & pFormController.GetNextStockCodeSuffix(mStockCodeStem)
+        'End Select
+
+        If pFormController.CheckStockCodeExists(mStockCodeStem) Then
+          If MsgBox("El Código " & mStockCodeStem & " ya existe. Por favor revisar " & vbCrLf & mVal.Msg & vbCrLf & "¿Desea guardar de cualquier forma?", vbYesNo) = vbYes Then
+
+            If pFormController.SaveCurrentItemGenerateCode(mStockCodeStem) Then
+              'If pFormController.IsSaveByRecord Then '' Save each item as you go
+              '  pFormController.ReleaseCurrentLock()
+              'End If
+              pCurrentDetailMode = eCurrentDetailMode.eView
+            End If
+          Else
+            If pFormController.SaveObject Then
+              'If pFormController.IsSaveByRecord Then '' Save each item as you go
+              '  pFormController.ReleaseCurrentLock()
+              'End If
+              pCurrentDetailMode = eCurrentDetailMode.eView
+            End If
+
+          End If
+
+        ElseIf MsgBox("El código de este artículo será registrado de la siguiente forma: " & vbCrLf & mStockCodeStem & "###" & vbCrLf & "¿Desea continuar y guardar el artículo?", vbYesNo) = vbYes Then
+          If pFormController.SaveCurrentItemGenerateCode(mStockCodeStem) Then
+            'If pFormController.IsSaveByRecord Then '' Save each item as you go
+            '  pFormController.ReleaseCurrentLock()
+            'End If
+            pCurrentDetailMode = eCurrentDetailMode.eView
+          End If
+        End If
+
+      Else
+        If MsgBox("La información no es suficiente para generar un código de inventario" & vbCrLf & mVal.Msg & vbCrLf & "¿Desea guardar de igual forma?", vbYesNo) = vbYes Then
+          '' pFormController.SaveObject(False, "")
+          If pFormController.SaveCurrentItemGenerateCode(mStockCodeStem) Then
+            'If pFormController.IsSaveByRecord Then '' Save each item as you go
+            '  pFormController.ReleaseCurrentLock()
+            'End If
+            pCurrentDetailMode = eCurrentDetailMode.eView
+          End If
+        End If
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    RefreshControls()
+
+  End Sub
 
 End Class
 

@@ -425,6 +425,73 @@ Public Class dsoStock
     End Try
   End Sub
 
+  Public Function CheckStockcodeExists(ByVal vStockItemID As Integer, ByVal vStockCode As String) As Boolean
+    Dim mRetval As Boolean = False
+    Dim mOK As Boolean
+    Try
+
+      pDBConn.Connect()
+      mOK = CheckStockcodeExistsConnected(vStockItemID, vStockCode)
+
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
+  Public Function SaveStockItemWithNewCode(ByRef rStockItem As dmStockItem, ByVal vStockCodeStem As String) As Boolean
+    Dim mdto As dtoStockItem
+    Dim mOK As Boolean
+    Dim mStockCode As String
+
+    Try
+      pDBConn.Connect()
+      pDBConn.ConnectionBeginTrans()
+      mdto = New dtoStockItem(pDBConn)
+
+
+      rStockItem.StockCode = vStockCodeStem
+      mOK = mdto.SaveStockItem(rStockItem)
+      'End If
+      If mOK = False Then
+        pDBConn.ConnectionRollBackTrans()
+      End If
+    Catch ex As Exception
+      mOK = False
+      pDBConn.ConnectionRollBackTrans()
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      pDBConn.ConnectionCommitTrans()
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
+
+  Public Function CheckStockcodeExistsConnected(ByVal vStockItemID As Integer, ByVal vStockCode As String) As Boolean
+    Dim mRetval As Boolean = False
+    Dim mSQL As String
+    Dim mDT As DataTable
+    Try
+
+      mSQL = "Select StockCode from StockItem where StockCode = '" & vStockCode & "' And StockItemID <> " & vStockItemID
+      mDT = pDBConn.CreateDataTable(mSQL)
+
+      If mDT IsNot Nothing AndAlso mDT.Rows.Count > 0 Then
+        mRetval = True
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    End Try
+
+    Return mRetval
+  End Function
   Public Sub LoadWoodGuideItemSummarys(ByRef rWoodGuideItemSummarys As colWoodGuideItemSummarys, ByVal vWoodReceptionID As Integer)
     Dim mdto As New dtoWoodGuideItemSummary(pDBConn)
     Try

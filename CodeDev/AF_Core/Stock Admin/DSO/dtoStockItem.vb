@@ -111,6 +111,8 @@ Public Class dtoStockItem : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsTracked", .IsTracked)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "HeadTypeID", .HeadTypeID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "IsProvisional", .IsProvisional)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "DefaultManufacturerID", .DefaultManufacturerID)
+
 
 
 
@@ -168,6 +170,7 @@ Public Class dtoStockItem : Inherits dtoBase
         .IsTracked = DBReadBoolean(rDataReader, "IsTracked")
         .HeadTypeID = DBReadInt32(rDataReader, "HeadTypeID")
         .IsProvisional = DBReadBoolean(rDataReader, "IsProvisional")
+        .DefaultManufacturerID = DBReadInt32(rDataReader, "DefaultManufacturerID")
         pStockItem.IsDirty = False
       End With
       mOK = True

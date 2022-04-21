@@ -291,13 +291,14 @@ Public Class fccStocktem
 
   End Sub
 
-  Public Sub SaveObject()
+  Public Function SaveObject() As Boolean
+    Dim mOK As Boolean = True
     Try
 
       If pCurrentStockItem IsNot Nothing Then
         Dim mdsoStock As New dsoStock(pDBConn)
 
-        mdsoStock.SaveStockItem(pCurrentStockItem)
+        mOK = mdsoStock.SaveStockItem(pCurrentStockItem)
         If pSIGlobalRegistry.GetStockItemFromID(pCurrentStockItem.StockItemID) IsNot Nothing Then
           pSIGlobalRegistry.RefreshStockItem(pCurrentStockItem.StockItemID)
         Else
@@ -309,7 +310,9 @@ Public Class fccStocktem
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
     End Try
-  End Sub
+
+    Return mOK
+  End Function
 
   Public Function AddStockItem(ByVal vClassType As Integer, ByVal vCategory As eStockItemCategory) As dmStockItem
     Dim mRetVal As dmStockItem = Nothing
@@ -426,48 +429,38 @@ Public Class fccStocktem
   Public Function GetProposedCode()
     Dim mDSO As dsoStock
     Dim mStem As String
-    Dim mThicknessDecimal As Decimal
     Dim mRetVal As String = ""
-    Dim mThicknessInteger As Integer
 
-    mStem = clsStockItemSharedFuncs.GetStockCodeStem_New(pCurrentStockItem, pDBConn)
+    If pCurrentStockItem.Category = eStockItemCategoryEnums.PinturaYQuimico Then
+      Dim mCategory As clsStockItemCategoryBase
+
+      mCategory = eStockItemCategoryEnums.GetInstance.ItemFromCategory(pCurrentStockItem.Category)
+
+      If mCategory IsNot Nothing Then
+        mStem = mCategory.GetStockCode(pCurrentStockItem)
+      End If
+    Else
+      mStem = clsStockItemSharedFuncs.GetStockCodeStem_New(pCurrentStockItem, pDBConn)
+
+    End If
     mDSO = New dsoStock(pDBConn)
-    'If mStem <> "" Then
 
-    '  If pCurrentStockItem.Category = eStockItemCategory.Timber Then
-    '    mThicknessDecimal = pCurrentStockItem.Thickness ' mDSO.GetNextStockCodeSuffixNo(mStem)
-    '    pCurrentStockItem.StockCode = mStem
-    '    If mThicknessDecimal <> 0 Then
-    '      mThicknessInteger = CInt(mThicknessDecimal)
-
-    '      mThicknessDecimal = mThicknessDecimal - mThicknessInteger
-
-    '      If mThicknessDecimal > 0 Then
-    '        mThicknessDecimal = mThicknessDecimal * 10
-    '        pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString() & "." & mThicknessDecimal.ToString("n0")
-
-    '      Else
-    '        pCurrentStockItem.StockCode = mStem & "_" & mThicknessInteger.ToString("n1")
-
-    '      End If
-
-    '    End If
-    '  End If
-    'End If
     Return mStem
   End Function
 
   Public Sub GenerateDescription()
-    Dim mSIDM As StockItemDefManagerBase = Nothing
-    SaveObject()
+    'Dim mSIDM As StockItemDefManagerBase = Nothing
+    'SaveObject()
 
-    Select Case pCurrentStockItem.Category
-      Case eStockItemCategory.Fixings
-        mSIDM = New clsStockItemDefManagerFixings(pCurrentStockItem)
-    End Select
-    If mSIDM IsNot Nothing Then
-      pCurrentStockItem.Description = mSIDM.GenerateDescription()
-    End If
+    'Select Case pCurrentStockItem.Category
+    '  Case eStockItemCategory.Fixings
+    '    mSIDM = New clsStockItemDefManagerFixings(pCurrentStockItem)
+    'End Select
+    'If mSIDM IsNot Nothing Then
+    '  pCurrentStockItem.Description = mSIDM.GenerateDescription()
+    'End If
+
+
   End Sub
 
   Public Sub LoadMainCollectionByStockOptionFilter(ByVal vWhere As String)
@@ -484,5 +477,62 @@ Public Class fccStocktem
     End Try
 
   End Sub
+
+
+  Public Function CheckStockCodeExists(ByVal vStockCode As String) As Boolean
+    Dim mRetval As Boolean
+    Dim mdsoStock As New dsoStock(pDBConn)
+
+    Try
+
+      mRetval = mdsoStock.CheckStockcodeExists(pCurrentStockItem.StockItemID, vStockCode)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    Return mRetval
+
+  End Function
+
+  Public Function SaveCurrentItemGenerateCode(ByVal vStockCodeStem As String) As Boolean
+    Return SaveCurrentItemCommon(True, vStockCodeStem)
+  End Function
+
+  Private Function SaveCurrentItemCommon(ByVal vGenerateStockCode As Boolean, ByVal vStockCodeStem As String) As Boolean
+    Dim mOK As Boolean = False
+    ''Dim mIndex As Integer
+    Dim mdsoStock As New dsoStock(pDBConn)
+
+    Try
+      If vGenerateStockCode Then
+        mdsoStock.SaveStockItemWithNewCode(pCurrentStockItem, vStockCodeStem)
+      Else
+        mdsoStock.SaveStockItem(pCurrentStockItem)
+      End If
+
+      mOK = True
+      If mOK Then
+        If pPrimaryKeyID = 0 Then
+          pPrimaryKeyID = pCurrentStockItem.StockItemID
+          'Add to collection
+          If Not StockItems.Contains(pCurrentStockItem) Then
+            StockItems.Add(pCurrentStockItem)
+          End If
+        End If
+
+
+      End If
+
+      ''  mdsoMainObject = Nothing
+    Catch ex As Exception
+      mOK = False
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyAppService) Then Throw
+    End Try
+
+    Return mOK
+  End Function
+
+
 End Class
 

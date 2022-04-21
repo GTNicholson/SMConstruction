@@ -128,6 +128,7 @@ Public Class dtoStockItemInfo : Inherits dtoBase
         .IsTracked = DBReadBoolean(rDataReader, "IsTracked")
         .HeadTypeID = DBReadInt32(rDataReader, "HeadTypeID")
         .IsProvisional = DBReadBoolean(rDataReader, "IsProvisional")
+        .DefaultManufacturerID = DBReadInt32(rDataReader, "DefaultManufacturerID")
       End With
 
       mOK = True

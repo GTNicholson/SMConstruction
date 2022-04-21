@@ -120,6 +120,11 @@ Public Class dsoAppRefLists
           mItem.IList = LoadWoodSpecie()
           mOK = True
 
+
+        Case appRefLists.StockItemManufacturer
+          mItem.IList = LoadStockItemManufacturer
+          mOK = True
+
         Case appRefLists.WoodFinish
           mValueItems = New colValueItems
           mOK = pDBConn.LoadValueItems(mValueItems, "Select Description, value from ValueItem Where ValueItemListID = 6", "Value", "Description")
@@ -273,6 +278,15 @@ Public Class dsoAppRefLists
     Else
       mOK = False
     End If
+  End Function
+
+  Private Function LoadStockItemManufacturer() As IList
+    Dim mdto As New dtoStockItemManufacturer(pDBConn)
+    Dim mRetVal As New colStockItemManufacturers
+
+    mdto.LoadStockItemManufacturerCollection(mRetVal)
+
+    Return mRetVal
   End Function
 
   Private Function LoadWoodTypeValue() As IList

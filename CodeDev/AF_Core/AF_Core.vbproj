@@ -158,6 +158,8 @@
     <Compile Include="App\appLockEntitys.vb" />
     <Compile Include="App\appXtraGridPrintExport.vb" />
     <Compile Include="App\BO\appRefLists.vb" />
+    <Compile Include="App\BO\clsPropertyDefSort.vb" />
+    <Compile Include="App\BO\clsStockItemPropertyHandler.vb" />
     <Compile Include="App\BO\dmExcelMapping.vb" />
     <Compile Include="App\BO\colRTISUsers.vb" />
     <Compile Include="App\BO\clsRecipientFinderFactory.vb" />
