@@ -1,0 +1,6 @@
+ALTER TABLE StockItem
+ADD PreviousStockCode varchar(25)
+GO
+
+UPDATE StockItem SET PreviousStockCode = StockCode
+GO
