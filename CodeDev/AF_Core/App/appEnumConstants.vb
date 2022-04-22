@@ -2267,6 +2267,18 @@ Public Class colStockSubItemTypePintura : Inherits List(Of clsStockSubItemTypePi
     Return Nothing
   End Function
 
+  Public Function SortedValueItems() As colValueItems
+    Dim mValueItems As New colValueItems
+
+    For Each mItem As clsStockSubItemTypePintura In Me
+      Dim mValueItem As New clsValueItem
+      mValueItem.ItemValue = mItem.PropertyENUM
+      mValueItem.DisplayValue = mItem.DisplayValue
+      mValueItems.Add(mValueItem)
+    Next
+
+    Return mValueItems.OrderByDesc
+  End Function
 End Class
 
 

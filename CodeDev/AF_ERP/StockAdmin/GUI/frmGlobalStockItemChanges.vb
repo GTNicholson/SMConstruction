@@ -1,228 +1,229 @@
-﻿
-Imports RTIS.CommonVB
+﻿Imports RTIS.CommonVB
 Imports RTIS.DataLayer
 Imports RTIS.Elements
 
 Public Class frmGlobalStockItemChanges
-
   Private pFormController As fccGlobalStockItemChange
-  Public Sub OpenForm(ByRef rDBConn As clsDBConnBase, ByRef rSelectedItems As colStockItems)
+  Public FormMode As eFormMode
+  Public ExitMode As Windows.Forms.DialogResult
+
+  Private Shared sActiveForms As Collection
+  Private Shared sFormIndex As Integer
+  Private pMySharedIndex As Integer
+
+  Private pIsActive As Boolean
+  Private pLoadError As Boolean
+  Private pForceExit As Boolean = False
+  Private pSelectedItemsCount As Integer
+  Public Property FormController() As fccGlobalStockItemChange
+    Get
+      FormController = pFormController
+    End Get
+    Set(ByVal value As fccGlobalStockItemChange)
+      pFormController = value
+    End Set
+  End Property
+
+  Public Property SelectedItemsCount() As Int32
+    Get
+      Return pSelectedItemsCount
+    End Get
+    Set(ByVal value As Int32)
+      pSelectedItemsCount = value
+    End Set
+  End Property
+
+  Public Shared Sub OpenFormAsModal(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As clsRTISGlobal, ByRef rStockItemEditors As colStockItems, ByVal vFormMode As eFormMode, ByVal vSelectedItemsCount As Int32)
     Dim mfrm As New frmGlobalStockItemChanges
-
-    mfrm.pFormController = New fccGlobalStockItemChange(rDBConn, rSelectedItems)
-
+    mfrm.FormController = New fccGlobalStockItemChange
+    mfrm.FormController.DBConn = rDBConn
+    mfrm.FormController.RTISGlobal = rRTISGlobal
+    mfrm.pFormController.StockItemEditors = rStockItemEditors
+    mfrm.FormMode = vFormMode
+    mfrm.pSelectedItemsCount = vSelectedItemsCount
+    mfrm.Owner = rParentForm
     mfrm.ShowDialog()
+    If mfrm.ExitMode = Windows.Forms.DialogResult.Yes Then
+      ''vPrimaryKeyID = mfrm.FormController.PrimaryKeyID - Problem with .FormController being set to nothing
+    End If
+    mfrm.FormController = Nothing
+    mfrm.Owner = Nothing
+    mfrm.Dispose()
+    mfrm = Nothing
+  End Sub
 
+  Public Sub New()
+
+    ' This call is required by the Windows Form Designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    sFormIndex = sFormIndex + 1
+    Me.pMySharedIndex = sFormIndex
+    If sActiveForms Is Nothing Then sActiveForms = New Collection
+    sActiveForms.Add(Me, Me.pMySharedIndex.ToString)
 
   End Sub
 
   Private Sub frmGlobalStockItemChanges_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    LoadCombos()
+
+    Dim mOK As Boolean = True
+    Dim mMsg As String = ""
+    Dim mErrorDisplayed As Boolean = False
+
+    ''Resize if required
+
+    pIsActive = False
+    pLoadError = False
+
+    Try
+      LoadCombos()
+      SetCaptionButtons()
+    Catch ex As Exception
+      mMsg = ex.Message
+      mOK = False
+      mErrorDisplayed = True
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    If Not mOK Then
+      If Not mErrorDisplayed Then MsgBox(String.Format("Problem loading the form... Please try again{0}{1}", vbCrLf, mMsg), vbExclamation)
+      pLoadError = True
+      ExitMode = Windows.Forms.DialogResult.Abort
+      BeginInvoke(New MethodInvoker(AddressOf CloseForm))
+
+    End If
+
+    pIsActive = True
+
   End Sub
-  Public Sub LoadCombos()
-    Dim mVIs As colValueItems
 
-    mVIs = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies)
-    clsDEControlLoading.FillDEComboVI(cboSpecies, mVIs)
+  Private Sub LoadCombos()
+    'clsDEControlLoading.FillDEComboVI(cboStockManagementType, clsEnumsConstants.EnumToVIs(GetType(eStockItemManagementType)))
 
-    mVIs = clsEnumsConstants.EnumToVIs(GetType(eStockItemCategory))
-    clsDEControlLoading.FillDEComboVI(cboCategory, mVIs)
-
-    mVIs = clsEnumsConstants.EnumToVIs(GetType(eUoM))
-    clsDEControlLoading.FillDEComboVI(cboUoM, mVIs)
   End Sub
 
-  Private Sub bbtnApplyChanges_Click(sender As Object, e As EventArgs) Handles bbtnApplyChanges.Click
-    Dim mSpeciesID As Integer
-    Dim mCategory As Integer
-    Dim mUoM As Integer
-    Dim mItemType As Integer
-
-    mSpeciesID = clsDEControlLoading.GetDEComboValue(cboSpecies)
-    mCategory = clsDEControlLoading.GetDEComboValue(cbocategory)
-    mUoM = clsDEControlLoading.GetDEComboValue(cboUoM)
+  Private Sub SetCaptionButtons()
+    Dim mSelectedItemCount As Integer
 
 
-    mItemType = clsDEControlLoading.GetDEComboValue(cboItemType)
+
+    If pSelectedItemsCount = 0 Then
+      btnGenerateDescription.Text = "Generate Description Item"
+      btnGenerateDescription.Enabled = False
 
 
-    pFormController.ApplyGlobalChanges(mCategory, mSpeciesID, mUoM, mItemType)
+      btnGenrateStockCode.Text = "Generate Code Item"
+      btnGenrateStockCode.Enabled = False
 
-    MessageBox.Show("Se ha realizado los cambios seleccionados")
+      btnSetObsolete.Text = "Set Obsolete Item"
+      btnSetObsolete.Enabled = False
+    Else
+      btnGenerateDescription.Enabled = True
+      btnGenerateDescription.Text = String.Format("Generate ({0}) Item(s) Description", pSelectedItemsCount)
+
+      btnGenrateStockCode.Text = String.Format("Generate ({0}) Item(s) Stock Code", pSelectedItemsCount)
+      btnGenrateStockCode.Enabled = True
+
+      btnSetObsolete.Text = String.Format("Set Obsolete ({0}) Item(s)", pSelectedItemsCount)
+      btnSetObsolete.Enabled = True
+
+    End If
+
+
+  End Sub
+
+  Private Sub CloseForm() 'Needs exit mode set first
+    pForceExit = True
     Me.Close()
   End Sub
 
-  Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
-    Dim mCategory As Integer
+  Private Sub btnGenerateDescription_Click(sender As Object, e As EventArgs) Handles btnGenerateDescription.Click
+    Dim mIndex As Integer = -1
 
-    If pFormController IsNot Nothing Then
+    For Each mStockItemEditor As dmStockItem In pFormController.StockItemEditors
 
-      mCategory = clsDEControlLoading.GetDEComboValue(cboCategory)
-
-      If mCategory > 0 Then
-        Select Case mCategory
-
-          Case eStockItemCategory.Abrasivos
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeAbrasivos.GetInstance.ValueItems)
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-          Case eStockItemCategory.Fixings
-
-            cboItemType.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeFixings.GetInstance.ValueItems)
-            cboSpecies.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
-            'cboHeadType.Enabled = True
-            'clsDEControlLoading.FillDEComboVI(cboHeadType, clsEnumsConstants.EnumToVIs(GetType(eHeadType)))
-
-          Case eStockItemCategory.EPP
-            Dim mEPP As clsStockItemTypeEPP
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeEPP.GetInstance.ValueItems)
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.Herrajes
-
-            Dim mHerrajesType As clsStockItemTypeHerrajes
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerrajes.GetInstance.ValueItems)
-
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.Herramientas
-
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeHerramientas.GetInstance.ValueItems)
-
-            cboItemType.Enabled = True
-            cboSpecies.Enabled = False
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.MatElect
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialElectrico.GetInstance.ValueItems)
-
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.MatEmpaque
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMaterialEmpaque.GetInstance.ValueItems)
-
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.BrickWork
-
-            cboItemType.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeBrickWork.GetInstance.ValueItems)
-            cboSpecies.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-          Case eStockItemCategory.MatVarios
-
-            cboItemType.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMatVarioss.GetInstance.ValueItems)
-
-
-            cboSpecies.Enabled = False
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-          Case eStockItemCategory.Plumbing
-
-            cboItemType.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePlumbings.GetInstance.ValueItems)
-            cboSpecies.Enabled = True
-            clsDEControlLoading.FillDEComboVI(cboSpecies, AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.FixingSpecies))
-
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-          Case eStockItemCategory.Metal
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeMetales.GetInstance.ValueItems)
-
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.PinturaYQuimico
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypePintura.GetInstance.ValueItems)
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-          Case eStockItemCategory.Laminas
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeLamina.GetInstance.ValueItems)
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-          Case eStockItemCategory.Repuestos
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeRepuestosYPartes.GetInstance.ValueItems)
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-          Case eStockItemCategory.Tapiceria
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeTapiceria.GetInstance.ValueItems)
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-          Case eStockItemCategory.VidrioYEspejo
-
-            clsDEControlLoading.FillDEComboVI(cboItemType, eStockItemTypeVidrioYEspejo.GetInstance.ValueItems)
-
-            cboSpecies.Enabled = False
-            cboItemType.Enabled = True
-            'cboHeadType.Enabled = False
-            'cboItemSubType.Enabled = False
-
-
-        End Select
-
-
+      If mStockItemEditor.IsSelected = True Then
+        pFormController.SetCurrentStockItemInfo(mStockItemEditor)
+        If mStockItemEditor IsNot Nothing Then
+          mStockItemEditor.IsSelected = True
+          pFormController.CurrentStockItem.Description = GenerateDescription(mStockItemEditor)
+          pFormController.SaveObject()
+        End If
       End If
+
+    Next
+  End Sub
+
+  Private Function GenerateDescription(ByRef rStockItem As dmStockItem) As String
+    Dim mRetval As String = ""
+    Dim mCategoryBase As clsStockItemCategoryBase
+
+    mCategoryBase = eStockItemCategoryEnums.GetInstance.ItemFromCategory(rStockItem.Category)
+
+    If mCategoryBase IsNot Nothing Then
+
+      mRetval = mCategoryBase.GetDescription(rStockItem)
+
+      If rStockItem.PartNo = "" Then
+        mRetval = mRetval & " " & pFormController.GetNextStockCodeSuffix(mRetval)
+      End If
+
     End If
 
+
+    Return mRetval
+  End Function
+
+  Private Function GenerateStockCode(ByRef rStockItem As dmStockItem) As String
+    Dim mRetval As String = ""
+    Dim mCategoryBase As clsStockItemCategoryBase
+
+    mCategoryBase = eStockItemCategoryEnums.GetInstance.ItemFromCategory(rStockItem.Category)
+
+    If mCategoryBase IsNot Nothing Then
+
+      mRetval = mCategoryBase.GetStockCode(rStockItem)
+
+      If rStockItem.PartNo = "" Then
+        mRetval = mRetval & "." & pFormController.GetNextStockCodeSuffix(mRetval)
+      End If
+
+
+    End If
+
+
+    Return mRetval
+  End Function
+  Private Sub btnGenrateStockCode_Click(sender As Object, e As EventArgs) Handles btnGenrateStockCode.Click
+
+    For Each mStockItemEditor As dmStockItem In pFormController.StockItemEditors
+
+      If mStockItemEditor.IsSelected = True Then
+        pFormController.SetCurrentStockItemInfo(mStockItemEditor)
+        If mStockItemEditor IsNot Nothing Then
+
+          pFormController.CurrentStockItem.StockCode = GenerateStockCode(mStockItemEditor)
+          pFormController.SaveObject()
+        End If
+      End If
+
+    Next
   End Sub
+
+  Private Sub btnSetObsolete_Click(sender As Object, e As EventArgs) Handles btnSetObsolete.Click
+
+    For Each mStockItemEditor As dmStockItem In pFormController.StockItemEditors
+
+      If mStockItemEditor.IsSelected = True Then
+        pFormController.SetCurrentStockItemInfo(mStockItemEditor)
+        If mStockItemEditor IsNot Nothing Then
+          pFormController.CurrentStockItem.Inactive = True
+          pFormController.SaveObject()
+        End If
+      End If
+
+    Next
+  End Sub
+
 End Class

@@ -19,7 +19,7 @@ Public Class fccStocktem
   Private pStockItem As dmStockItem
 
   Private pSIGlobalRegistry As clsStockItemRegistryBase
-
+  Private pSelectedItems As colStockItems
   Public Enum eShowItems
     ShowAll = 0
     ShowLive = 1
@@ -152,6 +152,15 @@ Public Class fccStocktem
     End Set
   End Property
 
+  Public Property SelectedItems As colStockItems
+    Get
+      Return pSelectedItems
+    End Get
+    Set(value As colStockItems)
+      pSelectedItems = value
+    End Set
+  End Property
+
   Public Sub New(ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As AppRTISGlobal, ByRef rRegistry As clsStockItemRegistryBase)
     pDBConn = rDBConn
     pRTISGlobal = rRTISGlobal
@@ -159,7 +168,7 @@ Public Class fccStocktem
     pSIGlobalRegistry = rRegistry
     pShowItemsMode = eShowItems.ShowLive
     pStockItem = New dmStockItem
-
+    pSelectedItems = New colStockItems
   End Sub
 
 
@@ -533,6 +542,13 @@ Public Class fccStocktem
     Return mOK
   End Function
 
+  Public Function GetNextStockCodeSuffix(ByVal vStockCodeStem As String) As String
+    Dim mdso As New dsoStock(pDBConn)
+    Dim mRetVal As String = ""
 
+    mRetVal = mdso.GetNextStockCodeSuffixNo(vStockCodeStem).ToString("0000")
+
+    Return mRetVal
+  End Function
 End Class
 
