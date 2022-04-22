@@ -244,11 +244,17 @@ Public Class clsStockItemCategoryPinturaYQuimico : Inherits clsStockItemCategory
 
       mManufacturer = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.StockItemManufacturer), colStockItemManufacturers).ItemFromKey(mStockItem.DefaultManufacturerID)
 
+      If mStockItem.Colour <> "" Then
+        mRetVal = mRetVal & "." & mStockItem.Colour.Substring(0, 2).ToUpper
+      End If
+
       If mManufacturer IsNot Nothing Then
 
         mRetVal = mRetVal & "." & mManufacturer.Abbreviation
       End If
     End If
+
+
 
     If mStockItem.PartNo <> "" Then
       mRetVal = mRetVal & "(" & mStockItem.PartNo & ")"
@@ -271,6 +277,8 @@ Public Class clsStockItemCategoryPinturaYQuimico : Inherits clsStockItemCategory
 
 
 
+
+
     If mItemType IsNot Nothing Then
 
       mRetVal = mItemType.Description
@@ -283,13 +291,33 @@ Public Class clsStockItemCategoryPinturaYQuimico : Inherits clsStockItemCategory
 
     End If
 
-    If mStockItem.PartNo <> "" Then
-      mRetVal = mRetVal & " (" & mStockItem.PartNo & ")"
+    If mStockItem.DefaultManufacturerID > 0 Then
+      Dim mManufacturer As dmStockItemManufacturer
+
+      mManufacturer = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.StockItemManufacturer), colStockItemManufacturers).ItemFromKey(mStockItem.DefaultManufacturerID)
+
+
+      If mStockItem.Colour <> "" Then
+        mRetVal = mRetVal & " color " & mStockItem.Colour
+      End If
+
+
+      If mManufacturer IsNot Nothing Then
+
+        mRetVal = mRetVal & " de " & mManufacturer.Name
+      End If
     End If
 
 
 
+
+    If mStockItem.PartNo <> "" Then
+      mRetVal = mRetVal & "(" & mStockItem.PartNo & ")"
+    End If
+
+
     Return mRetVal
+
   End Function
 
 

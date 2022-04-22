@@ -23,6 +23,11 @@ Partial Class frmStockItem
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -65,11 +70,6 @@ Partial Class frmStockItem
         Dim SerializableAppearanceObject36 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStockItem))
         Me.chkIsObsolete = New System.Windows.Forms.CheckBox()
         Me.chkIsGeneric = New System.Windows.Forms.CheckBox()
@@ -84,7 +84,7 @@ Partial Class frmStockItem
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grpGroupF8 = New DevExpress.XtraEditors.GroupControl()
-        Me.cboDefaultManufacturer = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.txtStockCode = New DevExpress.XtraEditors.ButtonEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.rgbStockItemOptions = New DevExpress.XtraBars.BarEditItem()
@@ -119,6 +119,7 @@ Partial Class frmStockItem
         Me.bbtnChangeUoM = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnChangeSpecies = New DevExpress.XtraBars.BarButtonItem()
         Me.RepoItemRadioGroupCategory = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
+        Me.cboDefaultManufacturer = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
         Me.txtThicknessFrac = New DevExpress.XtraEditors.TextEdit()
         Me.txtWidthFrac = New DevExpress.XtraEditors.TextEdit()
@@ -189,17 +190,16 @@ Partial Class frmStockItem
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcSpecies = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoSelectedItem = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.grdStockItems = New DevExpress.XtraGrid.GridControl()
-        Me.repoIsSelected = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.grpCurrentStockItem = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.txtStockCode = New DevExpress.XtraEditors.ButtonEdit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpGroupF8.SuspendLayout()
-        CType(Me.cboDefaultManufacturer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repoStockItemOption, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,6 +210,7 @@ Partial Class frmStockItem
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboDefaultManufacturer.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtThicknessFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWidthFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtLengthFrac.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -243,8 +244,8 @@ Partial Class frmStockItem
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.repoSelectedItem, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdStockItems, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.repoIsSelected, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1.Panel1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.Panel1.SuspendLayout()
@@ -255,7 +256,6 @@ Partial Class frmStockItem
         Me.grpCurrentStockItem.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkIsObsolete
@@ -476,18 +476,17 @@ Partial Class frmStockItem
         Me.grpGroupF8.TabIndex = 94
         Me.grpGroupF8.Text = "Detalle de Ítem de Iventario"
         '
-        'cboDefaultManufacturer
+        'txtStockCode
         '
-        Me.cboDefaultManufacturer.Location = New System.Drawing.Point(415, 229)
-        Me.cboDefaultManufacturer.MenuManager = Me.BarManager1
-        Me.cboDefaultManufacturer.Name = "cboDefaultManufacturer"
-        Me.cboDefaultManufacturer.Properties.AllowMouseWheel = False
-        Me.cboDefaultManufacturer.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboDefaultManufacturer.Properties.Appearance.Options.UseFont = True
-        Me.cboDefaultManufacturer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboDefaultManufacturer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboDefaultManufacturer.Size = New System.Drawing.Size(176, 20)
-        Me.cboDefaultManufacturer.TabIndex = 153
+        Me.txtStockCode.Location = New System.Drawing.Point(74, 50)
+        Me.txtStockCode.MenuManager = Me.BarManager1
+        Me.txtStockCode.Name = "txtStockCode"
+        Me.txtStockCode.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtStockCode.Properties.Appearance.Options.UseFont = True
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.txtStockCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.txtStockCode.Size = New System.Drawing.Size(218, 24)
+        Me.txtStockCode.TabIndex = 155
         '
         'BarManager1
         '
@@ -556,7 +555,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 29)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 32)
         '
         'barDockControlBottom
         '
@@ -570,17 +569,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 727)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 724)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 29)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 32)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 727)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 724)
         '
         'BarButtonItem1
         '
@@ -734,6 +733,19 @@ Partial Class frmStockItem
         Me.RepoItemRadioGroupCategory.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
         Me.RepoItemRadioGroupCategory.Name = "RepoItemRadioGroupCategory"
         '
+        'cboDefaultManufacturer
+        '
+        Me.cboDefaultManufacturer.Location = New System.Drawing.Point(415, 229)
+        Me.cboDefaultManufacturer.MenuManager = Me.BarManager1
+        Me.cboDefaultManufacturer.Name = "cboDefaultManufacturer"
+        Me.cboDefaultManufacturer.Properties.AllowMouseWheel = False
+        Me.cboDefaultManufacturer.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboDefaultManufacturer.Properties.Appearance.Options.UseFont = True
+        Me.cboDefaultManufacturer.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboDefaultManufacturer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cboDefaultManufacturer.Size = New System.Drawing.Size(176, 20)
+        Me.cboDefaultManufacturer.TabIndex = 153
+        '
         'LabelControl28
         '
         Me.LabelControl28.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -867,7 +879,7 @@ Partial Class frmStockItem
         '
         Me.xtabInfAddFixings.Controls.Add(Me.PanelControl2)
         Me.xtabInfAddFixings.Name = "xtabInfAddFixings"
-        Me.xtabInfAddFixings.Size = New System.Drawing.Size(352, 229)
+        Me.xtabInfAddFixings.Size = New System.Drawing.Size(358, 233)
         Me.xtabInfAddFixings.Text = "Informacion Addicional"
         '
         'PanelControl2
@@ -876,7 +888,7 @@ Partial Class frmStockItem
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(352, 229)
+        Me.PanelControl2.Size = New System.Drawing.Size(358, 233)
         Me.PanelControl2.TabIndex = 0
         '
         'chkWasherIncluded
@@ -1397,7 +1409,7 @@ Partial Class frmStockItem
         Me.txtDescription.Properties.Appearance.Options.UseFont = True
         EditorButtonImageOptions9.Image = CType(resources.GetObject("EditorButtonImageOptions9.Image"), System.Drawing.Image)
         Me.txtDescription.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions9, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject33, SerializableAppearanceObject34, SerializableAppearanceObject35, SerializableAppearanceObject36, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.txtDescription.Size = New System.Drawing.Size(517, 22)
+        Me.txtDescription.Size = New System.Drawing.Size(517, 24)
         Me.txtDescription.TabIndex = 0
         '
         'GridView1
@@ -1438,7 +1450,7 @@ Partial Class frmStockItem
         Me.gcSubItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcSubItemType.Visible = True
         Me.gcSubItemType.VisibleIndex = 6
-        Me.gcSubItemType.Width = 170
+        Me.gcSubItemType.Width = 149
         '
         'gcItemType
         '
@@ -1449,7 +1461,7 @@ Partial Class frmStockItem
         Me.gcItemType.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcItemType.Visible = True
         Me.gcItemType.VisibleIndex = 5
-        Me.gcItemType.Width = 134
+        Me.gcItemType.Width = 117
         '
         'gcCategory
         '
@@ -1459,7 +1471,7 @@ Partial Class frmStockItem
         Me.gcCategory.OptionsColumn.ReadOnly = True
         Me.gcCategory.Visible = True
         Me.gcCategory.VisibleIndex = 3
-        Me.gcCategory.Width = 134
+        Me.gcCategory.Width = 117
         '
         'gcStdCost
         '
@@ -1471,7 +1483,7 @@ Partial Class frmStockItem
         Me.gcStdCost.OptionsColumn.ReadOnly = True
         Me.gcStdCost.Visible = True
         Me.gcStdCost.VisibleIndex = 7
-        Me.gcStdCost.Width = 134
+        Me.gcStdCost.Width = 117
         '
         'gcStdImportCost
         '
@@ -1483,7 +1495,7 @@ Partial Class frmStockItem
         Me.gcStdImportCost.OptionsColumn.ReadOnly = True
         Me.gcStdImportCost.Visible = True
         Me.gcStdImportCost.VisibleIndex = 8
-        Me.gcStdImportCost.Width = 123
+        Me.gcStdImportCost.Width = 108
         '
         'GridColumn2
         '
@@ -1493,7 +1505,7 @@ Partial Class frmStockItem
         Me.GridColumn2.OptionsColumn.ReadOnly = True
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 167
+        Me.GridColumn2.Width = 146
         '
         'GridColumn1
         '
@@ -1503,7 +1515,7 @@ Partial Class frmStockItem
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 2
-        Me.GridColumn1.Width = 576
+        Me.GridColumn1.Width = 507
         '
         'gvStockItems
         '
@@ -1552,7 +1564,7 @@ Partial Class frmStockItem
         Me.GridColumn4.OptionsColumn.ReadOnly = True
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 4
-        Me.GridColumn4.Width = 112
+        Me.GridColumn4.Width = 98
         '
         'gcSpecies
         '
@@ -1563,12 +1575,18 @@ Partial Class frmStockItem
         '
         'GridColumn5
         '
+        Me.GridColumn5.Caption = " "
+        Me.GridColumn5.ColumnEdit = Me.repoSelectedItem
         Me.GridColumn5.FieldName = "IsSelected"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.ReadOnly = True
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
-        Me.GridColumn5.Width = 72
+        Me.GridColumn5.Width = 29
+        '
+        'repoSelectedItem
+        '
+        Me.repoSelectedItem.AutoHeight = False
+        Me.repoSelectedItem.Name = "repoSelectedItem"
         '
         'GridColumn6
         '
@@ -1594,16 +1612,11 @@ Partial Class frmStockItem
         Me.grdStockItems.MainView = Me.gvStockItems
         Me.grdStockItems.MenuManager = Me.BarManager1
         Me.grdStockItems.Name = "grdStockItems"
-        Me.grdStockItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoIsSelected})
-        Me.grdStockItems.Size = New System.Drawing.Size(1488, 352)
+        Me.grdStockItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectedItem})
+        Me.grdStockItems.Size = New System.Drawing.Size(1488, 347)
         Me.grdStockItems.TabIndex = 0
         Me.grdStockItems.UseEmbeddedNavigator = True
         Me.grdStockItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItems})
-        '
-        'repoIsSelected
-        '
-        Me.repoIsSelected.AutoHeight = False
-        Me.repoIsSelected.Name = "repoIsSelected"
         '
         'SplitContainerControl1
         '
@@ -1622,7 +1635,7 @@ Partial Class frmStockItem
         '
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 723)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 720)
         Me.SplitContainerControl1.SplitterPosition = 363
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1647,22 +1660,10 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 29)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 32)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1492, 727)
+        Me.PanelControl1.Size = New System.Drawing.Size(1492, 724)
         Me.PanelControl1.TabIndex = 4
-        '
-        'txtStockCode
-        '
-        Me.txtStockCode.Location = New System.Drawing.Point(74, 50)
-        Me.txtStockCode.MenuManager = Me.BarManager1
-        Me.txtStockCode.Name = "txtStockCode"
-        Me.txtStockCode.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtStockCode.Properties.Appearance.Options.UseFont = True
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.txtStockCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.txtStockCode.Size = New System.Drawing.Size(218, 22)
-        Me.txtStockCode.TabIndex = 155
         '
         'frmStockItem
         '
@@ -1681,7 +1682,7 @@ Partial Class frmStockItem
         CType(Me.grpGroupF8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpGroupF8.ResumeLayout(False)
         Me.grpGroupF8.PerformLayout()
-        CType(Me.cboDefaultManufacturer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repoStockItemOption, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.repitcboCategory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1692,6 +1693,7 @@ Partial Class frmStockItem
         CType(Me.RepositoryItemRadioGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepoItemRadioGroupCategory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboDefaultManufacturer.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtThicknessFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWidthFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtLengthFrac.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1725,8 +1727,8 @@ Partial Class frmStockItem
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gvStockItems, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.repoSelectedItem, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdStockItems, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.repoIsSelected, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1.Panel1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.Panel1.ResumeLayout(False)
         CType(Me.SplitContainerControl1.Panel2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1737,7 +1739,6 @@ Partial Class frmStockItem
         Me.grpCurrentStockItem.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.txtStockCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1860,7 +1861,7 @@ Partial Class frmStockItem
     Friend WithEvents txtThicknessFrac As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtWidthFrac As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents repoIsSelected As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents repoSelectedItem As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents bbtnChangeCategory As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbtnChangeUoM As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbtnChangeSpecies As DevExpress.XtraBars.BarButtonItem

@@ -1,0 +1,3 @@
+alter table stockitem
+alter column StockCode varchar (150)
+go
