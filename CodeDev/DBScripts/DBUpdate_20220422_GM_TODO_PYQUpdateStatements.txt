@@ -1,0 +1,147 @@
+UPDATE StockItem set Inactive = 1 where Category = 10
+GO
+
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'F63FSA7-1', Description = 'Acabado mate F63FSA7 SW -I', AverageCost=0, Inactive = 0 where StockItemID = 30020
+UPDATE StockItem Set Category = 10, ItemType=12, SubItemType = NULL, PartNo = 'NULL', Description = 'Aceite Negro', AverageCost=0, Inactive = 0 where StockItemID = 28593
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 99, PartNo = '491-17', Description = 'Base Anclaje Nason 491-17', AverageCost=0, Inactive = 0 where StockItemID = 28736
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = 'V54VSA1', Description = 'Catalizador V54VSA1', AverageCost=0, Inactive = 0 where StockItemID = 30019
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'E-65FSA5', Description = 'Fondo Lijable E65FSA5', AverageCost=0, Inactive = 0 where StockItemID = 27466
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 1, PartNo = 'NULL', Description = 'Masilla Acrilica para Sellar', AverageCost=0, Inactive = 0 where StockItemID = 29972
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 3, PartNo = 'NULL', Description = 'Pintura en Polvo Anodized Silver', AverageCost=0, Inactive = 0 where StockItemID = 30031
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'S61B3', Description = 'Tinte Negro en Aceite SW', AverageCost=0, Inactive = 0 where StockItemID = 29904
+UPDATE StockItem Set Category = 10, ItemType=8, SubItemType = NULL, PartNo = 'NULL', Description = 'Media Perrito', AverageCost=110, Inactive = 0 where StockItemID = 27387
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'HI010040', Description = 'Aceite Danes Sayer', AverageCost=1692.61, Inactive = 0 where StockItemID = 28643
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 3, PartNo = 'NULL', Description = 'Pintura En Polvo Color Negro', AverageCost=420, Inactive = 0 where StockItemID = 27463
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = '507-10000-700-06', Description = 'Esmalte Industrial Fast Dry Negro Brillante', AverageCost=0, Inactive = 0 where StockItemID = 28494
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = 'F80WSA53', Description = 'Esmalte Industrial Fast Dry Sistema 4000 Gris', AverageCost=0, Inactive = 0 where StockItemID = 27403
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13100-402-14', Description = 'Duro Tint Castaño', AverageCost=421.92, Inactive = 0 where StockItemID = 28514
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = '518-38500-900-06', Description = 'N.O.S transparente base coat', AverageCost=1043, Inactive = 0 where StockItemID = 16975
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = '0605', Description = 'Refrigerante Verde', AverageCost=120, Inactive = 0 where StockItemID = 15470
+UPDATE StockItem Set Category = 10, ItemType=12, SubItemType = NULL, PartNo = '85W140', Description = 'Aceite Transmision 85W140', AverageCost=424.3724, Inactive = 0 where StockItemID = 16457
+UPDATE StockItem Set Category = 10, ItemType=12, SubItemType = NULL, PartNo = '2446', Description = 'Aceite Hidraulico AW68', AverageCost=303.2627, Inactive = 0 where StockItemID = 18294
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'NULL', Description = 'Fondo Lijable P/Exterior_SW', AverageCost=0, Inactive = 0 where StockItemID = 27466
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 2, PartNo = 'PH-4910', Description = 'Desengrasante P/Aluminio "Alshine Plus" Alkemy', AverageCost=700, Inactive = 0 where StockItemID = 28491
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'NULL', Description = 'Colorante Azul', AverageCost=4527.8, Inactive = 0 where StockItemID = 28509
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'NULL', Description = 'Colorante Verde', AverageCost=3437.92, Inactive = 0 where StockItemID = 28511
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 99, PartNo = 'NULL', Description = 'Cera de abeja', AverageCost=0, Inactive = 0 where StockItemID = 28530
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 99, PartNo = 'mof24', Description = 'Deck Fos', AverageCost=600, Inactive = 0 where StockItemID = 28612
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 99, PartNo = '441-43', Description = 'Sintetico P/Base Anclaje Nasson', AverageCost=0, Inactive = 0 where StockItemID = 29879
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 99, PartNo = 'NULL', Description = 'Pasta Gypsum (Cub)', AverageCost=450, Inactive = 0 where StockItemID = 22899
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = 'V54VSA2-1 Galon', Description = 'Catalizador P/interior poliuretano', AverageCost=1244.92, Inactive = 0 where StockItemID = 17148
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = 'V54VSA4-1', Description = 'Catalizador  Acabado Brillante', AverageCost=1462.97, Inactive = 0 where StockItemID = 8988
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = 'Franklin Int.', Description = 'Catalyst A P/Pega X016', AverageCost=130, Inactive = 0 where StockItemID = 6449
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 1, PartNo = 'NR8KSA1-1', Description = 'Solvente Thinner Poliuretano', AverageCost=253.9751, Inactive = 0 where StockItemID = 18288
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 99, PartNo = 'R1K3-1', Description = 'Naphtha', AverageCost=518.6231, Inactive = 0 where StockItemID = 19644
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 2, PartNo = 'PH-10939', Description = 'Desengrasante Biodeg Alkemy', AverageCost=645.198, Inactive = 0 where StockItemID = 19774
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 1, PartNo = '510-00482-900-06', Description = 'Thinner Extrafino', AverageCost=489.04, Inactive = 0 where StockItemID = 27399
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = 'V54VSA3 1/8', Description = 'Catalizador Multiusos Poliuretano', AverageCost=546.7, Inactive = 0 where StockItemID = 27458
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = '518-11600-000-06', Description = 'Acabado Blanco Brillante', AverageCost=1200, Inactive = 0 where StockItemID = 5696
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = '518-11760-902-06', Description = 'Acabado Brillante p/Ext SUR GALON', AverageCost=1100, Inactive = 0 where StockItemID = 5697
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = '518- 11750-901-06', Description = 'Acabado Mate 10 (V)', AverageCost=1097.25, Inactive = 0 where StockItemID = 5704
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = 'NULL', Description = 'Acido acetico', AverageCost=150, Inactive = 0 where StockItemID = 5745
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = '518-38500-405-06', Description = 'Base coat nogal', AverageCost=1058, Inactive = 0 where StockItemID = 6037
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = '502-02800-900-06', Description = 'Base Latex Tradicional Transparente', AverageCost=500, Inactive = 0 where StockItemID = 6042
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = 'Bona', Description = 'Bona Limpieza/ Finish For Wooden Floors (Gln)', AverageCost=1000, Inactive = 0 where StockItemID = 6119
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = '518-00715-900-06', Description = 'Componente B715 SUR (V)', AverageCost=930, Inactive = 0 where StockItemID = 6610
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = '518-00709-900-06', Description = 'Componente B709', AverageCost=792, Inactive = 0 where StockItemID = 6611
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = '518-00730-900-06', Description = 'Componente B730', AverageCost=1643.83, Inactive = 0 where StockItemID = 6614
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 3, PartNo = '539-00305-900-06', Description = 'Desoxidante/Desengrasante', AverageCost=320.2, Inactive = 0 where StockItemID = 6830
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13100-000-14', Description = 'Duro Tint Blanco SUR 1/4', AverageCost=395.55, Inactive = 0 where StockItemID = 6896
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13100-406-14', Description = 'Duro Tint Genizaro', AverageCost=429.54, Inactive = 0 where StockItemID = 6899
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13100-404-14', Description = 'Duro Tint Nogal Claro', AverageCost=421.92, Inactive = 0 where StockItemID = 6904
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13100-370-06', Description = 'Duro Rint Roble Oscuro', AverageCost=1295.55, Inactive = 0 where StockItemID = 6907
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = 'F85BSA1-1', Description = 'Kem Smalte Fast Dry Negro', AverageCost=925.71, Inactive = 0 where StockItemID = 7076
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = '518-11715-900-06', Description = 'Fondo Lijable 715', AverageCost=800.93, Inactive = 0 where StockItemID = 7124
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = '518-11770-900-06', Description = 'Fondo Lijable P/Exterior', AverageCost=1315.07, Inactive = 0 where StockItemID = 7125
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = '504-00915-431-14', Description = 'Laro Tek Caobilla', AverageCost=275, Inactive = 0 where StockItemID = 7481
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = '504-00916-900-06', Description = 'Laro Tek Plus Transparente (V)', AverageCost=1100, Inactive = 0 where StockItemID = 7482
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = '504-00915-271-14', Description = 'Laro Tek Sur Secoya (V)', AverageCost=275, Inactive = 0 where StockItemID = 7483
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 1, PartNo = '509-17540-000-06', Description = 'Masilla Plástica Unipar Ultrasoft', AverageCost=617.2944, Inactive = 0 where StockItemID = 7732
+UPDATE StockItem Set Category = 10, ItemType=8, SubItemType = NULL, PartNo = 'NULL', Description = 'Maskingtape verde 3/4"', AverageCost=131.4822, Inactive = 0 where StockItemID = 7737
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = 'NULL', Description = 'Peroxido', AverageCost=200, Inactive = 0 where StockItemID = 7973
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = 'NULL', Description = 'Soda Caustica', AverageCost=300, Inactive = 0 where StockItemID = 8393
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = '504-00915-271-14', Description = 'Sur Ferroso Cobre', AverageCost=334.35, Inactive = 0 where StockItemID = 8453
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 1, PartNo = 'NULL', Description = 'Thinner Acrilico', AverageCost=196.1424, Inactive = 0 where StockItemID = 8653
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 1, PartNo = 'R8KSA6-1', Description = 'Thinner Poliuretano Industrial (Solvente)', AverageCost=710.605, Inactive = 0 where StockItemID = 8659
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'A48WSA2-1', Description = 'Tinte Blanco SW (Gln)', AverageCost=1059.01, Inactive = 0 where StockItemID = 8674
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'A48R56-1', Description = 'Tinte Caoba Africano', AverageCost=893.96, Inactive = 0 where StockItemID = 8678
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = 'NULL', Description = 'VInagre Blanco', AverageCost=185, Inactive = 0 where StockItemID = 9110
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'A48NSA13-1', Description = 'TINTE ACEITE CAFE MADERA', AverageCost=1231, Inactive = 0 where StockItemID = 12737
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 1, PartNo = '510-00411-900-06', Description = 'Diluyente p/Fondos 411 (Gln)', AverageCost=657.54, Inactive = 0 where StockItemID = 12739
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 1, PartNo = 'D80NSA2-1/4', Description = 'Masilla Para Madera Caoba 8Oz', AverageCost=156.15, Inactive = 0 where StockItemID = 13118
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LNB622', Description = 'MILESI LNB622 VENCIDO', AverageCost=440.01, Inactive = 0 where StockItemID = 16932
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'YWT45', Description = 'MILESI YWT 45 VENCIDO', AverageCost=440.01, Inactive = 0 where StockItemID = 16933
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 99, PartNo = 'NULL', Description = 'TAYLOR CHEMH (V)', AverageCost=210, Inactive = 0 where StockItemID = 17164
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = '504-38510-920-06', Description = 'N.O.S top coat finish', AverageCost=1043, Inactive = 0 where StockItemID = 16971
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = '504-38500-900-06', Description = 'N.S.O. Base Coat Transparente', AverageCost=493.86, Inactive = 0 where StockItemID = 6038
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'NULL', Description = 'Aceite Tung Natural', AverageCost=125, Inactive = 0 where StockItemID = 24254
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = '521-82072-900-06', Description = 'becc protective(esmalte) galon', AverageCost=950.6, Inactive = 0 where StockItemID = 17170
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = '521-82054-307-06', Description = 'becc protective(primer red)galon', AverageCost=950.6, Inactive = 0 where StockItemID = 17171
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = '510-80001-900-14', Description = 'becc preotective (diluyente especial) 1/4 (v)', AverageCost=336.1, Inactive = 0 where StockItemID = 17172
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LAU92', Description = 'MILESI LUA 92 VENCIDO', AverageCost=0, Inactive = 0 where StockItemID = 16934
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 3, PartNo = 'NULL', Description = 'Silicon Lanco Negro', AverageCost=278.79, Inactive = 0 where StockItemID = 18354
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = '504-00910-903-06', Description = 'Barniz Uretano Speed dry', AverageCost=980, Inactive = 0 where StockItemID = 19375
+UPDATE StockItem Set Category = 10, ItemType=12, SubItemType = NULL, PartNo = 'R32', Description = 'Aceite Hidraulico Iso 32', AverageCost=596.16, Inactive = 0 where StockItemID = 19647
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'NULL', Description = 'OIL PAST NEGRO (V)', AverageCost=440.1, Inactive = 0 where StockItemID = 17165
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HMT4', Description = 'Milesi (HMT4)  1/4', AverageCost=440.1, Inactive = 0 where StockItemID = 16972
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'XGC35', Description = 'Milesi XGC35', AverageCost=440.1, Inactive = 0 where StockItemID = 16973
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'Milesi (HMT4) P. Verde', AverageCost=440.1, Inactive = 0 where StockItemID = 16974
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'NULL', Description = 'OIL PAST (AMARILLO)  (V)', AverageCost=440.1, Inactive = 0 where StockItemID = 17166
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HMT8', Description = 'MILESI (HMT8)', AverageCost=440.1, Inactive = 0 where StockItemID = 16976
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HMT3', Description = 'MILESI(HMT3) P. GIALLA  1/4', AverageCost=440.1, Inactive = 0 where StockItemID = 16977
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HMT5', Description = 'MILESI HMT5', AverageCost=440.1, Inactive = 0 where StockItemID = 16988
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HMT15', Description = 'Milesi  HMT15 PAST ROJO VIVO 1/4', AverageCost=440.1, Inactive = 0 where StockItemID = 16989
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LGA6186', Description = 'Milesi LGA6186', AverageCost=13779.25, Inactive = 0 where StockItemID = 17153
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = '83046', Description = 'Termiterol Klebe', AverageCost=482.27, Inactive = 0 where StockItemID = 18268
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'Milesi LNB 77', AverageCost=13779.25, Inactive = 0 where StockItemID = 17157
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 3, PartNo = 'NULL', Description = 'Silicon Negro', AverageCost=162.1248, Inactive = 0 where StockItemID = 19819
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 3, PartNo = 'NULL', Description = 'Silicon Blanco RTV', AverageCost=209.966, Inactive = 0 where StockItemID = 19836
+UPDATE StockItem Set Category = 10, ItemType=99, SubItemType = 1, PartNo = 'D2A140', Description = 'Masilla Plastica Unipar', AverageCost=799.215, Inactive = 0 where StockItemID = 23078
+UPDATE StockItem Set Category = 10, ItemType=11, SubItemType = NULL, PartNo = 'NULL', Description = 'Pegamento Blanco EZ 1', AverageCost=250, Inactive = 0 where StockItemID = 27467
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = '02-20-01', Description = 'ESMALTE INDUSTRIAL BLANCO', AverageCost=1300, Inactive = 0 where StockItemID = 17149
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'F63FSA5-1', Description = 'Acabado Mate Poliuretano', AverageCost=1957.82, Inactive = 0 where StockItemID = 17150
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = 'B82WSA', Description = 'ESMALTE MATE BASE EXTRA WHITE', AverageCost=1140, Inactive = 0 where StockItemID = 17151
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'Milesi XGC6058', AverageCost=13779.25, Inactive = 0 where StockItemID = 17152
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'Milesi CRT1V396', AverageCost=13779.25, Inactive = 0 where StockItemID = 17154
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'YWT1V394', Description = 'Milesi YWT1V394', AverageCost=13779.25, Inactive = 0 where StockItemID = 17155
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'Milesi  LGA23', AverageCost=13779.25, Inactive = 0 where StockItemID = 17159
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'Milesi XWC 202', AverageCost=13779.25, Inactive = 0 where StockItemID = 17162
+UPDATE StockItem Set Category = 10, ItemType=11, SubItemType = NULL, PartNo = 'NULL', Description = 'Pega Loca', AverageCost=11.1816, Inactive = 0 where StockItemID = 7880
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'F64FSA2-1', Description = 'Acabado Poliester HS Mate', AverageCost=1334.36, Inactive = 0 where StockItemID = 5709
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'F63FSA6', Description = 'Acabado Sw Exterior Satinado', AverageCost=1316, Inactive = 0 where StockItemID = 5717
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 5, PartNo = 'Bona', Description = 'Bona Traffic HD/Hardwood Floor Cleaner Refill (Gln)', AverageCost=1000, Inactive = 0 where StockItemID = 6120
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'Lanco', Description = 'Impermeabilizante Water Sealer (Gln)', AverageCost=1000, Inactive = 0 where StockItemID = 12880
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'NULL', Description = 'OIL PAST ROJO (V)', AverageCost=440.1, Inactive = 0 where StockItemID = 17167
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'YGC601', Description = 'Milesi YGC601G (Gln) VENCIDO', AverageCost=1760.4, Inactive = 0 where StockItemID = 12890
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'YWT42', Description = 'Milesi YWT42 (Gln) VENCIDO', AverageCost=1760.9, Inactive = 0 where StockItemID = 12891
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'YWT46', Description = 'Milesi YWT46 (Gln) VENCIDO', AverageCost=1760.4, Inactive = 0 where StockItemID = 12892
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LUA2010', Description = 'Milesi LUA2010 (Gln) VENCIDO', AverageCost=1760.4, Inactive = 0 where StockItemID = 12893
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LQA836', Description = 'Milesi LQA836 (Galon)VENCIDO', AverageCost=1760.4, Inactive = 0 where StockItemID = 12894
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'YWC30', Description = 'Ilva  YWC30 (Gln) V', AverageCost=1760.4, Inactive = 0 where StockItemID = 12895
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'CQT22240', Description = 'Milesi CQT22240 (Gln) VENCIDO', AverageCost=1760.4, Inactive = 0 where StockItemID = 12896
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LNB99', Description = 'Milesi LNB99 (Gln)', AverageCost=1760.4, Inactive = 0 where StockItemID = 12897
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LZM472', Description = 'Milesi LZC M472 (Gln) VENCIDO', AverageCost=1760.4, Inactive = 0 where StockItemID = 12898
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'NULL', Description = 'Cutting Board Oil (Gln)', AverageCost=500, Inactive = 0 where StockItemID = 12882
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LUA95', Description = 'Milesi LUA95 (Cub)', AverageCost=1826.72, Inactive = 0 where StockItemID = 12907
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LGA210', Description = 'Milesi LGA210 (Cub)', AverageCost=1826.72, Inactive = 0 where StockItemID = 12910
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LNB010', Description = 'Milesi LNB010 (1/4)', AverageCost=526.98, Inactive = 0 where StockItemID = 12911
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = '1177090106', Description = 'Acabado MAte Exterior Transp.', AverageCost=1643.83, Inactive = 0 where StockItemID = 18295
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'LAT22239', Description = 'MILESI LAT22239 V', AverageCost=1770.4, Inactive = 0 where StockItemID = 16931
+UPDATE StockItem Set Category = 10, ItemType=13, SubItemType = NULL, PartNo = '40570014', Description = 'Imperfast Tapagoteras Negra', AverageCost=1117.82, Inactive = 0 where StockItemID = 19775
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13200-414-06', Description = 'Aquatint cedro', AverageCost=250, Inactive = 0 where StockItemID = 22913
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13200-377-06', Description = 'Aquatint Cherry', AverageCost=250, Inactive = 0 where StockItemID = 22914
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13200-374-06', Description = 'Aquatint Wheat', AverageCost=250, Inactive = 0 where StockItemID = 22915
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13200-100-06', Description = 'Aquatint Amarillo', AverageCost=250, Inactive = 0 where StockItemID = 22916
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 4, PartNo = '509-31300-013-14', Description = 'Klass Agente 1/4 013', AverageCost=165, Inactive = 0 where StockItemID = 22917
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'NULL', Description = 'milesi lga 025 (Cubeta)', AverageCost=0, Inactive = 0 where StockItemID = 22918
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 1, PartNo = 'NULL', Description = 'Messmers Teak Oil Finish Natural', AverageCost=2446.33, Inactive = 0 where StockItemID = 12901
+UPDATE StockItem Set Category = 10, ItemType=9, SubItemType = 4, PartNo = 'F80WSA53-1', Description = 'Kem Esmalte Fast Dry Sist 4000 Base Deep', AverageCost=1103.99, Inactive = 0 where StockItemID = 24166
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 5, PartNo = 'T65FSA1-1', Description = 'Sellador Ind. P/Madera Base Agua Transp.', AverageCost=412.29, Inactive = 0 where StockItemID = 24216
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HMT9', Description = 'MILESI HMT9', AverageCost=440.1, Inactive = 0 where StockItemID = 16987
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '808-13100-700-14', Description = 'Duro Tint Negro', AverageCost=1054.8, Inactive = 0 where StockItemID = 28544
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'Aqua', Description = 'Tinte Color Especial', AverageCost=1059, Inactive = 0 where StockItemID = 14176
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = 'S61B3-BOT', Description = 'Tinte al Thinner (Alcohol) Negro', AverageCost=213.21, Inactive = 0 where StockItemID = 23096
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 2, PartNo = 'HGC37', Description = 'Milesi XGC37', AverageCost=440.1, Inactive = 0 where StockItemID = 16979
+UPDATE StockItem Set Category = 10, ItemType=2, SubItemType = 3, PartNo = '539-00305-900-06', Description = 'Desoxidante Desengrasante', AverageCost=0, Inactive = 0 where StockItemID = 6830
+UPDATE StockItem Set Category = 10, ItemType=10, SubItemType = 3, PartNo = 'F64FSA2-1', Description = 'Acabado Poliester HS Mate', AverageCost=0, Inactive = 0 where StockItemID = 5709
+UPDATE StockItem Set Category = 10, ItemType=5, SubItemType = NULL, PartNo = '508-13100-406-14', Description = 'Tinte Stain Genizaro', AverageCost=0, Inactive = 0 where StockItemID = 6899

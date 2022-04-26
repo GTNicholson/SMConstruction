@@ -2315,6 +2315,12 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Diluyente, "Diluyente", "DI")
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eDiluyenteSubItemType.Thinner, "Thinner", "TH"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eDiluyenteSubItemType.Desengrasante, "Desengrasante", "DG"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eDiluyenteSubItemType.Desoxidante, "Desoxidante", "DO"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eDiluyenteSubItemType.Reductor, "Reductor", "RE"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eDiluyenteSubItemType.Otros, "Otros", "OT"))
+
     MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Barniz, "Barniz", "BAR")
@@ -2353,11 +2359,15 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Componentes, "Componentes", "COM"))
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.BaseAgua, "Base Agua", "BAG"))
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eAcabadoType.Other, "Otros", "OT"))
+
     MyBase.Add(mType)
 
-
-
     mType = New clsStockItemTypePintura(Otros, "Los demás", "OTR")
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Masilla, "Masilla", "MA"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Epoxi, "Epoxi", "EP"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Silicon, "Silicon", "SI"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Masilla, "Otros", "OT"))
+
     MyBase.Add(mType)
 
   End Sub
@@ -2448,6 +2458,21 @@ Public Enum eAcabadoType
   Componentes = 4
   BaseAgua = 5
   Other = 99
+End Enum
+
+Public Enum eDiluyenteSubItemType
+  Thinner = 1
+  Desengrasante = 2
+  Desoxidante = 3
+  Reductor = 4
+  Otros = 99
+End Enum
+
+Public Enum eOtrosSubItemType
+  Masilla = 1
+  Epoxi = 2
+  Silicon = 3
+  Otros = 99
 End Enum
 
 Public Class eStockItemTypeHerrajes : Inherits colPropertyENUMOfT(Of clsStockItemTypeHerrajes)
