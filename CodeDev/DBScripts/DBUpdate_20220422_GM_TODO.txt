@@ -1,0 +1,49 @@
+Insert into LookUpTable
+(
+DisplayOrder,
+LookUpTableDescription,
+TableName,
+KeyIDFieldName,
+DisplayFieldName,
+PermissionID,
+ActivityCode,
+SelectionCode
+)
+values(42,'Maquinaria', 'Machinery', 'MachineryID', 'Description',4,1,7)
+GO
+
+Insert into LookUpField(
+LookUpTableID,
+DisplayOrder,
+FieldName,
+DisplayName,
+PermissionID
+)
+Values (5038,1,'MachineryID', 'ID',4)
+GO
+
+Insert into LookUpField(
+LookUpTableID,
+DisplayOrder,
+FieldName,
+DisplayName,
+PermissionID
+)
+Values (5038,2,'Code', 'Código',4)
+GO
+
+Insert into LookUpField(
+LookUpTableID,
+DisplayOrder,
+FieldName,
+DisplayName,
+PermissionID
+)
+Values (5038,3,'Description', 'Descripción',4)
+GO
+
+update StockItem set Description = ShortDescription where StockItemID = 15456
+GO
+
+update StockItem set  ShortDescription  = Description
+GO
