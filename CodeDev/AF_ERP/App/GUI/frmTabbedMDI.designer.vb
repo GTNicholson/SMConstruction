@@ -495,10 +495,10 @@ Partial Class frmTabbedMDI
         Me.TreeList1.OptionsView.ShowHorzLines = False
         Me.TreeList1.OptionsView.ShowIndicator = False
         Me.TreeList1.OptionsView.ShowVertLines = False
+        Me.TreeList1.OptionsView.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.Solid
         Me.TreeList1.Size = New System.Drawing.Size(184, 79)
         Me.TreeList1.StateImageList = Me.ImageCollection1
         Me.TreeList1.TabIndex = 0
-        Me.TreeList1.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.Solid
         '
         'TreeListColumn1
         '

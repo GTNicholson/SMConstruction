@@ -5,3 +5,6 @@ Code varchar(15),
 Description varchar(30),
 );
 GO
+
+
+drop table Machinery

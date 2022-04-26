@@ -36,6 +36,11 @@ Partial Class Form1
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemDateEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.repitDateDefault = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -565,11 +570,6 @@ Partial Class Form1
         Me.PivotGridField418 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField419 = New DevExpress.XtraPivotGrid.PivotGridField()
         Me.PivotGridField420 = New DevExpress.XtraPivotGrid.PivotGridField()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -692,6 +692,46 @@ Partial Class Form1
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 6
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Priority"
+        Me.GridColumn6.FieldName = "Priority"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 7
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "PlannedDate"
+        Me.GridColumn9.FieldName = "PlannedDate"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 8
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Status"
+        Me.GridColumn10.FieldName = "Status"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Duration"
+        Me.GridColumn11.FieldName = "Duration"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 10
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Notes"
+        Me.GridColumn12.FieldName = "Notes"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 11
         '
         'RepositoryItemDateEdit1
         '
@@ -6135,46 +6175,6 @@ Partial Class Form1
         Me.PivotGridField420.TotalValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.PivotGridField420.ValueFormat.FormatString = "$#,##0.00;;#"
         Me.PivotGridField420.ValueFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Priority"
-        Me.GridColumn6.FieldName = "Priority"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "PlannedDate"
-        Me.GridColumn9.FieldName = "PlannedDate"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Status"
-        Me.GridColumn10.FieldName = "Status"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Duration"
-        Me.GridColumn11.FieldName = "Duration"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Notes"
-        Me.GridColumn12.FieldName = "Notes"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
         '
         'Form1
         '

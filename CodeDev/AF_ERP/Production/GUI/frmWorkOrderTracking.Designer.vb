@@ -22,7 +22,7 @@ Partial Class frmWorkOrderTracking
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmWorkOrderTracking))
         Me.grdWorksOrders = New DevExpress.XtraGrid.GridControl()
         Me.gvWorksOrders = New DevExpress.XtraGrid.Views.Grid.GridView()

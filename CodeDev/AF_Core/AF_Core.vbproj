@@ -165,7 +165,6 @@
     <Compile Include="App\BO\clsRecipientFinderFactory.vb" />
     <Compile Include="App\BO\clsContextConverterFactory.vb" />
     <Compile Include="App\BO\clsWorkflowEventHandler.vb" />
-    <Compile Include="App\BO\dmReceivedEmail.vb" />
     <Compile Include="App\BO\dmTempPallet.vb" />
     <Compile Include="App\BO\dmWoodTypeValue.vb" />
     <Compile Include="App\BO\dmThicknessValue.vb" />
@@ -273,6 +272,7 @@
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
+    <Compile Include="Production\BO\dmMachinery.vb" />
     <Compile Include="Production\BO\clsMaintenanceWorkOrderInfo.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrder.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrderItem.vb" />
@@ -291,6 +291,7 @@
     <Compile Include="Production\BO\dmShiftDetails.vb" />
     <Compile Include="Production\BO\dmWorkOrderAllocation.vb" />
     <Compile Include="Production\BO\dmWorkOrderMilestoneStatus.vb" />
+    <Compile Include="Production\DSO\dtoMachinery.vb" />
     <Compile Include="Production\DSO\dtoMaintenanceWorkOrder.vb" />
     <Compile Include="Production\DSO\dtoMaintenanceWorkOrderItem.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderAllocationInfo.vb" />

@@ -22,53 +22,53 @@ Partial Class frmGlobalStockItemChanges
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmGlobalStockItemChanges))
-    Me.btnGenerateDescription = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnGenrateStockCode = New DevExpress.XtraEditors.SimpleButton()
-    Me.btnSetObsolete = New DevExpress.XtraEditors.SimpleButton()
-    Me.SuspendLayout()
-    '
-    'btnGenerateDescription
-    '
-    Me.btnGenerateDescription.Location = New System.Drawing.Point(5, 12)
-    Me.btnGenerateDescription.Name = "btnGenerateDescription"
-    Me.btnGenerateDescription.Size = New System.Drawing.Size(209, 23)
-    Me.btnGenerateDescription.TabIndex = 0
-    Me.btnGenerateDescription.Text = "Generar Descripción"
-    '
-    'btnGenrateStockCode
-    '
-    Me.btnGenrateStockCode.Location = New System.Drawing.Point(5, 52)
-    Me.btnGenrateStockCode.Name = "btnGenrateStockCode"
-    Me.btnGenrateStockCode.Size = New System.Drawing.Size(209, 23)
-    Me.btnGenrateStockCode.TabIndex = 1
-    Me.btnGenrateStockCode.Text = "Generar Códigos"
-    '
-    'btnSetObsolete
-    '
-    Me.btnSetObsolete.Location = New System.Drawing.Point(5, 92)
-    Me.btnSetObsolete.Name = "btnSetObsolete"
-    Me.btnSetObsolete.Size = New System.Drawing.Size(209, 23)
-    Me.btnSetObsolete.TabIndex = 2
-    Me.btnSetObsolete.Text = "Obsoleto"
-    '
-    'frmGlobalStockItemChanges
-    '
-    Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-    Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(233, 140)
-    Me.Controls.Add(Me.btnSetObsolete)
-    Me.Controls.Add(Me.btnGenrateStockCode)
-    Me.Controls.Add(Me.btnGenerateDescription)
-    Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-    Me.Name = "frmGlobalStockItemChanges"
-    Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-    Me.Text = "Cambios Globales"
-    Me.ResumeLayout(False)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmGlobalStockItemChanges))
+        Me.btnGenerateDescription = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnGenrateStockCode = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnSetObsolete = New DevExpress.XtraEditors.SimpleButton()
+        Me.SuspendLayout()
+        '
+        'btnGenerateDescription
+        '
+        Me.btnGenerateDescription.Location = New System.Drawing.Point(5, 12)
+        Me.btnGenerateDescription.Name = "btnGenerateDescription"
+        Me.btnGenerateDescription.Size = New System.Drawing.Size(209, 23)
+        Me.btnGenerateDescription.TabIndex = 0
+        Me.btnGenerateDescription.Text = "Generar Descripción"
+        '
+        'btnGenrateStockCode
+        '
+        Me.btnGenrateStockCode.Location = New System.Drawing.Point(5, 52)
+        Me.btnGenrateStockCode.Name = "btnGenrateStockCode"
+        Me.btnGenrateStockCode.Size = New System.Drawing.Size(209, 23)
+        Me.btnGenrateStockCode.TabIndex = 1
+        Me.btnGenrateStockCode.Text = "Generar Códigos"
+        '
+        'btnSetObsolete
+        '
+        Me.btnSetObsolete.Location = New System.Drawing.Point(5, 92)
+        Me.btnSetObsolete.Name = "btnSetObsolete"
+        Me.btnSetObsolete.Size = New System.Drawing.Size(209, 23)
+        Me.btnSetObsolete.TabIndex = 2
+        Me.btnSetObsolete.Text = "Obsoleto"
+        '
+        'frmGlobalStockItemChanges
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(233, 140)
+        Me.Controls.Add(Me.btnSetObsolete)
+        Me.Controls.Add(Me.btnGenrateStockCode)
+        Me.Controls.Add(Me.btnGenerateDescription)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "frmGlobalStockItemChanges"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Cambios Globales"
+        Me.ResumeLayout(False)
 
-  End Sub
+    End Sub
 
-  Friend WithEvents btnGenerateDescription As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnGenerateDescription As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents btnGenrateStockCode As DevExpress.XtraEditors.SimpleButton
   Friend WithEvents btnSetObsolete As DevExpress.XtraEditors.SimpleButton
 End Class

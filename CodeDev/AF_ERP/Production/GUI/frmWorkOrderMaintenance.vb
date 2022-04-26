@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraBars.Docking2010
+Imports DevExpress.XtraEditors.Controls
 Imports RTIS.CommonVB
 Imports RTIS.Elements
 
@@ -153,6 +154,8 @@ Public Class frmWorkOrderMaintenance
         txtDuration.EditValue = .Duration
         txtNotes.Text = .Notes
         btnMaintenanceWorkOrderDocument.Text = .MaintenanceWorkOrderDocument
+
+        btnEquipmentID.Text = .Machinery.Description
 
       End With
 
@@ -430,5 +433,70 @@ Public Class frmWorkOrderMaintenance
 
   Private Sub BarButtonItem2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
 
+  End Sub
+
+  Private Sub btnEquipmentID_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles btnEquipmentID.ButtonClick
+    Try
+      Select Case e.Button.Kind
+        Case ButtonPredefines.Down
+          Dim mMachineryPicker As clsPickerMachinery
+          Dim mMachinery As dmMachinery
+          Dim mListMachinerys As colMachinerys = TryCast(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.Machinery), colMachinerys)
+
+          If mListMachinerys IsNot Nothing Then
+            UpdateObject()
+            mMachineryPicker = New clsPickerMachinery(mListMachinerys, pFormController.DBConn)
+            mMachinery = frmPickerMachinery.OpenPickerSingle(mMachineryPicker)
+            If mMachinery IsNot Nothing Then
+              pFormController.MaintenanceWorkOrder.EquipmentID = mMachinery.MachineryID
+              pFormController.MaintenanceWorkOrder.Machinery = mMachinery
+              pFormController.ReloadMachinery()
+            End If
+            RefreshControls()
+
+          End If
+      End Select
+
+      RefreshControls()
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+  End Sub
+
+  Private Sub btnMaintenanceWorkOrderDocument_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles btnMaintenanceWorkOrderDocument.ButtonClick
+    Dim mRep As repWorkOrderMaintenanceDoc
+    Dim mDirectory As String = ""
+    Dim mFileName As String = ""
+    Dim mExportFilename As String = ""
+
+    Try
+      UpdateObject()
+
+      mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderMaintenance)
+      If System.IO.Directory.Exists(mDirectory) = False Then
+        System.IO.Directory.CreateDirectory(mDirectory)
+      End If
+
+
+      mFileName = String.Format("WorkOrderMaintenance_{0}_{1}.pdf", pFormController.MaintenanceWorkOrder.MaintenanceWorkOrderNo, "-" & pFormController.MaintenanceWorkOrder.MaintenanceWorkOrderID)
+      mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+
+      mRep = repWorkOrderMaintenanceDoc.CreateReport(pFormController.MaintenanceWorkOrder)
+
+
+
+      mRep.ExportToPdf(mExportFilename)
+
+
+
+      pFormController.MaintenanceWorkOrder.MaintenanceWorkOrderDocument = mExportFilename
+
+      RefreshControls()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
   End Sub
 End Class

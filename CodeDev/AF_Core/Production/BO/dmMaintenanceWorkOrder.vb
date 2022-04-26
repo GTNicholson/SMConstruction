@@ -17,6 +17,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
   Private pMaintenanceWorkOrderDocument As String
 
   Private pMaitenanceWorkOrderItems As colMaintenanceWorkOrderItems
+  Private pMachinery As dmMachinery
   Public Sub New()
     MyBase.New()
   End Sub
@@ -25,6 +26,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
     ''Add object/collection instantiations here
 
     pMaitenanceWorkOrderItems = New colMaintenanceWorkOrderItems
+    pMachinery = New dmMachinery
 
   End Sub
 
@@ -36,6 +38,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
     pMaitenanceWorkOrderItems = Nothing
+    pMachinery = Nothing
   End Sub
 
   Public Overrides ReadOnly Property IsAnyDirty() As Boolean
@@ -45,6 +48,8 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
 
       If mAnyDirty = False Then mAnyDirty = pMaitenanceWorkOrderItems.IsDirty
 
+      If mAnyDirty = False Then mAnyDirty = pMachinery.IsAnyDirty
+
       IsAnyDirty = mAnyDirty
     End Get
   End Property
@@ -52,6 +57,8 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     MaintenanceWorkOrderID = 0
+    pMaitenanceWorkOrderItems.ClearKeys()
+
   End Sub
 
   Public Overrides Sub CloneTo(ByRef rNewItem As dmBase)
@@ -70,6 +77,8 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
       .Notes = Notes
       .MaintenanceWorkOrderDocument = MaintenanceWorkOrderDocument
       .MaitenanceWorkOrderItems = MaitenanceWorkOrderItems
+      .Machinery = Machinery
+
       'Add entries here for each collection and class property
 
       'Entries for object management
@@ -215,6 +224,15 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
     End Get
     Set(value As colMaintenanceWorkOrderItems)
       pMaitenanceWorkOrderItems = value
+    End Set
+  End Property
+
+  Public Property Machinery As dmMachinery
+    Get
+      Return pMachinery
+    End Get
+    Set(value As dmMachinery)
+      pMachinery = value
     End Set
   End Property
 End Class

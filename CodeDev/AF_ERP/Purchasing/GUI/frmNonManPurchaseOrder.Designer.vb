@@ -19,62 +19,62 @@ Partial Class frmNonManPurchaseOrder
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
-    Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNonManPurchaseOrder))
-    Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-    Me.Bar1 = New DevExpress.XtraBars.Bar()
-    Me.Bar2 = New DevExpress.XtraBars.Bar()
-    Me.Bar5 = New DevExpress.XtraBars.Bar()
-    Me.Bar6 = New DevExpress.XtraBars.Bar()
-    Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
-    Me.Bar4 = New DevExpress.XtraBars.Bar()
-    Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-    Me.Bar3 = New DevExpress.XtraBars.Bar()
-    Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnSendPOEmail = New DevExpress.XtraBars.BarButtonItem()
-    Me.btnPODelivery = New DevExpress.XtraBars.BarButtonItem()
-    Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-    Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-    Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gpnlPOItems = New DevExpress.XtraEditors.GroupControl()
-    Me.PopupContainerControl1 = New DevExpress.XtraEditors.PopupContainerControl()
-    Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-    Me.grdPurchaseOrderItemAllocationSalesOrderPhaseItem = New DevExpress.XtraGrid.GridControl()
-    Me.gvPurchaseOrderItemAllocationSalesOrderPhaseItem = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcSOPIQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repoPopPutWorkOrderQty = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.grdPurchaseOrderItems = New DevExpress.XtraGrid.GridControl()
-    Me.gvPurchaseOrderItems = New DevExpress.XtraGrid.Views.Grid.GridView()
-    Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPOIDescription = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcPOIUnitPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.RepositoryItemSpinEditUnitValue = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-    Me.gcPOINetValue = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcNotes = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcVATRateCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcRequiredQuantityMultiple = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.repoPopupSalesOrderPhaseItem = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
-    Me.gcCoCType = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcSupplierCode = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.gcReceivedQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
-    Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.components = New System.ComponentModel.Container()
+        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNonManPurchaseOrder))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.Bar2 = New DevExpress.XtraBars.Bar()
+        Me.Bar5 = New DevExpress.XtraBars.Bar()
+        Me.Bar6 = New DevExpress.XtraBars.Bar()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.Bar4 = New DevExpress.XtraBars.Bar()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.Bar3 = New DevExpress.XtraBars.Bar()
+        Me.btnSaveAndClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnSave = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnClose = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnSendPOEmail = New DevExpress.XtraBars.BarButtonItem()
+        Me.btnPODelivery = New DevExpress.XtraBars.BarButtonItem()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gpnlPOItems = New DevExpress.XtraEditors.GroupControl()
+        Me.PopupContainerControl1 = New DevExpress.XtraEditors.PopupContainerControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.grdPurchaseOrderItemAllocationSalesOrderPhaseItem = New DevExpress.XtraGrid.GridControl()
+        Me.gvPurchaseOrderItemAllocationSalesOrderPhaseItem = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcSOPIQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoPopPutWorkOrderQty = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.grdPurchaseOrderItems = New DevExpress.XtraGrid.GridControl()
+        Me.gvPurchaseOrderItems = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gcPartNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPOIDescription = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcPOIUnitPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEditUnitValue = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.gcPOINetValue = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcNotes = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcVATRateCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcRequiredQuantityMultiple = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.repoPopupSalesOrderPhaseItem = New DevExpress.XtraEditors.Repository.RepositoryItemPopupContainerEdit()
+        Me.gcCoCType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcSupplierCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcReceivedQuantity = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1252,7 +1252,7 @@ Partial Class frmNonManPurchaseOrder
         Me.xtraTabAppendDoc.Appearance.Header.Options.UseForeColor = True
         Me.xtraTabAppendDoc.Controls.Add(Me.UctFileControl1)
         Me.xtraTabAppendDoc.Name = "xtraTabAppendDoc"
-        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(384, 294)
+        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(378, 290)
         Me.xtraTabAppendDoc.Text = "Documentos Adjuntos"
         '
         'UctFileControl1
@@ -1260,7 +1260,7 @@ Partial Class frmNonManPurchaseOrder
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(0, 0)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(384, 294)
+        Me.UctFileControl1.Size = New System.Drawing.Size(378, 290)
         Me.UctFileControl1.TabIndex = 1
         Me.UctFileControl1.UserController = Nothing
         '
@@ -1549,7 +1549,7 @@ Partial Class frmNonManPurchaseOrder
         '
         Me.xtpMultiple.Controls.Add(Me.GroupControl4)
         Me.xtpMultiple.Name = "xtpMultiple"
-        Me.xtpMultiple.Size = New System.Drawing.Size(442, 292)
+        Me.xtpMultiple.Size = New System.Drawing.Size(438, 285)
         Me.xtpMultiple.Text = "Mult."
         '
         'GroupControl4
@@ -1564,7 +1564,7 @@ Partial Class frmNonManPurchaseOrder
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.ShowCaption = False
-        Me.GroupControl4.Size = New System.Drawing.Size(442, 292)
+        Me.GroupControl4.Size = New System.Drawing.Size(438, 285)
         Me.GroupControl4.TabIndex = 267
         Me.GroupControl4.Text = "Admon. OTs"
         '
@@ -1585,7 +1585,7 @@ Partial Class frmNonManPurchaseOrder
         Me.grdSalesOrderPhaseItemsPhases.MenuManager = Me.BarManager1
         Me.grdSalesOrderPhaseItemsPhases.Name = "grdSalesOrderPhaseItemsPhases"
         Me.grdSalesOrderPhaseItemsPhases.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
-        Me.grdSalesOrderPhaseItemsPhases.Size = New System.Drawing.Size(432, 206)
+        Me.grdSalesOrderPhaseItemsPhases.Size = New System.Drawing.Size(428, 206)
         Me.grdSalesOrderPhaseItemsPhases.TabIndex = 266
         Me.grdSalesOrderPhaseItemsPhases.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItems})
         '

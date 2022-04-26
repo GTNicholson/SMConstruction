@@ -53,11 +53,11 @@ Partial Class frmPickerCustomer
         'grdItemList
         '
         Me.grdItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdItemList.Location = New System.Drawing.Point(0, 30)
+        Me.grdItemList.Location = New System.Drawing.Point(0, 29)
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
         Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repItemSelect})
-        Me.grdItemList.Size = New System.Drawing.Size(733, 401)
+        Me.grdItemList.Size = New System.Drawing.Size(733, 402)
         Me.grdItemList.TabIndex = 0
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '
@@ -171,7 +171,7 @@ Partial Class frmPickerCustomer
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(733, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(733, 29)
         '
         'barDockControlBottom
         '
@@ -185,17 +185,17 @@ Partial Class frmPickerCustomer
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 401)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 402)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(733, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(733, 29)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 401)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 402)
         '
         'frmPickerCustomer
         '

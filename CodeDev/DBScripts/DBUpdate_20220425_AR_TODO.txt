@@ -1,0 +1,28 @@
+CREATE TABLE [dbo].Machinery(
+	MachineryID [int] IDENTITY(1,1) NOT NULL,
+	Code varchar (100),
+	[Description] [varchar](256) NULL,
+ CONSTRAINT [pk_Machinery] PRIMARY KEY CLUSTERED 
+(
+	MachineryID ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+INSERT INTO LookUpTable (DisplayOrder,LookUpTableDescription,TableName,KeyIDFieldName,DisplayFieldName,PermissionID,ActivityCode,OrderModeENUM,SelectionCode)
+VALUES (42,'Lista de Equipos','Machinery','MachineryID','Description',4,1,2,7)
+go
+
+
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID)
+values (5038,1,'MachineryID','ID',4)
+go
+
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID)
+values (5038,2,'Code','Código',4)
+go
+
+insert into LookUpField (LookUpTableID,DisplayOrder,FieldName,DisplayName,PermissionID)
+values (5038,3,'Description','Descripción',4)
+go

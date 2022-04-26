@@ -76,14 +76,35 @@ Public Class dsoProduction
     Return mRetVal
   End Function
 
+  Public Sub LoadMachinery(ByRef rMachinery As dmMachinery, ByVal vEquipmentID As Integer)
+    Dim mdto As New dtoMachinery(pDBConn)
+
+    Try
+      If pDBConn.Connect Then
+
+        mdto.LoadMachinery(rMachinery, vEquipmentID)
+
+
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+
+    End Try
+  End Sub
+
   Public Function LoadMaintenanceWorkOrder(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoMaintenanceWorkOrder
     Dim mdtoItem As dtoMaintenanceWorkOrderItem
+    Dim mdtoMachinery As dtoMachinery
 
     Try
       mdto = New dtoMaintenanceWorkOrder(pDBConn)
       mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
+      mdtoMachinery = New dtoMachinery(pDBConn)
 
       If pDBConn.Connect Then
 
@@ -91,6 +112,8 @@ Public Class dsoProduction
 
 
         If mRetVal Then mdtoItem.LoadMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, vPrimaryKeyID)
+
+        If mRetVal Then mdtoMachinery.LoadMachinery(rMaintenanceWorkOrder.Machinery, rMaintenanceWorkOrder.EquipmentID)
 
       End If
 

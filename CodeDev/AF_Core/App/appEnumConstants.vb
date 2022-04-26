@@ -681,7 +681,7 @@ Public Class clsConstants
   Public Const PODeliveryFileFolderSys As String = "PODeliveryArchivosSys"
   Public Const SalesOrderFileFolderUsr As String = "SOArchivosUsr"
   Public Const cProductFiles As String = "ProductFiles"
-
+  Public Const WorkOrderMaintenance As String = "WorkOrderMaintenance"
   Public Const WorkOrderNoPrefix = "OT"
   Public Const SalesOrderPrefix = "SO"
   Public Const SampleOrderPrexi = "IN"

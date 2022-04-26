@@ -22,7 +22,7 @@ Partial Class frmStockItem
   'No lo modifique con el editor de código.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
+        Me.components = New System.ComponentModel.Container()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -485,7 +485,7 @@ Partial Class frmStockItem
         Me.txtStockCode.Properties.Appearance.Options.UseFont = True
         EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
         Me.txtStockCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.txtStockCode.Size = New System.Drawing.Size(218, 24)
+        Me.txtStockCode.Size = New System.Drawing.Size(218, 22)
         Me.txtStockCode.TabIndex = 155
         '
         'BarManager1
@@ -555,7 +555,7 @@ Partial Class frmStockItem
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 32)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1492, 29)
         '
         'barDockControlBottom
         '
@@ -569,17 +569,17 @@ Partial Class frmStockItem
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 32)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 29)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 724)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 727)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 32)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1492, 29)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 724)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 727)
         '
         'BarButtonItem1
         '
@@ -879,7 +879,7 @@ Partial Class frmStockItem
         '
         Me.xtabInfAddFixings.Controls.Add(Me.PanelControl2)
         Me.xtabInfAddFixings.Name = "xtabInfAddFixings"
-        Me.xtabInfAddFixings.Size = New System.Drawing.Size(358, 233)
+        Me.xtabInfAddFixings.Size = New System.Drawing.Size(352, 229)
         Me.xtabInfAddFixings.Text = "Informacion Addicional"
         '
         'PanelControl2
@@ -888,7 +888,7 @@ Partial Class frmStockItem
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(358, 233)
+        Me.PanelControl2.Size = New System.Drawing.Size(352, 229)
         Me.PanelControl2.TabIndex = 0
         '
         'chkWasherIncluded
@@ -1409,7 +1409,7 @@ Partial Class frmStockItem
         Me.txtDescription.Properties.Appearance.Options.UseFont = True
         EditorButtonImageOptions9.Image = CType(resources.GetObject("EditorButtonImageOptions9.Image"), System.Drawing.Image)
         Me.txtDescription.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions9, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject33, SerializableAppearanceObject34, SerializableAppearanceObject35, SerializableAppearanceObject36, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.txtDescription.Size = New System.Drawing.Size(517, 24)
+        Me.txtDescription.Size = New System.Drawing.Size(517, 22)
         Me.txtDescription.TabIndex = 0
         '
         'GridView1
@@ -1613,7 +1613,7 @@ Partial Class frmStockItem
         Me.grdStockItems.MenuManager = Me.BarManager1
         Me.grdStockItems.Name = "grdStockItems"
         Me.grdStockItems.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoSelectedItem})
-        Me.grdStockItems.Size = New System.Drawing.Size(1488, 347)
+        Me.grdStockItems.Size = New System.Drawing.Size(1488, 352)
         Me.grdStockItems.TabIndex = 0
         Me.grdStockItems.UseEmbeddedNavigator = True
         Me.grdStockItems.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItems})
@@ -1635,7 +1635,7 @@ Partial Class frmStockItem
         '
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.grpCurrentStockItem)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 720)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1488, 723)
         Me.SplitContainerControl1.SplitterPosition = 363
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1660,9 +1660,9 @@ Partial Class frmStockItem
         '
         Me.PanelControl1.Controls.Add(Me.SplitContainerControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 32)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 29)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1492, 724)
+        Me.PanelControl1.Size = New System.Drawing.Size(1492, 727)
         Me.PanelControl1.TabIndex = 4
         '
         'frmStockItem

@@ -223,12 +223,6 @@
     <Compile Include="App\GUI\frmReportDesigner.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="App\GUI\frmRichTextEmail.Designer.vb">
-      <DependentUpon>frmRichTextEmail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="App\GUI\frmRichTextEmail.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="App\GUI\frmTabbedMDI.designer.vb">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>
     </Compile>
@@ -374,6 +368,7 @@
     </Compile>
     <Compile Include="Pickers\clsPickerBase.vb" />
     <Compile Include="Pickers\clsPickerCustomer.vb" />
+    <Compile Include="Pickers\clsPickerMachinery.vb" />
     <Compile Include="Pickers\clsPickerProductBOM.vb" />
     <Compile Include="Pickers\clsPickerProductItem.vb" />
     <Compile Include="Pickers\clsPickerSalesOrder.vb" />
@@ -388,6 +383,12 @@
       <DependentUpon>frmPickerCustomer.vb</DependentUpon>
     </Compile>
     <Compile Include="Pickers\frmPickerCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pickers\frmPickerMachinery.Designer.vb">
+      <DependentUpon>frmPickerMachinery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pickers\frmPickerMachinery.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pickers\frmPickerStockItem.designer.vb">
@@ -1067,9 +1068,6 @@
     <EmbeddedResource Include="App\GUI\frmReportDesigner.resx">
       <DependentUpon>frmReportDesigner.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="App\GUI\frmRichTextEmail.resx">
-      <DependentUpon>frmRichTextEmail.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="App\GUI\frmTabbedMDI.resx">
       <DependentUpon>frmTabbedMDI.vb</DependentUpon>
     </EmbeddedResource>
@@ -1128,6 +1126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmPickerCustomer.resx">
       <DependentUpon>frmPickerCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pickers\frmPickerMachinery.resx">
+      <DependentUpon>frmPickerMachinery.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pickers\frmPickerStockItem.resx">
       <DependentUpon>frmPickerStockItem.vb</DependentUpon>

@@ -48,6 +48,7 @@ Public Class fccWorkOrderMaintenance
     Else
       If pMaintenanceWorkOrder Is Nothing Then
         pMaintenanceWorkOrder = New dmMaintenanceWorkOrder
+        pMaintenanceWorkOrder.Status = eMaintenanceWorkOrderStatus.InProgress
         mdso.LoadMaintenanceWorkOrder(pMaintenanceWorkOrder, pPrimaryKeyID)
 
 
@@ -93,5 +94,13 @@ Public Class fccWorkOrderMaintenance
     pMaintenanceWorkOrder.MaintenanceWorkOrderNo = "MANT-" & mdsoGeneral.GetNextTallyMaintenanceNo().ToString("00000")
   End Sub
 
-
+  Public Sub ReloadMachinery()
+    Dim mdso As dsoProduction
+    Try
+      mdso = New dsoProduction(pDBConn)
+      mdso.LoadMachinery(pMaintenanceWorkOrder.Machinery, pMaintenanceWorkOrder.EquipmentID)
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+  End Sub
 End Class

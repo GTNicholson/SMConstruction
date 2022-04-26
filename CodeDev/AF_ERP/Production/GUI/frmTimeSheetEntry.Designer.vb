@@ -22,16 +22,16 @@ Partial Class frmTimeSheetEntry
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-    Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTimeSheetEntry))
-    Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-    Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-    Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
-    Me.xtpProduction = New DevExpress.XtraTab.XtraTabPage()
-    Me.radgrpWorkCentreID = New DevExpress.XtraEditors.RadioGroup()
-    Me.xtpWood = New DevExpress.XtraTab.XtraTabPage()
-    Me.rgWoodOptions = New DevExpress.XtraEditors.RadioGroup()
-    Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTimeSheetEntry))
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.XtraTabControl2 = New DevExpress.XtraTab.XtraTabControl()
+        Me.xtpProduction = New DevExpress.XtraTab.XtraTabPage()
+        Me.radgrpWorkCentreID = New DevExpress.XtraEditors.RadioGroup()
+        Me.xtpWood = New DevExpress.XtraTab.XtraTabPage()
+        Me.rgWoodOptions = New DevExpress.XtraEditors.RadioGroup()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
@@ -194,7 +194,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.xtpWood.Controls.Add(Me.rgWoodOptions)
         Me.xtpWood.Name = "xtpWood"
-        Me.xtpWood.Size = New System.Drawing.Size(745, 85)
+        Me.xtpWood.Size = New System.Drawing.Size(741, 79)
         Me.xtpWood.Text = "Madera"
         '
         'rgWoodOptions
@@ -206,7 +206,7 @@ Partial Class frmTimeSheetEntry
         Me.rgWoodOptions.Properties.Appearance.Options.UseFont = True
         Me.rgWoodOptions.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Patio")})
         Me.rgWoodOptions.Properties.ItemsLayout = DevExpress.XtraEditors.RadioGroupItemsLayout.Flow
-        Me.rgWoodOptions.Size = New System.Drawing.Size(745, 85)
+        Me.rgWoodOptions.Size = New System.Drawing.Size(741, 79)
         Me.rgWoodOptions.TabIndex = 10
         '
         'GroupControl1
@@ -819,7 +819,7 @@ Partial Class frmTimeSheetEntry
         '
         Me.XtraTabPage2.Controls.Add(Me.gpTimeSheetEntries)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1415, 431)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1409, 427)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'gpTimeSheetEntries
@@ -830,7 +830,7 @@ Partial Class frmTimeSheetEntry
         Me.gpTimeSheetEntries.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpTimeSheetEntries.Location = New System.Drawing.Point(0, 0)
         Me.gpTimeSheetEntries.Name = "gpTimeSheetEntries"
-        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1415, 431)
+        Me.gpTimeSheetEntries.Size = New System.Drawing.Size(1409, 427)
         Me.gpTimeSheetEntries.TabIndex = 1
         Me.gpTimeSheetEntries.Text = "GroupControl1"
         '
@@ -840,7 +840,7 @@ Partial Class frmTimeSheetEntry
         Me.grdTimeSheetEntries.Location = New System.Drawing.Point(2, 24)
         Me.grdTimeSheetEntries.MainView = Me.gvTimeSheetEntries
         Me.grdTimeSheetEntries.Name = "grdTimeSheetEntries"
-        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1411, 405)
+        Me.grdTimeSheetEntries.Size = New System.Drawing.Size(1405, 401)
         Me.grdTimeSheetEntries.TabIndex = 0
         Me.grdTimeSheetEntries.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvTimeSheetEntries})
         '

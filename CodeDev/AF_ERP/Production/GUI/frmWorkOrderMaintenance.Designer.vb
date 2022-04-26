@@ -22,7 +22,7 @@ Partial Class frmWorkOrderMaintenance
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
+        Me.components = New System.ComponentModel.Container()
         Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
@@ -192,12 +192,12 @@ Partial Class frmWorkOrderMaintenance
         '
         Me.gcStockCode.Caption = "Código Interno"
         Me.gcStockCode.ColumnEdit = Me.repbtnSubstituteMatReq
-        Me.gcStockCode.FieldName = "gcStockCode"
+        Me.gcStockCode.FieldName = "StockCode"
         Me.gcStockCode.Name = "gcStockCode"
         Me.gcStockCode.OptionsColumn.ReadOnly = True
         Me.gcStockCode.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         Me.gcStockCode.Visible = True
-        Me.gcStockCode.VisibleIndex = 2
+        Me.gcStockCode.VisibleIndex = 0
         Me.gcStockCode.Width = 110
         '
         'repbtnSubstituteMatReq
@@ -209,39 +209,39 @@ Partial Class frmWorkOrderMaintenance
         'gcMatReqOtherDescription
         '
         Me.gcMatReqOtherDescription.Caption = "Descripción de Materiales"
-        Me.gcMatReqOtherDescription.FieldName = "Description"
+        Me.gcMatReqOtherDescription.FieldName = "StockDescription"
         Me.gcMatReqOtherDescription.Name = "gcMatReqOtherDescription"
         Me.gcMatReqOtherDescription.Visible = True
-        Me.gcMatReqOtherDescription.VisibleIndex = 3
+        Me.gcMatReqOtherDescription.VisibleIndex = 1
         Me.gcMatReqOtherDescription.Width = 497
         '
         'gcStockItemUoM
         '
         Me.gcStockItemUoM.Caption = "UdM"
-        Me.gcStockItemUoM.FieldName = "UoM"
+        Me.gcStockItemUoM.FieldName = "UoMDesc"
         Me.gcStockItemUoM.Name = "gcStockItemUoM"
         Me.gcStockItemUoM.OptionsColumn.ReadOnly = True
         Me.gcStockItemUoM.Visible = True
-        Me.gcStockItemUoM.VisibleIndex = 4
+        Me.gcStockItemUoM.VisibleIndex = 2
         Me.gcStockItemUoM.Width = 49
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "Cantidad Estimada"
         Me.GridColumn18.ColumnEdit = Me.RepositoryItemSpinEdit3
-        Me.GridColumn18.DisplayFormat.FormatString = "n3"
+        Me.GridColumn18.DisplayFormat.FormatString = "n1"
         Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn18.FieldName = "Quantity"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 5
+        Me.GridColumn18.VisibleIndex = 3
         Me.GridColumn18.Width = 125
         '
         'RepositoryItemSpinEdit3
         '
         Me.RepositoryItemSpinEdit3.AutoHeight = False
-        Me.RepositoryItemSpinEdit3.Mask.EditMask = "n3"
         Me.RepositoryItemSpinEdit3.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemSpinEdit3.MaskSettings.Set("mask", "n1")
         Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
         '
         'gcAreaID
@@ -257,8 +257,6 @@ Partial Class frmWorkOrderMaintenance
         Me.gcDuplicateSI.ColumnEdit = Me.repoDuplicateSI
         Me.gcDuplicateSI.Name = "gcDuplicateSI"
         Me.gcDuplicateSI.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
-        Me.gcDuplicateSI.Visible = True
-        Me.gcDuplicateSI.VisibleIndex = 1
         Me.gcDuplicateSI.Width = 62
         '
         'repoDuplicateSI
@@ -274,7 +272,7 @@ Partial Class frmWorkOrderMaintenance
         Me.GridColumn15.FieldName = "Comments"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 8
+        Me.GridColumn15.VisibleIndex = 6
         Me.GridColumn15.Width = 350
         '
         'GridColumn10
@@ -283,8 +281,6 @@ Partial Class frmWorkOrderMaintenance
         Me.GridColumn10.ColumnEdit = Me.repoChkSelectedSI
         Me.GridColumn10.FieldName = "TmpSelectedItem"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 0
         Me.GridColumn10.Width = 50
         '
         'repoChkSelectedSI
@@ -295,16 +291,22 @@ Partial Class frmWorkOrderMaintenance
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Costo"
+        Me.GridColumn1.DisplayFormat.FormatString = "n2"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn1.FieldName = "UnitCost"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 6
+        Me.GridColumn1.VisibleIndex = 4
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Costo Total"
+        Me.GridColumn2.DisplayFormat.FormatString = "n2"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn2.FieldName = "TotalCost"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 7
+        Me.GridColumn2.VisibleIndex = 5
         '
         'GroupControl1
         '
@@ -463,7 +465,7 @@ Partial Class frmWorkOrderMaintenance
         Me.btnMaintenanceWorkOrderDocument.Location = New System.Drawing.Point(846, 68)
         Me.btnMaintenanceWorkOrderDocument.MenuManager = Me.BarManager1
         Me.btnMaintenanceWorkOrderDocument.Name = "btnMaintenanceWorkOrderDocument"
-        Me.btnMaintenanceWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.btnMaintenanceWorkOrderDocument.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)})
         Me.btnMaintenanceWorkOrderDocument.Size = New System.Drawing.Size(190, 20)
         Me.btnMaintenanceWorkOrderDocument.TabIndex = 179
         '
@@ -483,7 +485,7 @@ Partial Class frmWorkOrderMaintenance
         Me.btnEquipmentID.Location = New System.Drawing.Point(299, 68)
         Me.btnEquipmentID.MenuManager = Me.BarManager1
         Me.btnEquipmentID.Name = "btnEquipmentID"
-        Me.btnEquipmentID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Down), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.btnEquipmentID.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Down)})
         Me.btnEquipmentID.Size = New System.Drawing.Size(220, 20)
         Me.btnEquipmentID.TabIndex = 177
         '
@@ -585,6 +587,7 @@ Partial Class frmWorkOrderMaintenance
         Me.dtePlannedDate.Name = "dtePlannedDate"
         Me.dtePlannedDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtePlannedDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtePlannedDate.Properties.NullDate = New Date(CType(0, Long))
         Me.dtePlannedDate.Size = New System.Drawing.Size(100, 20)
         Me.dtePlannedDate.TabIndex = 167
         '
