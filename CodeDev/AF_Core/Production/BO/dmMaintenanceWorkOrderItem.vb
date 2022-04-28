@@ -116,6 +116,62 @@ Public Class dmMaintenanceWorkOrderItem : Inherits dmBase
     End Set
   End Property
 
+  Public ReadOnly Property StockItem As dmStockItem
+    Get
+      Dim mRetVal As dmStockItem
+
+      mRetVal = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(pStockItemID)
+
+
+      Return mRetVal
+    End Get
+  End Property
+
+
+  Public ReadOnly Property StockCode As String
+    Get
+      Dim mRetVal As String = ""
+
+      If StockItem IsNot Nothing Then
+        mRetVal = StockItem.StockCode
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property StockDescription As String
+    Get
+      Dim mRetVal As String = ""
+
+      If StockItem IsNot Nothing Then
+        mRetVal = StockItem.Description
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
+  Public ReadOnly Property UoMDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      If StockItem IsNot Nothing Then
+        mRetVal = StockItem.UoMDesc
+      End If
+
+      Return mRetVal
+    End Get
+  End Property
+
+  Public ReadOnly Property TotalCost As Decimal
+    Get
+      Dim mRetVal As Decimal
+
+      mRetVal = UnitCost * Quantity
+
+      Return mRetVal
+    End Get
+  End Property
 
 End Class
 

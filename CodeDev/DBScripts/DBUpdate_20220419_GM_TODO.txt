@@ -1,11 +1,10 @@
 CREATE TABLE Machinery
 (
-MachineryID int IDENTITY(1,1) NOT NULL,
-Code varchar (15),
-Description  varchar (30),
-CONSTRAINT [pk_Machinery] PRIMARY KEY CLUSTERED
-(
-[MachineryID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+MachineryID int Primary Key,
+Code varchar(15),
+Description varchar(30),
+);
 GO
+
+
+drop table Machinery

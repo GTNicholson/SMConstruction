@@ -22,7 +22,7 @@ Partial Class frmPhaseManagement
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPhaseManagement))
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
@@ -800,7 +800,7 @@ Partial Class frmPhaseManagement
         '
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1468, 709)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1462, 705)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'PopupMenu1

@@ -186,12 +186,12 @@ Public Class frmTabbedMDI
       Me.bbtnDevUtilities.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End If
 
-    If nbcSideMenu.Groups.GetVisibleGroupCount() > 10 Then
-      For Each mGroup As DevExpress.XtraNavBar.NavBarGroup In nbcSideMenu.Groups
-        mGroup.Expanded = False
-      Next
-    End If
-  End Sub
+      If nbcSideMenu.Groups.GetVisibleGroupCount() > 15 Then
+         For Each mGroup As DevExpress.XtraNavBar.NavBarGroup In nbcSideMenu.Groups
+            mGroup.Expanded = False
+         Next
+      End If
+   End Sub
 
   Private Sub MenuOptionNavBarItem_LinkClicked(ByVal sender As Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) 'Handles NavBarItem1.LinkClicked
     Dim mNavBarItem As DevExpress.XtraNavBar.NavBarItem

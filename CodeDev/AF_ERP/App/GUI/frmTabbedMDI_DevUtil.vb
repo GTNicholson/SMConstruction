@@ -782,19 +782,19 @@ Public Class frmTabbedMDI_DevUtil
       mEmail.EmailMessage.BodyHtml = "<p>Nuew body</>"
       mEmail.EmailMessage.IsBodyHtml = True
 
-      Dim mfrm As New frmRichTextEmail(mEmail, mdbconn, AppRTISGlobal.GetInstance)
+            'Dim mfrm As New frmRichTextEmail(mEmail, mdbconn, AppRTISGlobal.GetInstance)
 
-      mfrm.Employees = mEmployees
+            'mfrm.Employees = mEmployees
 
-      mfrm.EmailSettings = mEmail.EmailSettings
+            'mfrm.EmailSettings = mEmail.EmailSettings
 
-      mfrm.PopulateMail()
+            'mfrm.PopulateMail()
 
-      If mfrm.ShowDialog() = DialogResult.OK OrElse mdbconn.RTISUser.IsSecurityAllowAll Then
+            'If mfrm.ShowDialog() = DialogResult.OK OrElse mdbconn.RTISUser.IsSecurityAllowAll Then
 
-      End If
+            'End If
 
-    Catch ex As Exception
+        Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
     End Try
 

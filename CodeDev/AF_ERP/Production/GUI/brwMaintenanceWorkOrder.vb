@@ -189,8 +189,16 @@ Public Class brwMaintenanceWorkOrder : Inherits brwBrowserListBase
       ' gridBrowseList.Refresh()
 
 
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("WorkCentreID"), clsEnumsConstants.EnumToVIs(GetType(eWorkCentre)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("MaintenanceType"), clsEnumsConstants.EnumToVIs(GetType(eMaintenancePriority)))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Priority"), clsEnumsConstants.EnumToVIs(GetType(eMaintenancePriority)))
       clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("Status"), clsEnumsConstants.EnumToVIs(GetType(eMaintenanceWorkOrderStatus)))
 
+
+
+
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("EquipmentID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Machinery))
+      clsDEControlLoading.LoadGridLookUpEdit(Me.gridBrowseList, mGridView.Columns("EmployeeID"), AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.Employees))
 
       Me.SaveButton = eActiveVisibleState.Invisible
 
@@ -208,6 +216,8 @@ Public Class brwMaintenanceWorkOrder : Inherits brwBrowserListBase
       ''Me.SelectColumnName = "IncludeRow"
 
       Me.PrintAndExportAvailable = True
+
+
 
     Catch ex As Exception
       mOK = False

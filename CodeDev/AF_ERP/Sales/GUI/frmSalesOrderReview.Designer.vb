@@ -2031,7 +2031,7 @@ Partial Class frmSalesOrderReview
         '
         Me.xtpHonorarios.Controls.Add(Me.GroupControl4)
         Me.xtpHonorarios.Name = "xtpHonorarios"
-        Me.xtpHonorarios.Size = New System.Drawing.Size(792, 339)
+        Me.xtpHonorarios.Size = New System.Drawing.Size(786, 335)
         Me.xtpHonorarios.Text = "Honorarios"
         '
         'GroupControl4
@@ -2046,7 +2046,7 @@ Partial Class frmSalesOrderReview
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(792, 339)
+        Me.GroupControl4.Size = New System.Drawing.Size(786, 335)
         Me.GroupControl4.TabIndex = 5
         '
         'grdHonorarios
@@ -2056,7 +2056,7 @@ Partial Class frmSalesOrderReview
         Me.grdHonorarios.MainView = Me.gvPOHonorarios
         Me.grdHonorarios.Name = "grdHonorarios"
         Me.grdHonorarios.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit4, Me.RepositoryItemTextEdit3})
-        Me.grdHonorarios.Size = New System.Drawing.Size(788, 313)
+        Me.grdHonorarios.Size = New System.Drawing.Size(782, 309)
         Me.grdHonorarios.TabIndex = 1
         Me.grdHonorarios.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvPOHonorarios})
         '
@@ -2227,7 +2227,7 @@ Partial Class frmSalesOrderReview
         '
         Me.xtpOtherPage.Controls.Add(Me.grpOtherCaterogoriesPurchaseOrder)
         Me.xtpOtherPage.Name = "xtpOtherPage"
-        Me.xtpOtherPage.Size = New System.Drawing.Size(792, 339)
+        Me.xtpOtherPage.Size = New System.Drawing.Size(786, 335)
         Me.xtpOtherPage.Text = "Otras Compras"
         '
         'grpOtherCaterogoriesPurchaseOrder
@@ -2242,7 +2242,7 @@ Partial Class frmSalesOrderReview
         Me.grpOtherCaterogoriesPurchaseOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpOtherCaterogoriesPurchaseOrder.Location = New System.Drawing.Point(0, 0)
         Me.grpOtherCaterogoriesPurchaseOrder.Name = "grpOtherCaterogoriesPurchaseOrder"
-        Me.grpOtherCaterogoriesPurchaseOrder.Size = New System.Drawing.Size(792, 339)
+        Me.grpOtherCaterogoriesPurchaseOrder.Size = New System.Drawing.Size(786, 335)
         Me.grpOtherCaterogoriesPurchaseOrder.TabIndex = 4
         '
         'grdOtherCategoriesPOItemAllocations
@@ -2252,7 +2252,7 @@ Partial Class frmSalesOrderReview
         Me.grdOtherCategoriesPOItemAllocations.MainView = Me.gvOtherCategoriesPOItemAllocations
         Me.grdOtherCategoriesPOItemAllocations.Name = "grdOtherCategoriesPOItemAllocations"
         Me.grdOtherCategoriesPOItemAllocations.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit3, Me.RepositoryItemTextEdit4})
-        Me.grdOtherCategoriesPOItemAllocations.Size = New System.Drawing.Size(788, 313)
+        Me.grdOtherCategoriesPOItemAllocations.Size = New System.Drawing.Size(782, 309)
         Me.grdOtherCategoriesPOItemAllocations.TabIndex = 1
         Me.grdOtherCategoriesPOItemAllocations.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvOtherCategoriesPOItemAllocations})
         '
