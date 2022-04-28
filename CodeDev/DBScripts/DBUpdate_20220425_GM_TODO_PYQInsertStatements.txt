@@ -37,7 +37,7 @@ INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription
 INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,9,4,'NULL','Esmalte Fast Dry Barniz Madetek Pisos',0)
 INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,9,4,'NULL','Milesi LAV118V',0)
 INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,9,4,'NULL','Milesi LOB519V',0)
-INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,13,NULL,'NULL','Wright's Copper Cream',0)
+INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,13,NULL,'NULL','Wrights Copper Cream',0)
 INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,99,99,'NULL','Parches de Techo Garner',0)
 INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,5,NULL,'508-13100-359-14','Tinte Stain Natural Sur',0)
 INSERT INTO StockItem (Category, ItemType, SubItemType, PartNo, ShortDescription, Inactive) Values (10,10,1,'NULL','Impregnante Carver',0)
