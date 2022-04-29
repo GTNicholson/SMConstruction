@@ -31,3 +31,4 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+/CodeDev/.vs/AgroForestal/v16/.suo

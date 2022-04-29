@@ -557,4 +557,9 @@
     <Filename>BITimeSheetListEmployeeSummary.xml</Filename>
   </AuxFiles>
 
+  <AuxFiles>
+    <Filename>gvlMaintenanceWorkOrders.xml</Filename>
+  </AuxFiles>
+
+
 </AppUpdateManifest>

@@ -1252,7 +1252,7 @@ Partial Class frmNonManPurchaseOrder
         Me.xtraTabAppendDoc.Appearance.Header.Options.UseForeColor = True
         Me.xtraTabAppendDoc.Controls.Add(Me.UctFileControl1)
         Me.xtraTabAppendDoc.Name = "xtraTabAppendDoc"
-        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(378, 290)
+        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(384, 294)
         Me.xtraTabAppendDoc.Text = "Documentos Adjuntos"
         '
         'UctFileControl1
@@ -1260,7 +1260,7 @@ Partial Class frmNonManPurchaseOrder
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(0, 0)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(378, 290)
+        Me.UctFileControl1.Size = New System.Drawing.Size(384, 294)
         Me.UctFileControl1.TabIndex = 1
         Me.UctFileControl1.UserController = Nothing
         '
@@ -1549,7 +1549,7 @@ Partial Class frmNonManPurchaseOrder
         '
         Me.xtpMultiple.Controls.Add(Me.GroupControl4)
         Me.xtpMultiple.Name = "xtpMultiple"
-        Me.xtpMultiple.Size = New System.Drawing.Size(438, 285)
+        Me.xtpMultiple.Size = New System.Drawing.Size(442, 292)
         Me.xtpMultiple.Text = "Mult."
         '
         'GroupControl4
@@ -1564,7 +1564,7 @@ Partial Class frmNonManPurchaseOrder
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.ShowCaption = False
-        Me.GroupControl4.Size = New System.Drawing.Size(438, 285)
+        Me.GroupControl4.Size = New System.Drawing.Size(442, 292)
         Me.GroupControl4.TabIndex = 267
         Me.GroupControl4.Text = "Admon. OTs"
         '
@@ -1585,7 +1585,7 @@ Partial Class frmNonManPurchaseOrder
         Me.grdSalesOrderPhaseItemsPhases.MenuManager = Me.BarManager1
         Me.grdSalesOrderPhaseItemsPhases.Name = "grdSalesOrderPhaseItemsPhases"
         Me.grdSalesOrderPhaseItemsPhases.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
-        Me.grdSalesOrderPhaseItemsPhases.Size = New System.Drawing.Size(428, 206)
+        Me.grdSalesOrderPhaseItemsPhases.Size = New System.Drawing.Size(432, 206)
         Me.grdSalesOrderPhaseItemsPhases.TabIndex = 266
         Me.grdSalesOrderPhaseItemsPhases.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItems})
         '
