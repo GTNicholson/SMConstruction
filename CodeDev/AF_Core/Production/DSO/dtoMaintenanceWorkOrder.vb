@@ -188,6 +188,15 @@ Public Class dtoMaintenanceWorkOrder : Inherits dtoBase
     Return mAllOK
   End Function
 
+  Public Function LoadMaintenanceWorkOrderCollectionByWhere(ByRef rMaintenanceWorkOrders As colMaintenanceWorkOrders, ByVal vWhere As String) As Boolean
+    Dim mParams As New Hashtable
+    Dim mOK As Boolean
+    mOK = MyBase.LoadCollection(rMaintenanceWorkOrders, mParams, "MaintenanceWorkOrderID", vWhere)
+    rMaintenanceWorkOrders.TrackDeleted = True
+    If mOK Then rMaintenanceWorkOrders.IsDirty = False
+    Return mOK
+
+  End Function
 End Class
 
 

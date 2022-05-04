@@ -91,7 +91,9 @@ Partial Class frmStockItem
         Me.repoStockItemOption = New DevExpress.XtraEditors.Repository.RepositoryItemRadioGroup()
         Me.btnExport = New DevExpress.XtraBars.BarButtonItem()
         Me.barbtnAddStockItemCat = New DevExpress.XtraBars.BarSubItem()
+        Me.bbtnSelectVisible = New DevExpress.XtraBars.BarButtonItem()
         Me.bbtnChangeCategory = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbtnClear = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -496,8 +498,8 @@ Partial Class frmStockItem
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.barbtnAddBasicItem, Me.barbtnAddLockItem, Me.barbtnAddStockItem, Me.btnExport, Me.rgbStockItemOptions, Me.bcboCategory, Me.barbtnAddStockItemCat, Me.BarButtonItem2, Me.BarEditItem2, Me.BarEditItem3, Me.BarEditItem4, Me.BarEditItem5, Me.BarEditItem6, Me.BarStaticItem1, Me.BarEditItem7, Me.bbtnChangeCategory, Me.bbtnChangeUoM, Me.bbtnChangeSpecies})
-        Me.BarManager1.MaxItemId = 21
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.barbtnAddBasicItem, Me.barbtnAddLockItem, Me.barbtnAddStockItem, Me.btnExport, Me.rgbStockItemOptions, Me.bcboCategory, Me.barbtnAddStockItemCat, Me.BarButtonItem2, Me.BarEditItem2, Me.BarEditItem3, Me.BarEditItem4, Me.BarEditItem5, Me.BarEditItem6, Me.BarStaticItem1, Me.BarEditItem7, Me.bbtnChangeCategory, Me.bbtnChangeUoM, Me.bbtnChangeSpecies, Me.bbtnSelectVisible, Me.bbtnClear})
+        Me.BarManager1.MaxItemId = 23
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepoItemRadioGroupCategory, Me.repoStockItemOption, Me.repitcboCategory, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemButtonEdit1, Me.RepositoryItemBreadCrumbEdit1, Me.RepositoryItemRadioGroup1, Me.RepositoryItemComboBox1})
         '
         'Bar1
@@ -508,7 +510,7 @@ Partial Class frmStockItem
         Me.Bar1.DockCol = 0
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(CType((DevExpress.XtraBars.BarLinkUserDefines.PaintStyle Or DevExpress.XtraBars.BarLinkUserDefines.Width), DevExpress.XtraBars.BarLinkUserDefines), Me.rgbStockItemOptions, "", False, True, True, 321, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnExport, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnAddStockItemCat), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnChangeCategory)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(CType((DevExpress.XtraBars.BarLinkUserDefines.PaintStyle Or DevExpress.XtraBars.BarLinkUserDefines.Width), DevExpress.XtraBars.BarLinkUserDefines), Me.rgbStockItemOptions, "", False, True, True, 321, Nothing, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph), New DevExpress.XtraBars.LinkPersistInfo(Me.btnExport, True), New DevExpress.XtraBars.LinkPersistInfo(Me.barbtnAddStockItemCat), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnSelectVisible), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnChangeCategory), New DevExpress.XtraBars.LinkPersistInfo(Me.bbtnClear)})
         Me.Bar1.OptionsBar.AllowQuickCustomization = False
         Me.Bar1.OptionsBar.DrawDragBorder = False
         Me.Bar1.OptionsBar.UseWholeRow = True
@@ -542,12 +544,26 @@ Partial Class frmStockItem
         Me.barbtnAddStockItemCat.Id = 9
         Me.barbtnAddStockItemCat.Name = "barbtnAddStockItemCat"
         '
+        'bbtnSelectVisible
+        '
+        Me.bbtnSelectVisible.Border = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.bbtnSelectVisible.Caption = "Seleccionar Visibles"
+        Me.bbtnSelectVisible.Id = 21
+        Me.bbtnSelectVisible.Name = "bbtnSelectVisible"
+        '
         'bbtnChangeCategory
         '
         Me.bbtnChangeCategory.Border = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
         Me.bbtnChangeCategory.Caption = "Cambios Globales"
         Me.bbtnChangeCategory.Id = 18
         Me.bbtnChangeCategory.Name = "bbtnChangeCategory"
+        '
+        'bbtnClear
+        '
+        Me.bbtnClear.Border = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.bbtnClear.Caption = "Limpiar Selección"
+        Me.bbtnClear.Id = 22
+        Me.bbtnClear.Name = "bbtnClear"
         '
         'barDockControlTop
         '
@@ -1869,4 +1885,6 @@ Partial Class frmStockItem
     Friend WithEvents cboDefaultManufacturer As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl28 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txtStockCode As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents bbtnSelectVisible As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbtnClear As DevExpress.XtraBars.BarButtonItem
 End Class

@@ -27,6 +27,8 @@ Public Class fccPurchaseOrder
   Private pWorkOrderInfos As colWorkOrderInfos
 
   Public Property CompanyOption As repPurchaseOrder.eCompanyOption
+  Private pMaintenanceWorkOrders As colMaintenanceWorkOrders
+  Private pMaintenanceWorkOrder As dmMaintenanceWorkOrder
 
   Public Property POOption As ePODetailOption
     Get
@@ -61,6 +63,8 @@ Public Class fccPurchaseOrder
     pSalesOrderPhaseItemInfo = New clsSalesOrderPhaseItemInfo
     pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
     pWorkOrderInfos = New colWorkOrderInfos
+    pMaintenanceWorkOrders = New colMaintenanceWorkOrders
+    pMaintenanceWorkOrder = New dmMaintenanceWorkOrder
   End Sub
 
   Public Property SalesOrderPhaseItemInfo() As clsSalesOrderPhaseItemInfo
@@ -132,6 +136,24 @@ Public Class fccPurchaseOrder
     End Get
     Set(value As clsWorkOrderInfo)
       pWorkOrderInfo = value
+    End Set
+  End Property
+
+  Public Property MaintenanceWorkOrders As colMaintenanceWorkOrders
+    Get
+      Return pMaintenanceWorkOrders
+    End Get
+    Set(value As colMaintenanceWorkOrders)
+      pMaintenanceWorkOrders = value
+    End Set
+  End Property
+
+  Public Property MaintenanceWorkOrder As dmMaintenanceWorkOrder
+    Get
+      Return pMaintenanceWorkOrder
+    End Get
+    Set(value As dmMaintenanceWorkOrder)
+      pMaintenanceWorkOrder = value
     End Set
   End Property
   Public Property PurchaseOrder As dmPurchaseOrder
@@ -696,6 +718,7 @@ Public Class fccPurchaseOrder
   Public Sub CreateUpdatePOItemAllocation(ByRef rPOItem As dmPurchaseOrderItem, ByVal vWithSaving As Boolean)
     Dim mPOIA As dmPurchaseOrderItemAllocation
     Dim mdso As New dsoSalesOrder(pDBConn)
+    Dim mdsoProduction As dsoProduction
 
     If rPOItem.PurchaseOrderItemAllocations.Count <= 1 Then
       '//Check that the POItem has one and only one poItemAllocation
@@ -827,6 +850,65 @@ Public Class fccPurchaseOrder
 
 
           End If
+
+
+
+
+
+
+
+
+        Case ePODetailOption.Maintenance
+          mdsoProduction = New dsoProduction(pDBConn)
+          mdsoProduction.LoadMaintenanceWorkOrderDownByWhere(pMaintenanceWorkOrder, "MaintenanceWorkOrderID=" & rPOItem.PurchaseOrderItemAllocations(0).MaintenanceWorkOrderID)
+
+
+          If pMaintenanceWorkOrder IsNot Nothing Then
+            rPOItem.PurchaseOrderItemAllocations(0).MaintenanceWorkOrderID = pMaintenanceWorkOrder.MaintenanceWorkOrderID
+            rPOItem.PurchaseOrderItemAllocations(0).JobNoTmp = String.Format("{0}", pMaintenanceWorkOrder.Description)
+            rPOItem.PurchaseOrderItemAllocations(0).ItemRef = pMaintenanceWorkOrder.MaintenanceWorkOrderNo
+
+
+            If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).MaintenanceWorkOrderID = 0 Then
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+
+            End If
+
+
+            If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            Else
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            End If
+
+          Else
+            If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).MaintenanceWorkOrderID = 0 Then
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef = clsEnumsConstants.GetEnumDescription(GetType(ePurchaseCategories), CType(PurchaseOrder.Category, ePurchaseCategories))
+              rPOItem.PurchaseOrderItemAllocations(0).ItemRef2 = AppRTISGlobal.GetInstance.RefLists.RefListVI(appRefLists.AccoutingCategory).ItemValueToDisplayValue(PurchaseOrder.AccoutingCategoryID)
+
+
+            End If
+
+            If pPurchaseOrder.DefaultCurrency = eCurrency.Cordobas Then
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("C$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            Else
+              rPOItem.PurchaseOrderItemAllocations(0).TempTotalValue = String.Format("$ {0}", Math.Round(rPOItem.PurchaseOrderItemAllocations(0).Quantity * rPOItem.UnitPrice, 2, MidpointRounding.AwayFromZero))
+
+            End If
+
+          End If
+
+
+
+
+
+
+
       End Select
 
 
@@ -1060,4 +1142,13 @@ Public Class fccPurchaseOrder
 
     Return mRetVal
   End Function
+
+  Public Sub LoadMaintenanceWorkOrders(ByRef rMaintenanceWorkOrders As colMaintenanceWorkOrders)
+    Dim mdso As New dsoProduction(pDBConn)
+    Try
+      mdso.LoadMaintenanceWorkOrders(rMaintenanceWorkOrders, "")
+    Catch ex As Exception
+
+    End Try
+  End Sub
 End Class

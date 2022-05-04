@@ -379,6 +379,7 @@
     <Compile Include="Pickers\clsPickerWoodPallet.vb" />
     <Compile Include="Pickers\clsPickerWorkOrder.vb" />
     <Compile Include="Pickers\clsPickerWorkOrderAllocation.vb" />
+    <Compile Include="Pickers\clsPickerWorkOrderMaintenance.vb" />
     <Compile Include="Pickers\frmPickerCustomer.Designer.vb">
       <DependentUpon>frmPickerCustomer.vb</DependentUpon>
     </Compile>
@@ -590,10 +591,22 @@
     <Compile Include="Purchasing\GUI\frmManPurchaseOrderDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Purchasing\GUI\frmMaterialRequirementMaintenance.Designer.vb">
+      <DependentUpon>frmMaterialRequirementMaintenance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmMaterialRequirementMaintenance.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Purchasing\GUI\frmNonManPurchaseOrder.Designer.vb">
       <DependentUpon>frmNonManPurchaseOrder.vb</DependentUpon>
     </Compile>
     <Compile Include="Purchasing\GUI\frmNonManPurchaseOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPurchaseOrderDetailMaintenance.Designer.vb">
+      <DependentUpon>frmPurchaseOrderDetailMaintenance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchasing\GUI\frmPurchaseOrderDetailMaintenance.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Purchasing\GUI\frmWorkOrderMatReqCategoryStatusDetail.Designer.vb">
@@ -704,6 +717,12 @@
       <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
     </Compile>
     <Compile Include="Sales\GUI\frmInternalWorkOrderDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\GUI\frmMaintenanceWorkOrderPicker.Designer.vb">
+      <DependentUpon>frmMaintenanceWorkOrderPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\GUI\frmMaintenanceWorkOrderPicker.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sales\GUI\frmPhaseManagement.Designer.vb">
@@ -1217,6 +1236,9 @@
     <EmbeddedResource Include="Purchasing\GUI\frmMaterialRequirement.resx">
       <DependentUpon>frmMaterialRequirement.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmMaterialRequirementMaintenance.resx">
+      <DependentUpon>frmMaterialRequirementMaintenance.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmNonManPurchaseOrder.resx">
       <DependentUpon>frmNonManPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
@@ -1231,6 +1253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmPurchaseOrderConsole.resx">
       <DependentUpon>frmPurchaseOrderConsole.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchasing\GUI\frmPurchaseOrderDetailMaintenance.resx">
+      <DependentUpon>frmPurchaseOrderDetailMaintenance.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchasing\GUI\frmStockItemPurchasing.resx">
       <DependentUpon>frmStockItemPurchasing.vb</DependentUpon>
@@ -1261,6 +1286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmInternalWorkOrderDetail.resx">
       <DependentUpon>frmInternalWorkOrderDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\GUI\frmMaintenanceWorkOrderPicker.resx">
+      <DependentUpon>frmMaintenanceWorkOrderPicker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\GUI\frmPhaseManagement.resx">
       <DependentUpon>frmPhaseManagement.vb</DependentUpon>

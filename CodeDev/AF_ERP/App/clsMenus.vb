@@ -57,6 +57,7 @@ Public Class MenuFactory
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Consola de Compras", eMenuIconType.FolderOpen, AddressOf clsMenuFunctions.menufuncNULL, eActivityCode.POConsole)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Casas", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsoleHouse, eActivityCode.POConsole)
     mLastItem.ChildGroupMenuEntries.AddNewItem("Muebles", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsoleFurniture, eActivityCode.POConsole)
+    mLastItem.ChildGroupMenuEntries.AddNewItem("Mantenimiento", eMenuIconType.Console, AddressOf clsMenuFunctions.PurchaseOrderconsoleMaintenance, eActivityCode.POConsole)
 
 
     mLastItem = mLastGroup.ChildGroupMenuEntries.AddNewItem("Gestión. de Compras", eMenuIconType.FormProcess, AddressOf clsMenuFunctions.Procurement, eActivityCode.PurchasingManagement)
@@ -506,6 +507,11 @@ Class clsMenuFunctions
     Dim mBrw As New brwMaintenanceWorkOrder(My.Application.RTISUserSession.CreateMainDBConn, AppRTISGlobal.GetInstance, eBrowseList.MaintenanceWorkOrder)
     frmBrowseList.OpenFormAsMDIChild(rParentForm, mBrw)
   End Sub
+
+  Public Shared Sub PurchaseOrderconsoleMaintenance(ByRef rMenuOption As RTIS.Elements.intMenuOption, ByRef rParentForm As Windows.Forms.Form, ByRef rRTISUserSession As clsRTISUser, ByRef rRTISGlobal As RTIS.Elements.clsRTISGlobal)
+    frmPurchaseOrderConsole.OpenFormAsModal(rParentForm, rRTISUserSession.CreateMainDBConn, rRTISGlobal, ePOConsoleOption.MaintenanceWorkOrder)
+  End Sub
+
 End Class
 Public Class clsMenuEntries : Inherits List(Of clsMenuEntry)
 

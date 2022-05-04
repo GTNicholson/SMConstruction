@@ -267,7 +267,7 @@ Partial Class frmMaterialRequirement
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1502, 30)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1502, 28)
         '
         'barDockControlBottom
         '
@@ -281,17 +281,17 @@ Partial Class frmMaterialRequirement
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 30)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 28)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 653)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 655)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1502, 30)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1502, 28)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 653)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 655)
         '
         'bbtnPickOrder
         '
@@ -338,7 +338,7 @@ Partial Class frmMaterialRequirement
         Me.grdMaterialRequirements.MainView = Me.gvMaterialRequirements
         Me.grdMaterialRequirements.Name = "grdMaterialRequirements"
         Me.grdMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repItemQty, Me.RepositoryItemPopupContainerEditOrderedQty, Me.ReposItemPopupContainerEditSITrans, Me.RepositoryItemDateEdit2, Me.RepositoryItemMemoExEdit1, Me.RepositoryItemTextEdit1, Me.repo, Me.repoChkIsFromStockValidated, Me.repoFormat, Me.repoOpenImage, Me.repoItemPopupImage})
-        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1498, 629)
+        Me.grdMaterialRequirements.Size = New System.Drawing.Size(1498, 631)
         Me.grdMaterialRequirements.TabIndex = 5
         Me.grdMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirements})
         '
@@ -1095,9 +1095,9 @@ Partial Class frmMaterialRequirement
         Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirements)
         Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpMaterialRequirements.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 30)
+        Me.grpMaterialRequirements.Location = New System.Drawing.Point(0, 28)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
-        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1502, 653)
+        Me.grpMaterialRequirements.Size = New System.Drawing.Size(1502, 655)
         Me.grpMaterialRequirements.TabIndex = 94
         Me.grpMaterialRequirements.Text = "Artículos Requeridos por Proyecto"
         '

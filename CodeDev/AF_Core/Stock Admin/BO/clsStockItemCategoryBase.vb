@@ -297,9 +297,7 @@ Public Class clsStockItemCategoryPinturaYQuimico : Inherits clsStockItemCategory
       mManufacturer = CType(AppRTISGlobal.GetInstance.RefLists.RefIList(appRefLists.StockItemManufacturer), colStockItemManufacturers).ItemFromKey(mStockItem.DefaultManufacturerID)
 
 
-      If mStockItem.Colour <> "" Then
-        mRetVal = mRetVal & " color " & mStockItem.Colour
-      End If
+
 
 
       If mManufacturer IsNot Nothing Then
@@ -309,7 +307,9 @@ Public Class clsStockItemCategoryPinturaYQuimico : Inherits clsStockItemCategory
     End If
 
 
-
+    If mStockItem.Colour <> "" Then
+      mRetVal = mRetVal & " color " & mStockItem.Colour
+    End If
 
     If mStockItem.PartNo <> "" Then
       mRetVal = mRetVal & "(" & mStockItem.PartNo & ")"

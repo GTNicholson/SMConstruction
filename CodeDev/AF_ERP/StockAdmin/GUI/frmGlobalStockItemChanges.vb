@@ -165,9 +165,9 @@ Public Class frmGlobalStockItemChanges
 
       mRetval = mCategoryBase.GetDescription(rStockItem)
 
-      If rStockItem.PartNo = "" Then
-        mRetval = mRetval & " " & pFormController.GetNextStockCodeSuffix(mRetval)
-      End If
+      'If rStockItem.PartNo = "" Then
+      '  mRetval = mRetval & " " & pFormController.GetNextStockCodeSuffix(mRetval)
+      'End If
 
     End If
 

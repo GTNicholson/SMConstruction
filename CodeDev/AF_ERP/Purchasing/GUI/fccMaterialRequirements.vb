@@ -110,22 +110,33 @@ Public Class fccMaterialRequirements
 
       Else
 
-        mWhere &= "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & ""
-        mWhere &= " and WorkOrderID in (Select WorkOrderID from WorkOrder where Status = " & CInt(eWorkOrderStatus.Raised) & ")"
-
-        Select Case pConsoleOptionView
-          Case ePOConsoleOption.Housing
-            mWhere &= String.Format(" and OrderTypeID in({0},{1}) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
-
-          Case ePOConsoleOption.Furniture
-            mWhere &= String.Format(" and OrderTypeID in({0},{1}) ", CInt(eOrderType.Furnitures), CInt(eOrderType.InternalFurniture))
+        If pConsoleOptionView = ePOConsoleOption.MaintenanceWorkOrder Then
+          mWhere &= "MaterialRequirementType = " & CInt(eMaterialRequirementType.MaintenanceItem) & ""
 
 
-        End Select
+          mdsoSalesOrder.LoadPhaseMatReqProcessorsMaintenance(pMatReqItemProcessors, mWhere)
+
+
+        Else
+          mWhere &= "MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & ""
+          mWhere &= " and WorkOrderID in (Select WorkOrderID from WorkOrder where Status = " & CInt(eWorkOrderStatus.Raised) & ")"
+
+          Select Case pConsoleOptionView
+            Case ePOConsoleOption.Housing
+              mWhere &= String.Format(" and OrderTypeID in({0},{1}) ", CInt(eOrderType.Sales), CInt(eOrderType.Interno))
+
+            Case ePOConsoleOption.Furniture
+              mWhere &= String.Format(" and OrderTypeID in({0},{1}) ", CInt(eOrderType.Furnitures), CInt(eOrderType.InternalFurniture))
+
+
+          End Select
+          mdsoSalesOrder.LoadPhaseMatReqProcessors(pMatReqItemProcessors, mWhere)
+
+        End If
 
 
 
-        mdsoSalesOrder.LoadPhaseMatReqProcessors(pMatReqItemProcessors, mWhere)
+
 
       End If
 

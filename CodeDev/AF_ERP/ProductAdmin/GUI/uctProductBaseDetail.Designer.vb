@@ -357,11 +357,11 @@ Partial Class uctProductBaseDetail
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.EndEdit.Visible = False
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdWoodMaterialRequirements.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 26)
+        Me.grdWoodMaterialRequirements.Location = New System.Drawing.Point(2, 24)
         Me.grdWoodMaterialRequirements.MainView = Me.gvWoodMaterialRequirements
         Me.grdWoodMaterialRequirements.Name = "grdWoodMaterialRequirements"
         Me.grdWoodMaterialRequirements.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RepositoryItemSpinEdit2, Me.repoCreateDuplicate, Me.repobtnChangeSpecie, Me.repoChkSelectedItem, Me.repoThickness, Me.repoThicknessValueLK, Me.repoWoodClasification, Me.repoWoodItemTypeLK})
-        Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1182, 203)
+        Me.grdWoodMaterialRequirements.Size = New System.Drawing.Size(1182, 205)
         Me.grdWoodMaterialRequirements.TabIndex = 0
         Me.grdWoodMaterialRequirements.UseEmbeddedNavigator = True
         Me.grdWoodMaterialRequirements.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvWoodMaterialRequirements, Me.GridView1, Me.GridView2})
@@ -706,11 +706,11 @@ Partial Class uctProductBaseDetail
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.Buttons.PrevPage.Visible = False
         Me.grdStockItemsMaterialRequirement.EmbeddedNavigator.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
-        Me.grdStockItemsMaterialRequirement.Location = New System.Drawing.Point(2, 26)
+        Me.grdStockItemsMaterialRequirement.Location = New System.Drawing.Point(2, 24)
         Me.grdStockItemsMaterialRequirement.MainView = Me.gvStockItemMaterialRequirements
         Me.grdStockItemsMaterialRequirement.Name = "grdStockItemsMaterialRequirement"
         Me.grdStockItemsMaterialRequirement.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repbtnSubstituteMatReq, Me.RepositoryItemSpinEdit3, Me.repoChkSelectedSI, Me.repoDuplicateSI})
-        Me.grdStockItemsMaterialRequirement.Size = New System.Drawing.Size(1182, 203)
+        Me.grdStockItemsMaterialRequirement.Size = New System.Drawing.Size(1182, 205)
         Me.grdStockItemsMaterialRequirement.TabIndex = 0
         Me.grdStockItemsMaterialRequirement.UseEmbeddedNavigator = True
         Me.grdStockItemsMaterialRequirement.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMaterialRequirements})

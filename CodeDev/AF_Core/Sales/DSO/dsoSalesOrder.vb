@@ -113,6 +113,30 @@ Public Class dsoSalesOrder : Inherits dsoBase
     End Try
   End Sub
 
+  Public Function LoadPhaseMatReqProcessorsMaintenance(ByRef rMatReqInfos As colMaterialRequirementProcessors, ByVal vWhere As String) As Boolean
+    Dim mOK As Boolean
+
+
+    Try
+      If pDBConn.Connect() Then
+        Dim mdto As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.MaintenanceItem)
+
+        Dim mWhere As String = String.Empty
+
+        mOK = mdto.LoadMaterialRequirementProcessorsByWhere(rMatReqInfos, vWhere)
+
+
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mOK
+  End Function
+
   Public Sub LoadSalesOrdersCollectionByWhere(ByRef rSalesOrders As colSalesOrders, ByVal vWhere As String)
     Dim mdtoSalesOrder As New dtoSalesOrder(pDBConn)
 
@@ -407,6 +431,28 @@ Public Class dsoSalesOrder : Inherits dsoBase
     End Try
     Return mRetVal
   End Function
+
+  Public Function LoadMaintenanceWorkOrder(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vWhere As String) As Boolean
+    Dim mRetVal As Boolean = True
+    Dim mdto As dtoMaintenanceWorkOrder
+    Dim mCollection As New colMaintenanceWorkOrders
+    Try
+      pDBConn.Connect()
+      mdto = New dtoMaintenanceWorkOrder(pDBConn)
+      mRetVal = mdto.LoadMaintenanceWorkOrderCollectionByWhere(mCollection, vWhere)
+
+      If mCollection.Count > 0 Then
+        rMaintenanceWorkOrder = mCollection(0)
+      End If
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+      mdto = Nothing
+    End Try
+    Return mRetVal
+  End Function
+
 
   Public Function LoadSalesOrderPhaseItem(ByRef SalesOrderPhaseItem As dmSalesOrderPhaseItem, ByVal vSalesorderPhaseItemID As Integer) As Boolean
     Dim mRetVal As Boolean = True
@@ -1863,5 +1909,9 @@ Public Class dsoSalesOrder : Inherits dsoBase
     End Try
     Return mRetVal
   End Function
+
+
+
+
 
 End Class

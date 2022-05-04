@@ -792,7 +792,7 @@ Partial Class frmPurchaseManagement
         '
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1437, 676)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1443, 680)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'frmPurchaseManagement

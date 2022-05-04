@@ -272,8 +272,8 @@
     <Compile Include="ProductAdmin\DSO\dtoProductStructure.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWallOptions.vb" />
     <Compile Include="ProductAdmin\DSO\dtoWindowOption.vb" />
+    <Compile Include="Production\BO\clsMaintenanceMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\dmMachinery.vb" />
-    <Compile Include="Production\BO\clsMaintenanceWorkOrderInfo.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrder.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrderItem.vb" />
     <Compile Include="Production\BO\clsWorkOrderCostingSummaryInfo.vb" />

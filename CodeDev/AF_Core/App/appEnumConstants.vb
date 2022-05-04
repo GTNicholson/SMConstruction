@@ -240,7 +240,7 @@ Public Enum eObjectType
   PurchaseOrder = 8
   WoodPallet = 9
   ProductStructure = 10
-
+  MaintenanceItem = 11
 End Enum
 
 Public Enum eEmployeeRole
@@ -487,6 +487,7 @@ Public Enum eMaterialRequirementType
   StockItems = 2
   WoodChanges = 3
   OtherChanges = 4
+  MaintenanceItem = 5
 End Enum
 
 Public Enum eProductStatus
@@ -2284,26 +2285,26 @@ End Class
 
 Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItemTypePintura)
 
-  Public Const Recubrimiento = 1
-  Public Const Diluyente = 2
-  Public Const Barniz = 3
-  Public Const Componentes = 4
-  Public Const Tintes = 5
-  Public Const Combustibles = 6
-  Public Const Pegamento = 7
-  Public Const AccesoriosPintura = 8
+  'Public Const Recubrimiento = 1
+  'Public Const Barniz = 3
+  'Public Const Componentes = 4
+  'Public Const Pegamento = 7
+  ' Public Const AccesoriosPintura = 8
 
 
   ''---------New Item types to improve this category
   Public Const Pintura As Integer = 9
   Public Const Acabado As Integer = 10
+  Public Const Diluyente = 2
+  Public Const Tintes = 5
   Public Const Adhesivo As Integer = 11
+  Public Const Combustibles = 6
   Public Const Lubricantes As Integer = 12
   Public Const Quimicos As Integer = 13
-
+  Public Const Otros = 99
   '------------------------------
 
-  Public Const Otros = 99
+
 
   Private Shared mSharedInstance As eStockItemTypePintura
 
@@ -2311,8 +2312,8 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     MyBase.New()
     Dim mType As clsStockItemTypePintura
 
-    mType = New clsStockItemTypePintura(Recubrimiento, "Recubrimiento para Madera", "RMA")
-    MyBase.Add(mType)
+    'mType = New clsStockItemTypePintura(Recubrimiento, "Recubrimiento para Madera", "RMA")
+    'MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Diluyente, "Diluyente", "DI")
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eDiluyenteSubItemType.Thinner, "Thinner", "TH"))
@@ -2323,12 +2324,12 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
 
     MyBase.Add(mType)
 
-    mType = New clsStockItemTypePintura(Barniz, "Barniz", "BAR")
-    MyBase.Add(mType)
+    'mType = New clsStockItemTypePintura(Barniz, "Barniz", "BAR")
+    'MyBase.Add(mType)
 
 
-    mType = New clsStockItemTypePintura(Componentes, "Componentes", "COM")
-    MyBase.Add(mType)
+    'mType = New clsStockItemTypePintura(Componentes, "Componentes", "COM")
+    'MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Tintes, "Tintes", "TI")
     MyBase.Add(mType)
@@ -2337,11 +2338,11 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     MyBase.Add(mType)
 
 
-    mType = New clsStockItemTypePintura(Pegamento, "Pegamento para Madera", "PEG")
-    MyBase.Add(mType)
+    'mType = New clsStockItemTypePintura(Pegamento, "Pegamento para Madera", "PEG")
+    'MyBase.Add(mType)
 
-    mType = New clsStockItemTypePintura(AccesoriosPintura, "Accesorios para Pintar", "ACP")
-    MyBase.Add(mType)
+    'mType = New clsStockItemTypePintura(AccesoriosPintura, "Accesorios para Pintar", "ACP")
+    'MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Pintura, "Pintura", "PI")
     mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(ePinturaSubItemType.BaseAgua, "Base Agua", "AG"))
@@ -2363,10 +2364,10 @@ Public Class eStockItemTypePintura : Inherits colPropertyENUMOfT(Of clsStockItem
     MyBase.Add(mType)
 
     mType = New clsStockItemTypePintura(Otros, "Los demás", "OTR")
-    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Masilla, "Masilla", "MA"))
-    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Epoxi, "Epoxi", "EP"))
-    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Silicon, "Silicon", "SI"))
-    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosSubItemType.Masilla, "Otros", "OT"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosPinturaSubItemType.Masilla, "Masilla", "MA"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosPinturaSubItemType.Epoxi, "Epoxi", "EP"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosPinturaSubItemType.Silicon, "Silicon", "SI"))
+    mType.StockSubItemTypePinturas.Add(New clsStockSubItemTypePintura(eOtrosPinturaSubItemType.Masilla, "Otros", "OT"))
 
     MyBase.Add(mType)
 
@@ -2468,7 +2469,7 @@ Public Enum eDiluyenteSubItemType
   Otros = 99
 End Enum
 
-Public Enum eOtrosSubItemType
+Public Enum eOtrosPinturaSubItemType
   Masilla = 1
   Epoxi = 2
   Silicon = 3
@@ -2659,11 +2660,13 @@ Public Enum ePODetailOption
   ManPO = 1
   NonManPO = 2
   General = 3
+  Maintenance = 4
 End Enum
 
 Public Enum ePOConsoleOption
   Housing = 1
   Furniture = 2
+  MaintenanceWorkOrder = 3
 End Enum
 
 Public Class clsEnumSalesOrderPhaseMilestone : Inherits clsPropertyENUM

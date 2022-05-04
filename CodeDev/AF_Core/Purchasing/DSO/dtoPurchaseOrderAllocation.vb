@@ -58,6 +58,9 @@ Public Class dtoPurchaseOrderAllocation : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "CallOffID", .CallOffID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "WorkOrderID", .WorkOrderID)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "SalesorderPhaseItemID", .SalesorderPhaseItemID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaintenanceWorkOrderID", .MaintenanceWorkOrderID)
+
+
 
     End With
 
@@ -74,6 +77,7 @@ Public Class dtoPurchaseOrderAllocation : Inherits dtoBase
         .CallOffID = DBReadInt32(rDataReader, "CallOffID")
         .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         .SalesorderPhaseItemID = DBReadInt32(rDataReader, "SalesorderPhaseItemID")
+        .MaintenanceWorkOrderID = DBReadInt32(rDataReader, "MaintenanceWorkOrderID")
         pPurchaseOrderAllocation.IsDirty = False
       End With
       mOK = True

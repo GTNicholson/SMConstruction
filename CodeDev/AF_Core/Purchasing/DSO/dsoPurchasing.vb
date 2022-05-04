@@ -87,6 +87,8 @@ Public Class dsoPurchasing
     Return mOK
   End Function
 
+
+
   Public Function LoadPurchaseOrderItemAllocationWorkOrderInfos(ByRef rPOItemWOAllocationInfos As colPurchaseOrderItemAllocationInfos, ByVal vWhere As String) As Boolean
     Dim mOK As Boolean = True
     Dim mdto As New dtoPurchaseOrderItemAllocationInfo(pDBConn, dtoPurchaseOrderItemAllocationInfo.eMode.WO)
