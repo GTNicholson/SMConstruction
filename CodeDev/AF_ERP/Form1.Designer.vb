@@ -637,101 +637,99 @@ Partial Class Form1
         Me.GridColumn1.Caption = "MaintenanceWorkOrderID"
         Me.GridColumn1.FieldName = "MaintenanceWorkOrderID"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "MaintenanceWorkOrderNo"
+        Me.GridColumn2.Caption = "Núm. Orden"
         Me.GridColumn2.FieldName = "MaintenanceWorkOrderNo"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.VisibleIndex = 0
         Me.GridColumn2.Width = 130
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Description"
+        Me.GridColumn3.Caption = "Descripción"
         Me.GridColumn3.FieldName = "Description"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 281
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "WorkCentreID"
+        Me.GridColumn4.Caption = "Área"
         Me.GridColumn4.FieldName = "WorkCentreID"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 205
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "EquipmentID"
+        Me.GridColumn5.Caption = "Equipo"
         Me.GridColumn5.FieldName = "EquipmentID"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 4
         Me.GridColumn5.Width = 221
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "MaintenanceType"
+        Me.GridColumn7.Caption = "Tipo Mant."
         Me.GridColumn7.FieldName = "MaintenanceType"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.VisibleIndex = 3
         Me.GridColumn7.Width = 238
         '
         'GridColumn8
         '
-        Me.GridColumn8.Caption = "EmployeeID"
+        Me.GridColumn8.Caption = "Realizado por"
         Me.GridColumn8.FieldName = "EmployeeID"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
+        Me.GridColumn8.VisibleIndex = 5
         '
         'GridColumn6
         '
-        Me.GridColumn6.Caption = "Priority"
+        Me.GridColumn6.Caption = "Prioridad"
         Me.GridColumn6.FieldName = "Priority"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 6
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "PlannedDate"
+        Me.GridColumn9.Caption = "Fecha Plan."
         Me.GridColumn9.FieldName = "PlannedDate"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
+        Me.GridColumn9.VisibleIndex = 7
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Status"
+        Me.GridColumn10.Caption = "Estado"
         Me.GridColumn10.FieldName = "Status"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 9
+        Me.GridColumn10.VisibleIndex = 8
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Duration"
+        Me.GridColumn11.Caption = "Duración Est."
         Me.GridColumn11.FieldName = "Duration"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 10
+        Me.GridColumn11.VisibleIndex = 9
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Notes"
+        Me.GridColumn12.Caption = "Comentarios"
         Me.GridColumn12.FieldName = "Notes"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 11
+        Me.GridColumn12.VisibleIndex = 10
         '
         'RepositoryItemDateEdit1
         '

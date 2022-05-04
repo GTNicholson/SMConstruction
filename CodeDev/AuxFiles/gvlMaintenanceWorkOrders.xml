@@ -74,8 +74,6 @@
       <property name="ImageIndex">-1</property>
       <property name="FieldName">MaintenanceWorkOrderID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">0</property>
-      <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>
       <property name="MaxWidth">0</property>
@@ -83,12 +81,12 @@
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
-      <property name="Caption">MaintenanceWorkOrderNo</property>
+      <property name="Caption">Núm. Orden</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">MaintenanceWorkOrderNo</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">1</property>
+      <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">130</property>
       <property name="MinWidth">20</property>
@@ -97,12 +95,12 @@
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
-      <property name="Caption">Description</property>
+      <property name="Caption">Descripción</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">281</property>
       <property name="MinWidth">20</property>
@@ -111,12 +109,12 @@
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
-      <property name="Caption">WorkCentreID</property>
+      <property name="Caption">Área</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">WorkCentreID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">2</property>
       <property name="Visible">true</property>
       <property name="Width">205</property>
       <property name="MinWidth">20</property>
@@ -125,12 +123,12 @@
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
-      <property name="Caption">EquipmentID</property>
+      <property name="Caption">Equipo</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">EquipmentID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">221</property>
       <property name="MinWidth">20</property>
@@ -139,12 +137,12 @@
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
-      <property name="Caption">MaintenanceType</property>
+      <property name="Caption">Tipo Mant.</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">MaintenanceType</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">3</property>
       <property name="Visible">true</property>
       <property name="Width">238</property>
       <property name="MinWidth">20</property>
@@ -153,12 +151,12 @@
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
-      <property name="Caption">EmployeeID</property>
+      <property name="Caption">Realizado por</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">EmployeeID</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>
@@ -167,12 +165,12 @@
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
-      <property name="Caption">Priority</property>
+      <property name="Caption">Prioridad</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">Priority</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>
@@ -181,12 +179,12 @@
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
-      <property name="Caption">PlannedDate</property>
+      <property name="Caption">Fecha Plan.</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">PlannedDate</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>
@@ -195,12 +193,12 @@
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
-      <property name="Caption">Status</property>
+      <property name="Caption">Estado</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">Status</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>
@@ -209,12 +207,12 @@
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
-      <property name="Caption">Duration</property>
+      <property name="Caption">Duración Est.</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">Duration</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>
@@ -223,12 +221,12 @@
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
-      <property name="Caption">Notes</property>
+      <property name="Caption">Comentarios</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
       <property name="FieldName">Notes</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
       <property name="Width">75</property>
       <property name="MinWidth">20</property>

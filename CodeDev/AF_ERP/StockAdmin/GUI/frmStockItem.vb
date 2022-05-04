@@ -567,7 +567,7 @@ Public Class frmStockItem
 
 
             Select Case mItemType.ItemValue
-              Case eStockItemTypePintura.Pintura, eStockItemTypePintura.Acabado
+              Case eStockItemTypePintura.Pintura, eStockItemTypePintura.Acabado, eStockItemTypePintura.Diluyente, eStockItemTypePintura.Otros
                 clsDEControlLoading.FillDEComboVI(cboItemSubType, mItemType.StockSubItemTypePinturas.SortedValueItems)
                 cboItemSubType.Enabled = True
 
@@ -1148,40 +1148,43 @@ Public Class frmStockItem
       mVal = clsStockItemSharedFuncs.IsStockCodeSpecValid(pFormController.CurrentStockItem)
 
       If mVal.ValOk Then
+        Dim mStockCategory As clsStockItemCategoryBase = eStockItemCategoryEnums.GetInstance.ItemFromCategory(pFormController.CurrentStockItem.Category)
 
-        mStockCodeStem = eStockItemCategoryEnums.GetInstance.ItemFromCategory(pFormController.CurrentStockItem.Category).GetStockCode(pFormController.CurrentStockItem)
-
-        If pFormController.CurrentStockItem.PartNo = "" Then
-          mStockCodeStem = mStockCodeStem & "." & pFormController.GetNextStockCodeSuffix(mStockCodeStem)
+        If mStockCategory IsNot Nothing Then
+          mStockCodeStem = mStockCategory.GetStockCode(pFormController.CurrentStockItem)
         End If
 
+        If pFormController.CurrentStockItem.PartNo = "" Then
+            mStockCodeStem = mStockCodeStem & "." & pFormController.GetNextStockCodeSuffix(mStockCodeStem)
+          End If
 
-        If pFormController.CheckStockCodeExists(mStockCodeStem) Then
+
+          If pFormController.CheckStockCodeExists(mStockCodeStem) Then
             If MsgBox("El Código " & mStockCodeStem & " ya existe. Por favor revisar " & vbCrLf & mVal.Msg & vbCrLf & "¿Desea guardar de cualquier forma?", vbYesNo) = vbYes Then
 
               If pFormController.SaveCurrentItemGenerateCode(mStockCodeStem) Then
-              'If pFormController.IsSaveByRecord Then '' Save each item as you go
-              '  pFormController.ReleaseCurrentLock()
-              'End If
-              '  pCurrentDetailMode = eCurrentDetailMode.eView
-            End If
+                'If pFormController.IsSaveByRecord Then '' Save each item as you go
+                '  pFormController.ReleaseCurrentLock()
+                'End If
+                '  pCurrentDetailMode = eCurrentDetailMode.eView
+              End If
             Else
               If pFormController.SaveObject Then
-              'If pFormController.IsSaveByRecord Then '' Save each item as you go
-              '  pFormController.ReleaseCurrentLock()
-              'End If
-              '   pCurrentDetailMode = eCurrentDetailMode.eView
-            End If
+                'If pFormController.IsSaveByRecord Then '' Save each item as you go
+                '  pFormController.ReleaseCurrentLock()
+                'End If
+                '   pCurrentDetailMode = eCurrentDetailMode.eView
+              End If
 
             End If
 
           ElseIf MsgBox("El código de este artículo será registrado de la siguiente forma: " & vbCrLf & mStockCodeStem & "###" & vbCrLf & "¿Desea continuar y guardar el artículo?", vbYesNo) = vbYes Then
             If pFormController.SaveCurrentItemGenerateCode(mStockCodeStem) Then
-            'If pFormController.IsSaveByRecord Then '' Save each item as you go
-            '  pFormController.ReleaseCurrentLock()
-            'End If
-            '  pCurrentDetailMode = eCurrentDetailMode.eView
-          End If
+              'If pFormController.IsSaveByRecord Then '' Save each item as you go
+              '  pFormController.ReleaseCurrentLock()
+              'End If
+              '  pCurrentDetailMode = eCurrentDetailMode.eView
+            End If
           End If
 
         Else
@@ -1237,5 +1240,67 @@ Public Class frmStockItem
 
   End Sub
 
+  Private Sub bbtnSelectVisible_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnSelectVisible.ItemClick
+    Dim mStockItemInfoVisibles As List(Of dmStockItem)
+    mStockItemInfoVisibles = GetVisibleStockItemInfos()
+    pFormController.SelectedItems.Clear()
+
+    For Each mStockItemInfo As dmStockItem In mStockItemInfoVisibles
+      If mStockItemInfo IsNot Nothing Then
+
+        mStockItemInfo.IsSelected = True
+        pFormController.SelectedItems.Add(mStockItemInfo)
+      End If
+    Next
+    RefreshGridAndKeepSelectedRow(gvStockItems)
+    RefreshSelectedItemButtons()
+    RefreshControls()
+  End Sub
+
+
+  Private Function GetVisibleStockItemInfos() As List(Of dmStockItem)
+    Dim mSIInfos As New List(Of dmStockItem)
+    Dim mTmpSIInfo As dmStockItem
+    Dim mLoop As Int32
+
+    Try
+
+      For mLoop = 0 To gvStockItems.DataRowCount - 1
+        mTmpSIInfo = gvStockItems.GetRow(mLoop)
+        mSIInfos.Add(mTmpSIInfo)
+      Next
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+    End Try
+
+    Return mSIInfos
+  End Function
+
+
+
+  Private Sub RefreshGridAndKeepSelectedRow(ByVal vGridView As DevExpress.XtraGrid.Views.Grid.GridView)
+    Dim mIndex As Integer = vGridView.GetDataSourceRowIndex(vGridView.FocusedRowHandle)
+    vGridView.RefreshData()
+    Dim rowHandle As Integer = vGridView.GetRowHandle(mIndex)
+    vGridView.FocusedRowHandle = rowHandle
+  End Sub
+
+  Private Sub bbtnClear_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnClear.ItemClick
+    Dim mStockItemInfoVisibles As List(Of dmStockItem)
+    mStockItemInfoVisibles = GetVisibleStockItemInfos()
+    pFormController.SelectedItems.Clear()
+
+    For Each mStockItemInfo As dmStockItem In mStockItemInfoVisibles
+      If mStockItemInfo IsNot Nothing Then
+
+        mStockItemInfo.IsSelected = False
+        pFormController.SelectedItems.Add(mStockItemInfo)
+      End If
+    Next
+    RefreshGridAndKeepSelectedRow(gvStockItems)
+    RefreshSelectedItemButtons()
+    RefreshControls()
+  End Sub
 End Class
 

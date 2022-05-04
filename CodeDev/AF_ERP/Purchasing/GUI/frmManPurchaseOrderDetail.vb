@@ -88,25 +88,6 @@ Public Class frmManPurchaseOrderDetail
 
 
 
-  Public Shared Sub OpenFormAsModal(ByRef rParentForm As Windows.Forms.Form, ByRef rDBConn As clsDBConnBase, ByRef rRTISGlobal As clsRTISGlobal, ByRef vPrimaryKeyID As Integer, ByVal vFormMode As eFormMode)
-    Dim mfrm As New frmManPurchaseOrderDetail
-    mfrm.FormController = New fccPurchaseOrder(rDBConn, rRTISGlobal)
-    mfrm.FormController.DBConn = rDBConn
-    mfrm.FormController.RTISGlobal = rRTISGlobal
-    mfrm.FormController.PrimaryKeyID = vPrimaryKeyID
-    mfrm.FormController.POOption = ePODetailOption.ManPO
-    mfrm.FormMode = vFormMode
-    mfrm.Owner = rParentForm
-    mfrm.ShowDialog()
-    If mfrm.ExitMode = Windows.Forms.DialogResult.Yes Then
-      ''vPrimaryKeyID = mfrm.FormController.PrimaryKeyID - Problem with .FormController being set to nothing
-    End If
-    mfrm.FormController = Nothing
-    mfrm.Owner = Nothing
-    mfrm.Dispose()
-    mfrm = Nothing
-  End Sub
-
   Private Shared Function GetFormIfLoaded(ByVal vPrimaryKeyID As Integer) As frmManPurchaseOrderDetail
     Dim mfrmWanted As frmManPurchaseOrderDetail = Nothing
     Dim mFound As Boolean = False

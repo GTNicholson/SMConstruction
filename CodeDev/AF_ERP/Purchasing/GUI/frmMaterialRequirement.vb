@@ -117,6 +117,12 @@ Public Class frmMaterialRequirement
           gcSOIDescription.Visible = False
           gcWODescription.GroupIndex = 1
           gcWODescription.Visible = False
+
+        Case ePOConsoleOption.MaintenanceWorkOrder
+          gcSOIDescription.Visible = False
+          gcWODescription.GroupIndex = 1
+          gcWODescription.Visible = False
+
         Case ePOConsoleOption.Housing
           gcSOIDescription.Visible = True
           gcSOIDescription.GroupIndex = 1

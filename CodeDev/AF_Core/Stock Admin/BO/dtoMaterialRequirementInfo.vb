@@ -14,6 +14,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
     Info = 1
     Processor = 2
     WoodMat = 3
+    MaintenanceItem = 4
   End Enum
 
 
@@ -33,6 +34,10 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         pKeyFieldName = "MaterialRequirementID"
       Case eMode.WoodMat
         pTableName = "vwWoodMatReqInfo"
+        pKeyFieldName = "MaterialRequirementID"
+
+      Case eMode.MaintenanceItem
+        pTableName = "vwMaintenanceMaterialRequirementPicking"
         pKeyFieldName = "MaterialRequirementID"
     End Select
 
@@ -181,6 +186,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
 
 
           With pMaterialRequirment.WorkOrder
+
             .WorkOrderNo = DBReadString(rDataReader, "WorkOrderNo")
             .Description = DBReadString(rDataReader, "Description")
             .PlannedStartDate = DBReadDate(rDataReader, "PlannedStartDate")
@@ -200,6 +206,62 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
           With pMaterialRequirment.StockItem
             .StockItemID = DBReadInt32(rDataReader, "StockItemID")
           End With
+
+
+        Case eMode.MaintenanceItem
+
+
+
+          pMaterialRequirment.OSQty = DBReadDecimal(rDataReader, "OSQty")
+          pMaterialRequirment.StockItemLocationsQty = DBReadDecimal(rDataReader, "StockItemLocationsQty")
+          pMaterialRequirment.OrderedQty = DBReadDecimal(rDataReader, "OrderedQty")
+          pMaterialRequirment.ReceivedQty = DBReadDecimal(rDataReader, "ReceivedQty")
+          pMaterialRequirment.CurrentOrderQty = DBReadDecimal(rDataReader, "CurrentOrderQty")
+          pMaterialRequirment.TotalOTQuantity = DBReadDecimal(rDataReader, "TotalAreaQuantity")
+          pMaterialRequirment.OutstandingFromStockQtyHousing = DBReadDecimal(rDataReader, "OutstandingFromStockQty") ' DBReadDecimal(rDataReader, "OutstandingFromStockQtyHousing")
+
+          With pMaterialRequirment.MaterialRequirement
+
+            .MaterialRequirementID = DBReadInt32(rDataReader, "MaterialRequirementID")
+            .StockCode = DBReadString(rDataReader, "StockCode")
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+            .AreaID = DBReadInt32(rDataReader, "AreaID")
+            .Comments = DBReadString(rDataReader, "Comments")
+            .MaterialRequirementType = DBReadByte(rDataReader, "MaterialRequirementType")
+            .Quantity = DBReadDecimal(rDataReader, "Quantity")
+            .UoM = DBReadInt32(rDataReader, "UoM")
+            .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
+            .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
+            .ObjectID = DBReadInt32(rDataReader, "MaintenanceWorkOrderItemID")
+            .Description = DBReadString(rDataReader, "Description")
+            .FromStockQty = DBReadDecimal(rDataReader, "FromStockQty")
+            .SetReturndQty(DBReadDecimal(rDataReader, "ReturnQty"))
+            .IsFromStockValidated = DBReadBoolean(rDataReader, "IsFromStockValidated")
+            .DateChange = DBReadDate(rDataReader, "DateChange")
+          End With
+
+
+          With pMaterialRequirment.StockItem
+            .StockItemID = DBReadInt32(rDataReader, "StockItemID")
+            .StockCode = DBReadString(rDataReader, "STOCKITEMCODE")
+            .Category = DBReadByte(rDataReader, "Category")
+            .PartNo = DBReadString(rDataReader, "PartNo")
+            .Description = DBReadString(rDataReader, "SIDESCRIPTION")
+            .AverageCost = DBReadDecimal(rDataReader, "AverageCost")
+            .StdCost = DBReadDecimal(rDataReader, "StdCost")
+
+          End With
+
+
+          With pMaterialRequirment
+            .MaintenanceWorkOrderNo = DBReadString(rDataReader, "MaintenanceWorkOrderNo")
+            .MaintenanceDescription = DBReadString(rDataReader, "WODESCRIPTION")
+            .MaintenancePlannedDate = DBReadDate(rDataReader, "PlannedDate")
+            .MachineryDescription = DBReadString(rDataReader, "MachineryDescription")
+            .MaintenanceType = DBReadByte(rDataReader, "MaintenanceType")
+
+          End With
+
       End Select
 
 
@@ -232,6 +294,8 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         pMaterialRequirment = New clsMaterialRequirementProcessor(New dmMaterialRequirement)
       Case eMode.WoodMat
         pMaterialRequirment = New clsMaterialRequirementInfo
+      Case eMode.MaintenanceItem
+        pMaterialRequirment = New clsMaterialRequirementProcessor(New dmMaterialRequirement)
     End Select
 
 

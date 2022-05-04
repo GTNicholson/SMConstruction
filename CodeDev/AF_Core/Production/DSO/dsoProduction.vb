@@ -95,17 +95,38 @@ Public Class dsoProduction
     End Try
   End Sub
 
-  Public Function LoadMaintenanceWorkOrder(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vPrimaryKeyID As Integer) As Boolean
+
+  Public Function SaveMaterialRequirement(ByRef rMaterialRequirement As dmMaterialRequirement) As Boolean
+    Dim mdto As dtoMaterialRequirement
+
+    Dim mRetVal As Boolean
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirement(pDBConn)
+      mdto.SaveMaterialRequirement(rMaterialRequirement)
+
+      mRetVal = True
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Function LoadMaintenanceWorkOrderDown(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoMaintenanceWorkOrder
     Dim mdtoItem As dtoMaintenanceWorkOrderItem
     Dim mdtoMachinery As dtoMachinery
+    Dim mdtoMaterialRequirement As dtoMaterialRequirement
 
     Try
       mdto = New dtoMaintenanceWorkOrder(pDBConn)
       mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
       mdtoMachinery = New dtoMachinery(pDBConn)
-
+      mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
       If pDBConn.Connect Then
 
         mRetVal = mdto.LoadMaintenanceWorkOrder(rMaintenanceWorkOrder, vPrimaryKeyID)
@@ -115,6 +136,16 @@ Public Class dsoProduction
 
         If mRetVal Then mdtoMachinery.LoadMachinery(rMaintenanceWorkOrder.Machinery, rMaintenanceWorkOrder.EquipmentID)
 
+
+        For Each mItem In rMaintenanceWorkOrder.MaitenanceWorkOrderItems
+          Dim mCol As New colMaterialRequirements
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mCol, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderItemID, eMaterialRequirementType.MaintenanceItem)
+
+          If mCol IsNot Nothing AndAlso mCol.Count > 0 Then
+            mItem.MaterialRequirement = mCol(0)
+          End If
+
+        Next
       End If
 
 
@@ -237,6 +268,71 @@ Public Class dsoProduction
       mdto = New dtoTimeSheetEntryInfo(pDBConn)
 
       mdto.LoadTimeSheetEntryInfoCollectionByWhere(rTimeSheetProject, vWhere)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+  End Sub
+
+  Public Function LoadMaintenanceWorkOrderDownByWhere(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vWhere As String) As Boolean
+    Dim mRetVal As Boolean
+    Dim mdto As dtoMaintenanceWorkOrder
+    Dim mdtoItem As dtoMaintenanceWorkOrderItem
+    Dim mdtoMachinery As dtoMachinery
+    Dim mdtoMaterialRequirement As dtoMaterialRequirement
+    Dim mCol As New colMaintenanceWorkOrders
+    Try
+      mdto = New dtoMaintenanceWorkOrder(pDBConn)
+      mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
+      mdtoMachinery = New dtoMachinery(pDBConn)
+      mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
+      If pDBConn.Connect Then
+
+        mRetVal = mdto.LoadMaintenanceWorkOrderCollectionByWhere(mCol, vWhere)
+
+        If mRetVal AndAlso mCol.Count > 0 Then
+          rMaintenanceWorkOrder = mCol(0)
+        Else
+
+          mRetVal = False
+        End If
+        If mRetVal Then mdtoItem.LoadMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, rMaintenanceWorkOrder.MaintenanceWorkOrderID)
+
+        If mRetVal Then mdtoMachinery.LoadMachinery(rMaintenanceWorkOrder.Machinery, rMaintenanceWorkOrder.EquipmentID)
+
+
+        For Each mItem In rMaintenanceWorkOrder.MaitenanceWorkOrderItems
+          Dim mColMat As New colMaterialRequirements
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mColMat, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderItemID, eMaterialRequirementType.MaintenanceItem)
+
+          If mCol IsNot Nothing AndAlso mCol.Count > 0 Then
+            mItem.MaterialRequirement = mColMat(0)
+          End If
+
+        Next
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+    Return mRetVal
+  End Function
+
+  Public Sub LoadMaintenanceWorkOrders(ByRef rMaintenanceWorkOrders As colMaintenanceWorkOrders, ByVal vWhere As String)
+    Dim mdto As New dtoMaintenanceWorkOrder(pDBConn)
+
+    Try
+
+      If pDBConn.Connect Then
+
+        mdto.LoadMaintenanceWorkOrderCollectionByWhere(rMaintenanceWorkOrders, vWhere)
+      End If
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw

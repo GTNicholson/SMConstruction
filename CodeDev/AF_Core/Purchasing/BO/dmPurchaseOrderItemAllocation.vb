@@ -16,6 +16,7 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
   Private pProjectRef As String
   Private pSalesorderPhaseItemID As Integer
   Private pTempTotalValue As String
+  Private pMaintenanceWorkOrderID As Integer
 
   Public Sub New()
     MyBase.New()
@@ -62,6 +63,7 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
       .ItemRef2 = ItemRef2
       .ProjectRef = ProjectRef
       .SalesorderPhaseItemID = SalesorderPhaseItemID
+      .MaintenanceWorkOrderID = MaintenanceWorkOrderID
       'Entries for object management
 
       .IsDirty = IsDirty
@@ -249,6 +251,16 @@ Public Class dmPurchaseOrderItemAllocation : Inherits dmBase
 
       Return mRetVal
     End Get
+  End Property
+
+  Public Property MaintenanceWorkOrderID As Integer
+    Get
+      Return pMaintenanceWorkOrderID
+    End Get
+    Set(value As Integer)
+      If pMaintenanceWorkOrderID <> value Then IsDirty = True
+      pMaintenanceWorkOrderID = value
+    End Set
   End Property
 End Class
 

@@ -129,7 +129,16 @@ Public Class frmPurchaseOrderConsole
 
   Private Sub bbtnCreateNewPurchaseOrder_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbtnCreateNewPurchaseOrder.ItemClick
     Try
-      frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, 0, eFormMode.eFMFormModeAdd, ePODetailOption.ManPO)
+
+      Select Case FormController.OptionConsole
+        Case ePOConsoleOption.MaintenanceWorkOrder
+          frmPurchaseOrderDetailMaintenance.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, 0, eFormMode.eFMFormModeAdd, ePODetailOption.Maintenance)
+
+        Case Else
+          frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, 0, eFormMode.eFMFormModeAdd, ePODetailOption.ManPO)
+
+      End Select
+
       'frmManPurchaseOrderDetail.OpenFormMDI(0, pFormController.DBConn, pFormController.RTISGlobal, Me., ePODetailOption.ManPO)
 
     Catch ex As Exception
@@ -199,6 +208,10 @@ Public Class frmPurchaseOrderConsole
 
       Case ePOConsoleOption.Furniture
         frmMaterialRequirement.OpenFormAsMDIChild(Me, pFormController.RTISGlobal, pFormController.DBConn, 0, ePOConsoleOption.Furniture)
+
+
+      Case ePOConsoleOption.MaintenanceWorkOrder
+        frmMaterialRequirementMaintenance.OpenFormAsMDIChild(Me, pFormController.RTISGlobal, pFormController.DBConn, 0, ePOConsoleOption.MaintenanceWorkOrder)
 
     End Select
 
@@ -297,7 +310,14 @@ Public Class frmPurchaseOrderConsole
     Try
       mPOInfo = frmPickerPurchaseOrder.OpenPickerSingle(mPicker)
       If mPOInfo IsNot Nothing Then
-        frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit, ePODetailOption.ManPO)
+
+        Select Case pFormController.OptionConsole
+          Case ePOConsoleOption.MaintenanceWorkOrder
+
+          Case Else
+            frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit, ePODetailOption.ManPO)
+
+        End Select
       End If
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

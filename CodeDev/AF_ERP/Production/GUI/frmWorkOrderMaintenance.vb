@@ -171,6 +171,7 @@ Public Class frmWorkOrderMaintenance
 
     If pFormController.MaintenanceWorkOrder IsNot Nothing Then
       With pFormController.MaintenanceWorkOrder
+        gvMaintenanceItems.CloseEditor()
 
         .Description = txtDescription.Text
         .WorkCentreID = clsDEControlLoading.GetDEComboValue(cboWorkCentreID)
@@ -182,6 +183,7 @@ Public Class frmWorkOrderMaintenance
         .Duration = txtDuration.EditValue
         .Notes = txtNotes.Text
         .MaintenanceWorkOrderDocument = btnMaintenanceWorkOrderDocument.Text
+
       End With
 
     End If
@@ -382,7 +384,6 @@ Public Class frmWorkOrderMaintenance
                 mPOItem.StockItemID = mSelectedItem.StockItemID
                 mPOItem.Quantity = 1
                 mPOItem.UnitCost = mSelectedItem.AverageCost
-
 
                 pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Add(mPOItem)
               End If

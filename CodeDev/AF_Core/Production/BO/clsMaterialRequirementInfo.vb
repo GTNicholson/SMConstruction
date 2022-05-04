@@ -915,6 +915,21 @@ Public Class clsMaterialRequirementInfo
     End Get
   End Property
 
+  Public Property MaintenanceWorkOrderNo As String
+  Public Property MaintenanceDescription As String
+  Public Property MaintenancePlannedDate As Date
+  Public Property MachineryDescription As String
+  Public Property MaintenanceType As Byte
+
+  Public ReadOnly Property MaintenanceTypeDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      mRetVal = clsEnumsConstants.GetEnumDescription(GetType(eMaintenanceType), CType(MaintenanceType, eMaintenanceType))
+      Return mRetVal
+    End Get
+
+  End Property
 End Class
 
 

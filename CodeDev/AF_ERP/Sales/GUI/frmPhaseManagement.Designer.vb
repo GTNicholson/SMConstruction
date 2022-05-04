@@ -800,7 +800,7 @@ Partial Class frmPhaseManagement
         '
         Me.XtraTabPage2.Name = "XtraTabPage2"
         Me.XtraTabPage2.PageVisible = False
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1462, 705)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1468, 709)
         Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'PopupMenu1

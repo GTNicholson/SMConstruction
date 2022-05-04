@@ -1,0 +1,79 @@
+alter table MaterialRequirement
+alter column StockCode varchar (50)
+go
+
+alter table MaterialRequirement
+alter column Description varchar (max)
+go
+
+
+create VIEW [dbo].[vwMRAllQuantityMaintenance]
+as
+select
+MR.StockItemID,
+MR.ObjectID,
+SUM(MR.Quantity) TotalQuantityRequired
+from MaterialRequirement MR 
+WHERE MaterialRequirementType IN (5)
+GROUP BY MR.StockItemID,MR.ObjectID
+GO
+
+
+create view [dbo].[vwMaintenanceMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.ReturnQty,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.NetLenght,
+MR.NetWidth,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+MR.FromStockQty,
+MR.IsFromStockValidated,
+MR.DateChange,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+MWO.MaintenanceWorkOrderID,
+MWO.MaintenanceWorkOrderNo,
+MWO.Description as 'WODESCRIPTION',
+MWO.PlannedDate,
+MWO.Status,
+mwo.EquipmentID,
+mwo.WorkCentreID,
+
+isnull(MR.Quantity,0)-isnull(MR.PickedQty,0) AS 'OSQty',
+isnull(sil.Qty,0) StockItemLocationsQty,
+isnull(vwOQWOSum.OrderedQty,0) OrderedQty,
+isnull(vwOQWOSum.ReceivedQty,0) ReceivedQty,
+isnull(vwOQWOSum.CurrentOrderQty,0) CurrentOrderQty,
+isnull(vwMRAQWO.TotalQuantityRequired,0) TotalAreaQuantity,
+vwFSOQDS.OutstandingFromStockQty
+
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID 
+INNER JOIN MaintenanceWorkOrderItem MWOI ON MWOI.MaintenanceWorkOrderItemID=MR.ObjectID
+INNER JOIN MaintenanceWorkOrder MWO ON MWO.MaintenanceWorkOrderID=MWOI.MaintenanceWorkOrderID AND Status NOT IN (3)
+LEFT JOIN StockItemLocation SIL ON SIL.StockItemID=SI.StockItemID
+left join vwOrderedQuantityWOSummary vwOQWOSum on vwOQWOSum.WorkOrderID=MWO.MaintenanceWorkOrderID and vwOQWOSum.StockItemID=si.StockItemID
+left join vwMRAllQuantityMaintenance vwMRAQWO on vwMRAQWO.StockItemID=si.StockItemID and vwMRAQWO.ObjectID=mr.ObjectID
+LEFT JOIN vwFromStockOutstandingQtyDetailSummary vwFSOQDS on vwFSOQDS.StockItemID=SI.StockItemID
+WHERE MR.MaterialRequirementType =5
+
+GO
+
+
