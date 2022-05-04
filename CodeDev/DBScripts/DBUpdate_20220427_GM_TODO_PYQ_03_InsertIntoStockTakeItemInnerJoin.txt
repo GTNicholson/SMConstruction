@@ -1,4 +1,4 @@
---StockTakeID = 1014 needs to match to new Stock Take 
 Insert Into StockTakeItem (StockTakeID, StockItemLocationID, StockItemID, CountedQty, IsCounted)
---select 1014 As StockTakeID, 1 As LocationID,StockItemID, CountedQty,1 As IsCounted from tmpStockItemImport
+select 1015 As StockTakeID, 1 As LocationID,StockItemID, CountedQty,1 As IsCounted from tmpStockItemImport
 INNER JOIN StockItem ON StockItem.ShortDescription = tmpStockItemImport.ShortDescription
+GO
