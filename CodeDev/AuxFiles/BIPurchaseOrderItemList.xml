@@ -1,5 +1,6 @@
 ﻿<XtraSerializer version="1.0" application="View">
   <property name="#LayoutVersion" />
+  <property name="#LayoutScaleFactor">@1,Width=1@1,Height=1</property>
   <property name="Appearance" isnull="true" iskey="true">
     <property name="HeaderPanel" iskey="true" value="HeaderPanel">
       <property name="Options" isnull="true" iskey="true">
@@ -64,22 +65,22 @@
   <property name="FocusRectStyle">CellFocus</property>
   <property name="HorzScrollStep">0</property>
   <property name="ActiveFilterEnabled">true</property>
-  <property name="OptionsLayout" isnull="true" iskey="true">
-    <property name="StoreAllOptions">true</property>
-    <property name="Columns" isnull="true" iskey="true">
-      <property name="StoreAllOptions">true</property>
-    </property>
-  </property>
   <property name="ViewCaptionHeight">-1</property>
-  <property name="Columns" iskey="true" value="24">
+  <property name="Columns" iskey="true" value="26">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
       <property name="OptionsColumn" isnull="true" iskey="true">
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">PurchaseOrderItemID</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">PurchaseOrderItemID</property>
       <property name="ColumnEditName">RepositoryItemDateEdit2</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
@@ -87,15 +88,20 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">Descripción</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">Description</property>
       <property name="ColumnEditName">RepositoryItemTextEdit1</property>
-      <property name="VisibleIndex">6</property>
+      <property name="VisibleIndex">8</property>
       <property name="Visible">true</property>
       <property name="Width">275</property>
       <property name="GroupFormat" isnull="true" iskey="true">
         <property name="FormatString">0</property>
         <property name="FormatType">Numeric</property>
       </property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
@@ -103,165 +109,270 @@
         <property name="ReadOnly">true</property>
       </property>
       <property name="Caption">UdM</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">UoMDesc</property>
       <property name="ColumnEditName">RepositoryItemTextEdit1</property>
-      <property name="VisibleIndex">8</property>
+      <property name="VisibleIndex">10</property>
       <property name="Visible">true</property>
       <property name="Width">57</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
       <property name="Caption">Código</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">StockCode</property>
       <property name="ColumnEditName">RepositoryItemDateEdit1</property>
-      <property name="VisibleIndex">5</property>
+      <property name="VisibleIndex">7</property>
       <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
       <property name="Caption">Cant. Req.</property>
-      <property name="FieldName">QtyRequired</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
+      <property name="FieldName">Quantity</property>
       <property name="ColumnEditName">RepositoryItemDateEdit5</property>
-      <property name="VisibleIndex">10</property>
+      <property name="VisibleIndex">12</property>
       <property name="Visible">true</property>
       <property name="Width">85</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
-      <property name="Caption">Precio Unit.</property>
+      <property name="Caption">Precio Unit. (USD)</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">UnitPriceUSD</property>
       <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
-      <property name="VisibleIndex">9</property>
+      <property name="VisibleIndex">11</property>
       <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
       <property name="Caption">PurchaseOrderItemAllocationID</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">PurchaseOrderItemAllocationID</property>
       <property name="ColumnEditName">repitDateDefault</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
       <property name="Caption">Cant. Rec.</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">ReceivedQty</property>
       <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
-      <property name="VisibleIndex">11</property>
+      <property name="VisibleIndex">13</property>
       <property name="Visible">true</property>
       <property name="Width">95</property>
       <property name="GroupFormat" isnull="true" iskey="true">
         <property name="FormatString" />
         <property name="FormatType">Numeric</property>
       </property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
       <property name="Caption">Cat. Compra</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">PurchaseCategory</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">2</property>
+      <property name="VisibleIndex">4</property>
       <property name="Visible">true</property>
       <property name="Width">120</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
-      <property name="Caption">Transporte</property>
+      <property name="Caption">Transporte (USD)</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">CarriageUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">12</property>
+      <property name="VisibleIndex">14</property>
       <property name="Visible">true</property>
       <property name="Width">87</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn13</property>
       <property name="Caption">DefaultCurrency</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">DefaultCurrency</property>
       <property name="ColumnEditName">RepositoryItemLookUpEdit1</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn14</property>
       <property name="Caption">Tasa de Cambio</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">ExchangeRateValue</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">4</property>
+      <property name="VisibleIndex">6</property>
       <property name="Visible">true</property>
       <property name="Width">95</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item13" isnull="true" iskey="true">
       <property name="Name">GridColumn16</property>
       <property name="Caption">RefMatType</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">RefMatType</property>
       <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item14" isnull="true" iskey="true">
       <property name="Name">GridColumn17</property>
       <property name="Caption">Fecha Req.</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">RequiredDate</property>
       <property name="ColumnEditName">RepositoryItemTextEdit1</property>
-      <property name="VisibleIndex">3</property>
+      <property name="VisibleIndex">5</property>
       <property name="Visible">true</property>
       <property name="Width">105</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item15" isnull="true" iskey="true">
       <property name="Name">GridColumn18</property>
       <property name="Caption">Status</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">Status</property>
       <property name="ColumnEditName">RepositoryItemTextEdit1</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item16" isnull="true" iskey="true">
       <property name="Name">GridColumn19</property>
       <property name="Caption">SubmissionDate</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">SubmissionDate</property>
       <property name="ColumnEditName" />
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item17" isnull="true" iskey="true">
       <property name="Name">GridColumn20</property>
       <property name="Caption"># O.C.</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">PONum</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">1</property>
       <property name="Visible">true</property>
       <property name="Width">85</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item18" isnull="true" iskey="true">
       <property name="Name">GridColumn22</property>
       <property name="Caption">StockItemID</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">StockItemID</property>
       <property name="ColumnEditName" />
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item19" isnull="true" iskey="true">
       <property name="Name">GridColumn23</property>
       <property name="Caption">Categoría Item</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">StockitemCategoryDesc</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">7</property>
+      <property name="VisibleIndex">9</property>
       <property name="Visible">true</property>
       <property name="Width">97</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item20" isnull="true" iskey="true">
       <property name="Name">GridColumn27</property>
       <property name="Caption">Proyecto</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">ProjectName</property>
       <property name="ColumnEditName" />
       <property name="VisibleIndex">0</property>
       <property name="Visible">true</property>
       <property name="Width">204</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
     <property name="Item21" isnull="true" iskey="true">
       <property name="Name">GridColumn31</property>
-      <property name="Caption">Monto USD</property>
+      <property name="Caption">Monto Neto USD</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">TotalPurchaseOrderItemAmountUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">13</property>
+      <property name="VisibleIndex">15</property>
       <property name="Visible">true</property>
+      <property name="Width">75</property>
       <property name="DisplayFormat" isnull="true" iskey="true">
         <property name="FormatString">N2</property>
         <property name="FormatType">Numeric</property>
       </property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
           <property name="FieldName">TotalPurchaseOrderItemAmountUSD</property>
           <property name="SummaryType">Sum</property>
+          <property name="Mode">AllRows</property>
           <property name="DisplayFormat">{0:N2}</property>
         </property>
       </property>
@@ -269,31 +380,45 @@
     <property name="Item22" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
       <property name="Caption">IVA USD</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">TotalVatValueReportUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">15</property>
+      <property name="VisibleIndex">17</property>
       <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
           <property name="FieldName">TotalVatValueReportUSD</property>
           <property name="SummaryType">Sum</property>
+          <property name="Mode">AllRows</property>
           <property name="DisplayFormat">{0:0.##}</property>
         </property>
       </property>
     </property>
     <property name="Item23" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
-      <property name="Caption">Valor Total</property>
+      <property name="Caption">Valor Total (USD)</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">TotalValueReport</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">16</property>
+      <property name="VisibleIndex">18</property>
       <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
           <property name="FieldName">TotalValueReport</property>
           <property name="SummaryType">Sum</property>
+          <property name="Mode">AllRows</property>
           <property name="DisplayFormat">{0:0.##}</property>
         </property>
       </property>
@@ -301,18 +426,59 @@
     <property name="Item24" isnull="true" iskey="true">
       <property name="Name">GridColumn15</property>
       <property name="Caption">Valor Retención (USD)</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
       <property name="FieldName">TotalRetentionValueReportUSD</property>
       <property name="ColumnEditName" />
-      <property name="VisibleIndex">14</property>
+      <property name="VisibleIndex">16</property>
       <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
       <property name="Summary" iskey="true" value="1">
         <property name="Item1" isnull="true" iskey="true">
           <property name="Tag" isnull="true" />
           <property name="FieldName">TotalRetentionValueReportUSD</property>
           <property name="SummaryType">Sum</property>
+          <property name="Mode">AllRows</property>
           <property name="DisplayFormat">{0:0.##}</property>
         </property>
       </property>
+    </property>
+    <property name="Item25" isnull="true" iskey="true">
+      <property name="Name">GridColumn21</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Referencia 2</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
+      <property name="FieldName">ItemRef2</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">3</property>
+      <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
+    </property>
+    <property name="Item26" isnull="true" iskey="true">
+      <property name="Name">GridColumn24</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
+      <property name="Caption">Referencia 1</property>
+      <property name="ImageAlignment">Near</property>
+      <property name="ImageIndex">-1</property>
+      <property name="FieldName">ItemRef</property>
+      <property name="ColumnEditName" />
+      <property name="VisibleIndex">2</property>
+      <property name="Visible">true</property>
+      <property name="Width">75</property>
+      <property name="MinWidth">20</property>
+      <property name="MaxWidth">0</property>
+      <property name="UnboundDataTypeName" />
     </property>
   </property>
   <property name="ViewCaption" />
