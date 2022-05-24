@@ -275,7 +275,6 @@
     <Compile Include="Production\BO\clsMaintenanceMaterialRequirementInfo.vb" />
     <Compile Include="Production\BO\dmMachinery.vb" />
     <Compile Include="Production\BO\dmMaintenanceWorkOrder.vb" />
-    <Compile Include="Production\BO\dmMaintenanceWorkOrderItem.vb" />
     <Compile Include="Production\BO\clsWorkOrderCostingSummaryInfo.vb" />
     <Compile Include="Production\BO\dmWorkOrderPickStatus.vb" />
     <Compile Include="Production\BO\dmWorkOrderMatReqCategoryStatus.vb" />
@@ -293,7 +292,6 @@
     <Compile Include="Production\BO\dmWorkOrderMilestoneStatus.vb" />
     <Compile Include="Production\DSO\dtoMachinery.vb" />
     <Compile Include="Production\DSO\dtoMaintenanceWorkOrder.vb" />
-    <Compile Include="Production\DSO\dtoMaintenanceWorkOrderItem.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderAllocationInfo.vb" />
     <Compile Include="Production\DSO\dtoWorkOrderPickStatus.vb" />
     <Compile Include="Production\DSO\dsoProduction.vb" />

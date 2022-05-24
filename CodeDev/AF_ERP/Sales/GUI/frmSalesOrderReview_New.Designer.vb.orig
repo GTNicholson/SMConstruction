@@ -321,8 +321,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1636, 493)
 =======
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1648, 493)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1642, 493)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.TableLayoutPanel1.TabIndex = 10
         '
         'GroupControl4
@@ -338,10 +338,10 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.Size = New System.Drawing.Size(338, 240)
 =======
-        Me.GroupControl4.Location = New System.Drawing.Point(1304, 3)
+        Me.GroupControl4.Location = New System.Drawing.Point(1300, 3)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(341, 240)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.GroupControl4.Size = New System.Drawing.Size(339, 240)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.GroupControl4.TabIndex = 11
         Me.GroupControl4.Text = "Detalle de Consumo de Materiales"
         '
@@ -359,8 +359,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.grdMaterials.Size = New System.Drawing.Size(334, 215)
 =======
-        Me.grdMaterials.Size = New System.Drawing.Size(337, 215)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.grdMaterials.Size = New System.Drawing.Size(335, 215)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.grdMaterials.TabIndex = 3
         '
         'PivotGridField12
@@ -439,10 +439,10 @@ Partial Class frmSalesOrderReview_New
         Me.GroupControl5.Name = "GroupControl5"
         Me.GroupControl5.Size = New System.Drawing.Size(812, 240)
 =======
-        Me.GroupControl5.Location = New System.Drawing.Point(480, 3)
+        Me.GroupControl5.Location = New System.Drawing.Point(479, 3)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(818, 240)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.GroupControl5.Size = New System.Drawing.Size(815, 240)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.GroupControl5.TabIndex = 10
         Me.GroupControl5.Text = "Detalle de Mano de Obra por OT"
         '
@@ -478,8 +478,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.grdTimeSheetEntry.Size = New System.Drawing.Size(808, 215)
 =======
-        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(814, 215)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.grdTimeSheetEntry.Size = New System.Drawing.Size(811, 215)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.grdTimeSheetEntry.TabIndex = 3
         '
         'PivotGridField369
@@ -611,8 +611,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.GroupControl3.Size = New System.Drawing.Size(468, 240)
 =======
-        Me.GroupControl3.Size = New System.Drawing.Size(471, 240)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.GroupControl3.Size = New System.Drawing.Size(470, 240)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Detalle de PT Consumido por OT"
         '
@@ -635,8 +635,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.grdSpeciesByOT.Size = New System.Drawing.Size(464, 215)
 =======
-        Me.grdSpeciesByOT.Size = New System.Drawing.Size(467, 215)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.grdSpeciesByOT.Size = New System.Drawing.Size(466, 215)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.grdSpeciesByOT.TabIndex = 3
         '
         'PivotGridField1
@@ -785,8 +785,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.chrTimeSheet.Location = New System.Drawing.Point(477, 249)
 =======
-        Me.chrTimeSheet.Location = New System.Drawing.Point(480, 249)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.chrTimeSheet.Location = New System.Drawing.Point(479, 249)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.chrTimeSheet.Name = "chrTimeSheet"
         Me.chrTimeSheet.Padding.Bottom = 2
         Me.chrTimeSheet.Padding.Left = 2
@@ -846,8 +846,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.chrTimeSheet.Size = New System.Drawing.Size(812, 241)
 =======
-        Me.chrTimeSheet.Size = New System.Drawing.Size(818, 241)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.chrTimeSheet.Size = New System.Drawing.Size(815, 241)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.chrTimeSheet.TabIndex = 27
         ChartTitle1.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle1.Text = "Costo M.O. por O.T."
@@ -902,8 +902,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.chrOtherExpenses.Location = New System.Drawing.Point(1295, 249)
 =======
-        Me.chrOtherExpenses.Location = New System.Drawing.Point(1304, 249)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.chrOtherExpenses.Location = New System.Drawing.Point(1300, 249)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.chrOtherExpenses.Name = "chrOtherExpenses"
         Me.chrOtherExpenses.Padding.Bottom = 2
         Me.chrOtherExpenses.Padding.Left = 2
@@ -943,8 +943,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.chrOtherExpenses.Size = New System.Drawing.Size(338, 241)
 =======
-        Me.chrOtherExpenses.Size = New System.Drawing.Size(341, 241)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.chrOtherExpenses.Size = New System.Drawing.Size(339, 241)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.chrOtherExpenses.TabIndex = 28
         ChartTitle2.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle2.Text = "Costo de Consumo de Materiales"
@@ -1040,8 +1040,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(468, 241)
 =======
-        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(471, 241)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.chrWoodPalletItemInfo.Size = New System.Drawing.Size(470, 241)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.chrWoodPalletItemInfo.TabIndex = 29
         ChartTitle3.Font = New System.Drawing.Font("Arial", 11.0!)
         ChartTitle3.Text = "Costos P.T. por Especie"
@@ -1063,8 +1063,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.GroupControl7.Size = New System.Drawing.Size(1638, 223)
 =======
-        Me.GroupControl7.Size = New System.Drawing.Size(1650, 231)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.GroupControl7.Size = New System.Drawing.Size(1644, 227)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.GroupControl7.TabIndex = 7
         Me.GroupControl7.Text = "Costo por línea de artículo de venta"
         '
@@ -1078,8 +1078,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1634, 195)
 =======
-        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1646, 203)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.grdSalesOrderPhaseItemInfo.Size = New System.Drawing.Size(1640, 199)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.grdSalesOrderPhaseItemInfo.TabIndex = 1
         Me.grdSalesOrderPhaseItemInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvSalesOrderPhaseItemInfo})
         '
@@ -1554,8 +1554,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.GroupControl2.Size = New System.Drawing.Size(1636, 115)
 =======
-        Me.GroupControl2.Size = New System.Drawing.Size(1648, 115)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.GroupControl2.Size = New System.Drawing.Size(1642, 115)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.GroupControl2.TabIndex = 2
         Me.GroupControl2.Text = "Resumen de Costos"
         '
@@ -1586,8 +1586,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 104)
 =======
-        Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 98)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.txtProfitLabel.Location = New System.Drawing.Point(1215, 101)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.txtProfitLabel.Name = "txtProfitLabel"
         Me.txtProfitLabel.Size = New System.Drawing.Size(42, 15)
         Me.txtProfitLabel.TabIndex = 66
@@ -1617,8 +1617,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl4.Location = New System.Drawing.Point(1040, 131)
 =======
-        Me.LabelControl4.Location = New System.Drawing.Point(1040, 125)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl4.Location = New System.Drawing.Point(1040, 128)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl4.TabIndex = 64
@@ -1647,8 +1647,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl7.Location = New System.Drawing.Point(1040, 103)
 =======
-        Me.LabelControl7.Location = New System.Drawing.Point(1040, 97)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl7.Location = New System.Drawing.Point(1040, 100)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(64, 15)
         Me.LabelControl7.TabIndex = 62
@@ -1677,8 +1677,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl15.Location = New System.Drawing.Point(1040, 75)
 =======
-        Me.LabelControl15.Location = New System.Drawing.Point(1040, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl15.Location = New System.Drawing.Point(1040, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(49, 15)
         Me.LabelControl15.TabIndex = 60
@@ -1726,8 +1726,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl24.Location = New System.Drawing.Point(1215, 75)
 =======
-        Me.LabelControl24.Location = New System.Drawing.Point(1215, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl24.Location = New System.Drawing.Point(1215, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(17, 15)
         Me.LabelControl24.TabIndex = 56
@@ -1756,8 +1756,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl23.Location = New System.Drawing.Point(421, 75)
 =======
-        Me.LabelControl23.Location = New System.Drawing.Point(421, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl23.Location = New System.Drawing.Point(421, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl23.Name = "LabelControl23"
         Me.LabelControl23.Size = New System.Drawing.Size(67, 15)
         Me.LabelControl23.TabIndex = 54
@@ -1786,8 +1786,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl19.Location = New System.Drawing.Point(219, 75)
 =======
-        Me.LabelControl19.Location = New System.Drawing.Point(219, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl19.Location = New System.Drawing.Point(219, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl19.Name = "LabelControl19"
         Me.LabelControl19.Size = New System.Drawing.Size(73, 15)
         Me.LabelControl19.TabIndex = 52
@@ -1816,8 +1816,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl20.Location = New System.Drawing.Point(421, 103)
 =======
-        Me.LabelControl20.Location = New System.Drawing.Point(421, 97)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl20.Location = New System.Drawing.Point(421, 100)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(82, 15)
         Me.LabelControl20.TabIndex = 50
@@ -1847,8 +1847,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl21.Location = New System.Drawing.Point(421, 131)
 =======
-        Me.LabelControl21.Location = New System.Drawing.Point(421, 125)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl21.Location = New System.Drawing.Point(421, 128)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl21.TabIndex = 48
@@ -1877,8 +1877,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl9.Location = New System.Drawing.Point(219, 103)
 =======
-        Me.LabelControl9.Location = New System.Drawing.Point(219, 97)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl9.Location = New System.Drawing.Point(219, 100)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(88, 15)
         Me.LabelControl9.TabIndex = 42
@@ -1908,8 +1908,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl10.Location = New System.Drawing.Point(219, 131)
 =======
-        Me.LabelControl10.Location = New System.Drawing.Point(219, 125)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl10.Location = New System.Drawing.Point(219, 128)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl10.TabIndex = 40
@@ -1938,8 +1938,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl18.Location = New System.Drawing.Point(611, 103)
 =======
-        Me.LabelControl18.Location = New System.Drawing.Point(611, 97)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl18.Location = New System.Drawing.Point(611, 100)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(130, 15)
         Me.LabelControl18.TabIndex = 34
@@ -1954,8 +1954,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl12.Location = New System.Drawing.Point(856, 131)
 =======
-        Me.LabelControl12.Location = New System.Drawing.Point(856, 125)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl12.Location = New System.Drawing.Point(856, 128)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl12.TabIndex = 26
@@ -1984,8 +1984,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl13.Location = New System.Drawing.Point(856, 103)
 =======
-        Me.LabelControl13.Location = New System.Drawing.Point(856, 97)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl13.Location = New System.Drawing.Point(856, 100)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(82, 15)
         Me.LabelControl13.TabIndex = 24
@@ -2014,8 +2014,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl14.Location = New System.Drawing.Point(856, 75)
 =======
-        Me.LabelControl14.Location = New System.Drawing.Point(856, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl14.Location = New System.Drawing.Point(856, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(67, 15)
         Me.LabelControl14.TabIndex = 22
@@ -2045,8 +2045,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl8.Location = New System.Drawing.Point(611, 131)
 =======
-        Me.LabelControl8.Location = New System.Drawing.Point(611, 125)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl8.Location = New System.Drawing.Point(611, 128)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl8.TabIndex = 14
@@ -2075,8 +2075,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl17.Location = New System.Drawing.Point(611, 75)
 =======
-        Me.LabelControl17.Location = New System.Drawing.Point(611, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl17.Location = New System.Drawing.Point(611, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(115, 15)
         Me.LabelControl17.TabIndex = 10
@@ -2106,8 +2106,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl25.Location = New System.Drawing.Point(13, 131)
 =======
-        Me.LabelControl25.Location = New System.Drawing.Point(13, 125)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl25.Location = New System.Drawing.Point(13, 128)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl25.Name = "LabelControl25"
         Me.LabelControl25.Size = New System.Drawing.Size(62, 15)
         Me.LabelControl25.TabIndex = 6
@@ -2136,8 +2136,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl26.Location = New System.Drawing.Point(13, 103)
 =======
-        Me.LabelControl26.Location = New System.Drawing.Point(13, 97)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl26.Location = New System.Drawing.Point(13, 100)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl26.Name = "LabelControl26"
         Me.LabelControl26.Size = New System.Drawing.Size(64, 15)
         Me.LabelControl26.TabIndex = 4
@@ -2166,8 +2166,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl27.Location = New System.Drawing.Point(13, 75)
 =======
-        Me.LabelControl27.Location = New System.Drawing.Point(13, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl27.Location = New System.Drawing.Point(13, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl27.Name = "LabelControl27"
         Me.LabelControl27.Size = New System.Drawing.Size(97, 15)
         Me.LabelControl27.TabIndex = 0
@@ -2200,8 +2200,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.GroupControl1.Size = New System.Drawing.Size(1636, 93)
 =======
-        Me.GroupControl1.Size = New System.Drawing.Size(1648, 93)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.GroupControl1.Size = New System.Drawing.Size(1642, 93)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Detalle General de la Venta"
         '
@@ -2248,8 +2248,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl6.Location = New System.Drawing.Point(877, 106)
 =======
-        Me.LabelControl6.Location = New System.Drawing.Point(877, 100)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl6.Location = New System.Drawing.Point(877, 103)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(95, 15)
         Me.LabelControl6.TabIndex = 22
@@ -2279,8 +2279,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl5.Location = New System.Drawing.Point(877, 75)
 =======
-        Me.LabelControl5.Location = New System.Drawing.Point(877, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl5.Location = New System.Drawing.Point(877, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(80, 15)
         Me.LabelControl5.TabIndex = 20
@@ -2310,8 +2310,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl3.Location = New System.Drawing.Point(14, 106)
 =======
-        Me.LabelControl3.Location = New System.Drawing.Point(14, 100)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl3.Location = New System.Drawing.Point(14, 103)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(135, 15)
         Me.LabelControl3.TabIndex = 18
@@ -2341,8 +2341,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl2.Location = New System.Drawing.Point(492, 106)
 =======
-        Me.LabelControl2.Location = New System.Drawing.Point(492, 100)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl2.Location = New System.Drawing.Point(492, 103)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(39, 15)
         Me.LabelControl2.TabIndex = 16
@@ -2372,8 +2372,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl1.Location = New System.Drawing.Point(492, 75)
 =======
-        Me.LabelControl1.Location = New System.Drawing.Point(492, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl1.Location = New System.Drawing.Point(492, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(51, 15)
         Me.LabelControl1.TabIndex = 14
@@ -2403,8 +2403,8 @@ Partial Class frmSalesOrderReview_New
 <<<<<<< HEAD
         Me.LabelControl11.Location = New System.Drawing.Point(14, 75)
 =======
-        Me.LabelControl11.Location = New System.Drawing.Point(14, 69)
->>>>>>> c2d87a50ae976bde81180c39334b0a0061a5c419
+        Me.LabelControl11.Location = New System.Drawing.Point(14, 72)
+>>>>>>> 02a1c149057b2928b94a6e0fe4b4f2b1f30d1c82
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(43, 15)
         Me.LabelControl11.TabIndex = 12

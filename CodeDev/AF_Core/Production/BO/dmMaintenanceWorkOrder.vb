@@ -16,7 +16,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
   Private pNotes As String
   Private pMaintenanceWorkOrderDocument As String
 
-  Private pMaitenanceWorkOrderItems As colMaintenanceWorkOrderItems
+  Private pMaterialRequirements As colMaterialRequirements
   Private pMachinery As dmMachinery
   Public Sub New()
     MyBase.New()
@@ -25,7 +25,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
   Protected Overrides Sub NewSetup()
     ''Add object/collection instantiations here
 
-    pMaitenanceWorkOrderItems = New colMaintenanceWorkOrderItems
+    pMaterialRequirements = New colMaterialRequirements
     pMachinery = New dmMachinery
 
   End Sub
@@ -37,7 +37,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
 
   Protected Overrides Sub Finalize()
     MyBase.Finalize()
-    pMaitenanceWorkOrderItems = Nothing
+    pMaterialRequirements = Nothing
     pMachinery = Nothing
   End Sub
 
@@ -46,7 +46,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
       Dim mAnyDirty = IsDirty
       '' Check Objects and Collections
 
-      If mAnyDirty = False Then mAnyDirty = pMaitenanceWorkOrderItems.IsDirty
+      If mAnyDirty = False Then mAnyDirty = pMaterialRequirements.IsDirty
 
       If pMachinery IsNot Nothing Then
         If mAnyDirty = False Then mAnyDirty = pMachinery.IsAnyDirty
@@ -59,7 +59,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
   Public Overrides Sub ClearKeys()
     'Set Key Values = 0
     MaintenanceWorkOrderID = 0
-    pMaitenanceWorkOrderItems.ClearKeys()
+    pMaterialRequirements.ClearKeys()
 
   End Sub
 
@@ -78,7 +78,7 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
       .Duration = Duration
       .Notes = Notes
       .MaintenanceWorkOrderDocument = MaintenanceWorkOrderDocument
-      .MaitenanceWorkOrderItems = MaitenanceWorkOrderItems
+      .MaterialRequirements = MaterialRequirements
       .Machinery = Machinery
 
       'Add entries here for each collection and class property
@@ -220,12 +220,12 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
     End Set
   End Property
 
-  Public Property MaitenanceWorkOrderItems As colMaintenanceWorkOrderItems
+  Public Property MaterialRequirements As colMaterialRequirements
     Get
-      Return pMaitenanceWorkOrderItems
+      Return pMaterialRequirements
     End Get
-    Set(value As colMaintenanceWorkOrderItems)
-      pMaitenanceWorkOrderItems = value
+    Set(value As colMaterialRequirements)
+      pMaterialRequirements = value
     End Set
   End Property
 

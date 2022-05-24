@@ -240,7 +240,7 @@ Public Enum eObjectType
   PurchaseOrder = 8
   WoodPallet = 9
   ProductStructure = 10
-  MaintenanceItem = 11
+  MaintenanceWorkOrder = 11
 End Enum
 
 Public Enum eEmployeeRole

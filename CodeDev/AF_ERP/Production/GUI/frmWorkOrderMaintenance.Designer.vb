@@ -47,8 +47,8 @@ Partial Class frmWorkOrderMaintenance
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.repoChkSelectedSI = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcUnitCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gcTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.txtDuration = New DevExpress.XtraEditors.SpinEdit()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
@@ -179,7 +179,7 @@ Partial Class frmWorkOrderMaintenance
         Me.gvMaintenanceItems.Appearance.ViewCaption.Options.UseFont = True
         Me.gvMaintenanceItems.Appearance.ViewCaption.Options.UseForeColor = True
         Me.gvMaintenanceItems.ColumnPanelRowHeight = 35
-        Me.gvMaintenanceItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCode, Me.gcMatReqOtherDescription, Me.gcStockItemUoM, Me.GridColumn18, Me.gcAreaID, Me.gcDuplicateSI, Me.GridColumn15, Me.GridColumn10, Me.GridColumn1, Me.GridColumn2})
+        Me.gvMaintenanceItems.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gcStockCode, Me.gcMatReqOtherDescription, Me.gcStockItemUoM, Me.GridColumn18, Me.gcAreaID, Me.gcDuplicateSI, Me.GridColumn15, Me.GridColumn10, Me.gcUnitCost, Me.gcTotalCost})
         Me.gvMaintenanceItems.GridControl = Me.grdMaitenanceItems
         Me.gvMaintenanceItems.Name = "gvMaintenanceItems"
         Me.gvMaintenanceItems.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -209,7 +209,7 @@ Partial Class frmWorkOrderMaintenance
         'gcMatReqOtherDescription
         '
         Me.gcMatReqOtherDescription.Caption = "Descripción de Materiales"
-        Me.gcMatReqOtherDescription.FieldName = "StockDescription"
+        Me.gcMatReqOtherDescription.FieldName = "Description"
         Me.gcMatReqOtherDescription.Name = "gcMatReqOtherDescription"
         Me.gcMatReqOtherDescription.Visible = True
         Me.gcMatReqOtherDescription.VisibleIndex = 1
@@ -288,25 +288,29 @@ Partial Class frmWorkOrderMaintenance
         Me.repoChkSelectedSI.AutoHeight = False
         Me.repoChkSelectedSI.Name = "repoChkSelectedSI"
         '
-        'GridColumn1
+        'gcUnitCost
         '
-        Me.GridColumn1.Caption = "Costo"
-        Me.GridColumn1.DisplayFormat.FormatString = "n2"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn1.FieldName = "UnitCost"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 4
+        Me.gcUnitCost.Caption = "Costo"
+        Me.gcUnitCost.DisplayFormat.FormatString = "n2"
+        Me.gcUnitCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcUnitCost.FieldName = "gcUnitCost"
+        Me.gcUnitCost.Name = "gcUnitCost"
+        Me.gcUnitCost.OptionsColumn.ReadOnly = True
+        Me.gcUnitCost.UnboundDataType = GetType(Decimal)
+        Me.gcUnitCost.Visible = True
+        Me.gcUnitCost.VisibleIndex = 4
         '
-        'GridColumn2
+        'gcTotalCost
         '
-        Me.GridColumn2.Caption = "Costo Total"
-        Me.GridColumn2.DisplayFormat.FormatString = "n2"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn2.FieldName = "TotalCost"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
+        Me.gcTotalCost.Caption = "Costo Total"
+        Me.gcTotalCost.DisplayFormat.FormatString = "c2"
+        Me.gcTotalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gcTotalCost.FieldName = "gcTotalCost"
+        Me.gcTotalCost.Name = "gcTotalCost"
+        Me.gcTotalCost.OptionsColumn.ReadOnly = True
+        Me.gcTotalCost.UnboundDataType = GetType(Decimal)
+        Me.gcTotalCost.Visible = True
+        Me.gcTotalCost.VisibleIndex = 5
         '
         'GroupControl1
         '
@@ -796,8 +800,8 @@ Partial Class frmWorkOrderMaintenance
   Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents repoChkSelectedSI As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-  Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-  Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcUnitCost As DevExpress.XtraGrid.Columns.GridColumn
+  Friend WithEvents gcTotalCost As DevExpress.XtraGrid.Columns.GridColumn
   Friend WithEvents btnMaintenanceWorkOrderDocument As DevExpress.XtraEditors.ButtonEdit
   Friend WithEvents Label10 As Label
   Friend WithEvents Label13 As Label
