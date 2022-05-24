@@ -366,7 +366,7 @@ Public Class frmPurchaseOrderDetailMaintenance
 
 
         '// Set the purchasereqtype mode buttons
-        Select Case .MaterialRequirementTypeWorkOrderID
+        Select Case .MaterialRequirementTypeMaintenanceID
           Case ePOMaterialRequirementType.Inventario
             grpWorkOrderType.CustomHeaderButtons(0).Properties.Checked = True
             grpWorkOrderType.CustomHeaderButtons(1).Properties.Checked = False
@@ -475,7 +475,7 @@ Public Class frmPurchaseOrderDetailMaintenance
       pFormController.PurchaseOrder.DefaultCurrency = pFormController.CurrentDefaultCurrency
       .DeliveryAddress = uctDeliveryAddress.Address
 
-      Select Case .MaterialRequirementTypeWorkOrderID
+      Select Case .MaterialRequirementTypeMaintenanceID
         Case ePOMaterialRequirementType.Sencillo
 
           If pFormController.MaintenanceWorkOrder IsNot Nothing Then
@@ -1259,7 +1259,7 @@ Public Class frmPurchaseOrderDetailMaintenance
 
           Case ePOMaterialRequirementType.Inventario
             If e.Button.Properties.IsChecked Then
-              pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
+              pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Inventario
               pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 
 
@@ -1280,7 +1280,7 @@ Public Class frmPurchaseOrderDetailMaintenance
             If pFormController.MaintenanceWorkOrder Is Nothing Then
               pFormController.MaintenanceWorkOrder = New dmMaintenanceWorkOrder
             End If
-            pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
+            pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Sencillo
             For mLoop = pFormController.PurchaseOrder.PurchaseOrderAllocations.Count - 1 To 1 Step -1
               pFormController.PurchaseOrder.PurchaseOrderAllocations.RemoveAt(mLoop)
             Next
@@ -1293,13 +1293,13 @@ Public Class frmPurchaseOrderDetailMaintenance
             gvPurchaseOrderItems.RefreshData()
           'pFormController.CreateUpdatePOItemAllocation(mPOItem)
           Case ePOMaterialRequirementType.Multiple
-            pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Multiple
+            pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Multiple
             grpWorkOrderType.CustomHeaderButtons.Item(0).Properties.Checked = False
             grpWorkOrderType.CustomHeaderButtons.Item(1).Properties.Checked = False
             grpWorkOrderType.CustomHeaderButtons.Item(2).Properties.Checked = True
 
           Case Else
-            pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
+            pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Inventario
             grpWorkOrderType.CustomHeaderButtons.Item(0).Properties.Checked = True
             ''pFormController.SalesOrderPhases.Clear()
         End Select
@@ -1323,7 +1323,7 @@ Public Class frmPurchaseOrderDetailMaintenance
     ''Dim mCurrentTabPage As DevExpress.XtraTab.XtraTabPage
 
     If pFormController.PurchaseOrder IsNot Nothing Then
-      Select Case pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID
+      Select Case pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID
         Case ePOMaterialRequirementType.Inventario
           xtabPOReqTypeWO.SelectedTabPage = xtpInventoryWO
           ShowHideGridColumsByName(gvPurchaseOrderItems, "gcRequiredQuantitySimple", "gcRequiredQuantityMultipleWO")
@@ -1379,7 +1379,7 @@ Public Class frmPurchaseOrderDetailMaintenance
       gvPurchaseOrderItems.CloseEditor()
       gvPurchaseOrderItems.UpdateCurrentRow()
 
-      Select Case pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID
+      Select Case pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID
         Case ePOMaterialRequirementType.Inventario, ePOMaterialRequirementType.Sencillo
           '// Check that we are Simple of Stock type - otherwise don't do anything
 
@@ -1523,7 +1523,7 @@ Public Class frmPurchaseOrderDetailMaintenance
 
       If mMaintenanceWorkOrder IsNot Nothing Then
 
-        pFormController.PurchaseOrder.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
+        pFormController.PurchaseOrder.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Sencillo
         pFormController.MaintenanceWorkOrders.Clear()
         pFormController.PurchaseOrder.PurchaseOrderAllocations.Clear()
 

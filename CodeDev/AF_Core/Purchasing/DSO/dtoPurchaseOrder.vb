@@ -118,6 +118,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "ValuationMode", .ValuationMode)
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "PaymentDate", DateToDBValue(.PaymentDate))
       DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialRequirementTypeWorkOrderID", .MaterialRequirementTypeWorkOrderID)
+      DBSource.AddParamPropertyInfo(rParameterValues, rFieldList, rParamList, vSetList, "MaterialRequirementTypeMaintenanceID", .MaterialRequirementTypeMaintenanceID)
 
 
 
@@ -198,6 +199,7 @@ Public Class dtoPurchaseOrder : Inherits dtoBase
         .ValuationMode = DBReadInt32(rDataReader, "ValuationMode")
         .PaymentDate = DBReadDate(rDataReader, "PaymentDate")
         .MaterialRequirementTypeWorkOrderID = DBReadInt32(rDataReader, "MaterialRequirementTypeWorkOrderID")
+        .MaterialRequirementTypeMaintenanceID = DBReadInt32(rDataReader, "MaterialRequirementTypeMaintenanceID")
 
         pPurchaseOrder.IsDirty = False
         pPurchaseOrder.DeliveryAddress.IsDirty = False

@@ -560,7 +560,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         'gcWorkOrderID
         '
         Me.gcWorkOrderID.Caption = "#O.T."
-        Me.gcWorkOrderID.FieldName = "WorkOrderID"
+        Me.gcWorkOrderID.FieldName = "MaintenanceWorkOrderID"
         Me.gcWorkOrderID.Name = "gcWorkOrderID"
         Me.gcWorkOrderID.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.gcWorkOrderID.UnboundType = DevExpress.Data.UnboundColumnType.[String]
@@ -1093,7 +1093,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         '
         Me.xtpSingleWO.Controls.Add(Me.GroupControl8)
         Me.xtpSingleWO.Name = "xtpSingleWO"
-        Me.xtpSingleWO.Size = New System.Drawing.Size(437, 299)
+        Me.xtpSingleWO.Size = New System.Drawing.Size(433, 292)
         Me.xtpSingleWO.Text = "Senc."
         '
         'GroupControl8
@@ -1115,7 +1115,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.GroupControl8.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl8.Name = "GroupControl8"
         Me.GroupControl8.ShowCaption = False
-        Me.GroupControl8.Size = New System.Drawing.Size(437, 299)
+        Me.GroupControl8.Size = New System.Drawing.Size(433, 292)
         Me.GroupControl8.TabIndex = 268
         Me.GroupControl8.Text = "Admon. OTs"
         '
@@ -1127,7 +1127,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.grdPurchaseOrderWorkOrderBudget.Location = New System.Drawing.Point(5, 117)
         Me.grdPurchaseOrderWorkOrderBudget.MainView = Me.GridView2
         Me.grdPurchaseOrderWorkOrderBudget.Name = "grdPurchaseOrderWorkOrderBudget"
-        Me.grdPurchaseOrderWorkOrderBudget.Size = New System.Drawing.Size(427, 177)
+        Me.grdPurchaseOrderWorkOrderBudget.Size = New System.Drawing.Size(423, 170)
         Me.grdPurchaseOrderWorkOrderBudget.TabIndex = 282
         Me.grdPurchaseOrderWorkOrderBudget.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         Me.grdPurchaseOrderWorkOrderBudget.Visible = False
@@ -1217,7 +1217,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.dteRequiredDateWO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dteRequiredDateWO.Properties.NullDate = New Date(CType(0, Long))
         Me.dteRequiredDateWO.Properties.ReadOnly = True
-        Me.dteRequiredDateWO.Size = New System.Drawing.Size(321, 20)
+        Me.dteRequiredDateWO.Size = New System.Drawing.Size(317, 20)
         Me.dteRequiredDateWO.TabIndex = 281
         '
         'LabelControl28
@@ -1271,7 +1271,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.txtCustomerNameWO.Properties.Appearance.Options.UseFont = True
         Me.txtCustomerNameWO.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtCustomerNameWO.Properties.ReadOnly = True
-        Me.txtCustomerNameWO.Size = New System.Drawing.Size(321, 20)
+        Me.txtCustomerNameWO.Size = New System.Drawing.Size(317, 20)
         Me.txtCustomerNameWO.TabIndex = 263
         '
         'txtProjectNameWO
@@ -1285,7 +1285,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.txtProjectNameWO.Properties.Appearance.Options.UseFont = True
         Me.txtProjectNameWO.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtProjectNameWO.Properties.ReadOnly = True
-        Me.txtProjectNameWO.Size = New System.Drawing.Size(321, 20)
+        Me.txtProjectNameWO.Size = New System.Drawing.Size(317, 20)
         Me.txtProjectNameWO.TabIndex = 262
         '
         'btnSelectWorkOrder
@@ -1300,14 +1300,14 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.btnSelectWorkOrder.Properties.Appearance.Options.UseImage = True
         Me.btnSelectWorkOrder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)})
         Me.btnSelectWorkOrder.Properties.ReadOnly = True
-        Me.btnSelectWorkOrder.Size = New System.Drawing.Size(321, 20)
+        Me.btnSelectWorkOrder.Size = New System.Drawing.Size(317, 20)
         Me.btnSelectWorkOrder.TabIndex = 246
         '
         'xtpMultipleWO
         '
         Me.xtpMultipleWO.Controls.Add(Me.GroupControl9)
         Me.xtpMultipleWO.Name = "xtpMultipleWO"
-        Me.xtpMultipleWO.Size = New System.Drawing.Size(437, 299)
+        Me.xtpMultipleWO.Size = New System.Drawing.Size(433, 292)
         Me.xtpMultipleWO.Text = "Mult."
         '
         'GroupControl9
@@ -1322,7 +1322,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.GroupControl9.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl9.Name = "GroupControl9"
         Me.GroupControl9.ShowCaption = False
-        Me.GroupControl9.Size = New System.Drawing.Size(437, 299)
+        Me.GroupControl9.Size = New System.Drawing.Size(433, 292)
         Me.GroupControl9.TabIndex = 267
         Me.GroupControl9.Text = "Admon. OTs"
         '
@@ -1343,7 +1343,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.grdPOIMaintenanceWorkOrder.MenuManager = Me.BarManager1
         Me.grdPOIMaintenanceWorkOrder.Name = "grdPOIMaintenanceWorkOrder"
         Me.grdPOIMaintenanceWorkOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit2})
-        Me.grdPOIMaintenanceWorkOrder.Size = New System.Drawing.Size(427, 206)
+        Me.grdPOIMaintenanceWorkOrder.Size = New System.Drawing.Size(423, 206)
         Me.grdPOIMaintenanceWorkOrder.TabIndex = 266
         Me.grdPOIMaintenanceWorkOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaintenanceWorkOrders})
         '
@@ -1372,7 +1372,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         'GridColumn22
         '
         Me.GridColumn22.Caption = "# O.T."
-        Me.GridColumn22.FieldName = "WorkOrderNo"
+        Me.GridColumn22.FieldName = "MaintenanceWorkOrderNo"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 0
@@ -1389,8 +1389,8 @@ Partial Class frmPurchaseOrderDetailMaintenance
         '
         'GridColumn2
         '
-        Me.GridColumn2.Caption = "Proyecto"
-        Me.GridColumn2.FieldName = "ProjectNameAndCustomer"
+        Me.GridColumn2.Caption = "Maquinaria"
+        Me.GridColumn2.FieldName = "MachineryDesc"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 2
@@ -1405,9 +1405,9 @@ Partial Class frmPurchaseOrderDetailMaintenance
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Fecha Compra"
+        Me.GridColumn5.Caption = "Fecha Plan"
         Me.GridColumn5.ColumnEdit = Me.RepositoryItemDateEdit2
-        Me.GridColumn5.FieldName = "PurchasingDate"
+        Me.GridColumn5.FieldName = "PlannedDate"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
@@ -1693,7 +1693,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.xtraTabAppendDoc.Appearance.Header.Options.UseForeColor = True
         Me.xtraTabAppendDoc.Controls.Add(Me.UctFileControl1)
         Me.xtraTabAppendDoc.Name = "xtraTabAppendDoc"
-        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(384, 294)
+        Me.xtraTabAppendDoc.Size = New System.Drawing.Size(378, 290)
         Me.xtraTabAppendDoc.Text = "Documentos Adjuntos"
         '
         'UctFileControl1
@@ -1701,7 +1701,7 @@ Partial Class frmPurchaseOrderDetailMaintenance
         Me.UctFileControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.UctFileControl1.Location = New System.Drawing.Point(0, 0)
         Me.UctFileControl1.Name = "UctFileControl1"
-        Me.UctFileControl1.Size = New System.Drawing.Size(384, 294)
+        Me.UctFileControl1.Size = New System.Drawing.Size(378, 290)
         Me.UctFileControl1.TabIndex = 1
         Me.UctFileControl1.UserController = Nothing
         '

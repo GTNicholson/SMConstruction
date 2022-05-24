@@ -230,14 +230,29 @@ Public Class fccPurchaseOrder
     Dim mWorkOrderInfo As clsWorkOrderInfo
     Dim mSalesOrderPhaseItemInfos As New colSalesOrderPhaseItemInfos
     Dim mWhere As String
-
+    Dim mMaintenanceWorkOrder As dmMaintenanceWorkOrder
     Try
 
       mOK = True
       pSalesOrderPhaseItemInfos = New colSalesOrderPhaseItemInfos
       pWorkOrderInfos = New colWorkOrderInfos
-
+      pMaintenanceWorkOrders = New colMaintenanceWorkOrders
       Select Case pPOOption
+
+        Case ePODetailOption.Maintenance
+          For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
+            If pMaintenanceWorkOrders.IndexFromKey(mPOAllocation.MaintenanceWorkOrderID) = -1 Then
+              mMaintenanceWorkOrder = New dmMaintenanceWorkOrder
+              mdsoSales.LoadMaintenanceWorkOrder(mMaintenanceWorkOrder, "MaintenanceWorkOrderID=" & mPOAllocation.MaintenanceWorkOrderID)
+              pMaintenanceWorkOrders.Add(mMaintenanceWorkOrder)
+            End If
+
+            If pUsedItemsWO.Contains(mPOAllocation.MaintenanceWorkOrderID) = False Then
+              pUsedItemsWO.Add(mPOAllocation.MaintenanceWorkOrderID)
+            End If
+          Next
+
+
         Case ePODetailOption.ManPO
 
           For Each mPOAllocation As dmPurchaseOrderAllocation In pPurchaseOrder.PurchaseOrderAllocations
@@ -300,6 +315,7 @@ Public Class fccPurchaseOrder
             ''This is new for the WOAllocation
           End If
           mdsoSales.LoadWorkOrderInfo(Me.pWorkOrderInfo, "WorkOrderID = " & pPurchaseOrder.PurchaseOrderAllocations(0).WorkOrderID)
+          mdsoSales.LoadMaintenanceWorkOrder(Me.pMaintenanceWorkOrder, "MaintenanceWorkOrderID = " & pPurchaseOrder.PurchaseOrderAllocations(0).MaintenanceWorkOrderID)
 
         End If
 
@@ -367,6 +383,10 @@ Public Class fccPurchaseOrder
           Case ePODetailOption.General
             pPurchaseOrder.MaterialRequirementTypeID = 0
             pPurchaseOrder.MaterialRequirementTypeWorkOrderID = 0
+
+
+          Case ePODetailOption.Maintenance
+            pPurchaseOrder.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Inventario
 
 
         End Select
@@ -732,6 +752,9 @@ Public Class fccPurchaseOrder
       rPOItem.PurchaseOrderItemAllocations(0).Quantity = rPOItem.QtyRequired
 
       Select Case pPOOption
+
+
+
 
         Case ePODetailOption.General
           If rPOItem.PurchaseOrderItemAllocations(0).SalesorderPhaseItemID = 0 And rPOItem.PurchaseOrderItemAllocations(0).WorkOrderID = 0 Then

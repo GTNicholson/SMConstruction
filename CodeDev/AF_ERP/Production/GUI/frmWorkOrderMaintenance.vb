@@ -155,7 +155,9 @@ Public Class frmWorkOrderMaintenance
         txtNotes.Text = .Notes
         btnMaintenanceWorkOrderDocument.Text = .MaintenanceWorkOrderDocument
 
-        btnEquipmentID.Text = .Machinery.Description
+        If .Machinery IsNot Nothing Then
+          btnEquipmentID.Text = .Machinery.Description
+        End If
 
       End With
 
@@ -334,7 +336,7 @@ Public Class frmWorkOrderMaintenance
   Private Sub grpMaintenanceItems_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaintenanceItems.CustomButtonClick
 
     Dim mSelectedItem As dmStockItem
-    Dim mPOItem As dmMaintenanceWorkOrderItem
+    Dim mMaintenanceWorkOrderItem As dmMaintenanceWorkOrderItem
 
     Dim mTest As New colPOItemEditors
 
@@ -363,9 +365,9 @@ Public Class frmWorkOrderMaintenance
 
           mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, AppRTISGlobal.GetInstance)
 
-          For Each mPOItem In pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
-            If mPOItem.StockItemID > 0 Then
-              mStockItem = mStockItems.ItemFromKey(mPOItem.StockItemID)
+          For Each mMaintenanceWorkOrderItem In pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
+            If mMaintenanceWorkOrderItem.StockItemID > 0 Then
+              mStockItem = mStockItems.ItemFromKey(mMaintenanceWorkOrderItem.StockItemID)
 
               If Not mPicker.SelectedObjects.Contains(mStockItem) Then
 
@@ -378,14 +380,14 @@ Public Class frmWorkOrderMaintenance
           frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance, False, -1)
           For Each mSelectedItem In mPicker.SelectedObjects
             If mSelectedItem IsNot Nothing Then
-              mPOItem = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
-              If mPOItem Is Nothing Then
-                mPOItem = New dmMaintenanceWorkOrderItem
-                mPOItem.StockItemID = mSelectedItem.StockItemID
-                mPOItem.Quantity = 1
-                mPOItem.UnitCost = mSelectedItem.AverageCost
+              mMaintenanceWorkOrderItem = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
+              If mMaintenanceWorkOrderItem Is Nothing Then
+                mMaintenanceWorkOrderItem = New dmMaintenanceWorkOrderItem
+                mMaintenanceWorkOrderItem.StockItemID = mSelectedItem.StockItemID
+                mMaintenanceWorkOrderItem.Quantity = 1
+                mMaintenanceWorkOrderItem.UnitCost = mSelectedItem.AverageCost
 
-                pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Add(mPOItem)
+                pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Add(mMaintenanceWorkOrderItem)
               End If
             End If
           Next
@@ -393,12 +395,12 @@ Public Class frmWorkOrderMaintenance
           mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
           For mindex As Integer = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Count - 1 To 0 Step -1
-            mPOItem = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems(mindex)
-            If mPOItem.StockItemID > 0 Then
-              mStockItem = mSelectedStockItems.ItemFromKey(mPOItem.StockItemID)
+            mMaintenanceWorkOrderItem = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems(mindex)
+            If mMaintenanceWorkOrderItem.StockItemID > 0 Then
+              mStockItem = mSelectedStockItems.ItemFromKey(mMaintenanceWorkOrderItem.StockItemID)
 
               If Not mPicker.SelectedObjects.Contains(mStockItem) Then
-                pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Remove(mPOItem)
+                pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Remove(mMaintenanceWorkOrderItem)
               End If
             End If
           Next
@@ -409,12 +411,12 @@ Public Class frmWorkOrderMaintenance
 
         Case "DeleteItem"
 
-          mPOItem = gvMaintenanceItems.GetFocusedRow
-          If mPOItem IsNot Nothing Then
+          mMaintenanceWorkOrderItem = gvMaintenanceItems.GetFocusedRow
+          If mMaintenanceWorkOrderItem IsNot Nothing Then
             If MsgBox("¿Está seguro que desea eliminar este ítem de la Orden de Mantenmiento?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
               UpdateObject()
 
-              pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Remove(mPOItem)
+              pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Remove(mMaintenanceWorkOrderItem)
               grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
 
             End If

@@ -48,7 +48,9 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
 
       If mAnyDirty = False Then mAnyDirty = pMaitenanceWorkOrderItems.IsDirty
 
-      If mAnyDirty = False Then mAnyDirty = pMachinery.IsAnyDirty
+      If pMachinery IsNot Nothing Then
+        If mAnyDirty = False Then mAnyDirty = pMachinery.IsAnyDirty
+      End If
 
       IsAnyDirty = mAnyDirty
     End Get
@@ -234,6 +236,18 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
     Set(value As dmMachinery)
       pMachinery = value
     End Set
+  End Property
+
+  Public ReadOnly Property MachineryDesc As String
+    Get
+      Dim mRetVal As String = ""
+
+      If Machinery IsNot Nothing Then
+        mRetVal = Machinery.Description
+      End If
+
+      Return mRetVal
+    End Get
   End Property
 End Class
 

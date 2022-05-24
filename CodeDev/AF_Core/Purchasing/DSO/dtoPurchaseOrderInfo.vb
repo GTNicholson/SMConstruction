@@ -119,7 +119,7 @@ Public Class dtoPurchaseOrderInfo : Inherits dtoBase
           .RetentionPercentage = DBReadDecimal(rDataReader, "RetentionPercentage")
           .MaterialRequirementTypeWorkOrderID = DBReadInt32(rDataReader, "MaterialRequirementTypeWorkOrderID")
           .MaterialRequirementTypeID = DBReadInt32(rDataReader, "MaterialRequirementTypeID")
-
+          .MaterialRequirementTypeMaintenanceID = DBReadInt32(rDataReader, "MaterialRequirementTypeMaintenanceID")
         End With
       End With
       mOK = True

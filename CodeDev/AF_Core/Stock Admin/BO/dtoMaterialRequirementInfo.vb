@@ -211,6 +211,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
         Case eMode.MaintenanceItem
 
 
+          pMaterialRequirment.PurchasingDate = DBReadDate(rDataReader, "MaintenancePlannedDate")
 
           pMaterialRequirment.OSQty = DBReadDecimal(rDataReader, "OSQty")
           pMaterialRequirment.StockItemLocationsQty = DBReadDecimal(rDataReader, "StockItemLocationsQty")
@@ -232,7 +233,7 @@ Public Class dtoMaterialRequirementInfo : Inherits dtoBase
             .UoM = DBReadInt32(rDataReader, "UoM")
             .SetPickedQty(DBReadDecimal(rDataReader, "PickedQty"))
             .SupplierStockCode = DBReadString(rDataReader, "SupplierStockCode")
-            .ObjectID = DBReadInt32(rDataReader, "MaintenanceWorkOrderItemID")
+            .ObjectID = DBReadInt32(rDataReader, "MaintenanceWorkOrderID")
             .Description = DBReadString(rDataReader, "Description")
             .FromStockQty = DBReadDecimal(rDataReader, "FromStockQty")
             .SetReturndQty(DBReadDecimal(rDataReader, "ReturnQty"))

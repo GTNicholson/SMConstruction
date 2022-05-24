@@ -78,7 +78,7 @@ Public Class fccPurchaseOrderConsole
     Return True
   End Function
 
-  Public Function ProcessMatReqToPO(ByRef rMatReqProcs As colMaterialRequirementProcessors, ByRef rPO As dmPurchaseOrder) As Integer
+  Public Function ProcessMatReqToPO(ByRef rMatReqProcs As colMaterialRequirementProcessors, ByRef rPO As dmPurchaseOrder, ByVal vPOConsoleOption As Integer) As Integer
     Dim mCount As Integer
     Dim mPOItem As dmPurchaseOrderItem
     Dim mPOIAllocation As dmPurchaseOrderItemAllocation
@@ -104,54 +104,95 @@ Public Class fccPurchaseOrderConsole
 
           mPOIAllocation = New dmPurchaseOrderItemAllocation
 
+          If vPOConsoleOption = ePOConsoleOption.MaintenanceWorkOrder Then
+            mPOIAllocation.MaintenanceWorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+          Else
+            mPOIAllocation.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
 
-          mPOIAllocation.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
-            mPOIAllocation.Quantity = mMatReqProc.ToOrder
-            mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
-            mPOIAllocation.ItemRef = mMatReqProc.WorkOrder.WorkOrderNo
-            mPOIAllocation.ItemRef2 = mMatReqProc.WorkOrder.Description
-            mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
+          End If
+
+          mPOIAllocation.Quantity = mMatReqProc.ToOrder
+          mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
+          mPOIAllocation.ItemRef = mMatReqProc.WorkOrder.WorkOrderNo
+          mPOIAllocation.ItemRef2 = mMatReqProc.WorkOrder.Description
+          mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
 
           mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
 
 
 
-            rPO.PurchaseOrderItems.Add(mPOItem)
+          rPO.PurchaseOrderItems.Add(mPOItem)
 
 
-          Else
+        Else
           '// There is an existing POItem for this stock code
           '// look for an allocation for this call off
           For Each mAlloc As dmPurchaseOrderItemAllocation In mPOItem.PurchaseOrderItemAllocations
-            If mAlloc.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID Then
-              mExistingAllocation = mAlloc
-              Exit For
+
+            If vPOConsoleOption = ePOConsoleOption.MaintenanceWorkOrder Then
+              If mAlloc.MaintenanceWorkOrderID = mMatReqProc.MaterialRequirement.ObjectID Then
+                mExistingAllocation = mAlloc
+                Exit For
+              Else
+                mExistingAllocation = Nothing
+              End If
             Else
-              mExistingAllocation = Nothing
+              If mAlloc.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID Then
+                mExistingAllocation = mAlloc
+                Exit For
+              Else
+                mExistingAllocation = Nothing
+              End If
             End If
+
+
           Next
           If mExistingAllocation Is Nothing Then '//add a new allocation to the exiting po item
-            mPOIAllocation = New dmPurchaseOrderItemAllocation
+              mPOIAllocation = New dmPurchaseOrderItemAllocation
             mPOIAllocation.Quantity = mMatReqProc.ToOrder
-            mPOIAllocation.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+            If vPOConsoleOption = ePOConsoleOption.MaintenanceWorkOrder Then
+              mPOIAllocation.MaintenanceWorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+
+            Else
+              mPOIAllocation.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+
+            End If
+
+
             mPOIAllocation.ItemRef = mMatReqProc.WorkOrder.WorkOrderNo
             mPOIAllocation.ItemRef2 = mMatReqProc.WorkOrder.Description
-            mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
+              mPOIAllocation.ProjectRef = mMatReqProc.ProjectName
 
-            mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
+              mPOItem.PurchaseOrderItemAllocations.Add(mPOIAllocation)
 
-          Else '// update the allocation
-            mExistingAllocation.Quantity = mExistingAllocation.Quantity + mMatReqProc.ToOrder
+            Else '// update the allocation
+              mExistingAllocation.Quantity = mExistingAllocation.Quantity + mMatReqProc.ToOrder
+            End If
           End If
-        End If
-        mCount += 1
-        Dim mPOA As dmPurchaseOrderAllocation
+          mCount += 1
+          Dim mPOA As dmPurchaseOrderAllocation
 
-        mPOA = rPO.PurchaseOrderAllocations.ItemFromWorkOrderID(mMatReqProc.MaterialRequirement.ObjectID)
+        If vPOConsoleOption = ePOConsoleOption.MaintenanceWorkOrder Then
+          mPOA = rPO.PurchaseOrderAllocations.ItemFromMaintenanceWorkOrderID(mMatReqProc.MaterialRequirement.ObjectID)
+
+
+        Else
+          mPOA = rPO.PurchaseOrderAllocations.ItemFromWorkOrderID(mMatReqProc.MaterialRequirement.ObjectID)
+
+        End If
+
         If mPOA Is Nothing Then
           mPOA = New dmPurchaseOrderAllocation
           mPOA.PurchaseOrderID = rPO.PurchaseOrderID
-          mPOA.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+
+          If vPOConsoleOption = ePOConsoleOption.MaintenanceWorkOrder Then
+            mPOA.MaintenanceWorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+
+          Else
+            mPOA.WorkOrderID = mMatReqProc.MaterialRequirement.ObjectID
+
+          End If
+
 
           rPO.PurchaseOrderAllocations.Add(mPOA)
         End If
@@ -161,16 +202,35 @@ Public Class fccPurchaseOrderConsole
     Next
 
     If mCount > 0 Then
-      If rPO.PurchaseOrderAllocations.Count = 1 Then
-        rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
 
-      ElseIf rPO.PurchaseOrderAllocations.Count > 1 Then
-        rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Multiple
-      Else
-        If rPO.PurchaseOrderAllocations.Count = 0 Then
-          rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
-        End If
-      End If
+      Select Case vPOConsoleOption
+        Case ePOConsoleOption.MaintenanceWorkOrder
+          If rPO.PurchaseOrderAllocations.Count = 1 Then
+            rPO.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Sencillo
+
+          ElseIf rPO.PurchaseOrderAllocations.Count > 1 Then
+            rPO.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Multiple
+          Else
+            If rPO.PurchaseOrderAllocations.Count = 0 Then
+              rPO.MaterialRequirementTypeMaintenanceID = ePOMaterialRequirementType.Inventario
+            End If
+          End If
+
+
+        Case Else
+          If rPO.PurchaseOrderAllocations.Count = 1 Then
+            rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Sencillo
+
+          ElseIf rPO.PurchaseOrderAllocations.Count > 1 Then
+            rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Multiple
+          Else
+            If rPO.PurchaseOrderAllocations.Count = 0 Then
+              rPO.MaterialRequirementTypeWorkOrderID = ePOMaterialRequirementType.Inventario
+            End If
+          End If
+      End Select
+
+
 
       ''Update Qtys from all POIA
       For Each mPOI As dmPurchaseOrderItem In rPO.PurchaseOrderItems

@@ -1355,4 +1355,25 @@ Public Class frmWorkOrderDetailConstruction
     End If
 
   End Sub
+
+  Private Sub btnPickOrder_Click(sender As Object, e As EventArgs) Handles btnPickOrder.Click
+    Try
+      Dim mMateiralRequirementProcessors As New colMaterialRequirementProcessors
+      Dim mCountToProcess As Integer
+
+      mMateiralRequirementProcessors = pFormController.GetMaterialRequirementProcessors()
+
+      mCountToProcess = mMateiralRequirementProcessors.Count
+
+      If mCountToProcess > 0 Then
+        pFormController.ProcessPicksAutomatically(mMateiralRequirementProcessors)
+
+        MessageBox.Show(String.Format("{0} artículos despachados automáticamente", mCountToProcess))
+      End If
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
 End Class
