@@ -69,47 +69,11 @@ Public Class fccWorkOrderMaintenance
     mdso = New dsoProduction(pDBConn)
     mdso.SaveMaintenanceWorkOrder(pMaintenanceWorkOrder)
 
-    SaveMaterialRequirement()
+
     mRetVal = True
     Return mRetVal
   End Function
 
-  Private Sub SaveMaterialRequirement()
-    Dim mNewMatReq As dmMaterialRequirement
-    Dim mdso As New dsoProduction(pDBConn)
-
-    For Each mItem In MaintenanceWorkOrder.MaitenanceWorkOrderItems
-
-      If mItem.MaterialRequirement.MaterialRequirementID = 0 Then
-        mNewMatReq = New dmMaterialRequirement
-
-      Else
-        mNewMatReq = mItem.MaterialRequirement
-      End If
-
-      mNewMatReq.Description = mItem.StockItem.Description
-      mNewMatReq.MaterialRequirementType = eMaterialRequirementType.MaintenanceItem
-      mNewMatReq.NetLenght = mItem.StockItem.Length
-      mNewMatReq.NetThickness = mItem.StockItem.Thickness
-      mNewMatReq.NetWidth = mItem.StockItem.Width
-      mNewMatReq.ObjectID = mItem.MaintenanceWorkOrderID
-      mNewMatReq.ObjectType = eObjectType.MaintenanceItem
-      mNewMatReq.Quantity = mItem.Quantity
-      mNewMatReq.StockCode = mItem.StockItem.StockCode
-      mNewMatReq.StockItemID = mItem.StockItem.StockItemID
-      mNewMatReq.UoM = mItem.StockItem.UoM
-      mNewMatReq.Comments = mItem.Comments
-      mNewMatReq.GeneratedQty = mItem.Quantity
-      mNewMatReq.AreaID = MaintenanceWorkOrder.WorkCentreID
-      mNewMatReq.IsAlreadyUsed = True
-      mNewMatReq.DateChange = Now
-      mItem.MaterialRequirement = mNewMatReq
-
-      mdso.SaveMaterialRequirement(mItem.MaterialRequirement)
-    Next
-
-
-  End Sub
 
 
 

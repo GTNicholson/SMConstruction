@@ -30,7 +30,7 @@ Public Class frmWorkOrderMaintenance
       RefreshControls()
 
 
-      grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
+      grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaterialRequirements
 
       If mOK Then RefreshControls()
 
@@ -336,7 +336,7 @@ Public Class frmWorkOrderMaintenance
   Private Sub grpMaintenanceItems_CustomButtonClick(sender As Object, e As BaseButtonEventArgs) Handles grpMaintenanceItems.CustomButtonClick
 
     Dim mSelectedItem As dmStockItem
-    Dim mMaintenanceWorkOrderItem As dmMaintenanceWorkOrderItem
+    Dim mNewMatReq As dmMaterialRequirement
 
     Dim mTest As New colPOItemEditors
 
@@ -365,9 +365,9 @@ Public Class frmWorkOrderMaintenance
 
           mPicker = New clsPickerStockItem(mStockItems, pFormController.DBConn, AppRTISGlobal.GetInstance)
 
-          For Each mMaintenanceWorkOrderItem In pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
-            If mMaintenanceWorkOrderItem.StockItemID > 0 Then
-              mStockItem = mStockItems.ItemFromKey(mMaintenanceWorkOrderItem.StockItemID)
+          For Each mNewMatReq In pFormController.MaintenanceWorkOrder.MaterialRequirements
+            If mNewMatReq.StockItemID > 0 Then
+              mStockItem = mStockItems.ItemFromKey(mNewMatReq.StockItemID)
 
               If Not mPicker.SelectedObjects.Contains(mStockItem) Then
 
@@ -380,44 +380,55 @@ Public Class frmWorkOrderMaintenance
           frmPickerStockItem.OpenPickerMulti(mPicker, True, pFormController.DBConn, AppRTISGlobal.GetInstance, False, -1)
           For Each mSelectedItem In mPicker.SelectedObjects
             If mSelectedItem IsNot Nothing Then
-              mMaintenanceWorkOrderItem = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.ItemByStockItemID(mSelectedItem.StockItemID)
-              If mMaintenanceWorkOrderItem Is Nothing Then
-                mMaintenanceWorkOrderItem = New dmMaintenanceWorkOrderItem
-                mMaintenanceWorkOrderItem.StockItemID = mSelectedItem.StockItemID
-                mMaintenanceWorkOrderItem.Quantity = 1
-                mMaintenanceWorkOrderItem.UnitCost = mSelectedItem.AverageCost
-
-                pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Add(mMaintenanceWorkOrderItem)
+              mNewMatReq = pFormController.MaintenanceWorkOrder.MaterialRequirements.ItemFromStockItemID(mSelectedItem.StockItemID)
+              If mNewMatReq Is Nothing Then
+                mNewMatReq = New dmMaterialRequirement
+                mNewMatReq.Description = mSelectedItem.Description
+                mNewMatReq.MaterialRequirementType = eMaterialRequirementType.MaintenanceItem
+                mNewMatReq.NetLenght = mSelectedItem.Length
+                mNewMatReq.NetThickness = mSelectedItem.Thickness
+                mNewMatReq.NetWidth = mSelectedItem.Width
+                mNewMatReq.ObjectID = pFormController.MaintenanceWorkOrder.MaintenanceWorkOrderID
+                mNewMatReq.ObjectType = eObjectType.MaintenanceWorkOrder
+                mNewMatReq.Quantity = 1
+                mNewMatReq.StockCode = mSelectedItem.StockCode
+                mNewMatReq.StockItemID = mSelectedItem.StockItemID
+                mNewMatReq.UoM = mSelectedItem.UoM
+                mNewMatReq.GeneratedQty = 1
+                mNewMatReq.AreaID = pFormController.MaintenanceWorkOrder.WorkCentreID
+                mNewMatReq.IsAlreadyUsed = True
+                mNewMatReq.DateChange = Now
+                pFormController.MaintenanceWorkOrder.MaterialRequirements.Add(mNewMatReq)
               End If
             End If
           Next
 
           mSelectedStockItems = New colStockItems(mPicker.SelectedObjects)
 
-          For mindex As Integer = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Count - 1 To 0 Step -1
-            mMaintenanceWorkOrderItem = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems(mindex)
-            If mMaintenanceWorkOrderItem.StockItemID > 0 Then
-              mStockItem = mSelectedStockItems.ItemFromKey(mMaintenanceWorkOrderItem.StockItemID)
+          For mindex As Integer = pFormController.MaintenanceWorkOrder.MaterialRequirements.Count - 1 To 0 Step -1
+            mNewMatReq = pFormController.MaintenanceWorkOrder.MaterialRequirements(mindex)
+            If mNewMatReq.StockItemID > 0 Then
+              mStockItem = mSelectedStockItems.ItemFromKey(mNewMatReq.StockItemID)
 
               If Not mPicker.SelectedObjects.Contains(mStockItem) Then
-                pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Remove(mMaintenanceWorkOrderItem)
+                pFormController.MaintenanceWorkOrder.MaterialRequirements.Remove(mNewMatReq)
               End If
             End If
           Next
 
 
           pFormController.SaveObjects()
-          grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
+          grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaterialRequirements
 
         Case "DeleteItem"
 
-          mMaintenanceWorkOrderItem = gvMaintenanceItems.GetFocusedRow
-          If mMaintenanceWorkOrderItem IsNot Nothing Then
+          mNewMatReq = gvMaintenanceItems.GetFocusedRow
+          If mNewMatReq IsNot Nothing Then
             If MsgBox("¿Está seguro que desea eliminar este ítem de la Orden de Mantenmiento?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo, "Eliminar Artículo") Then
               UpdateObject()
 
-              pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems.Remove(mMaintenanceWorkOrderItem)
-              grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaitenanceWorkOrderItems
+              pFormController.MaintenanceWorkOrder.MaterialRequirements.Remove(mNewMatReq)
+              grdMaitenanceItems.DataSource = pFormController.MaintenanceWorkOrder.MaterialRequirements
 
             End If
           End If
@@ -496,6 +507,54 @@ Public Class frmWorkOrderMaintenance
       pFormController.MaintenanceWorkOrder.MaintenanceWorkOrderDocument = mExportFilename
 
       RefreshControls()
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
+  End Sub
+
+  Private Sub gvMaintenanceItems_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles gvMaintenanceItems.CustomUnboundColumnData
+    Dim mRow As dmMaterialRequirement
+    Try
+      mRow = e.Row
+
+      If mRow IsNot Nothing Then
+        Select Case e.Column.Name
+          Case gcUnitCost.Name
+            If e.IsGetData Then
+              Dim mStockItem As dmStockItem
+
+              mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mRow.StockItemID)
+
+              If mStockItem IsNot Nothing Then
+
+                e.Value = mStockItem.AverageCost
+
+              End If
+            End If
+
+          Case gcTotalCost.Name
+            If e.IsGetData Then
+              Dim mStockItem As dmStockItem
+
+              mStockItem = AppRTISGlobal.GetInstance.StockItemRegistry.GetStockItemFromID(mRow.StockItemID)
+              Dim mTotalCost As Decimal
+
+              If mStockItem IsNot Nothing Then
+                mTotalCost = mRow.Quantity * mStockItem.AverageCost
+                e.Value = mTotalCost
+
+              End If
+
+
+
+
+            End If
+        End Select
+
+
+      End If
 
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw

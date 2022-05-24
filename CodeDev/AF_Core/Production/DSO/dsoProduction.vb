@@ -53,16 +53,17 @@ Public Class dsoProduction
   Public Function SaveMaintenanceWorkOrder(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoMaintenanceWorkOrder
-    Dim mdtoItem As dtoMaintenanceWorkOrderItem
+    Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Try
 
       mdto = New dtoMaintenanceWorkOrder(pDBConn)
-      mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
+      mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
 
       If pDBConn.Connect Then
         mRetVal = mdto.SaveMaintenanceWorkOrder(rMaintenanceWorkOrder)
 
-        If mRetVal Then mdtoItem.SaveMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, rMaintenanceWorkOrder.MaintenanceWorkOrderID)
+        mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
+        If mRetVal Then mdtoMaterialRequirement.SaveMaterialRequirementCollection(rMaintenanceWorkOrder.MaterialRequirements, eObjectType.MaintenanceWorkOrder, rMaintenanceWorkOrder.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
 
       End If
 
@@ -118,13 +119,11 @@ Public Class dsoProduction
   Public Function LoadMaintenanceWorkOrderDown(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vPrimaryKeyID As Integer) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoMaintenanceWorkOrder
-    Dim mdtoItem As dtoMaintenanceWorkOrderItem
     Dim mdtoMachinery As dtoMachinery
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
 
     Try
       mdto = New dtoMaintenanceWorkOrder(pDBConn)
-      mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
       mdtoMachinery = New dtoMachinery(pDBConn)
       mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
       If pDBConn.Connect Then
@@ -132,20 +131,13 @@ Public Class dsoProduction
         mRetVal = mdto.LoadMaintenanceWorkOrder(rMaintenanceWorkOrder, vPrimaryKeyID)
 
 
-        If mRetVal Then mdtoItem.LoadMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, vPrimaryKeyID)
+        If mRetVal Then mdtoMaterialRequirement.LoadMaterialRequirementCollection(rMaintenanceWorkOrder.MaterialRequirements, eObjectType.MaintenanceWorkOrder, rMaintenanceWorkOrder.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
+
 
         If mRetVal Then mdtoMachinery.LoadMachinery(rMaintenanceWorkOrder.Machinery, rMaintenanceWorkOrder.EquipmentID)
 
 
-        For Each mItem In rMaintenanceWorkOrder.MaitenanceWorkOrderItems
-          Dim mCol As New colMaterialRequirements
-          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mCol, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
 
-          If mCol IsNot Nothing AndAlso mCol.Count > 0 Then
-            mItem.MaterialRequirement = mCol(0)
-          End If
-
-        Next
       End If
 
 
@@ -279,13 +271,12 @@ Public Class dsoProduction
   Public Function LoadMaintenanceWorkOrderDownByWhere(ByRef rMaintenanceWorkOrder As dmMaintenanceWorkOrder, ByVal vWhere As String) As Boolean
     Dim mRetVal As Boolean
     Dim mdto As dtoMaintenanceWorkOrder
-    Dim mdtoItem As dtoMaintenanceWorkOrderItem
+
     Dim mdtoMachinery As dtoMachinery
     Dim mdtoMaterialRequirement As dtoMaterialRequirement
     Dim mCol As New colMaintenanceWorkOrders
     Try
       mdto = New dtoMaintenanceWorkOrder(pDBConn)
-      mdtoItem = New dtoMaintenanceWorkOrderItem(pDBConn)
       mdtoMachinery = New dtoMachinery(pDBConn)
       mdtoMaterialRequirement = New dtoMaterialRequirement(pDBConn)
       If pDBConn.Connect Then
@@ -298,21 +289,12 @@ Public Class dsoProduction
 
           mRetVal = False
         End If
-        If mRetVal Then mdtoItem.LoadMaintenanceWorkOrderItemCollection(rMaintenanceWorkOrder.MaitenanceWorkOrderItems, rMaintenanceWorkOrder.MaintenanceWorkOrderID)
+        If mRetVal Then mdtoMaterialRequirement.LoadMaterialRequirementCollection(rMaintenanceWorkOrder.MaterialRequirements, eObjectType.MaintenanceWorkOrder, rMaintenanceWorkOrder.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
 
         If mRetVal Then mdtoMachinery.LoadMachinery(rMaintenanceWorkOrder.Machinery, rMaintenanceWorkOrder.EquipmentID)
 
-
-        For Each mItem In rMaintenanceWorkOrder.MaitenanceWorkOrderItems
-          Dim mColMat As New colMaterialRequirements
-          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mColMat, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
-
-          If mCol IsNot Nothing AndAlso mCol.Count > 0 Then
-            mItem.MaterialRequirement = mColMat(0)
-          End If
-
-        Next
       End If
+
 
 
     Catch ex As Exception

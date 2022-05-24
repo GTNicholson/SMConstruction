@@ -20,7 +20,7 @@ Public Class repWorkOrderMaintenanceDoc
   Public Shared Function CreateReport(ByVal vMaintenanceWorkOrder As dmMaintenanceWorkOrder) As XtraReport
     Dim mRep As New repWorkOrderMaintenanceDoc(vMaintenanceWorkOrder)
     Dim mPrintTool As ReportPrintTool
-    mRep.DataSource = vMaintenanceWorkOrder.MaitenanceWorkOrderItems
+    mRep.DataSource = vMaintenanceWorkOrder.MaterialRequirements
     mRep.CreateDocument()
     mPrintTool = New ReportPrintTool(mRep)
     mPrintTool.ShowPreviewDialog()
