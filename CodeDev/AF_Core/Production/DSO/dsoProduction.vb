@@ -139,7 +139,7 @@ Public Class dsoProduction
 
         For Each mItem In rMaintenanceWorkOrder.MaitenanceWorkOrderItems
           Dim mCol As New colMaterialRequirements
-          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mCol, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderItemID, eMaterialRequirementType.MaintenanceItem)
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mCol, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
 
           If mCol IsNot Nothing AndAlso mCol.Count > 0 Then
             mItem.MaterialRequirement = mCol(0)
@@ -305,7 +305,7 @@ Public Class dsoProduction
 
         For Each mItem In rMaintenanceWorkOrder.MaitenanceWorkOrderItems
           Dim mColMat As New colMaterialRequirements
-          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mColMat, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderItemID, eMaterialRequirementType.MaintenanceItem)
+          mdtoMaterialRequirement.LoadMaterialRequirementCollection(mColMat, eObjectType.MaintenanceItem, mItem.MaintenanceWorkOrderID, eMaterialRequirementType.MaintenanceItem)
 
           If mCol IsNot Nothing AndAlso mCol.Count > 0 Then
             mItem.MaterialRequirement = mColMat(0)

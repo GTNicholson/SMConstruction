@@ -63,6 +63,8 @@ Public Class dmPurchaseOrder : Inherits dmBase
   Private pPaymentDate As Date
   Private pPurchaseOrderWOAllocations As colPurchaseOrderWOAllocations
   Private pMaterialRequirementTypeWorkOrderID As Integer
+  Private pMaterialRequirementTypeMaintenanceID As Integer
+
   Public Sub New()
     MyBase.New()
   End Sub
@@ -170,6 +172,7 @@ Public Class dmPurchaseOrder : Inherits dmBase
       .RetentionPercentage = RetentionPercentage
       .ValuationMode = ValuationMode
       .PaymentDate = PaymentDate
+      .MaterialRequirementTypeMaintenanceID = MaterialRequirementTypeMaintenanceID
       'Add entries here for each collection and class property
       .PurchaseOrderAllocations = PurchaseOrderAllocations.Clone
       .PurchaseOrderItems = PurchaseOrderItems.Clone
@@ -746,8 +749,15 @@ Public Class dmPurchaseOrder : Inherits dmBase
     End Set
   End Property
 
-
-
+  Public Property MaterialRequirementTypeMaintenanceID As Integer
+    Get
+      Return pMaterialRequirementTypeMaintenanceID
+    End Get
+    Set(value As Integer)
+      If pMaterialRequirementTypeMaintenanceID <> value Then IsDirty = True
+      pMaterialRequirementTypeMaintenanceID = value
+    End Set
+  End Property
 End Class
 
 

@@ -39,11 +39,13 @@ Public Class clsWorkOrderInfo
     End Set
   End Property
 
-  Public ReadOnly Property CustomerName As String
+  Public Property CustomerName As String
     Get
       Return pCustomer.CompanyName
     End Get
-
+    Set(value As String)
+      pCustomer.CompanyName = value
+    End Set
   End Property
 
   Public ReadOnly Property WorkOrderID As Integer
@@ -175,10 +177,14 @@ Public Class clsWorkOrderInfo
     End Get
   End Property
 
-  Public ReadOnly Property ProjectName As String
+  Public Property ProjectName As String
     Get
       Return pSalesOrder.ProjectName
+
     End Get
+    Set(value As String)
+      pSalesOrder.ProjectName = value
+    End Set
   End Property
 
   Public ReadOnly Property PurchasingDate As Date

@@ -134,6 +134,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.lblWorkOrderID = New System.Windows.Forms.Label()
+        Me.btnPickOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -431,6 +432,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl6.AppearanceCaption.Options.UseFont = True
         Me.GroupControl6.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl6.Controls.Add(Me.btnPickOrder)
         Me.GroupControl6.Controls.Add(Me.dtePurchasingDate)
         Me.GroupControl6.Controls.Add(Me.Label4)
         Me.GroupControl6.Controls.Add(Me.cboStatus)
@@ -921,7 +923,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabPage2.Controls.Add(Me.grpMaterialRequirementInsumos)
         Me.XtraTabPage2.Controls.Add(Me.grpWOMatReqWood)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1470, 276)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1464, 272)
         Me.XtraTabPage2.Text = "Requerimientos de Materiales"
         '
         'grpMaterialRequirementInsumos
@@ -1311,6 +1313,16 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblWorkOrderID.Text = "ID:00000"
         Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'btnPickOrder
+        '
+        Me.btnPickOrder.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.btnPickOrder.Appearance.Options.UseFont = True
+        Me.btnPickOrder.Location = New System.Drawing.Point(649, 161)
+        Me.btnPickOrder.Name = "btnPickOrder"
+        Me.btnPickOrder.Size = New System.Drawing.Size(125, 23)
+        Me.btnPickOrder.TabIndex = 181
+        Me.btnPickOrder.Text = "Despachar Materiales"
+        '
         'frmWorkOrderDetailConstruction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1480,4 +1492,5 @@ Partial Class frmWorkOrderDetailConstruction
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gcArea As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents btnPickOrder As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -45,10 +45,11 @@ Public Class fccWorkOrderMaintenance
     If pPrimaryKeyID = 0 Then
 
       pMaintenanceWorkOrder = New dmMaintenanceWorkOrder
+      pMaintenanceWorkOrder.Status = eMaintenanceWorkOrderStatus.InProgress
     Else
       If pMaintenanceWorkOrder Is Nothing Then
         pMaintenanceWorkOrder = New dmMaintenanceWorkOrder
-        pMaintenanceWorkOrder.Status = eMaintenanceWorkOrderStatus.InProgress
+
         mdso.LoadMaintenanceWorkOrderDown(pMaintenanceWorkOrder, pPrimaryKeyID)
 
 
@@ -91,18 +92,15 @@ Public Class fccWorkOrderMaintenance
       mNewMatReq.NetLenght = mItem.StockItem.Length
       mNewMatReq.NetThickness = mItem.StockItem.Thickness
       mNewMatReq.NetWidth = mItem.StockItem.Width
-      mNewMatReq.ObjectID = mItem.MaintenanceWorkOrderItemID
+      mNewMatReq.ObjectID = mItem.MaintenanceWorkOrderID
       mNewMatReq.ObjectType = eObjectType.MaintenanceItem
       mNewMatReq.Quantity = mItem.Quantity
       mNewMatReq.StockCode = mItem.StockItem.StockCode
       mNewMatReq.StockItemID = mItem.StockItem.StockItemID
       mNewMatReq.UoM = mItem.StockItem.UoM
       mNewMatReq.Comments = mItem.Comments
-      mNewMatReq.FromStockQty = 0
       mNewMatReq.GeneratedQty = mItem.Quantity
       mNewMatReq.AreaID = MaintenanceWorkOrder.WorkCentreID
-      mNewMatReq.SetPickedQty(0)
-      mNewMatReq.SetReturndQty(0)
       mNewMatReq.IsAlreadyUsed = True
       mNewMatReq.DateChange = Now
       mItem.MaterialRequirement = mNewMatReq

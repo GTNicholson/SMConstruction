@@ -822,4 +822,144 @@ Public Class fccWorkOrderDetailConstruction
     mRetVal.GeneratedQty = 0
     Return mRetVal
   End Function
+
+  Public Function GetMaterialRequirementProcessors() As colMaterialRequirementProcessors
+    Dim mRetVal As New colMaterialRequirementProcessors
+    Dim mdto As dtoMaterialRequirementInfo
+    Dim mWhere As String = " WorkOrderID =" & pWorkOrder.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+
+    Try
+
+      pDBConn.Connect()
+      mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+
+      mWhere = mWhere & " and ISNull(Category,0) <> " & CInt(eStockItemCategory.PinturaYQuimico)
+
+
+      mdto.LoadMaterialRequirementProcessorsByWhere(mRetVal, mWhere)
+
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+    End Try
+
+    Return mRetVal
+  End Function
+
+  Public Sub ProcessPicksAutomatically(ByRef rMaterialRequirementProcessors As colMaterialRequirementProcessors)
+
+    Try
+      Dim mdsoTran As dsoStockTransactions
+      Dim mExchangeValue As Decimal
+      Dim mTranDate As DateTime
+      Dim mdsoStock As dsoStock
+      Dim mSIL As New dmStockItemLocation
+      Dim mRequisaNo As String
+      Dim mMatReqProcessorsToRequisa As New colMaterialRequirementProcessors
+
+      mdsoTran = New dsoStockTransactions(pDBConn)
+
+      mdsoStock = New dsoStock(pDBConn)
+      mTranDate = Now
+      mRequisaNo = GetRequisaNumber()
+
+      For Each mMRP As clsMaterialRequirementProcessor In rMaterialRequirementProcessors
+        If mMRP.Quantity <> 0 And (mMRP.Quantity - mMRP.PickedQty) > 0 Then
+          If mMRP.StockItem.StockItemID <> 0 Then
+            mSIL = mdsoStock.GetOrCreateStockItemLocation(mMRP.StockItem.StockItemID, 1)
+          Else
+            mSIL = Nothing
+          End If
+          mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.Quantity, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo)
+          mMatReqProcessorsToRequisa.Add(mMRP)
+          mMRP.ToProcessQty = 0
+        End If
+
+      Next
+      PrintRequisaPicking(mMatReqProcessorsToRequisa, mRequisaNo, Now)
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+    End Try
+
+
+  End Sub
+
+  Private Sub PrintRequisaPicking(ByVal vMatReqProcessorsToRequisa As colMaterialRequirementProcessors, ByVal vRequisaNo As String, ByVal vTranDate As Date)
+
+    Try
+      Dim mFileName As String
+      Dim mDirectory As String
+      Dim mExportFilename As String = ""
+      Dim mRep As repRequisaPicking
+      Dim mWhere As String = " WorkOrderID =" & pWorkOrder.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+
+      Try
+        mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, clsConstants.OTRequisas, vRequisaNo)
+        If System.IO.Directory.Exists(mDirectory) = False Then
+          System.IO.Directory.CreateDirectory(mDirectory)
+        End If
+
+        mFileName = String.Format("Requisa_{0}_{1}.pdf", vRequisaNo, pWorkOrder.WorkOrderNo)
+        mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+        pDBConn.Connect()
+        Dim mWorkOrderInfo As New clsWorkOrderInfo
+        mWorkOrderInfo.WorkOrder = WorkOrder
+        mWorkOrderInfo.ProjectName = pWorkOrderAllocationEditors(0).ProjectName
+        mWorkOrderInfo.CustomerName = pWorkOrderAllocationEditors(0).ClientName
+        mRep = repRequisaPicking.CreateReport(mWorkOrderInfo, vMatReqProcessorsToRequisa, vRequisaNo, vTranDate)
+
+        mRep.ExportToPdf(mExportFilename)
+
+        If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+
+      Catch ex As Exception
+        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+      End Try
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
+
+    End Try
+
+  End Sub
+
+
+
+  Public Function GetExchangeRate(ByVal vDate As Date, vCurrency As Integer) As Decimal
+    Dim mdsoGeneral As New dsoGeneral(DBConn)
+    Dim mExchangeRate As Decimal = 0
+
+    mExchangeRate = mdsoGeneral.GetExchangeRateUnconnected(vDate, vCurrency)
+
+    Return mExchangeRate
+  End Function
+
+  Private Function GetRequisaNumber() As String
+    Dim mdso As New dsoGeneral(pDBConn)
+    Dim mRetVal As String = ""
+
+    If pWorkOrder IsNot Nothing Then
+
+      If pWorkOrder.WorkOrderID > 0 Then
+        mRetVal = "R-" & mdso.getNextTally(eTallyIDs.RequisaNumber).ToString("D5")
+
+        '  If Not pDBConn.IsConnected Then pDBConn.Connect()
+
+        '  pDBConn.ExecuteNonQuery(String.Format("Update WorkOrder set RequisaNumber = {0} where WorkOrderID = {1}", mRetVal, pCurrentWorkOrderInfo.WorkOrderID))
+
+        '  If pDBConn.IsConnected Then pDBConn.Disconnect()
+      End If
+    End If
+
+    Return mRetVal
+
+  End Function
+
 End Class

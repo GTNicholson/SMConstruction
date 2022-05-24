@@ -110,7 +110,7 @@ Public Class dtoPurchaseOrderItemAllocationInfo : Inherits dtoBase
             .ItemRef = DBReadString(rDataReader, "ItemRef")
             .ProjectRef = DBReadString(rDataReader, "ProjectRef")
             .SalesorderPhaseItemID = DBReadInt32(rDataReader, "SalesorderPhaseItemID")
-
+            .WorkOrderID = DBReadInt32(rDataReader, "WorkOrderID")
         End Select
 
       End With

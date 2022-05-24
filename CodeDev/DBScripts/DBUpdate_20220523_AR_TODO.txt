@@ -1,0 +1,295 @@
+DELETE FROM LookUpField
+WHERE LookupFieldID=72 AND FieldName='Code'
+go
+
+DELETE FROM LookUpField
+WHERE LookupFieldID=73 AND FieldName='Description'
+go
+
+ALTER view [dbo].[vwMaintenanceMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.ReturnQty,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.NetLenght,
+MR.NetWidth,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+MR.FromStockQty,
+MR.IsFromStockValidated,
+MR.DateChange,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+MWO.MaintenanceWorkOrderID,
+MWO.MaintenanceWorkOrderNo,
+MWO.Description as 'WODESCRIPTION',
+MWO.PlannedDate,
+MWO.Status,
+mwo.EquipmentID,
+mwo.WorkCentreID,
+
+isnull(MR.Quantity,0)-isnull(MR.PickedQty,0) AS 'OSQty',
+isnull(sil.Qty,0) StockItemLocationsQty,
+isnull(vwOQWOSum.OrderedQty,0) OrderedQty,
+isnull(vwOQWOSum.ReceivedQty,0) ReceivedQty,
+isnull(vwOQWOSum.CurrentOrderQty,0) CurrentOrderQty,
+isnull(vwMRAQWO.TotalQuantityRequired,0) TotalAreaQuantity,
+vwFSOQDS.OutstandingFromStockQty,
+
+MWOI.MaintenanceWorkOrderItemID,
+
+MACH.Description 'MachineryDescription',
+
+MWO.MaintenanceType,
+MWO.PlannedDate 'MaintenancePlannedDate'
+
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID
+INNER JOIN MaintenanceWorkOrder MWO ON MWO.MaintenanceWorkOrderID=MR.ObjectID AND Status NOT IN (3)
+INNER JOIN MaintenanceWorkOrderItem MWOI ON MWOI.MaintenanceWorkOrderID=MWO.MaintenanceWorkOrderID
+LEFT JOIN StockItemLocation SIL ON SIL.StockItemID=SI.StockItemID
+left join vwOrderedQuantityWOSummary vwOQWOSum on vwOQWOSum.WorkOrderID=MWO.MaintenanceWorkOrderID and vwOQWOSum.StockItemID=si.StockItemID
+left join vwMRAllQuantityMaintenance vwMRAQWO on vwMRAQWO.StockItemID=si.StockItemID and vwMRAQWO.ObjectID=mr.ObjectID
+LEFT JOIN vwFromStockOutstandingQtyDetailSummary vwFSOQDS on vwFSOQDS.StockItemID=SI.StockItemID
+left join Machinery MACH ON MACH.MachineryID=MWO.EquipmentID
+WHERE MR.MaterialRequirementType =5
+
+GO
+
+create view [dbo].[vwOrderedQuantityMaintenanceSummary]
+as
+Select 
+POIA.MaintenanceWorkOrderID,
+POI.StockItemID, 
+Sum(POIA.Quantity-ReceivedQty) as OrderedQty,
+Sum(ReceivedQty) as ReceivedQty,
+Sum(POIA.Quantity) as CurrentOrderQty 
+
+
+from PurchaseOrderItemAllocation POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+INNER JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID AND PO.Status NOT IN (6)
+group by POIA.MaintenanceWorkOrderID,POI.StockItemID
+
+GO
+
+ALTER view [dbo].[vwMaintenanceMaterialRequirementPicking]
+as
+
+select 
+
+MR.MaterialRequirementID,
+MR.StockCode,
+MR.Description,
+MR.Quantity,
+MR.ReturnQty,
+isnull(MR.PickedQty,0) as 'PickedQty',
+MR.NetLenght,
+MR.NetWidth,
+MR.UoM,
+MR.AreaID,
+MR.SupplierStockCode,
+MR.Comments,
+MR.MaterialRequirementType,
+MR.FromStockQty,
+MR.IsFromStockValidated,
+MR.DateChange,
+SI.Category,
+SI.PartNo,
+SI.StockItemID,
+SI.StockCode AS 'STOCKITEMCODE',
+SI.Description AS 'SIDESCRIPTION',
+SI.AverageCost,
+SI.StdCost,
+MWO.MaintenanceWorkOrderID,
+MWO.MaintenanceWorkOrderNo,
+MWO.Description as 'WODESCRIPTION',
+MWO.PlannedDate,
+MWO.Status,
+mwo.EquipmentID,
+mwo.WorkCentreID,
+
+isnull(MR.Quantity,0)-isnull(MR.PickedQty,0) AS 'OSQty',
+isnull(sil.Qty,0) StockItemLocationsQty,
+isnull(vwOQWOSum.OrderedQty,0) OrderedQty,
+isnull(vwOQWOSum.ReceivedQty,0) ReceivedQty,
+isnull(vwOQWOSum.CurrentOrderQty,0) CurrentOrderQty,
+isnull(vwMRAQWO.TotalQuantityRequired,0) TotalAreaQuantity,
+vwFSOQDS.OutstandingFromStockQty,
+
+MACH.Description 'MachineryDescription',
+
+MWO.MaintenanceType,
+MWO.PlannedDate 'MaintenancePlannedDate'
+
+from MaterialRequirement MR
+
+inner join stockitem si on si.StockItemID=MR.StockItemID
+INNER JOIN MaintenanceWorkOrder MWO ON MWO.MaintenanceWorkOrderID=MR.ObjectID AND Status NOT IN (3)
+LEFT JOIN StockItemLocation SIL ON SIL.StockItemID=SI.StockItemID
+left join vwOrderedQuantityMaintenanceSummary vwOQWOSum on vwOQWOSum.MaintenanceWorkOrderID=MWO.MaintenanceWorkOrderID and vwOQWOSum.StockItemID=si.StockItemID
+left join vwMRAllQuantityMaintenance vwMRAQWO on vwMRAQWO.StockItemID=si.StockItemID and vwMRAQWO.ObjectID=mr.ObjectID
+LEFT JOIN vwFromStockOutstandingQtyDetailSummary vwFSOQDS on vwFSOQDS.StockItemID=SI.StockItemID
+left join Machinery MACH ON MACH.MachineryID=MWO.EquipmentID
+WHERE MR.MaterialRequirementType =5
+
+GO
+
+
+
+ALTER view [dbo].[vwPurchaseOrderItemAllocationInfo]
+as
+
+
+select 
+POIA.PurchaseOrderItemAllocationID,
+POIA.Quantity,
+POIA.ReceivedQty,
+POIA.CallOffID,
+POIA.ItemRef2,
+POIA.ItemRef,
+POIA.ProjectRef,
+POIA.SalesorderPhaseItemID,
+POIA.WorkOrderID,
+POI.UoM,
+POI.PurchaseOrderItemID,
+POI.PurchaseOrderID,
+POI.Status,
+POI.Description,
+POI.UnitPrice,
+POI.QtyRequired,
+POI.VatValue,
+POI.RetentionValue,
+
+SI.StockItemID,
+SI.StockCode,
+SI.Description AS STOCKDESCRIPTION,
+SI.PartNo,
+SI.Length,
+SI.Width,
+SI.Thickness,
+SI.Category,
+po.PONum,
+PO.RequiredDate,
+PO.SubmissionDate,
+PO.DefaultCurrency,
+PO.ExchangeRateValue,
+po.AccoutingCategoryID,
+po.Category as PO_CATEGORY,
+PO.Carriage,
+PO.Status AS 'POStatus',
+PO.RetentionPercentage,
+S.CompanyName,
+SOP.JobNo,
+CASE IsNull(SO.ProjectName,'')
+	WHEN ''
+	THEN (Select Distinct ProjectName from Salesorder
+	where SalesOrderID in 
+		(Select SalesOrderID from SalesOrderPhaseItem where SalesOrderPhaseItemID in (
+			SELECT SalesOrderPhaseItemId From WorkOrderAllocation where WorkOrderID=poia.WorkOrderID)
+		)
+	)
+	else SO.ProjectName
+END AS ProjectName,
+SO.SalesOrderID,
+SO.OrderStatusENUM,
+SO.DateEntered,
+SO.OrderTypeID,
+isnull(POIA.Quantity,0)-isnull(POIA.ReceivedQty,0) AS 'BalanceQty',
+MWO.MaintenanceWorkOrderID
+
+from PurchaseOrderItemAllocation as POIA
+INNER JOIN PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+INNER join PurchaseOrder PO on PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=POIA.SalesorderPhaseItemID
+LEFT JOIN WorkOrder WO ON WO.WorkOrderID=POIA.WorkOrderID
+LEFT JOIN StockItem SI ON SI.StockItemID=POI.StockItemID
+Left join Supplier S on S.SupplierID=Po.SupplierID
+left join SalesOrderPhase SOP on SOP.SalesOrderPhaseID =SOPI.SalesOrderPhaseID
+left join SalesOrder SO on SO.SalesOrderID = sop.SalesOrderID
+left join MaintenanceWorkOrder MWO ON MWO.MaintenanceWorkOrderID=POIA.MaintenanceWorkOrderID
+GO
+
+alter table PurchaseOrder
+add MaterialRequirementTypeMaintenanceID int
+go
+
+
+ALTER View [dbo].[vwPurchaseOrder]    AS
+SELECT
+PO.PurchaseOrderID,
+PO.PONum,
+PO.PaymentMethod,
+PO.FileName,
+PO.AccoutingCategoryID,
+po.ValuationMode,
+PO.PaymentDate,
+SupplierContactTel,
+MaterialRequirementTypeID,
+MaterialRequirementTypeWorkOrderID,
+PO.DefaultCurrency,
+PO.POStage,
+RefMatType,
+Category,
+SubmissionDate,
+Status,
+DelStatus,
+Instructions,
+Comments,
+BuyerID,
+RetentionPercentage,
+AcknowledgementNo,
+ExchangeRateValue,
+OrderType,
+Carriage,
+VatRate,
+RequiredDate,
+PurchaseCategory,
+CoCOrder,
+CoCType,
+PriceGross,
+TotalPrice,
+S.AccountCode,
+S.isBigTaxPayer,
+s.BankName,
+DeliveryAddress1,
+DeliveryAddress2,
+DeliveryAddress3,
+DeliveryTown,
+DeliveryCounty,
+DeliveryPostCode,
+SupplierRef,
+LastStatusChangeDate,
+PaymentStatus,
+TotalNetValue,
+Concat(EM.FirstName,' ', EM.LastName) AS BuyerName,
+CompanyName,
+
+vwPOTVAT.TotalVAT,
+vwPOTRetention.TotalRetentionValue,
+
+MaterialRequirementTypeMaintenanceID
+FROM PurchaseOrder PO
+
+Left Join Supplier S ON PO.SupplierID = S.SupplierID
+LEFT JOIN Employee EM ON EM.EmployeeID=PO.BuyerID
+left join vwPurchaseOrderTotalVAT vwPOTVAT on vwPOTVAT.PurchaseOrderID=PO.PurchaseOrderID
+LEFT JOIN vwPurchaseOrderTotalRetention vwPOTRetention on vwPOTRetention.PurchaseOrderID=po.PurchaseOrderID
+GO
+
+

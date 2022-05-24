@@ -436,6 +436,7 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Dim mRetVal As Boolean = True
     Dim mdto As dtoMaintenanceWorkOrder
     Dim mCollection As New colMaintenanceWorkOrders
+    Dim mdtoEquipment As New dtoMachinery(pDBConn)
     Try
       pDBConn.Connect()
       mdto = New dtoMaintenanceWorkOrder(pDBConn)
@@ -443,7 +444,12 @@ Public Class dsoSalesOrder : Inherits dsoBase
 
       If mCollection.Count > 0 Then
         rMaintenanceWorkOrder = mCollection(0)
+
+        mdtoEquipment.LoadMachinery(rMaintenanceWorkOrder.Machinery, rMaintenanceWorkOrder.EquipmentID)
+
       End If
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
     Finally

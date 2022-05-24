@@ -70,6 +70,9 @@ Public Class brwPurchaseOrder : Inherits brwBrowserListBase
 
           frmNonManPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.NonManPO)
 
+        ElseIf mRow.MaterialRequirementTypeMaintenanceID <> 0 Then
+          frmPurchaseOrderDetailMaintenance.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.Maintenance)
+
         Else
           frmGeneralPurchaseOrder.OpenFormMDI(mGridView.GetFocusedRowCellValue(mGridView.Columns("PurchaseOrderID")), pDBConn, AppRTISGlobal.GetInstance, rForm.ParentForm, ePODetailOption.General)
 

@@ -287,15 +287,27 @@ Public Class frmPurchaseOrderConsole
   Public Sub SetMaterialGroup(ByVal vMatReqGroup As Integer)
     Dim mForm As Windows.Forms.Form
     Dim mfrmMaterialRequirements As frmMaterialRequirement
+    Dim mfrmMaterialRequirementMaintenance As frmMaterialRequirementMaintenance
     Dim mTabbedPage As DevExpress.XtraTabbedMdi.XtraMdiTabPage
 
     For Each mTabbedPage In XtraTabbedMdiManager1.Pages
       mForm = mTabbedPage.MdiChild
-      If mForm.GetType Is GetType(frmMaterialRequirement) Then
-        mfrmMaterialRequirements = mForm
-        'mfrmMaterialRequirements.FormController.MaterialRequirementGroup = vMatReqGroup
-        '  mfrmMaterialRequirements.SetMaterialGroup(vMatReqGroup)
-      End If
+
+      Select Case FormController.OptionConsole
+        Case ePOConsoleOption.MaintenanceWorkOrder
+          If mForm.GetType Is GetType(frmMaterialRequirementMaintenance) Then
+            mfrmMaterialRequirementMaintenance = mForm
+
+          End If
+        Case Else
+          If mForm.GetType Is GetType(frmMaterialRequirement) Then
+            mfrmMaterialRequirements = mForm
+
+          End If
+
+      End Select
+
+
     Next
 
   End Sub
@@ -313,7 +325,7 @@ Public Class frmPurchaseOrderConsole
 
         Select Case pFormController.OptionConsole
           Case ePOConsoleOption.MaintenanceWorkOrder
-
+            frmPurchaseOrderDetailMaintenance.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit, ePODetailOption.Maintenance)
           Case Else
             frmManPurchaseOrderDetail.OpenFormAsMDIChild(Me, pFormController.DBConn, pFormController.DBConn.RTISUser, pFormController.RTISGlobal, mPOInfo.PurchaseOrderID, eFormMode.eFMFormModeEdit, ePODetailOption.ManPO)
 
@@ -328,8 +340,11 @@ Public Class frmPurchaseOrderConsole
 
   Public Sub RefreshPOs()
     Dim mfrmPO As frmManPurchaseOrderDetail
+    Dim mfrmPOMaint As frmPurchaseOrderDetailMaintenance
     'Dim mfrmSIPurchasing As frmStockItemPurchasing = Nothing
     Dim mfrmMR As frmMaterialRequirement = Nothing
+    Dim mfrmMaterialRequirementMaintenance As frmMaterialRequirementMaintenance = Nothing
+
     Dim mCaptionText As String
     ''  Dim mSubSupp As clsSupplier
 
@@ -344,60 +359,154 @@ Public Class frmPurchaseOrderConsole
       '    mfrmSIPurchasing = CType(mForm, frmStockItemPurchasing)
       '  End If
       'End If
-      If mfrmMR Is Nothing Then
-        If mForm.GetType() = GetType(frmMaterialRequirement) Then
-          mfrmMR = CType(mForm, frmMaterialRequirement)
-        End If
-      End If
-      If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
-        mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
-        mfrmPO.lblTitle.Focus()
 
-        If mfrmPO IsNot Nothing AndAlso mfrmPO.FormController IsNot Nothing AndAlso mfrmPO.FormController.PurchaseOrder IsNot Nothing Then
-          pFormController.OpenPOs.Add(mfrmPO.FormController.PurchaseOrder)
-        End If
-      End If
+
+      Select Case FormController.OptionConsole
+        Case ePOConsoleOption.MaintenanceWorkOrder
+
+          If mfrmMaterialRequirementMaintenance Is Nothing Then
+            If mForm.GetType() = GetType(frmMaterialRequirementMaintenance) Then
+              mfrmMaterialRequirementMaintenance = CType(mForm, frmMaterialRequirementMaintenance)
+            End If
+          End If
+
+
+          If mForm.GetType() = GetType(frmPurchaseOrderDetailMaintenance) Then
+            mfrmPOMaint = CType(mForm, frmPurchaseOrderDetailMaintenance)
+            mfrmPOMaint.lblTitle.Focus()
+
+            If mfrmPOMaint IsNot Nothing AndAlso mfrmPOMaint.FormController IsNot Nothing AndAlso mfrmPOMaint.FormController.PurchaseOrder IsNot Nothing Then
+              pFormController.OpenPOs.Add(mfrmPOMaint.FormController.PurchaseOrder)
+            End If
+          End If
+
+
+        Case Else
+
+          If mfrmMR Is Nothing Then
+            If mForm.GetType() = GetType(frmMaterialRequirement) Then
+              mfrmMR = CType(mForm, frmMaterialRequirement)
+            End If
+          End If
+
+
+          If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
+            mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
+            mfrmPO.lblTitle.Focus()
+
+            If mfrmPO IsNot Nothing AndAlso mfrmPO.FormController IsNot Nothing AndAlso mfrmPO.FormController.PurchaseOrder IsNot Nothing Then
+              pFormController.OpenPOs.Add(mfrmPO.FormController.PurchaseOrder)
+            End If
+          End If
+
+      End Select
+
+
     Next
 
-    'If mfrmSIPurchasing IsNot Nothing Then mfrmSIPurchasing.bsubitProcessToPO.ClearLinks()
-    If mfrmMR IsNot Nothing Then mfrmMR.bsubitProcessToPO.ClearLinks()
 
-    For Each mPO As dmPurchaseOrder In pFormController.OpenPOs
+    Select Case FormController.OptionConsole
+      Case ePOConsoleOption.MaintenanceWorkOrder
 
-      Dim mItem As New DevExpress.XtraBars.BarButtonItem()
-      mCaptionText = ""
-      If mPO.SupplierID > 0 Then
-        mCaptionText = mPO.Supplier.CompanyName
-      End If
-      mItem.Caption = "Agregar a " & mPO.PONum & " " & mCaptionText
-      mItem.Tag = mPO
-      If mPO.Status = ePurchaseOrderDueDateStatus.Confirmed Then
-        mfrmMR.bsubitProcessToPO.Enabled = True
-        mItem.Enabled = True
-      End If
-      AddHandler mItem.ItemClick, AddressOf ProcessToPOFromMatReq
-      If mfrmMR IsNot Nothing Then mfrmMR.bsubitProcessToPO.AddItem(mItem)
-    Next
+        'If mfrmSIPurchasing IsNot Nothing Then mfrmSIPurchasing.bsubitProcessToPO.ClearLinks()
+        If mfrmMaterialRequirementMaintenance IsNot Nothing Then mfrmMaterialRequirementMaintenance.bsubitProcessToPO.ClearLinks()
 
-    For Each mPO As dmPurchaseOrder In pFormController.OpenPOs
+        For Each mPO As dmPurchaseOrder In pFormController.OpenPOs
 
-      Dim mItem As New DevExpress.XtraBars.BarButtonItem()
-      mCaptionText = ""
-      If mPO.SupplierID > 0 Then
-        mCaptionText = mPO.Supplier.CompanyName
-      End If
-      mItem.Caption = "Agregar a " & mPO.PONum & " " & mCaptionText
-      mItem.Tag = mPO
-      If mPO.Status = ePurchaseOrderDueDateStatus.Confirmed Then
-        mItem.Enabled = True
-        'mfrmSIPurchasing.bsubitProcessToPO.Enabled = True
-      End If
-      AddHandler mItem.ItemClick, AddressOf ProcessToPOFromSI
-      'If mfrmSIPurchasing IsNot Nothing Then mfrmSIPurchasing.bsubitProcessToPO.AddItem(mItem)
-    Next
+          Dim mItem As New DevExpress.XtraBars.BarButtonItem()
+          mCaptionText = ""
+          If mPO.SupplierID > 0 Then
+            mCaptionText = mPO.Supplier.CompanyName
+          End If
+          mItem.Caption = "Agregar a " & mPO.PONum & " " & mCaptionText
+          mItem.Tag = mPO
+          If mPO.Status = ePurchaseOrderDueDateStatus.Confirmed Then
+            mfrmMaterialRequirementMaintenance.bsubitProcessToPO.Enabled = True
+            mItem.Enabled = True
+          End If
+          AddHandler mItem.ItemClick, AddressOf ProcessToPOFromMatReq
+          If mfrmMaterialRequirementMaintenance IsNot Nothing Then mfrmMaterialRequirementMaintenance.bsubitProcessToPO.AddItem(mItem)
+        Next
+
+        For Each mPO As dmPurchaseOrder In pFormController.OpenPOs
+
+          Dim mItem As New DevExpress.XtraBars.BarButtonItem()
+          mCaptionText = ""
+          If mPO.SupplierID > 0 Then
+            mCaptionText = mPO.Supplier.CompanyName
+          End If
+          mItem.Caption = "Agregar a " & mPO.PONum & " " & mCaptionText
+          mItem.Tag = mPO
+          If mPO.Status = ePurchaseOrderDueDateStatus.Confirmed Then
+            mItem.Enabled = True
+            'mfrmSIPurchasing.bsubitProcessToPO.Enabled = True
+          End If
+          AddHandler mItem.ItemClick, AddressOf ProcessToPOFromSI
+          'If mfrmSIPurchasing IsNot Nothing Then mfrmSIPurchasing.bsubitProcessToPO.AddItem(mItem)
+        Next
+
+
+
+      Case Else
+        'If mfrmSIPurchasing IsNot Nothing Then mfrmSIPurchasing.bsubitProcessToPO.ClearLinks()
+        If mfrmMR IsNot Nothing Then mfrmMR.bsubitProcessToPO.ClearLinks()
+
+        For Each mPO As dmPurchaseOrder In pFormController.OpenPOs
+
+          Dim mItem As New DevExpress.XtraBars.BarButtonItem()
+          mCaptionText = ""
+          If mPO.SupplierID > 0 Then
+            mCaptionText = mPO.Supplier.CompanyName
+          End If
+          mItem.Caption = "Agregar a " & mPO.PONum & " " & mCaptionText
+          mItem.Tag = mPO
+          If mPO.Status = ePurchaseOrderDueDateStatus.Confirmed Then
+            mfrmMR.bsubitProcessToPO.Enabled = True
+            mItem.Enabled = True
+          End If
+          AddHandler mItem.ItemClick, AddressOf ProcessToPOFromMatReq
+          If mfrmMR IsNot Nothing Then mfrmMR.bsubitProcessToPO.AddItem(mItem)
+        Next
+
+        For Each mPO As dmPurchaseOrder In pFormController.OpenPOs
+
+          Dim mItem As New DevExpress.XtraBars.BarButtonItem()
+          mCaptionText = ""
+          If mPO.SupplierID > 0 Then
+            mCaptionText = mPO.Supplier.CompanyName
+          End If
+          mItem.Caption = "Agregar a " & mPO.PONum & " " & mCaptionText
+          mItem.Tag = mPO
+          If mPO.Status = ePurchaseOrderDueDateStatus.Confirmed Then
+            mItem.Enabled = True
+            'mfrmSIPurchasing.bsubitProcessToPO.Enabled = True
+          End If
+          AddHandler mItem.ItemClick, AddressOf ProcessToPOFromSI
+          'If mfrmSIPurchasing IsNot Nothing Then mfrmSIPurchasing.bsubitProcessToPO.AddItem(mItem)
+        Next
+
+    End Select
+
+
+
 
 
   End Sub
+
+  Private Function GetfrmMaintenancePurchaseOrderDetailByPOID(ByVal vPOID As Integer) As frmPurchaseOrderDetailMaintenance
+    Dim mRetVal As frmPurchaseOrderDetailMaintenance = Nothing
+    Dim mfrmPO As frmPurchaseOrderDetailMaintenance
+    For Each mForm As Windows.Forms.Form In MdiChildren
+      If mForm.GetType() = GetType(frmPurchaseOrderDetailMaintenance) Then
+        mfrmPO = CType(mForm, frmPurchaseOrderDetailMaintenance)
+        If mfrmPO.FormController.PurchaseOrder.PurchaseOrderID = vPOID Then
+          mRetVal = mForm
+          Exit For
+        End If
+      End If
+    Next
+    Return mRetVal
+  End Function
 
   Private Function GetfrmManPurchaseOrderDetailByPOID(ByVal vPOID As Integer) As frmManPurchaseOrderDetail
     Dim mRetVal As frmManPurchaseOrderDetail = Nothing
@@ -417,7 +526,10 @@ Public Class frmPurchaseOrderConsole
   Private Sub ProcessToPOFromMatReq(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
     Try
       Dim mfrmPO As frmManPurchaseOrderDetail
+      Dim mfrmPOMaintenance As frmPurchaseOrderDetailMaintenance
+
       Dim mfrmMR As frmMaterialRequirement
+      Dim mfrmMaterialRequirementMaintenance As frmMaterialRequirementMaintenance
       Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
       Dim mCountProcessed As Integer
       Dim mPO As dmPurchaseOrder
@@ -426,82 +538,142 @@ Public Class frmPurchaseOrderConsole
 
       '// Find the relevent source form (frmMaterialRequirement)
       For Each mForm As Windows.Forms.Form In MdiChildren
-        If mForm.GetType() = GetType(frmMaterialRequirement) Then
-          mfrmMR = CType(mForm, frmMaterialRequirement)
-          Exit For
-        End If
+
+        Select Case FormController.OptionConsole
+          Case ePOConsoleOption.MaintenanceWorkOrder
+            If mForm.GetType() = GetType(frmMaterialRequirementMaintenance) Then
+              mfrmMaterialRequirementMaintenance = CType(mForm, frmMaterialRequirementMaintenance)
+              Exit For
+            End If
+
+          Case Else
+            If mForm.GetType() = GetType(frmMaterialRequirement) Then
+              mfrmMR = CType(mForm, frmMaterialRequirement)
+              Exit For
+            End If
+        End Select
+
+
+
+
+
       Next
 
-      '//Force any un written updates
-      If mfrmMR IsNot Nothing Then
-        mGridView = mfrmMR.grdMaterialRequirements.MainView
-        If mGridView IsNot Nothing Then
-          mGridView.CloseEditor()
-        End If
-      End If
-
-
-
-
-
-
-      If TryCast(e.Item.Tag, dmPurchaseOrder) IsNot Nothing Then
-        mPO = e.Item.Tag
-        mCountProcessed = pFormController.ProcessMatReqToPO(mfrmMR.FormController.MatReqItemProcessors, mPO)
-        mfrmMR.FormController.LoadMatReqs()
-        mfrmMR.grdMaterialRequirements.DataSource = mfrmMR.FormController.MatReqItemProcessors
-        mfrmMR.gvMaterialRequirements.RefreshData()
-
-        'mfrmPO.Refresh()
-        'mfrmPO.FormController.LoadObject()
-        'mfrmPO.FormController.LoadRefData()
-
-
-        'mfrmPO.RefreshControls()
-        'mfrmPO.Refresh()
-        'mfrmPO.LoadPOItemAllocationCombo()
-        'mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
-        'mfrmPO.gvPurchaseOrderItems.RefreshData()
-        'mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
-        'mfrmPO.gvPOIWorkOrderInfos.RefreshData()
-        'mfrmPO.gvWorkOrderInfos.RefreshData()
-        'mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
-        MsgBox("Procesamiento completo, " & mCountProcessed & " Item(s) agregados a la O.C.: " & mPO.PONum, MsgBoxStyle.OkOnly, "Procesamiento a Orden de Compra")
-
-      End If
-
-      '// Find the relevent source form (frmManPurchaseOrderDetail)
-      For Each mForm As Windows.Forms.Form In MdiChildren
-        If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
-          mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
+      Select Case FormController.OptionConsole
+        Case ePOConsoleOption.MaintenanceWorkOrder
 
           '//Force any un written updates
-          If mfrmPO IsNot Nothing Then
-            mGridView = mfrmPO.grdPurchaseOrderItems.MainView
+          If mfrmMaterialRequirementMaintenance IsNot Nothing Then
+            mGridView = mfrmMaterialRequirementMaintenance.grdMaterialRequirements.MainView
             If mGridView IsNot Nothing Then
               mGridView.CloseEditor()
             End If
-            mfrmPO.Refresh()
-            mfrmPO.FormController.LoadObject()
-            mfrmPO.FormController.LoadRefData()
+          End If
 
 
-            mfrmPO.RefreshControls()
-            mfrmPO.Refresh()
-            mfrmPO.LoadPOItemAllocationCombo()
-            mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
-            mfrmPO.gvPurchaseOrderItems.RefreshData()
-            mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
-            mfrmPO.gvPOIWorkOrderInfos.RefreshData()
-            mfrmPO.gvWorkOrderInfos.RefreshData()
-            mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
+          If TryCast(e.Item.Tag, dmPurchaseOrder) IsNot Nothing Then
+            mPO = e.Item.Tag
+            mCountProcessed = pFormController.ProcessMatReqToPO(mfrmMaterialRequirementMaintenance.FormController.MatReqItemProcessors, mPO, FormController.OptionConsole)
+            mfrmMaterialRequirementMaintenance.FormController.LoadMatReqs()
+            mfrmMaterialRequirementMaintenance.grdMaterialRequirements.DataSource = mfrmMaterialRequirementMaintenance.FormController.MatReqItemProcessors
+            mfrmMaterialRequirementMaintenance.gvMaterialRequirements.RefreshData()
+
+            MsgBox("Procesamiento completo, " & mCountProcessed & " Item(s) agregados a la O.C.: " & mPO.PONum, MsgBoxStyle.OkOnly, "Procesamiento a Orden de Compra")
 
           End If
 
 
+        Case Else
 
-          'Exit For
-        End If
+          '//Force any un written updates
+          If mfrmMR IsNot Nothing Then
+            mGridView = mfrmMR.grdMaterialRequirements.MainView
+            If mGridView IsNot Nothing Then
+              mGridView.CloseEditor()
+            End If
+          End If
+
+
+          If TryCast(e.Item.Tag, dmPurchaseOrder) IsNot Nothing Then
+            mPO = e.Item.Tag
+            mCountProcessed = pFormController.ProcessMatReqToPO(mfrmMR.FormController.MatReqItemProcessors, mPO, FormController.OptionConsole)
+            mfrmMR.FormController.LoadMatReqs()
+            mfrmMR.grdMaterialRequirements.DataSource = mfrmMR.FormController.MatReqItemProcessors
+            mfrmMR.gvMaterialRequirements.RefreshData()
+
+            MsgBox("Procesamiento completo, " & mCountProcessed & " Item(s) agregados a la O.C.: " & mPO.PONum, MsgBoxStyle.OkOnly, "Procesamiento a Orden de Compra")
+
+          End If
+      End Select
+
+
+
+      '// Find the relevent source form (frmManPurchaseOrderDetail)
+      For Each mForm As Windows.Forms.Form In MdiChildren
+
+        Select Case FormController.OptionConsole
+          Case ePOConsoleOption.MaintenanceWorkOrder
+            If mForm.GetType() = GetType(frmPurchaseOrderDetailMaintenance) Then
+              mfrmPOMaintenance = CType(mForm, frmPurchaseOrderDetailMaintenance)
+
+              '//Force any un written updates
+              If mfrmPOMaintenance IsNot Nothing Then
+                mGridView = mfrmPOMaintenance.grdPurchaseOrderItems.MainView
+                If mGridView IsNot Nothing Then
+                  mGridView.CloseEditor()
+                End If
+                mfrmPOMaintenance.Refresh()
+                mfrmPOMaintenance.FormController.LoadObject()
+                mfrmPOMaintenance.FormController.LoadRefData()
+
+
+                mfrmPOMaintenance.RefreshControls()
+                mfrmPOMaintenance.Refresh()
+                mfrmPOMaintenance.LoadPOItemAllocationCombo()
+                mfrmPOMaintenance.grdPurchaseOrderItems.DataSource = mfrmPOMaintenance.FormController.PurchaseOrder.PurchaseOrderItems
+                mfrmPOMaintenance.gvPurchaseOrderItems.RefreshData()
+                mfrmPOMaintenance.grdPOIMaintenanceWorkOrder.DataSource = mfrmPOMaintenance.FormController.MaintenanceWorkOrders
+                mfrmPOMaintenance.gvPOIMaintenanceWorkOrders.RefreshData()
+                mfrmPOMaintenance.gvPurchaseOrderItems.RefreshData()
+                mfrmPOMaintenance.grdPOIWorkOrderAllocation.RefreshDataSource()
+
+              End If
+
+
+            End If
+
+          Case Else
+            If mForm.GetType() = GetType(frmManPurchaseOrderDetail) Then
+              mfrmPO = CType(mForm, frmManPurchaseOrderDetail)
+
+              '//Force any un written updates
+              If mfrmPO IsNot Nothing Then
+                mGridView = mfrmPO.grdPurchaseOrderItems.MainView
+                If mGridView IsNot Nothing Then
+                  mGridView.CloseEditor()
+                End If
+                mfrmPO.Refresh()
+                mfrmPO.FormController.LoadObject()
+                mfrmPO.FormController.LoadRefData()
+
+
+                mfrmPO.RefreshControls()
+                mfrmPO.Refresh()
+                mfrmPO.LoadPOItemAllocationCombo()
+                mfrmPO.grdPurchaseOrderItems.DataSource = mfrmPO.FormController.PurchaseOrder.PurchaseOrderItems
+                mfrmPO.gvPurchaseOrderItems.RefreshData()
+                mfrmPO.grdPOIWorkOrderInfo.DataSource = mfrmPO.FormController.WorkOrderInfos
+                mfrmPO.gvPOIWorkOrderInfos.RefreshData()
+                mfrmPO.gvWorkOrderInfos.RefreshData()
+                mfrmPO.grdPOIWorkOrderAllocation.RefreshDataSource()
+
+              End If
+
+
+            End If
+
+        End Select
+
       Next
 
     Catch ex As Exception
@@ -513,6 +685,8 @@ Public Class frmPurchaseOrderConsole
     Try
       Try
         Dim mfrmPO As frmManPurchaseOrderDetail
+        Dim mfrmPOMaintenance As frmPurchaseOrderDetailMaintenance
+
         'Dim mfrmSI As frmStockItemPurchasing
         Dim mGridView As DevExpress.XtraGrid.Views.Grid.GridView
         Dim mCountProcessed As Integer
@@ -541,25 +715,27 @@ Public Class frmPurchaseOrderConsole
 
           If mCountProcessed <> 0 Then
 
-            mfrmPO = GetfrmManPurchaseOrderDetailByPOID(mPO.PurchaseOrderID)
-            If mfrmPO IsNot Nothing Then
-              If mfrmPO.CheckSave(False) Then
-                'mfrmPO.FormController.LoadObject()
-                mfrmPO.gvPurchaseOrderItems.RefreshData()
-              End If
-            End If
+            Select Case FormController.OptionConsole
+              Case ePOConsoleOption.MaintenanceWorkOrder
+                mfrmPOMaintenance = GetfrmMaintenancePurchaseOrderDetailByPOID(mPO.PurchaseOrderID)
+                If mfrmPOMaintenance IsNot Nothing Then
+                  If mfrmPOMaintenance.CheckSave(False) Then
+                    'mfrmPO.FormController.LoadObject()
+                    mfrmPOMaintenance.gvPurchaseOrderItems.RefreshData()
+                  End If
+                End If
 
-            ' pFormController.RefreshTracker.ObjectType = DSONet.colCotswoldObjectTypes.PurchaseOrder
-            ' pFormController.RefreshTracker.AddPrimaryKey(CType(e.Item.Tag, clsPOCallOff).PurchaseOrderID)
+              Case Else
+                mfrmPO = GetfrmManPurchaseOrderDetailByPOID(mPO.PurchaseOrderID)
+                If mfrmPO IsNot Nothing Then
+                  If mfrmPO.CheckSave(False) Then
+                    'mfrmPO.FormController.LoadObject()
+                    mfrmPO.gvPurchaseOrderItems.RefreshData()
+                  End If
+                End If
+            End Select
 
-            'With mfrmSI
-            '  .gvStockItems.BeginDataUpdate()
-            '  '.FormController.LoadStockItems()
-            '  '.FormController.LoadObject()
-            '  .gvStockItems.EndDataUpdate()
-            '  .grdStockItems.DataSource = .FormController.StockItemProcessors
-            '  MsgBox("Procesamiento completo, " & mCountProcessed & " Item(s) agregados a la O.C.: " & mPO.PONum, MsgBoxStyle.OkOnly, "Procesamiento a Orden de Compra")
-            'End With
+
           End If
 
 

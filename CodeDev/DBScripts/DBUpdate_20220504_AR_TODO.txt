@@ -1,0 +1,8 @@
+alter table PurchaseOrderAllocation
+add MaintenanceWorkOrderID int
+go
+
+alter table PurchaseOrderItemAllocation
+add MaintenanceWorkOrderID int
+go
+

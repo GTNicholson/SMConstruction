@@ -720,6 +720,12 @@ Public Class clsPurchaseOrderInfo
       Return pPurchaseOrder.PaymentDate
     End Get
   End Property
+
+  Public ReadOnly Property MaterialRequirementTypeMaintenanceID As Integer
+    Get
+      Return pPurchaseOrder.MaterialRequirementTypeMaintenanceID
+    End Get
+  End Property
   Public ReadOnly Property ProjectName As String
     Get
       Dim mRetVal As String = ""

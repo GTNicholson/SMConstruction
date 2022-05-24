@@ -181,7 +181,28 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   Public ReadOnly Property ItemRef As String
     Get
-      Return pPurchaseOrderItemAllocation.ItemRef
+      Dim mRetVal As String = ""
+      If pPurchaseOrderItemAllocation.WorkOrderID = 0 Then
+        mRetVal = "Item: " & pPurchaseOrderItemAllocation.ItemRef
+
+      ElseIf pPurchaseOrderItemAllocation.WorkOrderID > 0 AndAlso pPurchaseOrderItemAllocation.SalesorderPhaseItemID = 0 Then
+        mRetVal = "# O.T.: " & pPurchaseOrderItemAllocation.ItemRef
+      End If
+      Return mRetVal
+    End Get
+  End Property
+
+
+  Public ReadOnly Property ItemRef2 As String
+    Get
+      Dim mRetVal As String = ""
+      If pPurchaseOrderItemAllocation.WorkOrderID = 0 Then
+        mRetVal = "Descripción: " & pPurchaseOrderItemAllocation.ItemRef2
+
+      ElseIf pPurchaseOrderItemAllocation.WorkOrderID > 0 AndAlso pPurchaseOrderItemAllocation.SalesorderPhaseItemID = 0 Then
+        mRetVal = "Descripción: " & pPurchaseOrderItemAllocation.ItemRef
+      End If
+      Return mRetVal
     End Get
   End Property
 
@@ -290,7 +311,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   Public ReadOnly Property VATAmount() As Decimal
     Get
-      Return pPurchaseOrderItem.VATAmount
+      Return (pPurchaseOrderItem.VATAmount / pPurchaseOrderItem.QtyRequired) * pPurchaseOrderItemAllocation.Quantity
     End Get
 
   End Property
@@ -394,20 +415,20 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Public ReadOnly Property TotalReceivedAmountUSD As Decimal
     Get
       Dim mRetVal As Decimal = 0
-      Select Case DefaultCurrency
-        Case eCurrency.Dollar
+      'Select Case DefaultCurrency
+      '  Case eCurrency.Dollar
 
-          mRetVal = ReceivedValue
+      '    mRetVal = ReceivedValue
 
-        Case eCurrency.Cordobas
-          If ExchangeRateValue > 0 Then
-            mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.ReceivedQty) / ExchangeRateValue
-          Else
-            mRetVal = 0
-          End If
+      '  Case eCurrency.Cordobas
+      '    If ExchangeRateValue > 0 Then
+      '      mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.ReceivedQty) / ExchangeRateValue
+      '    Else
+      '      mRetVal = 0
+      '    End If
 
-      End Select
-
+      'End Select
+      mRetVal = UnitPriceUSD * pPurchaseOrderItemAllocation.ReceivedQty
       Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
   End Property
@@ -415,19 +436,21 @@ Public Class clsPurchaseOrderItemAllocationInfo
   Public ReadOnly Property TotalPurchaseOrderItemAmountUSD As Decimal
     Get
       Dim mRetVal As Decimal = 0
-      Select Case DefaultCurrency
-        Case eCurrency.Dollar
+      'Select Case DefaultCurrency
+      '  Case eCurrency.Dollar
 
-          mRetVal = pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.Quantity
+      '    mRetVal = pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.Quantity
 
-        Case eCurrency.Cordobas
-          If ExchangeRateValue > 0 Then
-            mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.Quantity) / ExchangeRateValue
-          Else
-            mRetVal = 0
-          End If
+      '  Case eCurrency.Cordobas
+      '    If ExchangeRateValue > 0 Then
+      '      mRetVal = (pPurchaseOrderItem.UnitPrice * pPurchaseOrderItemAllocation.Quantity) / ExchangeRateValue
+      '    Else
+      '      mRetVal = 0
+      '    End If
 
-      End Select
+      'End Select
+
+      mRetVal = UnitPriceUSD * pPurchaseOrderItemAllocation.Quantity
 
       Return Math.Round(mRetVal, 2, MidpointRounding.AwayFromZero)
     End Get
@@ -526,11 +549,11 @@ Public Class clsPurchaseOrderItemAllocationInfo
       Select Case DefaultCurrency
         Case eCurrency.Dollar
 
-          mRetVal = Carriage
+          mRetVal = (Carriage / pPurchaseOrderItem.QtyRequired) * pPurchaseOrderItemAllocation.Quantity
 
         Case eCurrency.Cordobas
           If ExchangeRateValue > 0 Then
-            mRetVal = Carriage / ExchangeRateValue
+            mRetVal = ((Carriage / pPurchaseOrderItem.QtyRequired) * pPurchaseOrderItemAllocation.Quantity) / ExchangeRateValue
           Else
             mRetVal = 0
           End If
@@ -578,7 +601,7 @@ Public Class clsPurchaseOrderItemAllocationInfo
 
   Public ReadOnly Property RetentionValue As Decimal
     Get
-      Return pPurchaseOrderItem.RetentionValue
+      Return (pPurchaseOrderItem.RetentionValue / pPurchaseOrderItem.QtyRequired) * pPurchaseOrderItemAllocation.Quantity
     End Get
   End Property
 
