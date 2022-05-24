@@ -69,6 +69,9 @@
   <property name="Columns" iskey="true" value="12">
     <property name="Item1" isnull="true" iskey="true">
       <property name="Name">GridColumn1</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">MaintenanceWorkOrderID</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -81,6 +84,9 @@
     </property>
     <property name="Item2" isnull="true" iskey="true">
       <property name="Name">GridColumn2</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Núm. Orden</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -95,6 +101,9 @@
     </property>
     <property name="Item3" isnull="true" iskey="true">
       <property name="Name">GridColumn3</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Descripción</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -109,6 +118,9 @@
     </property>
     <property name="Item4" isnull="true" iskey="true">
       <property name="Name">GridColumn4</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Área</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -123,6 +135,9 @@
     </property>
     <property name="Item5" isnull="true" iskey="true">
       <property name="Name">GridColumn5</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Equipo</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -137,6 +152,9 @@
     </property>
     <property name="Item6" isnull="true" iskey="true">
       <property name="Name">GridColumn7</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Tipo Mant.</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -151,6 +169,9 @@
     </property>
     <property name="Item7" isnull="true" iskey="true">
       <property name="Name">GridColumn8</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Realizado por</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -165,6 +186,9 @@
     </property>
     <property name="Item8" isnull="true" iskey="true">
       <property name="Name">GridColumn6</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Prioridad</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -179,6 +203,9 @@
     </property>
     <property name="Item9" isnull="true" iskey="true">
       <property name="Name">GridColumn9</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Fecha Plan.</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -193,6 +220,9 @@
     </property>
     <property name="Item10" isnull="true" iskey="true">
       <property name="Name">GridColumn10</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Estado</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -207,6 +237,9 @@
     </property>
     <property name="Item11" isnull="true" iskey="true">
       <property name="Name">GridColumn11</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Duración Est.</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>
@@ -221,6 +254,9 @@
     </property>
     <property name="Item12" isnull="true" iskey="true">
       <property name="Name">GridColumn12</property>
+      <property name="OptionsColumn" isnull="true" iskey="true">
+        <property name="ReadOnly">true</property>
+      </property>
       <property name="Caption">Comentarios</property>
       <property name="ImageAlignment">Near</property>
       <property name="ImageIndex">-1</property>

@@ -48,8 +48,6 @@ Public Class dmMaintenanceWorkOrder : Inherits dmBase
 
       If mAnyDirty = False Then mAnyDirty = pMaitenanceWorkOrderItems.IsDirty
 
-      If mAnyDirty = False Then mAnyDirty = pMachinery.IsAnyDirty
-
       IsAnyDirty = mAnyDirty
     End Get
   End Property

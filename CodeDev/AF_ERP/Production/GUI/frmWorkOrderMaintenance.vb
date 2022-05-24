@@ -154,9 +154,9 @@ Public Class frmWorkOrderMaintenance
         txtDuration.EditValue = .Duration
         txtNotes.Text = .Notes
         btnMaintenanceWorkOrderDocument.Text = .MaintenanceWorkOrderDocument
-
-        btnEquipmentID.Text = .Machinery.Description
-
+        If .Machinery IsNot Nothing Then
+          btnEquipmentID.Text = .Machinery.Description
+        End If
       End With
 
     End If
