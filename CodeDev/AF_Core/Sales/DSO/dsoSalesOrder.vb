@@ -288,17 +288,29 @@ Public Class dsoSalesOrder : Inherits dsoBase
     Return mRetVal
   End Function
 
-  Public Function LoadPhaseMatReqProcessors(ByVal vMatReqInfos As colMaterialRequirementProcessors, ByVal vWhere As String) As Boolean
+  Public Function LoadPhaseMatReqProcessors(ByVal vMatReqInfos As colMaterialRequirementProcessors, ByVal vWhere As String, ByVal Optional isMaintenanceOrder As Boolean = False) As Boolean
     Dim mOK As Boolean
 
 
     Try
       If pDBConn.Connect() Then
-        Dim mdto As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Processor)
 
-        Dim mWhere As String = String.Empty
+        If isMaintenanceOrder Then
 
-        mOK = mdto.LoadMaterialRequirementProcessorsByWhere(vMatReqInfos, vWhere)
+          Dim mdto As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.MaintenanceItem)
+
+
+          mOK = mdto.LoadMaterialRequirementProcessorsByWhere(vMatReqInfos, vWhere)
+
+
+
+        Else
+          Dim mdto As New dtoMaterialRequirementInfo(pDBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+
+          mOK = mdto.LoadMaterialRequirementProcessorsByWhere(vMatReqInfos, vWhere)
+        End If
+
 
 
       End If

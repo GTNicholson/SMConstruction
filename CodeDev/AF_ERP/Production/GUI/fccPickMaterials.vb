@@ -394,7 +394,15 @@ Public Class fccPickMaterials
 
       mWhere = String.Format("MaterialRequirementID in ({0})", mWhere)
 
-      mdsoMR.LoadPhaseMatReqProcessors(mMRs, mWhere)
+      Select Case pOptionOT
+        Case eOptionOT.Maintenance
+          mdsoMR.LoadPhaseMatReqProcessors(mMRs, mWhere, True)
+
+        Case eOptionOT.OT
+          mdsoMR.LoadPhaseMatReqProcessors(mMRs, mWhere)
+
+      End Select
+
 
       PrintRequisaPicking(mMRs, vRequisaNo, mDate)
     Catch ex As Exception
@@ -439,25 +447,58 @@ Public Class fccPickMaterials
     Dim mFileName As String
     Dim mDirectory As String
     Dim mExportFilename As String = ""
-    Dim mRep As repRequisaWorkOrderSummary
+    Dim mRep As DevExpress.XtraReports.UI.XtraReport
     Dim mAllMaterialRequirements As New colMaterialRequirementProcessors
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+    Dim mWhere As String = ""
 
     Try
+
+
+
       mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys)
       If System.IO.Directory.Exists(mDirectory) = False Then
         System.IO.Directory.CreateDirectory(mDirectory)
       End If
 
-      mFileName = String.Format("RequisaSummary_{0}.pdf", pCurrentWorkOrderInfo.WorkOrderNo)
-      mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
       pDBConn.Connect()
-      mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
 
-      mdto.LoadMaterialRequirementProcessorsByWhere(mAllMaterialRequirements, mWhere)
-      mRep = repRequisaWorkOrderSummary.CreateRequisaSummaryReport(pCurrentWorkOrderInfo, mAllMaterialRequirements)
+
+      Select Case pOptionOT
+
+        Case eOptionOT.Maintenance
+          mFileName = String.Format("MaintenanceRequisaSummary_{0}.pdf", pMaintenanceWorkOrder.MaintenanceWorkOrderNo)
+          mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+
+          mWhere = " MaintenanceWorkOrderID =" & pMaintenanceWorkOrder.MaintenanceWorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.MaintenanceItem) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+
+          mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.MaintenanceItem)
+
+          mdto.LoadMaterialRequirementProcessorsByWhere(mAllMaterialRequirements, mWhere)
+
+
+
+          mRep = repRequisaMaintenanceSummary.CreateRequisaSummaryReport(pMaintenanceWorkOrder, mAllMaterialRequirements)
+
+
+        Case eOptionOT.OT
+          mFileName = String.Format("RequisaSummary_{0}.pdf", pCurrentWorkOrderInfo.WorkOrderNo)
+          mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+
+          mWhere = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+
+          mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+          mdto.LoadMaterialRequirementProcessorsByWhere(mAllMaterialRequirements, mWhere)
+          mRep = repRequisaWorkOrderSummary.CreateRequisaSummaryReport(pCurrentWorkOrderInfo, mAllMaterialRequirements)
+
+
+      End Select
+
+
 
       mRep.ExportToPdf(mExportFilename)
 

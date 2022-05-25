@@ -857,6 +857,12 @@
     <Compile Include="Sales\OutputDocs\repOtherMaterials.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaMaintenanceSummary.Designer.vb">
+      <DependentUpon>repRequisaMaintenanceSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repRequisaMaintenanceSummary.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\OutputDocs\repRequisaPicking.Designer.vb">
       <DependentUpon>repRequisaPicking.vb</DependentUpon>
     </Compile>
@@ -1364,6 +1370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repProductFurniture.resx">
       <DependentUpon>repProductFurniture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repRequisaMaintenanceSummary.resx">
+      <DependentUpon>repRequisaMaintenanceSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repRequisaPicking.resx">
       <DependentUpon>repRequisaPicking.vb</DependentUpon>
