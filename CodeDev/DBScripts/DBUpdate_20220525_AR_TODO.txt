@@ -1,0 +1,64 @@
+ALTER view [dbo].[vwStockItemTransactionLogInfo]
+as
+
+SELECT        
+SITL.StockItemTransactionLogID, 
+SITL.TransactionType, 
+SITL.TransactionDate, 
+SITL.RefObjectType, 
+SITL.RefObjectID, 
+SITL.TranValue, 
+SITL.PrevValue, 
+SITL.NewValue, 
+SITL.TransactionValuation, 
+SITL.ReferenceNo,
+SITL.StockValuation, 
+SITL.TransactionValuationDollar,
+SI.StockItemID, 
+SI.Category, 
+SI.ItemType, 
+SI.StockCode, 
+SI.Description, 
+si.StdCost,
+SI.AverageCost,
+MR.AreaID,
+MR.UoM,
+UL.UserName, 
+ST.Description AS StockTakeDescription,
+WO.WorkOrderNo,
+WO.Description AS WODESCRIPTION,
+SO.OrderNo,
+SO.ProjectName,
+CU.CompanyName,
+POI.Description AS 'POIDescription',
+SOPI.SalesOrderPhaseID,
+SOPI.SalesOrderID,
+
+PO.PONum,
+PD.GRNumber,
+
+MWO.MaintenanceWorkOrderNo,
+MWO.Description as MWODESCRIPTION
+
+FROM dbo.StockItemTransactionLog AS SITL 
+INNER JOIN dbo.UserList AS UL ON SITL.UserID = UL.UserID 
+INNER JOIN dbo.StockItemLocation AS SIL ON SITL.ObjectID = SIL.StockItemLocationID 
+LEFT JOIN dbo.StockItem AS SI ON SIL.StockItemID = SI.StockItemID and SI.Category<>15
+LEFT JOIN dbo.StockTake AS ST ON ST.StockTakeID = SITL.RefObjectID AND SITL.RefObjectType = 4
+LEFT JOIN dbo.MaterialRequirement AS MR ON MR.MaterialRequirementID = SITL.RefObjectID AND SITL.RefObjectType IN (6,11)
+LEFT JOIN WorkOrder WO ON WO.WorkOrderID=MR.ObjectID
+left join WorkOrderAllocation WOA on WOA.WorkOrderID=WO.WorkOrderID
+LEFT JOIN SalesOrderPhaseItem SOPI ON SOPI.SalesOrderPhaseItemID=WOA.SalesOrderPhaseItemID
+LEFT JOIN SalesOrder SO on SO.SalesOrderID=SOPI.SalesOrderID
+LEFT JOIN Customer CU ON CU.CustomerID = SO.CustomerID
+LEFT JOIN PODeliveryItem PODI ON PODI.PODeliveryItemID=SITL.RefObjectID AND SITL.RefObjectType = 7
+LEFT JOIN PODelivery PD ON PD.PODeliveryID=PODI.PODeliveryID
+left join PurchaseOrderItemAllocation POIA ON POIA.PurchaseOrderItemAllocationID=PODI.POItemAllocationID
+LEFT join PurchaseOrderItem POI ON POI.PurchaseOrderItemID=POIA.PurchaseOrderItemID
+LEFT JOIN PurchaseOrder PO ON PO.PurchaseOrderID=POI.PurchaseOrderID
+LEFT JOIN MaintenanceWorkOrder MWO ON MWO.MaintenanceWorkOrderID=MR.ObjectID
+
+where RefObjectType<>9 --Load just the stockitem, avoiding the wood
+GO
+
+
