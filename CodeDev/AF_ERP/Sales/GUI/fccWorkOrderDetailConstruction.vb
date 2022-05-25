@@ -875,7 +875,7 @@ Public Class fccWorkOrderDetailConstruction
             mSIL = Nothing
           End If
           mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas)
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.Quantity, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo)
+          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.Quantity, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo, eObjectType.MaterialRequirement)
           mMatReqProcessorsToRequisa.Add(mMRP)
           mMRP.ToProcessQty = 0
         End If

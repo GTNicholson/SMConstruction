@@ -845,6 +845,12 @@
     <Compile Include="Sales\OutputDocs\Label\repFGLabel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Sales\OutputDocs\repMaintenanceRequisaPicking.Designer.vb">
+      <DependentUpon>repMaintenanceRequisaPicking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\OutputDocs\repMaintenanceRequisaPicking.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Sales\OutputDocs\repOtherMaterials.Designer.vb">
       <DependentUpon>repOtherMaterials.vb</DependentUpon>
     </Compile>
@@ -1349,6 +1355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\Label\repFGLabel.resx">
       <DependentUpon>repFGLabel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\OutputDocs\repMaintenanceRequisaPicking.resx">
+      <DependentUpon>repMaintenanceRequisaPicking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\OutputDocs\repOtherMaterials.resx">
       <DependentUpon>repOtherMaterials.vb</DependentUpon>

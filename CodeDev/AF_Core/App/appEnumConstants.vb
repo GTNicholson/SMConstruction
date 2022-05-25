@@ -670,6 +670,7 @@ End Class
 Public Class clsConstants
 
   Public Const WorkOrderFileFolderSys As String = "OTArchivosSys"
+  Public Const MaintenanceWorkOrderFileFolderSys As String = "MaintenanceOTArchivosSys"
   Public Const WorkOrderFileFolderUsr As String = "OTArchivosUsr"
   Public Const OTRequisas As String = "OTRequisas"
 

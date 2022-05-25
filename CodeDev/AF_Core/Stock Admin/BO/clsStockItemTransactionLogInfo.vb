@@ -44,6 +44,8 @@ Public Class clsStockItemTransactionLogInfo
   Private pPalletOutsideRef As String
   Private pLocationID As Byte
   Private pPOIDescription As String
+  Private pMWODESCRIPTION As String
+  Private pMaintenanceWorkOrderNo As String
 
   Public Sub New()
     MyBase.New()
@@ -499,6 +501,8 @@ Public Class clsStockItemTransactionLogInfo
         Case eObjectType.WoodPallet
           mRetVal = PalletRef
 
+        Case eObjectType.MaintenanceWorkOrder
+          mRetVal = MaintenanceWorkOrderNo
         Case eObjectType.WorkOrder
           mRetVal = pWorkOrder.Description
 
@@ -531,6 +535,8 @@ Public Class clsStockItemTransactionLogInfo
 
           End If
 
+        Case eObjectType.MaintenanceWorkOrder
+          mRetVal = MWODESCRIPTION
 
       End Select
       Return mRetVal
@@ -542,7 +548,7 @@ Public Class clsStockItemTransactionLogInfo
       Dim mRetVal As String = ""
       Select Case pRefObjectType
 
-        Case eObjectType.MaterialRequirement
+        Case eObjectType.MaterialRequirement, eObjectType.MaintenanceWorkOrder
           mRetVal = "Requisa:" & ReferenceNo
 
         Case eObjectType.PODeliveryItem
@@ -557,6 +563,22 @@ Public Class clsStockItemTransactionLogInfo
     End Get
   End Property
 
+  Public Property MaintenanceWorkOrderNo As String
+    Get
+      Return pMaintenanceWorkOrderNo
+    End Get
+    Set(value As String)
+      pMaintenanceWorkOrderNo = value
+    End Set
+  End Property
+  Public Property MWODESCRIPTION As String
+    Get
+      Return pMWODESCRIPTION
+    End Get
+    Set(value As String)
+      pMWODESCRIPTION = value
+    End Set
+  End Property
 End Class
 
 Public Class colStockItemTransactionLogInfos : Inherits List(Of clsStockItemTransactionLogInfo)

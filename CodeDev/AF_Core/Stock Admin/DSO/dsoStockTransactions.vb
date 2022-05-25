@@ -1050,7 +1050,7 @@ Public Class dsoStockTransactions
     Return mOK
   End Function
 
-  Public Function PickMatReqStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vMatReq As dmMaterialRequirement, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal, ByVal vRequisaNo As String) As Boolean
+  Public Function PickMatReqStockItemLocationQty(ByVal vStockitemLocation As dmStockItemLocation, ByVal vPickedQty As Decimal, ByVal vMatReq As dmMaterialRequirement, ByVal vTransDate As DateTime, ByVal vDefaultCurrency As Integer, ByVal vUnitCost As Decimal, ByVal vExchangeRate As Decimal, ByVal vRequisaNo As String, ByVal vRefObjectType As eObjectType) As Boolean
     Dim mOK As Boolean = True
     Dim mdtoStockitemTranLog As New dtoStockItemTransactionLog(pDBConn)
     Dim mSILTranLog As dmStockItemTransactionLog
@@ -1088,7 +1088,7 @@ Public Class dsoStockTransactions
               mSILTranLogRollForward = GetTransctionsBetweenExcludingConnected(vTransDate, Now, vStockitemLocation.StockItemLocationID)
             End If
 
-            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty * -1), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, vRequisaNo, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", eObjectType.MaterialRequirement, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
+            mSILTranLog = vStockitemLocation.QtyValueTracker.CreateTransactionAdjust(mPrevValue, (vPickedQty * -1), eObjectType.StockItemLocation, vStockitemLocation.StockItemLocationID, vRequisaNo, vTransDate, mTranType, pDBConn.RTISUser.UserID, "", vRefObjectType, vMatReq.MaterialRequirementID, 0, vDefaultCurrency, vUnitCost, vExchangeRate)
 
 
             mNewStockLevel = mPrevValue - vPickedQty

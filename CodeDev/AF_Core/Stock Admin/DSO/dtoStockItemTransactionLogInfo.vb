@@ -96,7 +96,8 @@ Public Class dtoStockItemTransactionLogInfo : Inherits dtoBase
             .POIDescription = DBReadString(rDataReader, "POIDescription")
             .PONum = DBReadString(rDataReader, "PONum")
             .GRNumber = DBReadString(rDataReader, "GRNumber")
-
+            .MaintenanceWorkOrderNo = DBReadString(rDataReader, "MaintenanceWorkOrderNo")
+            .MWODESCRIPTION = DBReadString(rDataReader, "MWODESCRIPTION")
           End With
           With pStockItemTransactionLogInfo.CurrentStockItem
             .StockItemID = DBReadInt32(rDataReader, "StockItemID")

@@ -1482,7 +1482,7 @@ Public Class frmTabbedMDI_DevUtil
             mMatReqFound = mMaterialRequirements.ItemFromKey(mMaterialRequirementID)
 
             If mMatReqFound IsNot Nothing Then
-              mdsoTran.PickMatReqStockItemLocationQty(mSIL, mToProcessQty, mMatReqFound, Now, eCurrency.Cordobas, mAverageCost, mExchangeValue, "")
+              mdsoTran.PickMatReqStockItemLocationQty(mSIL, mToProcessQty, mMatReqFound, Now, eCurrency.Cordobas, mAverageCost, mExchangeValue, "", eObjectType.MaterialRequirement)
 
             End If
 

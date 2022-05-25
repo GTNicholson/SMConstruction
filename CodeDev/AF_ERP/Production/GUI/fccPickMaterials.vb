@@ -112,12 +112,22 @@ Public Class fccPickMaterials
       Dim mWhere As String = ""
       Dim mdso As New dsoStockTransactions(pDBConn)
 
-      If pCurrentWorkOrderInfo IsNot Nothing Then
-        If pCurrentWorkOrderInfo.WorkOrder IsNot Nothing Then
-          mWhere = String.Format("WorkOrderNo = '{0}'", pCurrentWorkOrderInfo.WorkOrder.WorkOrderNo)
-          mdso.LoadStockItemTransactionsByWhere(rSITLI, mWhere)
-        End If
-      End If
+      Select Case pOptionOT
+        Case eOptionOT.Maintenance
+          If pMaintenanceWorkOrder IsNot Nothing Then
+            mWhere = String.Format("MaintenanceWorkOrderNo = '{0}'", pMaintenanceWorkOrder.MaintenanceWorkOrderNo)
+            mdso.LoadStockItemTransactionsByWhere(rSITLI, mWhere)
+
+          End If
+        Case eOptionOT.OT
+          If pCurrentWorkOrderInfo IsNot Nothing Then
+            If pCurrentWorkOrderInfo.WorkOrder IsNot Nothing Then
+              mWhere = String.Format("WorkOrderNo = '{0}'", pCurrentWorkOrderInfo.WorkOrder.WorkOrderNo)
+              mdso.LoadStockItemTransactionsByWhere(rSITLI, mWhere)
+            End If
+          End If
+      End Select
+
 
 
     Catch ex As Exception
@@ -182,15 +192,18 @@ Public Class fccPickMaterials
 
     Select Case pOptionOT
       Case eOptionOT.Maintenance
-        mWhere = " MaintenanceWorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.MaintenanceItem) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
-        mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.MaintenanceItem)
+        If pMaintenanceWorkOrder IsNot Nothing Then
+          mWhere = " MaintenanceWorkOrderID =" & pMaintenanceWorkOrder.MaintenanceWorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.MaintenanceItem) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+          mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.MaintenanceItem)
+
+        End If
 
       Case eOptionOT.OT
-        mWhere = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
-        mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+        If pCurrentWorkOrderInfo IsNot Nothing Then
+          mWhere = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+          mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
 
-      Case Else
-        mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+        End If
 
     End Select
 
@@ -205,7 +218,11 @@ Public Class fccPickMaterials
           mWhere = mWhere & " and AreaID = " & vAreaID
       End Select
 
-      mdto.LoadMaterialRequirementProcessorsByWhere(pMaterialRequirementProcessors, mWhere)
+
+      If mdto IsNot Nothing Then
+        mdto.LoadMaterialRequirementProcessorsByWhere(pMaterialRequirementProcessors, mWhere)
+
+      End If
 
 
     Catch ex As Exception
@@ -240,7 +257,15 @@ Public Class fccPickMaterials
             mSIL = Nothing
           End If
           mExchangeValue = GetExchangeRate(Now, eCurrency.Cordobas)
-          mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo)
+
+          Select Case pOptionOT
+            Case eOptionOT.Maintenance
+              mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo, eObjectType.MaintenanceWorkOrder)
+
+            Case eOptionOT.OT
+              mdsoTran.PickMatReqStockItemLocationQty(mSIL, mMRP.ToProcessQty, mMRP.MaterialRequirement, Now, eCurrency.Cordobas, mMRP.StockItem.AverageCost, mExchangeValue, mRequisaNo, eObjectType.MaterialRequirement)
+
+          End Select
           mMatReqProcessorsToRequisa.Add(mMRP)
           mMRP.ToProcessQty = 0
         End If
@@ -260,28 +285,53 @@ Public Class fccPickMaterials
       Dim mDirectory As String
       Dim mExportFilename As String = ""
       Dim mRep As repRequisaPicking
-      Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+      Dim mRepMaintenance As repMaintenanceRequisaPicking
+      Dim mWhere As String
+      Select Case pOptionOT
 
-      Try
-        mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, clsConstants.OTRequisas, vRequisaNo)
-        If System.IO.Directory.Exists(mDirectory) = False Then
-          System.IO.Directory.CreateDirectory(mDirectory)
-        End If
+        Case eOptionOT.Maintenance
+          mWhere = " MaintenanceWorkOrderID =" & pMaintenanceWorkOrder.MaintenanceWorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.MaintenanceItem) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
 
-        mFileName = String.Format("Requisa_{0}_{1}.pdf", vRequisaNo, pCurrentWorkOrderInfo.WorkOrderNo)
-        mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+          mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, clsConstants.OTRequisas, vRequisaNo)
+          If System.IO.Directory.Exists(mDirectory) = False Then
+            System.IO.Directory.CreateDirectory(mDirectory)
+          End If
 
-        pDBConn.Connect()
-        mRep = repRequisaPicking.CreateReport(pCurrentWorkOrderInfo, vMatReqProcessorsToRequisa, vRequisaNo, vTranDate)
+          mFileName = String.Format("Requisa_{0}_{1}.pdf", vRequisaNo, pMaintenanceWorkOrder.MaintenanceWorkOrderNo)
+          mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
 
-        mRep.ExportToPdf(mExportFilename)
+          pDBConn.Connect()
+          mRepMaintenance = repMaintenanceRequisaPicking.CreateReport(pMaintenanceWorkOrder, vMatReqProcessorsToRequisa, vRequisaNo, vTranDate)
 
-        If pDBConn.IsConnected Then pDBConn.Disconnect()
+          mRepMaintenance.ExportToPdf(mExportFilename)
+
+          If pDBConn.IsConnected Then pDBConn.Disconnect()
 
 
-      Catch ex As Exception
-        If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
-      End Try
+
+        Case eOptionOT.OT
+          mWhere = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+
+          mDirectory = System.IO.Path.Combine(AppRTISGlobal.GetInstance.DefaultExportPath, clsConstants.WorkOrderFileFolderSys, clsConstants.OTRequisas, vRequisaNo)
+            If System.IO.Directory.Exists(mDirectory) = False Then
+              System.IO.Directory.CreateDirectory(mDirectory)
+            End If
+
+            mFileName = String.Format("Requisa_{0}_{1}.pdf", vRequisaNo, pCurrentWorkOrderInfo.WorkOrderNo)
+            mExportFilename = System.IO.Path.Combine(mDirectory, mFileName)
+
+            pDBConn.Connect()
+            mRep = repRequisaPicking.CreateReport(pCurrentWorkOrderInfo, vMatReqProcessorsToRequisa, vRequisaNo, vTranDate)
+
+            mRep.ExportToPdf(mExportFilename)
+
+            If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+
+
+      End Select
+
+
     Catch ex As Exception
       If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDomainModel) Then Throw
 
@@ -426,18 +476,32 @@ Public Class fccPickMaterials
     Dim mdso As New dsoGeneral(pDBConn)
     Dim mRetVal As String = ""
 
-    If pCurrentWorkOrderInfo IsNot Nothing Then
 
-      If pCurrentWorkOrderInfo.WorkOrder.WorkOrderID > 0 Then
-        mRetVal = "R-" & mdso.getNextTally(eTallyIDs.RequisaNumber).ToString("D5")
+    Select Case pOptionOT
 
-        '  If Not pDBConn.IsConnected Then pDBConn.Connect()
+      Case eOptionOT.Maintenance
 
-        '  pDBConn.ExecuteNonQuery(String.Format("Update WorkOrder set RequisaNumber = {0} where WorkOrderID = {1}", mRetVal, pCurrentWorkOrderInfo.WorkOrderID))
 
-        '  If pDBConn.IsConnected Then pDBConn.Disconnect()
-      End If
-    End If
+        If pMaintenanceWorkOrder IsNot Nothing Then
+
+          If pMaintenanceWorkOrder.MaintenanceWorkOrderID > 0 Then
+            mRetVal = "R-" & mdso.getNextTally(eTallyIDs.RequisaNumber).ToString("D5")
+          End If
+        End If
+
+
+      Case eOptionOT.OT
+
+
+        If pCurrentWorkOrderInfo IsNot Nothing Then
+
+          If pCurrentWorkOrderInfo.WorkOrder.WorkOrderID > 0 Then
+            mRetVal = "R-" & mdso.getNextTally(eTallyIDs.RequisaNumber).ToString("D5")
+          End If
+        End If
+
+    End Select
+
 
     Return mRetVal
 

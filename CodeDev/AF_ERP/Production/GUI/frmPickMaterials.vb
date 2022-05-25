@@ -229,27 +229,32 @@ Public Class frmPickMaterials
 
       Select Case pFormController.OptionOT
         Case fccPickMaterials.eOptionOT.Maintenance
-          With pFormController.MaintenanceWorkOrder
-            btnSelectOT.Text = .MaintenanceWorkOrderNo
-            txtCompanyName.Text = ""
-            txtFinishDate.Text = Date.MinValue
-            txtProjectName.Text = ""
-            txtReference.Text = ""
-            txtWODescription.Text = .Description
-            txtPlannedDate.Text = .PlannedDate
-          End With
+          If pFormController.MaintenanceWorkOrder IsNot Nothing Then
+            With pFormController.MaintenanceWorkOrder
+              btnSelectOT.Text = .MaintenanceWorkOrderNo
+              txtCompanyName.Text = ""
+              txtFinishDate.Text = Date.MinValue
+              txtProjectName.Text = ""
+              txtReference.Text = ""
+              txtWODescription.Text = .Description
+              txtPlannedDate.Text = .PlannedDate
+            End With
+          End If
 
         Case fccPickMaterials.eOptionOT.OT
-          With pFormController.CurrentWorkOrderInfo
-            btnSelectOT.Text = .WorkOrderNo
-            txtCompanyName.Text = .CustomerName
-            txtFinishDate.Text = .FinishDate
-            txtProjectName.Text = .ProjectName
-            txtReference.Text = .OrderNo
-            txtWODescription.Text = .Description
-            txtWOQty.Text = .Quantity
-            txtPlannedDate.Text = .PlannedStartDate
-          End With
+
+          If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
+            With pFormController.CurrentWorkOrderInfo
+              btnSelectOT.Text = .WorkOrderNo
+              txtCompanyName.Text = .CustomerName
+              txtFinishDate.Text = .FinishDate
+              txtProjectName.Text = .ProjectName
+              txtReference.Text = .OrderNo
+              txtWODescription.Text = .Description
+              txtWOQty.Text = .Quantity
+              txtPlannedDate.Text = .PlannedStartDate
+            End With
+          End If
 
       End Select
 
@@ -384,12 +389,26 @@ Public Class frmPickMaterials
 
   Private Sub btnLoadMatReq_Click(sender As Object, e As EventArgs) Handles btnLoadMatReq.Click
 
-    If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
-      If pFormController.CurrentWorkOrderInfo.WorkOrder.WorkOrderID > 0 Then
-        LoadGrid()
+    Select Case pFormController.OptionOT
 
-      End If
-    End If
+      Case fccPickMaterials.eOptionOT.Maintenance
+        If pFormController.MaintenanceWorkOrder IsNot Nothing Then
+          If pFormController.MaintenanceWorkOrder.MaintenanceWorkOrderID > 0 Then
+            LoadGrid()
+
+          End If
+        End If
+
+      Case fccPickMaterials.eOptionOT.OT
+        If pFormController.CurrentWorkOrderInfo IsNot Nothing Then
+          If pFormController.CurrentWorkOrderInfo.WorkOrder.WorkOrderID > 0 Then
+            LoadGrid()
+
+          End If
+        End If
+    End Select
+
+
 
   End Sub
 
@@ -468,7 +487,7 @@ Public Class frmPickMaterials
 
       pFormController.OptionOT = rgOption.EditValue
 
-
+      btnSelectOT.Text = ""
       LoadGrid()
       RefreshControls()
 
