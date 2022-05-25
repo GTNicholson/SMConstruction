@@ -22,16 +22,16 @@ Partial Class frmPickMaterials
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()>
   Private Sub InitializeComponent()
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPickMaterials))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions3 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim ButtonImageOptions4 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim ButtonImageOptions5 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions6 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions7 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ButtonImageOptions8 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.btnLoadMatReq = New DevExpress.XtraEditors.SimpleButton()
         Me.cboArea = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -83,6 +83,8 @@ Partial Class frmPickMaterials
         Me.cboRequisas = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.rgOption = New DevExpress.XtraEditors.RadioGroup()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.cboArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +111,7 @@ Partial Class frmPickMaterials
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.rgOption.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -117,6 +120,8 @@ Partial Class frmPickMaterials
         Me.GroupControl1.AppearanceCaption.ForeColor = System.Drawing.Color.Maroon
         Me.GroupControl1.AppearanceCaption.Options.UseFont = True
         Me.GroupControl1.AppearanceCaption.Options.UseForeColor = True
+        Me.GroupControl1.Controls.Add(Me.LabelControl11)
+        Me.GroupControl1.Controls.Add(Me.rgOption)
         Me.GroupControl1.Controls.Add(Me.btnLoadMatReq)
         Me.GroupControl1.Controls.Add(Me.cboArea)
         Me.GroupControl1.Controls.Add(Me.LabelControl9)
@@ -139,27 +144,27 @@ Partial Class frmPickMaterials
         '
         Me.btnLoadMatReq.Appearance.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.btnLoadMatReq.Appearance.Options.UseFont = True
-        Me.btnLoadMatReq.Location = New System.Drawing.Point(353, 34)
+        Me.btnLoadMatReq.Location = New System.Drawing.Point(309, 33)
         Me.btnLoadMatReq.Name = "btnLoadMatReq"
-        Me.btnLoadMatReq.Size = New System.Drawing.Size(87, 23)
+        Me.btnLoadMatReq.Size = New System.Drawing.Size(80, 23)
         Me.btnLoadMatReq.TabIndex = 14
         Me.btnLoadMatReq.Text = "Cargar Datos"
         '
         'cboArea
         '
-        Me.cboArea.Location = New System.Drawing.Point(227, 35)
+        Me.cboArea.Location = New System.Drawing.Point(201, 34)
         Me.cboArea.Name = "cboArea"
         Me.cboArea.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cboArea.Properties.Appearance.Options.UseFont = True
         Me.cboArea.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboArea.Size = New System.Drawing.Size(120, 20)
+        Me.cboArea.Size = New System.Drawing.Size(102, 20)
         Me.cboArea.TabIndex = 13
         '
         'LabelControl9
         '
         Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl9.Appearance.Options.UseFont = True
-        Me.LabelControl9.Location = New System.Drawing.Point(191, 37)
+        Me.LabelControl9.Location = New System.Drawing.Point(165, 36)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(30, 16)
         Me.LabelControl9.TabIndex = 12
@@ -168,7 +173,7 @@ Partial Class frmPickMaterials
         'txtPlannedDate
         '
         Me.txtPlannedDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlannedDate.Location = New System.Drawing.Point(497, 76)
+        Me.txtPlannedDate.Location = New System.Drawing.Point(497, 77)
         Me.txtPlannedDate.Name = "txtPlannedDate"
         Me.txtPlannedDate.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.txtPlannedDate.Properties.Appearance.Options.UseFont = True
@@ -181,7 +186,7 @@ Partial Class frmPickMaterials
         Me.LabelControl5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Appearance.Options.UseFont = True
-        Me.LabelControl5.Location = New System.Drawing.Point(446, 78)
+        Me.LabelControl5.Location = New System.Drawing.Point(446, 79)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(45, 16)
         Me.LabelControl5.TabIndex = 10
@@ -192,7 +197,7 @@ Partial Class frmPickMaterials
         Me.LabelControl4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl4.Appearance.Options.UseFont = True
-        Me.LabelControl4.Location = New System.Drawing.Point(347, 78)
+        Me.LabelControl4.Location = New System.Drawing.Point(347, 79)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(33, 16)
         Me.LabelControl4.TabIndex = 9
@@ -201,7 +206,7 @@ Partial Class frmPickMaterials
         'txtWOQty
         '
         Me.txtWOQty.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtWOQty.Location = New System.Drawing.Point(386, 76)
+        Me.txtWOQty.Location = New System.Drawing.Point(386, 77)
         Me.txtWOQty.Name = "txtWOQty"
         Me.txtWOQty.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.txtWOQty.Properties.Appearance.Options.UseFont = True
@@ -213,7 +218,7 @@ Partial Class frmPickMaterials
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Appearance.Options.UseFont = True
-        Me.LabelControl3.Location = New System.Drawing.Point(8, 78)
+        Me.LabelControl3.Location = New System.Drawing.Point(8, 79)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(74, 16)
         Me.LabelControl3.TabIndex = 7
@@ -223,7 +228,7 @@ Partial Class frmPickMaterials
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Appearance.Options.UseFont = True
-        Me.LabelControl1.Location = New System.Drawing.Point(8, 37)
+        Me.LabelControl1.Location = New System.Drawing.Point(8, 36)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(29, 16)
         Me.LabelControl1.TabIndex = 1
@@ -231,20 +236,20 @@ Partial Class frmPickMaterials
         '
         'btnSelectOT
         '
-        Me.btnSelectOT.Location = New System.Drawing.Point(43, 34)
+        Me.btnSelectOT.Location = New System.Drawing.Point(43, 32)
         Me.btnSelectOT.Name = "btnSelectOT"
         Me.btnSelectOT.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.btnSelectOT.Properties.Appearance.Options.UseFont = True
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.btnSelectOT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.btnSelectOT.Size = New System.Drawing.Size(142, 22)
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.btnSelectOT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        Me.btnSelectOT.Size = New System.Drawing.Size(113, 24)
         Me.btnSelectOT.TabIndex = 0
         '
         'txtWODescription
         '
         Me.txtWODescription.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtWODescription.Location = New System.Drawing.Point(88, 76)
+        Me.txtWODescription.Location = New System.Drawing.Point(88, 77)
         Me.txtWODescription.Name = "txtWODescription"
         Me.txtWODescription.Properties.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.txtWODescription.Properties.Appearance.Options.UseFont = True
@@ -282,7 +287,7 @@ Partial Class frmPickMaterials
         Me.grpMaterialRequirements.AppearanceCaption.Options.UseFont = True
         Me.grpMaterialRequirements.AppearanceCaption.Options.UseForeColor = True
         Me.grpMaterialRequirements.Controls.Add(Me.grdMaterialRequirementInfo)
-        Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Articulos", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Despachar a Producción", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Devolver de Producción", True, ButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar", True, ButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1)})
+        Me.grpMaterialRequirements.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar Articulos", True, ButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 2, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Despachar a Producción", True, ButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 1, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Devolver de Producción", True, ButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 4, -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Exportar", True, ButtonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, 3, -1)})
         Me.grpMaterialRequirements.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpMaterialRequirements.Location = New System.Drawing.Point(2, 142)
         Me.grpMaterialRequirements.Name = "grpMaterialRequirements"
@@ -293,11 +298,11 @@ Partial Class frmPickMaterials
         'grdMaterialRequirementInfo
         '
         Me.grdMaterialRequirementInfo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 26)
+        Me.grdMaterialRequirementInfo.Location = New System.Drawing.Point(2, 23)
         Me.grdMaterialRequirementInfo.MainView = Me.gvMaterialRequirementInfos
         Me.grdMaterialRequirementInfo.Name = "grdMaterialRequirementInfo"
         Me.grdMaterialRequirementInfo.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1, Me.repoFormatNumber})
-        Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1455, 396)
+        Me.grdMaterialRequirementInfo.Size = New System.Drawing.Size(1455, 399)
         Me.grdMaterialRequirementInfo.TabIndex = 0
         Me.grdMaterialRequirementInfo.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvMaterialRequirementInfos})
         '
@@ -792,6 +797,24 @@ Partial Class frmPickMaterials
         Me.GroupControl3.TabIndex = 11
         Me.GroupControl3.Text = "Impresión de Requisas"
         '
+        'rgOption
+        '
+        Me.rgOption.Location = New System.Drawing.Point(443, -3)
+        Me.rgOption.Name = "rgOption"
+        Me.rgOption.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "O.T."), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Manten.")})
+        Me.rgOption.Size = New System.Drawing.Size(133, 25)
+        Me.rgOption.TabIndex = 15
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Appearance.Options.UseFont = True
+        Me.LabelControl11.Location = New System.Drawing.Point(395, 1)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(45, 16)
+        Me.LabelControl11.TabIndex = 16
+        Me.LabelControl11.Text = "Opción"
+        '
         'frmPickMaterials
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -831,6 +854,7 @@ Partial Class frmPickMaterials
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.rgOption.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -886,4 +910,6 @@ Partial Class frmPickMaterials
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents rgOption As DevExpress.XtraEditors.RadioGroup
 End Class

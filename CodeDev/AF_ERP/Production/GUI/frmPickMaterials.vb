@@ -142,20 +142,51 @@ Public Class frmPickMaterials
     Dim mWOPicker As clsPickerWorkOrder
     Dim mWOIs As New colWorkOrderInfos
 
-    pFormController.LoadWorkOrderInfos(mWOIs)
+    Dim mMaintenancePicker As clsPickerWorkOrderMaintenance
+    Dim mMaintenanceWorkOrders As New colMaintenanceWorkOrders
 
-    mWOPicker = New clsPickerWorkOrder(mWOIs, pFormController.DBConn)
+    Select Case pFormController.OptionOT
 
-    Dim mWO As clsWorkOrderInfo
-    mWO = frmWorkOrderPicker.OpenPickerSingle(mWOPicker)
+      Case fccPickMaterials.eOptionOT.Maintenance
 
-    If mWO IsNot Nothing Then
-      pFormController.CurrentWorkOrderInfo = mWO
-      RefreshControls()
+        pFormController.LoadMaintenanceWorkOrders(mMaintenanceWorkOrders)
 
-      LoadRequisaCombos()
-      grdMaterialRequirementInfo.DataSource = Nothing
-    End If
+        mMaintenancePicker = New clsPickerWorkOrderMaintenance(mMaintenanceWorkOrders, pFormController.DBConn)
+
+        Dim mMWO As dmMaintenanceWorkOrder
+        mMWO = frmMaintenanceWorkOrderPicker.OpenPickerSingle(mMaintenancePicker)
+
+        If mMWO IsNot Nothing Then
+          pFormController.CurrentWorkOrderInfo = Nothing
+          pFormController.MaintenanceWorkOrder = mMWO
+          RefreshControls()
+
+          LoadRequisaCombos()
+          grdMaterialRequirementInfo.DataSource = Nothing
+        End If
+
+
+      Case fccPickMaterials.eOptionOT.OT
+
+        pFormController.LoadWorkOrderInfos(mWOIs)
+
+        mWOPicker = New clsPickerWorkOrder(mWOIs, pFormController.DBConn)
+
+        Dim mWO As clsWorkOrderInfo
+        mWO = frmWorkOrderPicker.OpenPickerSingle(mWOPicker)
+
+        If mWO IsNot Nothing Then
+          pFormController.CurrentWorkOrderInfo = mWO
+          pFormController.MaintenanceWorkOrder = Nothing
+
+          RefreshControls()
+
+          LoadRequisaCombos()
+          grdMaterialRequirementInfo.DataSource = Nothing
+        End If
+    End Select
+
+
 
 
 
@@ -196,18 +227,33 @@ Public Class frmPickMaterials
 
     Try
 
+      Select Case pFormController.OptionOT
+        Case fccPickMaterials.eOptionOT.Maintenance
+          With pFormController.MaintenanceWorkOrder
+            btnSelectOT.Text = .MaintenanceWorkOrderNo
+            txtCompanyName.Text = ""
+            txtFinishDate.Text = Date.MinValue
+            txtProjectName.Text = ""
+            txtReference.Text = ""
+            txtWODescription.Text = .Description
+            txtPlannedDate.Text = .PlannedDate
+          End With
+
+        Case fccPickMaterials.eOptionOT.OT
+          With pFormController.CurrentWorkOrderInfo
+            btnSelectOT.Text = .WorkOrderNo
+            txtCompanyName.Text = .CustomerName
+            txtFinishDate.Text = .FinishDate
+            txtProjectName.Text = .ProjectName
+            txtReference.Text = .OrderNo
+            txtWODescription.Text = .Description
+            txtWOQty.Text = .Quantity
+            txtPlannedDate.Text = .PlannedStartDate
+          End With
+
+      End Select
 
 
-      With pFormController.CurrentWorkOrderInfo
-        btnSelectOT.Text = .WorkOrderNo
-        txtCompanyName.Text = .CustomerName
-        txtFinishDate.Text = .FinishDate
-        txtProjectName.Text = .ProjectName
-        txtReference.Text = .OrderNo
-        txtWODescription.Text = .Description
-        txtWOQty.Text = .Quantity
-        txtPlannedDate.Text = .PlannedStartDate
-      End With
 
 
     Catch ex As Exception
@@ -233,6 +279,7 @@ Public Class frmPickMaterials
     LoadCombos()
 
     clsDEControlLoading.SetDECombo(cboArea, 0) 'Todos
+    rgOption.EditValue = CInt(pFormController.OptionOT)
 
     SetGroupField()
 
@@ -349,12 +396,15 @@ Public Class frmPickMaterials
   Private Sub LoadGrid()
     Dim mArea As Integer = clsDEControlLoading.GetDEComboValue(cboArea)
 
-
-
     pFormController.LoadMaterialRequirementProcessorss(mArea)
     grdMaterialRequirementInfo.DataSource = pFormController.MaterialRequirementProcessors
     gvMaterialRequirementInfos.RefreshData()
     gvMaterialRequirementInfos.ExpandAllGroups()
+
+
+
+
+
 
 
   End Sub
@@ -410,6 +460,23 @@ Public Class frmPickMaterials
     End Try
 
 
+
+  End Sub
+
+  Private Sub rgOption_EditValueChanged(sender As Object, e As EventArgs) Handles rgOption.EditValueChanged
+    Try
+
+      pFormController.OptionOT = rgOption.EditValue
+
+
+      LoadGrid()
+      RefreshControls()
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyUserInterface) Then Throw
+
+    End Try
 
   End Sub
 End Class

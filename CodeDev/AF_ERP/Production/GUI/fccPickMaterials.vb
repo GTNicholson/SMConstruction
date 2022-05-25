@@ -8,10 +8,26 @@ Public Class fccPickMaterials
   Private pFormController As fccPickMaterials
   Private pCurrentWorkOrderInfo As clsWorkOrderInfo
   Private pWhere As String
+  Private pOptionOT As eOptionOT
+  Private pMaintenanceWorkOrder As dmMaintenanceWorkOrder
 
+  Public Enum eOptionOT
+    OT = 0
+    Maintenance = 1
+  End Enum
+
+  Public Property OptionOT As eOptionOT
+    Get
+      Return pOptionOT
+    End Get
+    Set(value As eOptionOT)
+      pOptionOT = value
+    End Set
+  End Property
   Public Sub New(ByRef rDBConn As RTIS.DataLayer.clsDBConnBase)
     pDBConn = rDBConn
     pMaterialRequirementProcessors = New colMaterialRequirementProcessors
+    pOptionOT = eOptionOT.OT
   End Sub
 
   Public Property WhereSQL() As String
@@ -42,6 +58,14 @@ Public Class fccPickMaterials
     End Set
   End Property
 
+  Public Property MaintenanceWorkOrder As dmMaintenanceWorkOrder
+    Get
+      Return pMaintenanceWorkOrder
+    End Get
+    Set(value As dmMaintenanceWorkOrder)
+      pMaintenanceWorkOrder = value
+    End Set
+  End Property
   Public Property CurrentWorkOrderInfo() As clsWorkOrderInfo
     Get
       CurrentWorkOrderInfo = pCurrentWorkOrderInfo
@@ -125,6 +149,25 @@ Public Class fccPickMaterials
 
   End Sub
 
+  Public Sub LoadMaintenanceWorkOrders(ByRef rMaintenanceWorkOrders As colMaintenanceWorkOrders)
+    Try
+      Dim mdto As New dtoMaintenanceWorkOrder(pDBConn)
+
+      If pDBConn.Connect Then
+
+        mdto.LoadMaintenanceWorkOrderCollectionByWhere(rMaintenanceWorkOrders, "")
+
+      End If
+
+
+    Catch ex As Exception
+      If clsErrorHandler.HandleError(ex, clsErrorHandler.PolicyDataLayer) Then Throw
+    Finally
+      If pDBConn.IsConnected Then pDBConn.Disconnect()
+
+    End Try
+  End Sub
+
   Public Function LoadWorkOrderInfoDT() As DataTable
     Dim mdso As New dsoSalesOrder(DBConn)
     Dim mDT As DataTable = Nothing
@@ -135,12 +178,26 @@ Public Class fccPickMaterials
   Public Sub LoadMaterialRequirementProcessorss(ByVal vAreaID As Integer)
 
     Dim mdto As dtoMaterialRequirementInfo
-    Dim mWhere As String = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+    Dim mWhere As String = ""
+
+    Select Case pOptionOT
+      Case eOptionOT.Maintenance
+        mWhere = " MaintenanceWorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.MaintenanceItem) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+        mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.MaintenanceItem)
+
+      Case eOptionOT.OT
+        mWhere = " WorkOrderID =" & pCurrentWorkOrderInfo.WorkOrderID & " and MaterialRequirementType = " & CInt(eMaterialRequirementType.StockItems) & " and  (isnull(Quantity,0)<>0 or IsNull(ReturnQty,0)<>0 or ISNull(PickedQty,0)<>0)"
+        mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+      Case Else
+        mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
+
+    End Select
+
     pMaterialRequirementProcessors.Clear()
     Try
 
       pDBConn.Connect()
-      mdto = New dtoMaterialRequirementInfo(DBConn, dtoMaterialRequirementInfo.eMode.Processor)
 
       Select Case vAreaID
         Case 0 '' TODOs
