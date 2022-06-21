@@ -60,6 +60,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.btnPickOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.dtePurchasingDate = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cboStatus = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -134,7 +135,6 @@ Partial Class frmWorkOrderDetailConstruction
         Me.gcQtyBoardFeet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.lblWorkOrderID = New System.Windows.Forms.Label()
-        Me.btnPickOrder = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.grpProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -465,6 +465,16 @@ Partial Class frmWorkOrderDetailConstruction
         Me.GroupControl6.TabIndex = 165
         Me.GroupControl6.Text = "Detalle General de OT"
         '
+        'btnPickOrder
+        '
+        Me.btnPickOrder.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
+        Me.btnPickOrder.Appearance.Options.UseFont = True
+        Me.btnPickOrder.Location = New System.Drawing.Point(649, 161)
+        Me.btnPickOrder.Name = "btnPickOrder"
+        Me.btnPickOrder.Size = New System.Drawing.Size(125, 23)
+        Me.btnPickOrder.TabIndex = 181
+        Me.btnPickOrder.Text = "Despachar Materiales"
+        '
         'dtePurchasingDate
         '
         Me.dtePurchasingDate.EditValue = Nothing
@@ -484,7 +494,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(576, 68)
+        Me.Label4.Location = New System.Drawing.Point(576, 66)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(86, 14)
         Me.Label4.TabIndex = 180
@@ -506,7 +516,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(576, 92)
+        Me.Label3.Location = New System.Drawing.Point(576, 90)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(44, 14)
         Me.Label3.TabIndex = 178
@@ -541,7 +551,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(576, 44)
+        Me.Label7.Location = New System.Drawing.Point(576, 42)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(58, 14)
         Me.Label7.TabIndex = 175
@@ -565,7 +575,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(576, 20)
+        Me.Label5.Location = New System.Drawing.Point(576, 18)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(68, 14)
         Me.Label5.TabIndex = 173
@@ -589,7 +599,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblUnidad.AutoSize = True
         Me.lblUnidad.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUnidad.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblUnidad.Location = New System.Drawing.Point(178, 68)
+        Me.lblUnidad.Location = New System.Drawing.Point(178, 66)
         Me.lblUnidad.Name = "lblUnidad"
         Me.lblUnidad.Size = New System.Drawing.Size(44, 14)
         Me.lblUnidad.TabIndex = 171
@@ -613,7 +623,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(10, 68)
+        Me.Label8.Location = New System.Drawing.Point(10, 66)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(84, 14)
         Me.Label8.TabIndex = 169
@@ -630,7 +640,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpWorkOrderAllocations.Controls.Add(Me.grdWorkOrderAllocationsInfos)
         Me.grpWorkOrderAllocations.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Seleccionar Proyecto", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, CType(1, Short), -1), New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Agregar para Inventario", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, False, CType(2, Short), -1)})
         Me.grpWorkOrderAllocations.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 10)
+        Me.grpWorkOrderAllocations.Location = New System.Drawing.Point(780, 8)
         Me.grpWorkOrderAllocations.Name = "grpWorkOrderAllocations"
         Me.grpWorkOrderAllocations.Size = New System.Drawing.Size(679, 208)
         Me.grpWorkOrderAllocations.TabIndex = 11
@@ -792,7 +802,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(10, 92)
+        Me.Label10.Location = New System.Drawing.Point(10, 90)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(41, 14)
         Me.Label10.TabIndex = 44
@@ -815,7 +825,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label12.Location = New System.Drawing.Point(10, 20)
+        Me.Label12.Location = New System.Drawing.Point(10, 18)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(55, 14)
         Me.Label12.TabIndex = 139
@@ -826,7 +836,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(10, 44)
+        Me.Label1.Location = New System.Drawing.Point(10, 42)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 14)
         Me.Label1.TabIndex = 14
@@ -861,7 +871,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(234, 20)
+        Me.Label2.Location = New System.Drawing.Point(234, 18)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(72, 14)
         Me.Label2.TabIndex = 15
@@ -884,7 +894,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(236, 44)
+        Me.Label6.Location = New System.Drawing.Point(236, 42)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(86, 14)
         Me.Label6.TabIndex = 19
@@ -908,7 +918,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(234, 68)
+        Me.Label11.Location = New System.Drawing.Point(234, 66)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(75, 14)
         Me.Label11.TabIndex = 137
@@ -939,7 +949,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grpMaterialRequirementInsumos.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.grpMaterialRequirementInsumos.Location = New System.Drawing.Point(875, 0)
         Me.grpMaterialRequirementInsumos.Name = "grpMaterialRequirementInsumos"
-        Me.grpMaterialRequirementInsumos.Size = New System.Drawing.Size(586, 273)
+        Me.grpMaterialRequirementInsumos.Size = New System.Drawing.Size(580, 273)
         Me.grpMaterialRequirementInsumos.TabIndex = 167
         Me.grpMaterialRequirementInsumos.Text = "Insumos"
         '
@@ -951,7 +961,7 @@ Partial Class frmWorkOrderDetailConstruction
         Me.grdStockItemMatReq.MenuManager = Me.BarManager1
         Me.grdStockItemMatReq.Name = "grdStockItemMatReq"
         Me.grdStockItemMatReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemMemoEdit1, Me.RepositoryItemMemoExEdit1})
-        Me.grdStockItemMatReq.Size = New System.Drawing.Size(582, 247)
+        Me.grdStockItemMatReq.Size = New System.Drawing.Size(576, 247)
         Me.grdStockItemMatReq.TabIndex = 14
         Me.grdStockItemMatReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvStockItemMatReq})
         '
@@ -1312,16 +1322,6 @@ Partial Class frmWorkOrderDetailConstruction
         Me.lblWorkOrderID.TabIndex = 145
         Me.lblWorkOrderID.Text = "ID:00000"
         Me.lblWorkOrderID.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'btnPickOrder
-        '
-        Me.btnPickOrder.Appearance.Font = New System.Drawing.Font("Arial", 8.25!)
-        Me.btnPickOrder.Appearance.Options.UseFont = True
-        Me.btnPickOrder.Location = New System.Drawing.Point(649, 161)
-        Me.btnPickOrder.Name = "btnPickOrder"
-        Me.btnPickOrder.Size = New System.Drawing.Size(125, 23)
-        Me.btnPickOrder.TabIndex = 181
-        Me.btnPickOrder.Text = "Despachar Materiales"
         '
         'frmWorkOrderDetailConstruction
         '

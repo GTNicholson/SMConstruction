@@ -91,7 +91,7 @@ Partial Class frmPickerStockItem
         Me.grdItemList.MainView = Me.gvItemList
         Me.grdItemList.Name = "grdItemList"
         Me.grdItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.repoItemSelect, Me.repoItemRemove, Me.repoImageEdit, Me.repoPictureImage, Me.RepositoryItemPopupGalleryEdit1, Me.repoViewImage})
-        Me.grdItemList.Size = New System.Drawing.Size(980, 438)
+        Me.grdItemList.Size = New System.Drawing.Size(968, 420)
         Me.grdItemList.TabIndex = 98
         Me.grdItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gvItemList})
         '

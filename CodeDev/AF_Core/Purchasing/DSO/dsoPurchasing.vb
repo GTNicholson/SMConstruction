@@ -302,7 +302,7 @@ Public Class dsoPurchasing
           If mOK Then mOK = mdtoPOAllocation.SavePurchaseOrderAllocationCollection(rPurchaseOrder.PurchaseOrderAllocations, rPurchaseOrder.PurchaseOrderID)
 
           mdtoPOFiles = New dtoFileTracker(pDBConn)
-          mdtoPOFiles.LoadFileTrackerCollection(rPurchaseOrder.POFiles, eObjectType.PurchaseOrder, rPurchaseOrder.PurchaseOrderID)
+          mdtoPOFiles.SaveFileTrackerCollection(rPurchaseOrder.POFiles, eObjectType.PurchaseOrder, rPurchaseOrder.PurchaseOrderID)
 
 
         Catch ex As Exception
